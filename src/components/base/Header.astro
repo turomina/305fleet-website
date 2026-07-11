@@ -1,0 +1,178 @@
+---
+import { SITE, NAV } from "../../config/site";
+
+const currentPath = Astro.url.pathname;
+---
+
+<header
+  id="site-header"
+  class="sticky top-0 z-50 bg-white border-b border-gray-200 transition-shadow"
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <nav class="flex h-16 items-center justify-between lg:h-18" aria-label="Main navigation">
+      <!-- Logo -->
+      <a href="/" class="flex items-center shrink-0" aria-label={`${SITE.name} home`}>
+        <img
+          src="/images/brand/header-logo.png"
+          alt={`${SITE.name}`}
+          width="160"
+          height="48"
+          class="h-8 w-auto lg:h-10"
+        />
+      </a>
+
+      <!-- Desktop Nav -->
+      <ul class="hidden lg:flex items-center gap-1">
+        {NAV.primary.map((item) => (
+          <li class="relative group">
+            <a
+              href={item.href}
+              class={`px-3 py-2 text-sm font-medium rounded-md transition-colors hover:bg-brand-pale hover:text-brand ${
+                currentPath.startsWith(item.href) ? "text-brand bg-brand-pale" : "text-gray-700"
+              }`}
+            >
+              {item.label}
+            </a>
+            {item.children && (
+              <ul class="absolute left-0 top-full mt-1 hidden group-hover:block min-w-[240px] bg-white border border-gray-200 rounded-md shadow-lg py-1 z-50">
+                {item.children.map((child) => (
+                  <li>
+                    <a
+                      href={child.href}
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-brand-pale hover:text-brand"
+                    >
+                      {child.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+
+      <!-- Right side: language toggle + CTA -->
+      <div class="hidden lg:flex items-center gap-3">
+        <button
+          type="button"
+          class="text-sm font-medium text-gray-600 hover:text-brand"
+          aria-label="Switch language"
+        >
+          EN <span class="text-gray-300">|</span> ES
+        </button>
+        <a
+          href="/vehicles/"
+          class="inline-flex items-center rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-light"
+        >
+          Browse Vehicles
+        </a>
+      </div>
+
+      <!-- Mobile: hamburger + phone -->
+      <div class="lg:hidden flex items-center gap-2">
+        <a
+          href="tel:"
+          class="p-2 text-gray-700 hover:text-brand"
+          aria-label="Call us"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+        </a>
+        <button
+          type="button"
+          id="mobile-menu-toggle"
+          class="p-2 text-gray-700 hover:text-brand"
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Mobile menu drawer -->
+  <div id="mobile-menu" class="hidden lg:hidden fixed inset-0 z-50">
+    <div id="mobile-menu-backdrop" class="absolute inset-0 bg-black/30"></div>
+    <div class="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white shadow-xl overflow-y-auto">
+      <div class="flex items-center justify-between p-4 border-b border-gray-200">
+        <span class="font-bold text-brand">{SITE.name}</span>
+        <button
+          type="button"
+          id="mobile-menu-close"
+          class="p-2 text-gray-500 hover:text-gray-900"
+          aria-label="Close menu"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <nav class="p-4" aria-label="Mobile navigation">
+        <ul class="space-y-1">
+          {NAV.primary.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="block px-4 py-3 text-base font-medium text-gray-900 rounded-md hover:bg-brand-pale hover:text-brand"
+              >
+                {item.label}
+              </a>
+              {item.children && (
+                <ul class="ml-4 mt-1 space-y-1 border-l border-gray-200 pl-3">
+                  {item.children.map((child) => (
+                    <li>
+                      <a
+                        href={child.href}
+                        class="block px-4 py-2 text-sm text-gray-600 rounded-md hover:bg-brand-pale hover:text-brand"
+                      >
+                        {child.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+        </ul>
+        <div class="mt-4 pt-4 border-t border-gray-200 space-y-1">
+          {NAV.utility.map((item) => (
+            <a
+              href={item.href}
+              class="block px-4 py-3 text-base font-medium text-gray-700 rounded-md hover:bg-brand-pale hover:text-brand"
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+        <div class="mt-4 pt-4 border-t border-gray-200">
+          <button class="text-sm font-medium text-gray-600">EN | ES</button>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("mobile-menu-toggle");
+  const closeBtn = document.getElementById("mobile-menu-close");
+  const menu = document.getElementById("mobile-menu");
+  const backdrop = document.getElementById("mobile-menu-backdrop");
+
+  function openMenu() {
+    menu?.classList.remove("hidden");
+    toggle?.setAttribute("aria-expanded", "true");
+  }
+
+  function closeMenu() {
+    menu?.classList.add("hidden");
+    toggle?.setAttribute("aria-expanded", "false");
+  }
+
+  toggle?.addEventListener("click", openMenu);
+  closeBtn?.addEventListener("click", closeMenu);
+  backdrop?.addEventListener("click", closeMenu);
+</script>

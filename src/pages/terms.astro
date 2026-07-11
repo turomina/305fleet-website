@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/base/Header.astro";
+import Footer from "../components/base/Footer.astro";
+---
+
+<BaseLayout
+  title="Terms"
+  description="Terms of service for 305 Fleet — Turomina LLC."
+  noindex={true}
+>
+  <Header />
+
+  <main id="main-content" class="flex-1 bg-white">
+    <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <h1 class="text-3xl font-bold text-gray-900">Terms of Service</h1>
+      <p class="mt-2 text-sm text-gray-500">Last updated: July 10, 2026</p>
+
+      <div class="mt-8 prose prose-sm prose-gray max-w-none">
+        <p>
+          These terms govern your use of the 305 Fleet website and rental services. By using our
+          website or booking a vehicle, you agree to these terms.
+        </p>
+
+        <h2>Rental Agreement</h2>
+        <p>
+          Each vehicle rental is subject to a separate rental agreement that will be provided at the
+          time of booking. The rental agreement contains the complete terms and conditions for your
+          rental, including pricing, insurance requirements, mileage limits, and cancellation policies.
+        </p>
+
+        <h2>Website Use</h2>
+        <p>
+          You agree to use this website lawfully and not to:
+        </p>
+        <ul>
+          <li>Attempt to access unauthorized areas or systems</li>
+          <li>Submit false or misleading information</li>
+          <li>Use the site for any illegal purpose</li>
+          <li>Interfere with the site's operation or security</li>
+        </ul>
+
+        <h2>Reservations</h2>
+        <p>
+          Submitting a booking request through our website does not constitute a confirmed reservation.
+          A reservation is confirmed only when you receive a confirmation from our booking system
+          (Wheelbase) or from 305 Fleet directly.
+        </p>
+
+        <h2>Limitation of Liability</h2>
+        <p>
+          305 Fleet is not liable for indirect, incidental, or consequential damages arising from
+          the use of this website. Vehicle rental liability is governed by the rental agreement and
+          applicable insurance coverage.
+        </p>
+
+        <h2>Governing Law</h2>
+        <p>
+          These terms are governed by the laws of the State of Florida.
+        </p>
+
+        <p class="mt-8 text-sm text-gray-500">
+          This is a placeholder terms document. A comprehensive version will be prepared before
+          any customer transactions occur.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

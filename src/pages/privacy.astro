@@ -1,0 +1,79 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/base/Header.astro";
+import Footer from "../components/base/Footer.astro";
+---
+
+<BaseLayout
+  title="Privacy Policy"
+  description="Privacy policy for 305 Fleet — Turomina LLC."
+  noindex={true}
+>
+  <Header />
+
+  <main id="main-content" class="flex-1 bg-white">
+    <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <h1 class="text-3xl font-bold text-gray-900">Privacy Policy</h1>
+      <p class="mt-2 text-sm text-gray-500">Last updated: July 10, 2026</p>
+
+      <div class="mt-8 prose prose-sm prose-gray max-w-none">
+        <p>
+          This privacy policy describes how Turomina LLC dba 305Fleet ("305 Fleet," "we," "us," or "our")
+          collects, uses, and protects information you provide through our website at 305fleet.com
+          (the "Site").
+        </p>
+
+        <h2>Information We Collect</h2>
+        <p>
+          At this stage, our website does not collect personal information. When booking functionality
+          is introduced, we will collect information necessary for vehicle reservations, including
+          name, contact information, driver's license details, and payment information.
+        </p>
+
+        <h2>How We Use Your Information</h2>
+        <ul>
+          <li>To process vehicle rental reservations</li>
+          <li>To communicate with you about your booking</li>
+          <li>To verify driver eligibility</li>
+          <li>To comply with legal and insurance requirements</li>
+          <li>To improve our services and website</li>
+        </ul>
+
+        <h2>Information Sharing</h2>
+        <p>
+          We do not sell or rent your personal information. We may share information with:
+        </p>
+        <ul>
+          <li>Wheelbase (our booking platform provider)</li>
+          <li>Insurance providers</li>
+          <li>Payment processors</li>
+          <li>Legal authorities when required by law</li>
+        </ul>
+
+        <h2>Data Security</h2>
+        <p>
+          We use industry-standard security measures to protect your information. Payment-card data is
+          handled by certified payment processors — we never store raw payment-card information.
+        </p>
+
+        <h2>Your Rights</h2>
+        <p>
+          You may request access to, correction of, or deletion of your personal information by
+          contacting us through the details provided on our contact page.
+        </p>
+
+        <h2>Updates</h2>
+        <p>
+          This policy will be updated as our services evolve. We will post the effective date above.
+        </p>
+
+        <p class="mt-8 text-sm text-gray-500">
+          This is a placeholder privacy policy. A comprehensive version will be prepared before
+          any customer data is collected.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

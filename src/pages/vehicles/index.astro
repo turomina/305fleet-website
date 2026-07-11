@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/base/Header.astro";
+import Footer from "../../components/base/Footer.astro";
+---
+
+<BaseLayout
+  title="Vehicles"
+  description="Browse the 305 Fleet vehicle inventory — newer, well-maintained vehicles for daily, weekly, and monthly rentals in South Florida."
+>
+  <Header />
+
+  <main id="main-content" class="flex-1 bg-gray-50">
+    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-bold text-gray-900">Our Vehicles</h1>
+      <p class="mt-3 text-lg text-gray-500">
+        Newer, well-maintained vehicles — airport delivery at MIA, FLL, and PBI.
+      </p>
+
+      <!-- Filter bar (placeholder) -->
+      <div class="mt-8 flex flex-wrap gap-3">
+        <button class="rounded-full bg-brand px-4 py-2 text-sm font-medium text-white">All</button>
+        <button class="rounded-full border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:border-brand hover:text-brand">Sedans</button>
+        <button class="rounded-full border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:border-brand hover:text-brand">SUVs</button>
+        <button class="rounded-full border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:border-brand hover:text-brand">Electric / Hybrid</button>
+        <button class="rounded-full border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:border-brand hover:text-brand">Premium</button>
+      </div>
+
+      <!-- Vehicle grid placeholder -->
+      <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {[1, 2, 3, 4, 5, 6].map((i) => (
+          <div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+            <div class="aspect-[4/3] bg-gray-200 flex items-center justify-center">
+              <span class="text-gray-400 text-sm">Vehicle photo pending</span>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-semibold text-gray-900">Vehicle {i}</h3>
+              <p class="text-sm text-gray-500 mt-1">Year · Make · Model · Trim</p>
+              <div class="mt-3 flex items-center gap-4 text-sm text-gray-500">
+                <span>🧑‍🤝‍🧑 5</span>
+                <span>🧳 2</span>
+              </div>
+              <div class="mt-4 flex items-center justify-between">
+                <span class="text-lg font-semibold text-brand">Pricing TBD</span>
+                <a href="#" class="text-sm font-medium text-brand hover:underline">View details →</a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12 rounded-lg bg-brand-pale border border-brand-light/30 p-6 text-center">
+        <p class="text-sm text-brand-dark">
+          ⓘ Vehicle inventory is being updated. Real vehicle photos, specifications, and pricing will be available soon.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
