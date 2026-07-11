@@ -1,0 +1,99 @@
+---
+// JSON-LD: Vehicle schema (prepared but NOT attached to placeholder)
+//
+// This component is ready for when real, verified vehicle data is available
+// from Airtable. It must NOT be used for the placeholder vehicle record.
+//
+// Required fields for a real vehicle:
+//   - name (verified)
+//   - vehicleModelDate (year, verified)
+//   - manufacturer (make, verified)
+//   - model (verified)
+//
+// Conditional fields (only if verified data exists):
+//   - offers (only with verified pricing from Wheelbase)
+//   - aggregateRating (only with verified review data)
+//   - availability (only with live Wheelbase inventory)
+//
+// Fields that must NEVER be invented:
+//   - stockNumber
+//   - VIN
+//   - vehicleIdentificationNumber
+
+export interface VehicleSchemaProps {
+  name: string;
+  manufacturer: string;
+  model: string;
+  vehicleModelDate: string; // year as string
+  url: string;
+  fuelType?: string;
+  vehicleSeatingCapacity?: number;
+  color?: string;
+  // Optional — only if verified pricing exists
+  offerPrice?: string;
+  offerCurrency?: string;
+  offerAvailability?: string; // "InStock", "OutOfStock", "PreOrder"
+  // Optional — only if verified review data exists
+  aggregateRatingValue?: string;
+  aggregateRatingCount?: string;
+  imageUrl?: string;
+}
+
+const {
+  name,
+  manufacturer,
+  model,
+  vehicleModelDate,
+  url,
+  fuelType,
+  vehicleSeatingCapacity,
+  color,
+  offerPrice,
+  offerCurrency = "USD",
+  offerAvailability,
+  aggregateRatingValue,
+  aggregateRatingCount,
+  imageUrl,
+} = Astro.props;
+
+const vehicleSchema: Record<string, any> = {
+  "@context": "https://schema.org",
+  "@type": "Vehicle",
+  name,
+  manufacturer: {
+    "@type": "Organization",
+    name: manufacturer,
+  },
+  model,
+  vehicleModelDate,
+  url,
+};
+
+if (fuelType) vehicleSchema.fuelType = fuelType;
+if (vehicleSeatingCapacity) vehicleSchema.vehicleSeatingCapacity = vehicleSeatingCapacity;
+if (color) vehicleSchema.color = color;
+if (imageUrl) vehicleSchema.image = imageUrl;
+
+// Only include offers if verified pricing is provided
+if (offerPrice) {
+  vehicleSchema.offers = {
+    "@type": "Offer",
+    price: offerPrice,
+    priceCurrency: offerCurrency,
+  };
+  if (offerAvailability) {
+    vehicleSchema.offers.availability = `https://schema.org/${offerAvailability}`;
+  }
+}
+
+// Only include aggregate rating if verified review data is provided
+if (aggregateRatingValue && aggregateRatingCount) {
+  vehicleSchema.aggregateRating = {
+    "@type": "AggregateRating",
+    ratingValue: aggregateRatingValue,
+    reviewCount: aggregateRatingCount,
+  };
+}
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(vehicleSchema)} />

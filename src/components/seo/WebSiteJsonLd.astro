@@ -1,0 +1,22 @@
+---
+// JSON-LD: WebSite schema
+// Describes the website itself — search action omitted until search is functional
+
+export interface Props {
+  url?: string;
+}
+
+const { url = "https://305fleet.com" } = Astro.props;
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "305 Fleet",
+  url: url,
+};
+
+// No potentialAction (search) — search is not functional yet
+// No publisher (would reference the Organization schema)
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />

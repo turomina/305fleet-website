@@ -1,0 +1,28 @@
+---
+// JSON-LD: BreadcrumbList schema
+// Pass breadcrumbs as props: [{ name, url }]
+
+export interface Crumb {
+  name: string;
+  url: string;
+}
+
+export interface Props {
+  breadcrumbs: Crumb[];
+}
+
+const { breadcrumbs } = Astro.props;
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbs.map((crumb, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: crumb.name,
+    item: crumb.url,
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

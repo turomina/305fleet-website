@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 
-# Sitemap
+# Sitemap location will be updated when production domain is confirmed
+# For preview deployments, the no-index middleware handles indexing prevention
 Sitemap: https://305fleet.com/sitemap-index.xml

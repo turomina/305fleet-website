@@ -1,6 +1,9 @@
 ---
 import "../styles/global.css";
 import { SITE } from "../config/site";
+import { getLocale, getLocalizedPath } from "../config/i18n";
+import OrganizationJsonLd from "../components/seo/OrganizationJsonLd.astro";
+import WebSiteJsonLd from "../components/seo/WebSiteJsonLd.astro";
 
 export interface Props {
   title?: string;
@@ -17,6 +20,22 @@ const {
 } = Astro.props;
 
 const pageTitle = title ? `${title} | ${SITE.name}` : `${SITE.name} — ${SITE.tagline}`;
+const currentPath = Astro.url.pathname;
+const currentLocale = getLocale(currentPath);
+const alternateLocale = currentLocale === "en" ? "es" : "en";
+const alternatePath = getLocalizedPath(currentPath, alternateLocale);
+
+// Canonical URL: use request origin for preview/dev, SITE.url for production
+// In preview (pages.dev) or local dev, Astro.url.origin reflects the actual host
+// In production, SITE.url is the authoritative canonical base
+const requestOrigin = Astro.url.origin;
+const isProductionDomain = requestOrigin === SITE.url;
+const canonicalBase = isProductionDomain ? SITE.url : requestOrigin;
+const canonicalUrl = new URL(currentPath, canonicalBase).href;
+const alternateUrl = new URL(alternatePath, canonicalBase).href;
+const englishUrl = new URL(currentLocale === "en" ? currentPath : getLocalizedPath(currentPath, "en"), canonicalBase).href;
+const spanishUrl = new URL(currentLocale === "es" ? currentPath : getLocalizedPath(currentPath, "es"), canonicalBase).href;
+const xDefaultUrl = new URL("/", canonicalBase).href;
 ---
 
 <!doctype html>
@@ -29,16 +48,30 @@ const pageTitle = title ? `${title} | ${SITE.name}` : `${SITE.name} — ${SITE.t
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex,nofollow" />}
     <link rel="icon" type="image/png" href="/images/brand/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/brand/favicon-16.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="/images/brand/favicon-64.png" />
     <link rel="apple-touch-icon" href="/images/brand/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#1A3A5C" />
+    <meta name="apple-mobile-web-app-title" content="305 Fleet" />
+    <meta name="apple-mobile-web-app-capable" content="no" />
+    <meta name="mobile-web-app-capable" content="no" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content={SITE.name} />
-    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content="/images/brand/social-card.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
-    <link rel="canonical" href={new URL(Astro.url.pathname, SITE.url).href} />
+    <meta name="twitter:image" content="/images/brand/social-card.png" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="en" href={englishUrl} />
+    <link rel="alternate" hreflang="es" href={spanishUrl} />
+    <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
+    <OrganizationJsonLd />
+    <WebSiteJsonLd />
     <slot name="head" />
   </head>
   <body class="min-h-screen flex flex-col bg-white text-gray-900 antialiased">

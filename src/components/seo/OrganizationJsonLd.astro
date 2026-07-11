@@ -1,0 +1,30 @@
+---
+// JSON-LD: Organization schema for 305 Fleet
+// Renders only verified, non-invented data
+// No aggregate ratings, no fake reviews, no invented prices
+
+export interface Props {
+  url?: string;
+}
+
+const { url = "https://305fleet.com" } = Astro.props;
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "305 Fleet",
+  legalName: "Turomina LLC dba 305Fleet",
+  description: "A locally operated South Florida fleet offering newer, well-maintained vehicles, straightforward pricing, airport delivery, and responsive personal service.",
+  url: url,
+  areaServed: ["Miami, FL", "Fort Lauderdale, FL", "Palm Beach, FL"],
+  knowsAbout: ["Vehicle rentals", "Airport delivery", "Short-term leasing"],
+};
+
+// No telephone (not provided yet)
+// No address (not confirmed)
+// No logo URL (will add when production domain is confirmed)
+// No aggregateRating (no verified reviews yet)
+// No sameAs (no social profiles confirmed yet)
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
