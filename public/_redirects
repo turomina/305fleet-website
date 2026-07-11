@@ -1,0 +1,11 @@
+# 305 Fleet branded booking redirects
+# Temporary 302 redirects → Turo listings
+# Will change to Wheelbase when direct booking launches
+
+/book/q3          https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/audi/q3/3291762  302
+/book/highlander  https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/toyota/highlander-hybrid/2852521  302
+/book/q4          https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/audi/q4-e-tron/3419762  302
+/book/escalade    https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/cadillac/escalade-esv/2991725  302
+/book/outlander   https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/mitsubishi/outlander-plug-in-hybrid/3207788  302
+/book/xc90        https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/volvo/xc90-plug-in-hybrid/2945829  302
+/book/glc         https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/mercedes-benz/glc-class/3529622  302

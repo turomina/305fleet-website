@@ -17,12 +17,16 @@
     "availability_status": "available",
     "key_features": [],
     "drivetrain": null,
-    "best_for": ["airport_traveler", "family", "luxury"],
+    "best_for": [
+      "airport_traveler",
+      "family",
+      "luxury"
+    ],
     "tagline_en": "Full-size luxury SUV — premium comfort for groups and families.",
     "tagline_es": "SUV de lujo de tamaño completo — confort premium para grupos y familias.",
     "description_en": "The 2025 Cadillac Escalade ESV Sport is our flagship vehicle — a full-size luxury SUV with premium seating, advanced tech, and commanding presence. Ideal for airport pickups, family trips, and group travel across South Florida.",
     "description_es": "El Cadillac Escalade ESV Sport 2025 es nuestro vehículo insignia — un SUV de lujo de tamaño completo con asientos premium, tecnología avanzada y presencia imponente. Ideal para recogidas en aeropuerto, viajes familiares y viajes en grupo por el sur de Florida.",
-    "turo_url": null,
+    "turo_url": "https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/cadillac/escalade-esv/2991725",
     "hero_image": null,
     "gallery": [],
     "price_display_daily": null,
@@ -30,7 +34,7 @@
     "price_display_monthly": null,
     "publication_status": "preview_only",
     "verified": false,
-    "last_updated": "2026-07-10",
+    "last_updated": "2026-07-11",
     "data_source": "airtable_manual"
   },
   {
@@ -51,12 +55,16 @@
     "availability_status": "available",
     "key_features": [],
     "drivetrain": null,
-    "best_for": ["airport_traveler", "eco_conscious", "business"],
+    "best_for": [
+      "airport_traveler",
+      "eco_conscious",
+      "business"
+    ],
     "tagline_en": "Electric compact SUV — premium Audi engineering, zero emissions.",
     "tagline_es": "SUV compacto eléctrico — ingeniería premium de Audi, cero emisiones.",
     "description_en": "The 2024 Audi Q4 e-tron Premium Plus combines Audi's signature luxury with electric efficiency. A compact SUV that's perfect for South Florida travel — quiet, refined, and eco-friendly.",
     "description_es": "El Audi Q4 e-tron Premium Plus 2024 combina la firma de lujo de Audi con eficiencia eléctrica. Un SUV compacto perfecto para viajar por el sur de Florida — silencioso, refinado y ecológico.",
-    "turo_url": null,
+    "turo_url": "https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/audi/q4-e-tron/3419762",
     "hero_image": null,
     "gallery": [],
     "price_display_daily": null,
@@ -64,7 +72,7 @@
     "price_display_monthly": null,
     "publication_status": "preview_only",
     "verified": false,
-    "last_updated": "2026-07-10",
+    "last_updated": "2026-07-11",
     "data_source": "airtable_manual"
   },
   {
@@ -85,12 +93,16 @@
     "availability_status": "available",
     "key_features": [],
     "drivetrain": null,
-    "best_for": ["airport_traveler", "family", "eco_conscious"],
+    "best_for": [
+      "airport_traveler",
+      "family",
+      "eco_conscious"
+    ],
     "tagline_en": "Plug-in hybrid 3-row SUV — Scandinavian safety meets efficiency.",
     "tagline_es": "SUV híbrido enchufable de 3 filas — seguridad escandinava y eficiencia.",
     "description_en": "The 2025 Volvo XC90 T8 PHEV Plus offers the best of both worlds — electric driving for short trips and gasoline for longer journeys. A 3-row luxury SUV with Volvo's renowned safety heritage.",
     "description_es": "El Volvo XC90 T8 PHEV Plus 2025 ofrece lo mejor de dos mundos — conducción eléctrica para trayectos cortos y gasolina para viajes más largos. Un SUV de lujo de 3 filas con la reconocida herencia de seguridad de Volvo.",
-    "turo_url": null,
+    "turo_url": "https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/volvo/xc90-plug-in-hybrid/2945829",
     "hero_image": null,
     "gallery": [],
     "price_display_daily": null,
@@ -98,7 +110,7 @@
     "price_display_monthly": null,
     "publication_status": "preview_only",
     "verified": false,
-    "last_updated": "2026-07-10",
+    "last_updated": "2026-07-11",
     "data_source": "airtable_manual"
   },
   {
@@ -119,12 +131,16 @@
     "availability_status": "available",
     "key_features": [],
     "drivetrain": null,
-    "best_for": ["airport_traveler", "business", "luxury"],
+    "best_for": [
+      "airport_traveler",
+      "business",
+      "luxury"
+    ],
     "tagline_en": "Compact luxury SUV — the newest addition to our fleet.",
     "tagline_es": "SUV de lujo compacto — la adición más nueva a nuestra flota.",
     "description_en": "The 2026 Mercedes GLC300 Exclusive AMG Line is our newest vehicle — a compact luxury SUV that blends performance, comfort, and cutting-edge technology. Perfect for business travelers and couples.",
     "description_es": "El Mercedes GLC300 Exclusive AMG Line 2026 es nuestro vehículo más nuevo — un SUV de lujo compacto que combina rendimiento, confort y tecnología de vanguardia. Perfecto para viajeros de negocios y parejas.",
-    "turo_url": null,
+    "turo_url": "https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/mercedes-benz/glc-class/3529622",
     "hero_image": null,
     "gallery": [],
     "price_display_daily": null,
@@ -132,7 +148,7 @@
     "price_display_monthly": null,
     "publication_status": "preview_only",
     "verified": false,
-    "last_updated": "2026-07-10",
+    "last_updated": "2026-07-11",
     "data_source": "airtable_manual"
   },
   {
@@ -153,12 +169,15 @@
     "availability_status": "available",
     "key_features": [],
     "drivetrain": null,
-    "best_for": ["airport_traveler", "family"],
+    "best_for": [
+      "airport_traveler",
+      "family"
+    ],
     "tagline_en": "Hybrid 3-row SUV — reliability and efficiency for families.",
     "tagline_es": "SUV híbrido de 3 filas — confiabilidad y eficiencia para familias.",
     "description_en": "The 2021 Toyota Highlander Hybrid XLE offers Toyota's legendary reliability with hybrid efficiency. A practical 3-row SUV ideal for family trips and airport transfers.",
     "description_es": "El Toyota Highlander Hybrid XLE 2021 ofrece la legendaria confiabilidad de Toyota con eficiencia híbrida. Un SUV de 3 filas práctico ideal para viajes familiares y traslados al aeropuerto.",
-    "turo_url": null,
+    "turo_url": "https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/toyota/highlander-hybrid/2852521",
     "hero_image": null,
     "gallery": [],
     "price_display_daily": null,
@@ -166,7 +185,7 @@
     "price_display_monthly": null,
     "publication_status": "preview_only",
     "verified": false,
-    "last_updated": "2026-07-10",
+    "last_updated": "2026-07-11",
     "data_source": "airtable_manual"
   },
   {
@@ -187,12 +206,15 @@
     "availability_status": "available",
     "key_features": [],
     "drivetrain": null,
-    "best_for": ["airport_traveler", "business"],
+    "best_for": [
+      "airport_traveler",
+      "business"
+    ],
     "tagline_en": "Compact luxury SUV — Audi quality in a practical package.",
     "tagline_es": "SUV de lujo compacto — calidad Audi en un paquete práctico.",
     "description_en": "The 2021 Audi Q3 Premium Plus is a compact luxury SUV that delivers Audi refinement in a practical, maneuverable size. Great for business travelers and small groups.",
     "description_es": "El Audi Q3 Premium Plus 2021 es un SUV de lujo compacto que ofrece el refinamiento de Audi en un tamaño práctico y maniobrable. Ideal para viajeros de negocios y grupos pequeños.",
-    "turo_url": null,
+    "turo_url": "https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/audi/q3/3291762",
     "hero_image": null,
     "gallery": [],
     "price_display_daily": null,
@@ -200,7 +222,7 @@
     "price_display_monthly": null,
     "publication_status": "preview_only",
     "verified": false,
-    "last_updated": "2026-07-10",
+    "last_updated": "2026-07-11",
     "data_source": "airtable_manual"
   },
   {
@@ -221,12 +243,16 @@
     "availability_status": "available",
     "key_features": [],
     "drivetrain": null,
-    "best_for": ["airport_traveler", "family", "eco_conscious"],
+    "best_for": [
+      "airport_traveler",
+      "family",
+      "eco_conscious"
+    ],
     "tagline_en": "Plug-in hybrid SUV — efficiency and versatility for South Florida.",
     "tagline_es": "SUV híbrido enchufable — eficiencia y versatilidad para el sur de Florida.",
     "description_en": "The 2025 Mitsubishi Outlander PHEV SE is a versatile plug-in hybrid SUV offering electric-only driving for short trips and gasoline backup for longer journeys. A practical, efficient choice for South Florida travel.",
     "description_es": "El Mitsubishi Outlander PHEV SE 2025 es un SUV híbrido enchufable versátil que ofrece conducción eléctrica para trayectos cortos y respaldo de gasolina para viajes más largos. Una opción práctica y eficiente para viajar por el sur de Florida.",
-    "turo_url": null,
+    "turo_url": "https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/mitsubishi/outlander-plug-in-hybrid/3207788",
     "hero_image": null,
     "gallery": [],
     "price_display_daily": null,
@@ -234,7 +260,7 @@
     "price_display_monthly": null,
     "publication_status": "preview_only",
     "verified": false,
-    "last_updated": "2026-07-10",
+    "last_updated": "2026-07-11",
     "data_source": "airtable_manual"
   }
 ]
