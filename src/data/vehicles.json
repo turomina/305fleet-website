@@ -1,0 +1,33 @@
+[
+  {
+    "id": "placeholder-1",
+    "slug": "example-vehicle-1",
+    "name": "Example Vehicle 1",
+    "year": 2023,
+    "make": "Make",
+    "model": "Model",
+    "trim": "Trim",
+    "exterior_color": "TBD",
+    "interior_color": "TBD",
+    "passenger_capacity": 5,
+    "luggage_large": 2,
+    "luggage_carryon": 2,
+    "fuel_type": "gasoline",
+    "key_features": ["Safety Feature 1", "Tech Feature 2", "Comfort Feature 3"],
+    "best_for": ["airport_traveler", "business"],
+    "tagline_en": "Example vehicle — specifications and pricing coming soon.",
+    "tagline_es": "Vehículo de ejemplo — especificaciones y precios próximamente.",
+    "description_en": "This is a placeholder entry. Real vehicle content will be populated from Airtable once the Vehicles base is configured.",
+    "description_es": "Esta es una entrada provisional. El contenido real del vehículo se completará desde Airtable una vez que se configure la base de Vehículos.",
+    "turo_url": null,
+    "hero_image": null,
+    "gallery": [],
+    "price_display_daily": null,
+    "price_display_weekly": null,
+    "price_display_monthly": null,
+    "publication_status": "preview_only",
+    "verified": false,
+    "last_updated": "2026-07-10",
+    "data_source": "manual_placeholder"
+  }
+]

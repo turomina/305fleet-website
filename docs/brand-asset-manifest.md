@@ -111,3 +111,30 @@ The following website-optimized derivatives should be created from the original 
 3. Zone.Identifier files excluded from repo via `.gitignore`
 4. The PDF remains as the canonical designer source
 5. Any new derivatives are documented in this manifest
+
+---
+
+## Derived Assets Created (2026-07-10)
+
+All sourced from original files in `brand assets/` — originals preserved unmodified. Stored in `public/images/brand/`.
+
+| File | Source | Dimensions | Format | Use Case |
+|---|---|---|---|---|
+| `header-logo.png` | `305 Fleet Logo Transparent.png` | 200×200 | PNG | Website header, light backgrounds |
+| `footer-logo.png` | `305 Fleet Logo Transparent.png` | 150×150 | PNG | Website footer, dark backgrounds (color inverted for contrast) |
+| `mobile-logo.png` | `305 Fleet Logo Transparent.png` | 140×140 | PNG | Mobile navigation header |
+| `favicon-16.png` | `Small Circular Transparent Logo.png` | 16×16 | PNG | Browser tab (small) |
+| `favicon-32.png` | `Small Circular Transparent Logo.png` | 32×32 | PNG | Browser tab (standard — used in BaseLayout) |
+| `favicon-64.png` | `Small Circular Transparent Logo.png` | 64×64 | PNG | Browser tab (large) |
+| `apple-touch-icon.png` | `Small Circular Transparent Logo.png` | 180×180 | PNG | iOS home screen, mobile bookmarks |
+| `icon-192.png` | `Small Circular Transparent Logo.png` | 192×192 | PNG | Web app manifest (Android) |
+| `icon-512.png` | `Small Circular Transparent Logo.png` | 512×512 | PNG | Web app manifest (large) |
+| `icon-mark.png` | `305 Fleet Logo Transparent.png` | 200×200 | PNG | Icon-only mark for reuse |
+| `social-card.png` | `305 Fleet Logo Transparent.png` | 1200×630 | PNG | Open Graph / social sharing preview (brand-color bg + logo) |
+
+**Notes:**
+- All derivatives are PNG. SVG would reduce file sizes if the designer provides an SVG source.
+- Footer logo is a programmatic color inversion. Verify it renders correctly on `#0D141C` footer background.
+- `social-card.png` is a simple brand-color background with centered logo — may be enhanced later with tagline text.
+- `Tiny 305Fleet Logo for emails.png` (150×155, from original package) is already sized for email use and needs no derivative.
+- No SVG version exists in the package. SVG tracing from the transparent PNG is a separate task if needed.
