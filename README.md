@@ -1,7 +1,12 @@
 # 305 Fleet — Customer Website & Direct-Booking Platform
 
-**Project Status:** Phase 1 — Workspace Audit & Foundation
+**Project Status:** Phase 2 — Domain, Cloudflare Preview & Content Population
 **Last Updated:** 2026-07-10
+**Build:** 24 pages, 0 errors, ~570ms
+**Preview Deployment:** Blocked on Ian (GitHub repo + CF token)
+**Hosting Plan:** Cloudflare Pages (pages.dev preview confirmed, 305Fleet.com target)
+**DNS Status:** Audited by Jon — GoDaddy registrar, Google Workspace email, no Cloudflare yet
+**Airtable Access:** Blocked on Ian (PAT for Vehicles base needed)
 **Lead:** Nik (Marketing, Content, UX)
 **Technical:** Jon (Architecture, Infrastructure, Integration, Security)
 
