@@ -25,6 +25,9 @@ node_modules/
 Thumbs.db
 *:Zone.Identifier
 
+# Ian Folder — source material, never commit (repo is public)
+Ian Folder/
+
 # Editor
 .vscode/
 .idea/
