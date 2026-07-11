@@ -3,6 +3,11 @@ import { SITE, NAV } from "../../config/site";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 
 const currentPath = Astro.url.pathname;
+
+// Helper: safely access children from nav items (may be undefined)
+function getChildren(item: any): any[] {
+  return (item as any).children || [];
+}
 ---
 
 <header
@@ -34,9 +39,9 @@ const currentPath = Astro.url.pathname;
             >
               {item.label}
             </a>
-            {item.children && (
+            {getChildren(item).length > 0 && (
               <ul class="absolute left-0 top-full mt-1 hidden group-hover:block min-w-[240px] bg-white border border-gray-200 rounded-md shadow-lg py-1 z-50">
-                {item.children.map((child) => (
+                {getChildren(item).map((child: any) => (
                   <li>
                     <a
                       href={child.href}
@@ -120,9 +125,9 @@ const currentPath = Astro.url.pathname;
               >
                 {item.label}
               </a>
-              {item.children && (
+              {getChildren(item).length > 0 && (
                 <ul class="ml-4 mt-1 space-y-1 border-l border-gray-200 pl-3">
-                  {item.children.map((child) => (
+                  {getChildren(item).map((child: any) => (
                     <li>
                       <a
                         href={child.href}

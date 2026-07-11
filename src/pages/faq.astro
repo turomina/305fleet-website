@@ -33,7 +33,7 @@ const faqs = [
       </p>
 
       <div class="mt-8 space-y-4">
-        {faqs.map((faq, i) => (
+        {faqs.map((faq: any) => (
           <details class="group rounded-lg border border-gray-200 p-4 hover:border-gray-300 transition-colors">
             <summary class="flex items-center justify-between cursor-pointer list-none">
               <h2 class="text-base font-semibold text-gray-900">{faq.q}</h2>

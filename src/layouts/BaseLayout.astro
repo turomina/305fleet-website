@@ -32,7 +32,6 @@ const requestOrigin = Astro.url.origin;
 const isProductionDomain = requestOrigin === SITE.url;
 const canonicalBase = isProductionDomain ? SITE.url : requestOrigin;
 const canonicalUrl = new URL(currentPath, canonicalBase).href;
-const alternateUrl = new URL(alternatePath, canonicalBase).href;
 const englishUrl = new URL(currentLocale === "en" ? currentPath : getLocalizedPath(currentPath, "en"), canonicalBase).href;
 const spanishUrl = new URL(currentLocale === "es" ? currentPath : getLocalizedPath(currentPath, "es"), canonicalBase).href;
 const xDefaultUrl = new URL("/", canonicalBase).href;

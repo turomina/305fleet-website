@@ -1,8 +1,9 @@
-// Cloudflare Pages middleware — preview no-index enforcement
+// @ts-nocheck
+// Pages Function middleware — preview no-index enforcement
 // Injects X-Robots-Tag: noindex on all non-production branches
 
-export const onRequest = async (context) => {
-  const { request, next, env } = context;
+export const onRequest = async (context: any) => {
+  const { next, env } = context;
   const response = await next();
 
   // env.CF_PAGES_BRANCH is injected by Cloudflare at deploy time

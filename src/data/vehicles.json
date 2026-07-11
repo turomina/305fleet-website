@@ -14,6 +14,7 @@
     "luggage_carryon": 2,
     "fuel_type": "gasoline",
     "key_features": ["Safety Feature 1", "Tech Feature 2", "Comfort Feature 3"],
+    "drivetrain": null,
     "best_for": ["airport_traveler", "business"],
     "tagline_en": "Example vehicle — specifications and pricing coming soon.",
     "tagline_es": "Vehículo de ejemplo — especificaciones y precios próximamente.",
