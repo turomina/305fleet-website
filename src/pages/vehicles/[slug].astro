@@ -42,6 +42,22 @@ const { vehicle } = Astro.props;
               </div>
             )}
           </div>
+
+          <!-- Gallery thumbnails -->
+          {vehicle.gallery && vehicle.gallery.length > 0 && (
+            <div class="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-4">
+              {vehicle.gallery.map((img) => (
+                <div class="aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden">
+                  <img
+                    src={img}
+                    alt={`${vehicle.name} photo`}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         <!-- Vehicle info -->
