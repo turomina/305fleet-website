@@ -4,8 +4,13 @@ import Header from "../../components/base/Header.astro";
 import Footer from "../../components/base/Footer.astro";
 
 export async function getStaticPaths() {
+  // Slugs with explicit route directories — catch-all must not capture these
+  const RESERVED_SLUGS = new Set([
+    "vehicles",
+    "locations",
+  ]);
+
   const pageData = [
-    { slug: "vehicles", title: "Vehículos", desc: "Explora nuestra flota de vehículos recientes y bien mantenidos." },
     { slug: "how-it-works", title: "Cómo Funciona", desc: "El proceso de alquiler con 305 Fleet, paso a paso." },
     { slug: "about", title: "Acerca de 305 Fleet", desc: "Conoce al equipo local detrás de 305 Fleet." },
     { slug: "contact", title: "Contacto", desc: "Ponte en contacto con nuestro equipo." },
@@ -21,7 +26,10 @@ export async function getStaticPaths() {
     { slug: "accessibility", title: "Accesibilidad", desc: "Nuestro compromiso con la accesibilidad." },
   ];
 
-  return pageData.map((page) => ({
+  // Filter out reserved slugs — they have their own explicit route directories
+  const filtered = pageData.filter((p) => !RESERVED_SLUGS.has(p.slug));
+
+  return filtered.map((page) => ({
     params: { slug: page.slug },
     props: { page },
   }));
