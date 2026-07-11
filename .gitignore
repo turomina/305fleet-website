@@ -37,3 +37,7 @@ Ian Folder/
 # Logs
 *.log
 npm-debug.log*
+
+# Temporary / internal research
+web-research/
+.tmp/

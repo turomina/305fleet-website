@@ -27,15 +27,22 @@
     "description_en": "The 2025 Cadillac Escalade ESV Sport is our flagship vehicle — a full-size luxury SUV with premium seating, advanced tech, and commanding presence. Ideal for airport pickups, family trips, and group travel across South Florida.",
     "description_es": "El Cadillac Escalade ESV Sport 2025 es nuestro vehículo insignia — un SUV de lujo de tamaño completo con asientos premium, tecnología avanzada y presencia imponente. Ideal para recogidas en aeropuerto, viajes familiares y viajes en grupo por el sur de Florida.",
     "turo_url": "https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/cadillac/escalade-esv/2991725",
-    "hero_image": null,
-    "gallery": [],
+    "hero_image": "/images/vehicles/2025-cadillac-escalade-esv/hero.webp",
+    "gallery": [
+      "/images/vehicles/2025-cadillac-escalade-esv/exterior-rear.webp",
+      "/images/vehicles/2025-cadillac-escalade-esv/exterior-side.webp",
+      "/images/vehicles/2025-cadillac-escalade-esv/interior-front.webp",
+      "/images/vehicles/2025-cadillac-escalade-esv/interior-rear.webp",
+      "/images/vehicles/2025-cadillac-escalade-esv/dashboard.webp",
+      "/images/vehicles/2025-cadillac-escalade-esv/cargo.webp"
+    ],
     "price_display_daily": null,
     "price_display_weekly": null,
     "price_display_monthly": null,
     "publication_status": "preview_only",
     "verified": false,
     "last_updated": "2026-07-11",
-    "data_source": "airtable_manual"
+    "data_source": "turo_temporary"
   },
   {
     "id": "recH4OhjYrcyWkLs1",

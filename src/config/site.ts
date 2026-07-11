@@ -10,9 +10,9 @@ export const SITE = {
   url: "https://305fleet.com", // placeholder — Ian to confirm
   locale: "en",
   locales: ["en", "es"],
-  phone: "", // Ian to provide
+  phone: "305-439-1247", // Ian — temporary
   whatsapp: "", // Ian to provide
-  email: "", // Ian to provide
+  email: "nik@305fleet.com", // temporary contact email
   serviceArea: ["Miami", "Fort Lauderdale", "Palm Beach"],
   airports: ["MIA", "FLL", "PBI"],
 } as const;

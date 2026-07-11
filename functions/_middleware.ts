@@ -1,9 +1,18 @@
 // @ts-nocheck
-// Pages Function middleware — preview no-index enforcement
-// Injects X-Robots-Tag: noindex on all non-production branches
+// Pages Function middleware
+// - Redirects www.305fleet.com → 305fleet.com (preserving path + query)
+// - Injects X-Robots-Tag: noindex on all non-production branches
 
 export const onRequest = async (context: any) => {
-  const { next, env } = context;
+  const { request, next, env } = context;
+  const url = new URL(request.url);
+
+  // Redirect www → apex, preserving the full path and query string
+  if (url.hostname === 'www.305fleet.com') {
+    const target = new URL(url.pathname + url.search, 'https://305fleet.com');
+    return Response.redirect(target.href, 301);
+  }
+
   const response = await next();
 
   // env.CF_PAGES_BRANCH is injected by Cloudflare at deploy time
