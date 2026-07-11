@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/base/Header.astro";
+import Footer from "../../../components/base/Footer.astro";
+
+export async function getStaticPaths() {
+  const locations = [
+    {
+      slug: "miami-international-airport",
+      code: "MIA",
+      name: "Aeropuerto Internacional de Miami",
+      desc: "Entrega de vehículos en MIA — te esperamos en la terminal.",
+    },
+    {
+      slug: "fort-lauderdale-airport",
+      code: "FLL",
+      name: "Aeropuerto de Fort Lauderdale-Hollywood",
+      desc: "Entrega de vehículos en FLL — recoge tu vehículo al llegar.",
+    },
+    {
+      slug: "palm-beach-airport",
+      code: "PBI",
+      name: "Aeropuerto Internacional de Palm Beach",
+      desc: "Entrega de vehículos en PBI — servicio en la terminal.",
+    },
+  ];
+
+  return locations.map((loc) => ({
+    params: { slug: loc.slug },
+    props: { loc },
+  }));
+}
+
+const { loc } = Astro.props;
+---
+
+<BaseLayout lang="es" title={`${loc.code} — ${loc.name}`} description={loc.desc}>
+  <Header />
+
+  <main id="main-content" class="flex-1 bg-white">
+    <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <div class="text-5xl font-bold text-brand mb-4">{loc.code}</div>
+      <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl">{loc.name}</h1>
+      <p class="mt-4 text-lg text-gray-500">{loc.desc}</p>
+
+      <div class="mt-8 rounded-lg bg-brand-pale p-6">
+        <p class="text-sm text-gray-600">
+          ⓘ Esta página en español está en desarrollo. Mientras tanto, visita la{" "}
+          <a href={`/locations/${loc.slug}/`} class="text-brand font-medium hover:underline">versión en inglés</a>.
+        </p>
+      </div>
+
+      <div class="mt-8 flex flex-col sm:flex-row gap-4">
+        <a
+          href="/es/vehicles/"
+          class="inline-flex items-center justify-center rounded-lg bg-brand px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-brand-light"
+        >
+          Ver Vehículos
+        </a>
+        <a
+          href="/es/contact/"
+          class="inline-flex items-center justify-center rounded-lg border border-gray-300 px-6 py-3 text-base font-semibold text-gray-700 hover:border-brand hover:text-brand"
+        >
+          Contáctanos
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

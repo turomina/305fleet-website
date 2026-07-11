@@ -1,0 +1,20 @@
+---
+import { getLocale, getLocalizedPath } from "../../config/i18n";
+
+const currentPath = Astro.url.pathname;
+const currentLocale = getLocale(currentPath);
+const targetLocale = currentLocale === "en" ? "es" : "en";
+const targetPath = getLocalizedPath(currentPath, targetLocale);
+const targetLabel = targetLocale === "es" ? "ES" : "EN";
+const currentLabel = currentLocale === "en" ? "EN" : "ES";
+---
+
+<a
+  href={targetPath}
+  class="text-sm font-medium text-gray-600 hover:text-brand transition-colors"
+  aria-label={`Switch to ${targetLocale === "es" ? "Spanish" : "English"}`}
+>
+  <span class="text-gray-300">{currentLabel}</span>
+  <span class="mx-1 text-gray-300">|</span>
+  <span class="text-brand">{targetLabel}</span>
+</a>

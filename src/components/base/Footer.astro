@@ -1,5 +1,6 @@
 ---
 import { SITE, NAV } from "../../config/site";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
 const year = new Date().getFullYear();
 ---
 
@@ -89,6 +90,7 @@ const year = new Date().getFullYear();
         <a href="/terms/" class="text-gray-400 hover:text-white">Terms</a>
         <a href="/accessibility/" class="text-gray-400 hover:text-white">Accessibility</a>
         <button class="text-gray-400 hover:text-white" aria-label="Switch to Spanish">EN | ES</button>
+        <LanguageSwitcher />
       </div>
     </div>
   </div>

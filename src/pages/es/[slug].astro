@@ -1,0 +1,58 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/base/Header.astro";
+import Footer from "../../components/base/Footer.astro";
+
+export async function getStaticPaths() {
+  const pageData = [
+    { slug: "vehicles", title: "Vehículos", desc: "Explora nuestra flota de vehículos recientes y bien mantenidos." },
+    { slug: "how-it-works", title: "Cómo Funciona", desc: "El proceso de alquiler con 305 Fleet, paso a paso." },
+    { slug: "about", title: "Acerca de 305 Fleet", desc: "Conoce al equipo local detrás de 305 Fleet." },
+    { slug: "contact", title: "Contacto", desc: "Ponte en contacto con nuestro equipo." },
+    { slug: "faq", title: "Preguntas Frecuentes", desc: "Respuestas a las preguntas más comunes." },
+    { slug: "support", title: "Soporte", desc: "¿Necesitas ayuda? Estamos aquí para ti." },
+    { slug: "deals", title: "Ofertas", desc: "Ofertas actuales y promociones especiales." },
+    { slug: "reviews", title: "Reseñas", desc: "Lo que dicen nuestros clientes." },
+    { slug: "rental-requirements", title: "Requisitos de Alquiler", desc: "Lo que necesitas para alquilar con 305 Fleet." },
+    { slug: "rental-policies", title: "Políticas de Alquiler", desc: "Nuestras políticas de alquiler." },
+    { slug: "optional-extras", title: "Extras Opcionales", desc: "Complementos disponibles para tu alquiler." },
+    { slug: "privacy", title: "Política de Privacidad", desc: "Cómo protegemos tu información." },
+    { slug: "terms", title: "Términos de Servicio", desc: "Los términos de uso de nuestros servicios." },
+    { slug: "accessibility", title: "Accesibilidad", desc: "Nuestro compromiso con la accesibilidad." },
+  ];
+
+  return pageData.map((page) => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+---
+
+<BaseLayout lang="es" title={page.title} description={page.desc}>
+  <Header />
+
+  <main id="main-content" class="flex-1 bg-white">
+    <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl">{page.title}</h1>
+      <p class="mt-4 text-lg text-gray-500">{page.desc}</p>
+      <div class="mt-8 rounded-lg bg-brand-pale p-6">
+        <p class="text-sm text-gray-600">
+          ⓘ Esta página en español está en desarrollo. Mientras tanto, visita la{" "}
+          <a href={`/${page.slug}/`} class="text-brand font-medium hover:underline">versión en inglés</a>.
+        </p>
+      </div>
+      <div class="mt-8">
+        <a
+          href="/es/"
+          class="inline-flex items-center text-sm font-medium text-brand hover:underline"
+        >
+          ← Volver al inicio
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
