@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/base/Header.astro";
+import Footer from "../../components/base/Footer.astro";
+---
+
+<BaseLayout
+  title="Weekly Rentals"
+  description="Weekly vehicle rentals in South Florida with 305 Fleet — save compared to daily rates."
+>
+  <Header />
+
+  <main id="main-content" class="flex-1 bg-white">
+    <div class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <h1 class="text-3xl font-bold text-gray-900">Weekly Rentals</h1>
+      <p class="mt-3 text-lg text-gray-500">
+        Staying for a week or more? Our weekly rates offer better value than daily rentals.
+      </p>
+
+      <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div class="rounded-xl border border-gray-200 p-6">
+          <h2 class="text-lg font-semibold text-gray-900">What's Included</h2>
+          <ul class="mt-3 ml-6 list-disc text-sm text-gray-600 space-y-1">
+            <li>Vehicle for the rental period (7+ days)</li>
+            <li>Higher daily mileage allowance</li>
+            <li>Airport delivery at MIA, FLL, or PBI</li>
+            <li>Discounted rate vs. daily pricing</li>
+            <li>Extension options (subject to availability)</li>
+          </ul>
+        </div>
+        <div class="rounded-xl border border-gray-200 p-6">
+          <h2 class="text-lg font-semibold text-gray-900">Best For</h2>
+          <ul class="mt-3 ml-6 list-disc text-sm text-gray-600 space-y-1">
+            <li>Vacations and family trips to South Florida</li>
+            <li>Business travelers on week-long assignments</li>
+            <li>Snowbirds testing the area before a longer stay</li>
+            <li>Road trips across Florida</li>
+            <li>Insurance replacement vehicles</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-8 rounded-xl bg-brand-pale p-6 text-center">
+        <p class="text-sm text-brand-dark">
+          ⓘ Weekly rates offer a discount compared to daily pricing. Exact rates vary by
+          vehicle and season. Check our <a href="/deals/" class="text-brand underline">deals page</a>
+          for current promotions.
+        </p>
+      </div>
+
+      <div class="mt-8 flex flex-col sm:flex-row gap-3">
+        <a href="/vehicles/" class="inline-flex items-center justify-center rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-light">
+          Browse Vehicles
+        </a>
+        <a href="/rental-requirements/" class="inline-flex items-center justify-center rounded-lg border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700 hover:border-brand hover:text-brand">
+          View Requirements
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

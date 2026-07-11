@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/base/Header.astro";
+import Footer from "../components/base/Footer.astro";
+---
+
+<BaseLayout
+  title="Accessibility"
+  description="305 Fleet is committed to digital accessibility for all users."
+  noindex={true}
+>
+  <Header />
+
+  <main id="main-content" class="flex-1 bg-white">
+    <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <h1 class="text-3xl font-bold text-gray-900">Accessibility</h1>
+
+      <div class="mt-6 prose prose-lg prose-gray max-w-none">
+        <p>
+          305 Fleet is committed to making our website accessible to everyone, including
+          people with disabilities. We aim to conform to the Web Content Accessibility Guidelines
+          (WCAG) 2.1 Level AA.
+        </p>
+
+        <h2>What We've Done</h2>
+        <ul>
+          <li>Semantic HTML structure with proper heading hierarchy</li>
+          <li>Keyboard navigation support throughout the site</li>
+          <li>Visible focus indicators on all interactive elements</li>
+          <li>Skip-to-content link for screen reader users</li>
+          <li>Alt text on all meaningful images</li>
+          <li>Color contrast meeting WCAG AA standards</li>
+          <li>Responsive design for all device sizes</li>
+          <li>Support for reduced-motion preferences</li>
+        </ul>
+
+        <h2>Ongoing Effort</h2>
+        <p>
+          Accessibility is an ongoing effort. As we add features and content, we continue to
+          test and improve our accessibility. If you encounter any accessibility barrier on
+          this website, please let us know.
+        </p>
+
+        <h2>Contact Us</h2>
+        <p>
+          If you need assistance or want to report an accessibility issue, please contact us
+          through our <a href="/contact/">contact page</a>. We take accessibility reports
+          seriously and will work to resolve issues promptly.
+        </p>
+
+        <h2>Third-Party Content</h2>
+        <p>
+          Some features on our site may use third-party tools (such as the future booking widget).
+          While we strive to work with accessible third parties, we cannot guarantee the
+          accessibility of content outside our direct control.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

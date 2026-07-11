@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/base/Header.astro";
+import Footer from "../components/base/Footer.astro";
+---
+
+<BaseLayout
+  title="Deals"
+  description="Special offers and deals from 305 Fleet — South Florida vehicle rentals."
+>
+  <Header />
+
+  <main id="main-content" class="flex-1 bg-gray-50">
+    <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <h1 class="text-3xl font-bold text-gray-900">Deals & Special Offers</h1>
+      <p class="mt-3 text-lg text-gray-500">
+        Save on your next South Florida rental.
+      </p>
+
+      <div class="mt-8 rounded-xl bg-brand-pale border border-brand-light/30 p-8 text-center">
+        <h2 class="text-xl font-semibold text-brand-dark">Deals Coming Soon</h2>
+        <p class="mt-2 text-sm text-gray-600">
+          We're preparing special offers for direct-booking customers. Check back soon or
+          contact us to learn about current rates.
+        </p>
+        <a href="/contact/" class="mt-4 inline-flex items-center rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-light">
+          Get a Quote
+        </a>
+      </div>
+
+      <!-- Placeholder deal cards -->
+      <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div class="rounded-xl bg-white border border-gray-200 p-6">
+          <h3 class="text-lg font-semibold text-gray-900">Weekly Discount</h3>
+          <p class="mt-2 text-sm text-gray-600">
+            Rent for a week or more and save compared to daily rates.
+          </p>
+          <a href="/rental-options/weekly/" class="mt-3 inline-flex items-center text-sm font-medium text-brand hover:underline">
+            View Weekly Rates →
+          </a>
+        </div>
+        <div class="rounded-xl bg-white border border-gray-200 p-6">
+          <h3 class="text-lg font-semibold text-gray-900">Monthly Rates</h3>
+          <p class="mt-2 text-sm text-gray-600">
+            Extended rentals offer the best value for longer stays.
+          </p>
+          <a href="/rental-options/monthly/" class="mt-3 inline-flex items-center text-sm font-medium text-brand hover:underline">
+            View Monthly Rates →
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

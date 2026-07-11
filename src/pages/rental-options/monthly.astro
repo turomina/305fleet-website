@@ -1,0 +1,73 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/base/Header.astro";
+import Footer from "../../components/base/Footer.astro";
+---
+
+<BaseLayout
+  title="Monthly Rentals"
+  description="Monthly vehicle rentals in South Florida with 305 Fleet — the best value for extended stays."
+>
+  <Header />
+
+  <main id="main-content" class="flex-1 bg-white">
+    <div class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <h1 class="text-3xl font-bold text-gray-900">Monthly Rentals</h1>
+      <p class="mt-3 text-lg text-gray-500">
+        Need a vehicle for a month or more? Our monthly rates offer the best value
+        for extended stays, temporary replacements, or relocation.
+      </p>
+
+      <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div class="rounded-xl border border-gray-200 p-6">
+          <h2 class="text-lg font-semibold text-gray-900">What's Included</h2>
+          <ul class="mt-3 ml-6 list-disc text-sm text-gray-600 space-y-1">
+            <li>Vehicle for 30+ days</li>
+            <li>Best daily mileage rate</li>
+            <li>Airport delivery at MIA, FLL, or PBI</li>
+            <li>Best per-day rate (most economical option)</li>
+            <li>Maintenance handled by 305 Fleet</li>
+            <li>Extension and modification options</li>
+          </ul>
+        </div>
+        <div class="rounded-xl border border-gray-200 p-6">
+          <h2 class="text-lg font-semibold text-gray-900">Best For</h2>
+          <ul class="mt-3 ml-6 list-disc text-sm text-gray-600 space-y-1">
+            <li>Snowbirds and seasonal residents</li>
+            <li>Relocating professionals</li>
+            <li>Extended business projects in South Florida</li>
+            <li>Long-term insurance replacement</li>
+            <li>Temporary vehicle while yours is being repaired</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-8 rounded-xl border border-gray-200 p-6">
+        <h2 class="text-lg font-semibold text-gray-900">Maintenance During Long Rentals</h2>
+        <p class="mt-3 text-sm text-gray-600">
+          For monthly rentals, 305 Fleet handles scheduled maintenance. If your vehicle needs
+          service during the rental period, we'll coordinate a vehicle swap or service
+          appointment at no additional cost to you.
+        </p>
+      </div>
+
+      <div class="mt-8 rounded-xl bg-brand-pale p-6 text-center">
+        <p class="text-sm text-brand-dark">
+          ⓘ Monthly rates provide the best value. Contact us directly for monthly rental
+          inquiries — we'll work with you on the best rate and terms.
+        </p>
+      </div>
+
+      <div class="mt-8 flex flex-col sm:flex-row gap-3">
+        <a href="/contact/" class="inline-flex items-center justify-center rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-light">
+          Get a Monthly Quote
+        </a>
+        <a href="/vehicles/" class="inline-flex items-center justify-center rounded-lg border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700 hover:border-brand hover:text-brand">
+          Browse Vehicles
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

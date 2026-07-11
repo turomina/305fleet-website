@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/base/Header.astro";
+import Footer from "../../components/base/Footer.astro";
+---
+
+<BaseLayout
+  title="Business & Corporate Rentals"
+  description="Business and corporate vehicle rentals in South Florida with 305 Fleet — professional vehicles for professional needs."
+>
+  <Header />
+
+  <main id="main-content" class="flex-1 bg-white">
+    <div class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <h1 class="text-3xl font-bold text-gray-900">Business & Corporate Rentals</h1>
+      <p class="mt-3 text-lg text-gray-500">
+        Professional vehicles for business travelers, corporate accounts, and company fleets.
+      </p>
+
+      <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div class="rounded-xl border border-gray-200 p-6">
+          <h2 class="text-lg font-semibold text-gray-900">For Business Travelers</h2>
+          <ul class="mt-3 ml-6 list-disc text-sm text-gray-600 space-y-1">
+            <li>Professional, clean vehicles</li>
+            <li>Quick airport pickup — no counter lines</li>
+            <li>Flight tracking for schedule changes</li>
+            <li>Receipts and invoices for expense reporting</li>
+            <li>Flexible return times for meeting overruns</li>
+          </ul>
+        </div>
+        <div class="rounded-xl border border-gray-200 p-6">
+          <h2 class="text-lg font-semibold text-gray-900">For Corporate Accounts</h2>
+          <ul class="mt-3 ml-6 list-disc text-sm text-gray-600 space-y-1">
+            <li>Direct billing options (contact us to discuss)</li>
+            <li>Priority availability for regular clients</li>
+            <li>Consistent vehicle quality</li>
+            <li>Dedicated contact for booking and support</li>
+            <li>Custom rental terms for corporate needs</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-8 rounded-xl bg-brand-pale p-6 text-center">
+        <p class="text-sm text-brand-dark">
+          ⓘ Corporate account terms, billing arrangements, and custom rates are arranged
+          directly with 305 Fleet. Contact us to discuss your business needs.
+        </p>
+      </div>
+
+      <div class="mt-8 flex flex-col sm:flex-row gap-3">
+        <a href="/contact/" class="inline-flex items-center justify-center rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-light">
+          Contact Us About Corporate Rentals
+        </a>
+        <a href="/vehicles/" class="inline-flex items-center justify-center rounded-lg border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700 hover:border-brand hover:text-brand">
+          Browse Vehicles
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

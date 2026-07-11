@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/base/Header.astro";
+import Footer from "../../components/base/Footer.astro";
+---
+
+<BaseLayout
+  title="Daily Rentals"
+  description="Daily vehicle rentals in South Florida with 305 Fleet — airport delivery at MIA, FLL, and PBI."
+>
+  <Header />
+
+  <main id="main-content" class="flex-1 bg-white">
+    <div class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <h1 class="text-3xl font-bold text-gray-900">Daily Rentals</h1>
+      <p class="mt-3 text-lg text-gray-500">
+        Need a vehicle for a day? Or a few days? Our daily rentals are perfect for
+        short trips, airport arrivals, or quick getaways.
+      </p>
+
+      <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div class="rounded-xl border border-gray-200 p-6">
+          <h2 class="text-lg font-semibold text-gray-900">What's Included</h2>
+          <ul class="mt-3 ml-6 list-disc text-sm text-gray-600 space-y-1">
+            <li>Vehicle for the rental period</li>
+            <li>Daily mileage allowance (varies by vehicle)</li>
+            <li>Airport delivery at MIA, FLL, or PBI</li>
+            <li>Flight tracking for airport pickups</li>
+            <li>Walk-around inspection</li>
+          </ul>
+        </div>
+        <div class="rounded-xl border border-gray-200 p-6">
+          <h2 class="text-lg font-semibold text-gray-900">Best For</h2>
+          <ul class="mt-3 ml-6 list-disc text-sm text-gray-600 space-y-1">
+            <li>Airport arrivals needing a car for a few days</li>
+            <li>Business meetings and day trips</li>
+            <li>Weekend getaways in South Florida</li>
+            <li>Replacing a temporarily unavailable vehicle</li>
+            <li>Test-driving our service before a longer rental</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-8 rounded-xl bg-brand-pale p-6 text-center">
+        <p class="text-sm text-brand-dark">
+          ⓘ Daily rates vary by vehicle, season, and availability. Specific pricing will be
+          confirmed during the booking process.
+        </p>
+      </div>
+
+      <div class="mt-8 flex flex-col sm:flex-row gap-3">
+        <a href="/vehicles/" class="inline-flex items-center justify-center rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-light">
+          Browse Vehicles
+        </a>
+        <a href="/rental-requirements/" class="inline-flex items-center justify-center rounded-lg border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700 hover:border-brand hover:text-brand">
+          View Requirements
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,136 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/base/Header.astro";
+import Footer from "../components/base/Footer.astro";
+---
+
+<BaseLayout
+  title="Rental Policies"
+  description="305 Fleet rental policies — cancellation, mileage, fuel, return, and modification policies."
+>
+  <Header />
+
+  <main id="main-content" class="flex-1 bg-white">
+    <div class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <h1 class="text-3xl font-bold text-gray-900">Rental Policies</h1>
+      <p class="mt-3 text-lg text-gray-500">
+        Clear, upfront policies — no hidden fees or surprises.
+      </p>
+
+      <div class="mt-8 space-y-8">
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900">Cancellation Policy</h2>
+          <div class="mt-3 overflow-x-auto">
+            <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-4 py-3 text-left font-medium text-gray-700">Cancellation Timing</th>
+                  <th class="px-4 py-3 text-left font-medium text-gray-700">Refund</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr><td class="px-4 py-3 text-gray-600">More than 72 hours before pickup</td><td class="px-4 py-3 text-gray-600">Full refund</td></tr>
+                <tr><td class="px-4 py-3 text-gray-600">48-72 hours before pickup</td><td class="px-4 py-3 text-gray-600">50% refund</td></tr>
+                <tr><td class="px-4 py-3 text-gray-600">Less than 48 hours before pickup</td><td class="px-4 py-3 text-gray-600">No refund (deposit returned)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="mt-2 text-sm text-gray-500">
+            ⓘ Specific cancellation terms may vary by vehicle and will be confirmed in your rental agreement.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900">Mileage Policy</h2>
+          <p class="mt-3 text-gray-600">
+            Each rental includes a daily mileage allowance. Additional mileage is available at a
+            per-mile rate. Mileage allowances vary by vehicle and rental type:
+          </p>
+          <ul class="mt-3 ml-6 list-disc text-gray-600 space-y-1">
+            <li><strong>Daily:</strong> Mileage allowance per day (varies by vehicle)</li>
+            <li><strong>Weekly:</strong> Higher daily allowance for weekly rentals</li>
+            <li><strong>Monthly:</strong> Best per-day mileage rate for long-term rentals</li>
+          </ul>
+          <p class="mt-3 text-sm text-gray-500">
+            ⓘ Specific mileage allowances and overage rates will be confirmed at booking.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900">Fuel / Charging Policy</h2>
+          <p class="mt-3 text-gray-600">
+            <strong>Gasoline vehicles:</strong> Return with the same fuel level as at pickup.
+            If not, a refueling fee will apply.
+          </p>
+          <p class="mt-3 text-gray-600">
+            <strong>Electric vehicles:</strong> Return with at least the same charge percentage
+            as at pickup. We'll provide charging information and nearby charging locations.
+          </p>
+          <p class="mt-3 text-sm text-gray-500">
+            ⓘ Specific EV charging-return requirements will be confirmed at booking.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900">Vehicle Return</h2>
+          <ul class="mt-3 ml-6 list-disc text-gray-600 space-y-1">
+            <li>Return the vehicle at the agreed time and location</li>
+            <li>Late returns may incur additional charges</li>
+            <li>Return the vehicle in reasonable condition (normal wear excepted)</li>
+            <li>Excessive cleaning may incur a cleaning fee</li>
+            <li>A final walk-around inspection will be conducted together</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900">Extensions & Modifications</h2>
+          <p class="mt-3 text-gray-600">
+            Need to extend your rental or modify your dates? Contact us as soon as possible.
+            Extensions are subject to vehicle availability and additional charges.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900">Damage & Incidents</h2>
+          <p class="mt-3 text-gray-600">
+            In the event of damage, accident, or other incident:
+          </p>
+          <ul class="mt-3 ml-6 list-disc text-gray-600 space-y-1">
+            <li>Contact us immediately</li>
+            <li>Document the situation with photos and a written report</li>
+            <li>For accidents, file a police report if required</li>
+            <li>Insurance claims are handled through the insurance provider</li>
+            <li>Do not commit to repairs or settlements without our involvement</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900">Flight Delays</h2>
+          <p class="mt-3 text-gray-600">
+            We track your flight. If your flight is delayed, we'll adjust the pickup time
+            accordingly at no charge. If your flight is significantly delayed or cancelled,
+            contact us as soon as possible to coordinate.
+          </p>
+        </section>
+      </div>
+
+      <div class="mt-8 rounded-lg bg-yellow-50 border border-yellow-300 p-4">
+        <p class="text-sm text-yellow-900">
+          ⚠️ These policies are provided for general information. Specific terms, rates, and
+          conditions will be confirmed in your rental agreement at the time of booking.
+        </p>
+      </div>
+
+      <div class="mt-8 flex justify-center gap-3">
+        <a href="/contact/" class="inline-flex items-center rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-light">
+          Contact Us
+        </a>
+        <a href="/faq/" class="inline-flex items-center rounded-lg border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700 hover:border-brand hover:text-brand">
+          View FAQ
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/base/Header.astro";
+import Footer from "../components/base/Footer.astro";
+---
+
+<BaseLayout
+  title="How It Works"
+  description="How renting with 305 Fleet works — browse vehicles, check availability, confirm booking, and pick up at MIA, FLL, or PBI."
+>
+  <Header />
+
+  <main id="main-content" class="flex-1 bg-white">
+    <div class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <h1 class="text-3xl font-bold text-gray-900">How It Works</h1>
+      <p class="mt-3 text-lg text-gray-500">
+        Renting a vehicle with 305 Fleet is straightforward. Here's the full process.
+      </p>
+
+      <!-- Steps -->
+      <div class="mt-10 space-y-10">
+        {[
+          { num: "1", title: "Browse Our Fleet", desc: "Look through our available vehicles. Each listing shows real photos, specifications, passenger and luggage capacity, and key features. No \"or similar\" substitutions — the vehicle you see is the vehicle you get." },
+          { num: "2", title: "Check Availability", desc: "Select your pickup location (MIA, FLL, or PBI), your rental dates, and vehicle preference. We'll confirm whether your chosen vehicle is available for those dates." },
+          { num: "3", title: "Reserve Your Vehicle", desc: "Once availability is confirmed, you'll receive a reservation request. Your booking is confirmed only when you receive a confirmation from our system — not just from submitting a form." },
+          { num: "4", title: "Complete Driver Verification", desc: "We'll verify your driver's license and eligibility. If you're an international visitor, we'll confirm what documents are needed. Insurance options will be presented at this stage." },
+          { num: "5", title: "Sign Rental Agreement", desc: "Review and sign the rental agreement. This document contains the complete terms: pricing, mileage limits, insurance coverage, deposit, and cancellation policy." },
+          { num: "6", title: "Pick Up Your Vehicle", desc: "We meet you at the airport or agreed location. We do a walk-around inspection together, hand over the keys, and you're on your way." },
+          { num: "7", title: "Enjoy Your Rental", desc: "Drive with confidence. If you need anything during your rental — an extension, a question, roadside help — contact us directly." },
+          { num: "8", title: "Return the Vehicle", desc: "Return at the agreed time and location. We do a final inspection together and process any applicable deposit return." },
+        ].map((step) => (
+          <div class="flex gap-5">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand text-white font-bold text-lg">
+              {step.num}
+            </div>
+            <div class="pt-1">
+              <h2 class="text-xl font-semibold text-gray-900">{step.title}</h2>
+              <p class="mt-2 text-gray-600">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-12 rounded-xl bg-brand-pale p-6 text-center">
+        <h3 class="text-lg font-semibold text-brand-dark">Ready to get started?</h3>
+        <p class="mt-1 text-sm text-gray-600">Browse our fleet or check your rental requirements.</p>
+        <div class="mt-4 flex justify-center gap-3">
+          <a href="/vehicles/" class="inline-flex items-center rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-light">
+            Browse Vehicles
+          </a>
+          <a href="/rental-requirements/" class="inline-flex items-center rounded-lg border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700 hover:border-brand hover:text-brand">
+            View Requirements
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

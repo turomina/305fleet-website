@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/base/Header.astro";
+import Footer from "../components/base/Footer.astro";
+
+const faqs = [
+  { q: "Where do I pick up my vehicle?", a: "We offer airport delivery at Miami International Airport (MIA), Fort Lauderdale-Hollywood International Airport (FLL), and Palm Beach International Airport (PBI). Specific pickup details are confirmed at booking." },
+  { q: "What happens if my flight is delayed?", a: "We track your flight and adjust the pickup time accordingly at no charge. If your flight is significantly delayed or cancelled, please contact us as soon as possible to coordinate." },
+  { q: "Can I rent with a foreign driver's license?", a: "Yes. We accept valid driver's licenses from your home country along with your passport. An International Driving Permit (IDP) is recommended but not always required." },
+  { q: "What is included in the rental price?", a: "The rental price includes the vehicle for the rental period, the daily mileage allowance, and basic insurance options. Taxes, fees, optional extras, and deposits are itemized in your quote." },
+  { q: "Do you charge hidden fees?", a: "No. All charges are itemized in your quote before booking. You'll see the base rate, taxes, fees, and any optional extras before you confirm." },
+  { q: "Can I extend my rental?", a: "Yes, subject to vehicle availability. Contact us as soon as possible to request an extension. Additional charges will apply for the extended period." },
+  { q: "What is the cancellation policy?", a: "Full refund if cancelled more than 72 hours before pickup. 50% refund if cancelled 48-72 hours before pickup. No refund if cancelled less than 48 hours before pickup (deposit is still returned). Specific terms are confirmed in your rental agreement." },
+  { q: "Do you offer weekly or monthly rates?", a: "Yes. We offer daily, weekly, and monthly rental options with competitive rates for longer periods. See our Rental Options page for details." },
+  { q: "Is insurance required?", a: "Yes, insurance is required for all rentals. You can use your personal auto insurance, credit card rental coverage, or purchase coverage through our booking platform." },
+  { q: "Can I return the vehicle to a different location?", a: "One-way rentals (different pickup and return locations) may be available. Contact us to discuss your specific needs." },
+  { q: "What if the vehicle has a problem during my rental?", a: "Contact us immediately. We'll help resolve the issue — whether it's roadside assistance, a vehicle swap, or answering questions about the vehicle." },
+  { q: "Are the vehicle photos real?", a: "Yes. We use real photographs of our actual fleet vehicles. The vehicle you see in the listing is the vehicle you'll drive — no \"or similar\" substitutions." },
+];
+---
+
+<BaseLayout
+  title="FAQ"
+  description="Frequently asked questions about renting with 305 Fleet — pickup, insurance, cancellation, and more."
+>
+  <Header />
+
+  <main id="main-content" class="flex-1 bg-white">
+    <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <h1 class="text-3xl font-bold text-gray-900">Frequently Asked Questions</h1>
+      <p class="mt-3 text-lg text-gray-500">
+        Answers to common questions about renting with 305 Fleet.
+      </p>
+
+      <div class="mt-8 space-y-4">
+        {faqs.map((faq, i) => (
+          <details class="group rounded-lg border border-gray-200 p-4 hover:border-gray-300 transition-colors">
+            <summary class="flex items-center justify-between cursor-pointer list-none">
+              <h2 class="text-base font-semibold text-gray-900">{faq.q}</h2>
+              <svg class="h-5 w-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="mt-3 text-sm text-gray-600">{faq.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <div class="mt-10 rounded-xl bg-brand-pale p-6 text-center">
+        <h3 class="text-lg font-semibold text-brand-dark">Still have questions?</h3>
+        <p class="mt-1 text-sm text-gray-600">We're here to help — reach out anytime.</p>
+        <div class="mt-4 flex justify-center gap-3">
+          <a href="/contact/" class="inline-flex items-center rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-light">
+            Contact Us
+          </a>
+          <a href="/support/" class="inline-flex items-center rounded-lg border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700 hover:border-brand hover:text-brand">
+            Support
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

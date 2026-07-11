@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/base/Header.astro";
+import Footer from "../components/base/Footer.astro";
+---
+
+<BaseLayout
+  title="Optional Extras"
+  description="Optional extras available with 305 Fleet rentals — child seats, additional drivers, and more."
+  noindex={true}
+>
+  <Header />
+
+  <main id="main-content" class="flex-1 bg-white">
+    <div class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <h1 class="text-3xl font-bold text-gray-900">Optional Extras</h1>
+      <p class="mt-3 text-lg text-gray-500">
+        Add convenience to your rental with optional extras.
+      </p>
+
+      <div class="mt-8 space-y-6">
+        {[
+          { title: "Child & Infant Seats", icon: "👶", desc: "Age-appropriate child seats available for daily rental. Must be requested in advance to ensure availability and proper installation." },
+          { title: "Additional Driver", icon: "🧑‍🤝‍🧑", desc: "Add an additional driver to your rental agreement. Additional driver must meet the same requirements as the primary renter and be present at pickup." },
+          { title: "GPS Navigation", icon: "🧭", desc: "Portable GPS unit available (most vehicles include built-in navigation or Apple CarPlay / Android Auto)." },
+          { title: "Toll Pass", icon: "🛂", desc: "SunPass toll transponder available for use on Florida's toll roads — convenient for airport and highway travel." },
+          { title: "Hotel or Residential Delivery", icon: "🏨", desc: "Vehicle delivery to your hotel, residence, or specified address within our service area (subject to availability and delivery fee)." },
+          { title: "After-Hours Pickup", icon: "🌙", desc: "Pickup outside standard hours may be available for an additional fee and subject to staff availability." },
+        ].map((extra) => (
+          <div class="flex gap-4 rounded-xl border border-gray-200 p-5">
+            <div class="text-3xl shrink-0">{extra.icon}</div>
+            <div>
+              <h2 class="text-base font-semibold text-gray-900">{extra.title}</h2>
+              <p class="mt-1 text-sm text-gray-600">{extra.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-8 rounded-lg bg-brand-pale p-4">
+        <p class="text-sm text-brand-dark">
+          ⓘ Availability and pricing for optional extras will be confirmed at the time of booking.
+          Some extras may not be available for all vehicles or rental periods.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
