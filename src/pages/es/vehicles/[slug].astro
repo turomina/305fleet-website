@@ -3,6 +3,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Header from "../../../components/base/Header.astro";
 import Footer from "../../../components/base/Footer.astro";
 import vehicles from "../../../data/vehicles.json";
+import { getFuelLabel, getBestForLabels } from "../../../config/labels";
 
 export async function getStaticPaths() {
   return vehicles
@@ -14,6 +15,21 @@ export async function getStaticPaths() {
 }
 
 const { vehicle } = Astro.props;
+
+// Related vehicles: same fuel type or same passenger tier, excluding self
+const relatedVehicles = vehicles
+  .filter((v) =>
+    v.slug !== vehicle.slug &&
+    (v.publication_status === "preview_only" || v.publication_status === "published")
+  )
+  .filter((v) =>
+    v.fuel_type === vehicle.fuel_type ||
+    (v.passenger_capacity >= 7 && vehicle.passenger_capacity >= 7) ||
+    (v.passenger_capacity <= 5 && vehicle.passenger_capacity <= 5)
+  )
+  .slice(0, 3);
+
+const bestForLabels = getBestForLabels(vehicle.best_for || [], "es");
 ---
 
 <BaseLayout lang="es" title={vehicle.name} description={vehicle.tagline_es || vehicle.tagline_en}>
@@ -39,7 +55,6 @@ const { vehicle } = Astro.props;
             )}
           </div>
 
-          <!-- Gallery thumbnails -->
           {vehicle.gallery && vehicle.gallery.length > 0 && (
             <div class="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-4">
               {vehicle.gallery.map((img) => (
@@ -71,7 +86,7 @@ const { vehicle } = Astro.props;
             </div>
             <div class="rounded-lg bg-gray-50 p-3">
               <p class="text-xs text-gray-500">Combustible</p>
-              <p class="text-xl font-semibold text-gray-900">{vehicle.fuel_type}</p>
+              <p class="text-sm font-semibold text-gray-900 pt-1">{getFuelLabel(vehicle.fuel_type, "es")}</p>
             </div>
             <div class="rounded-lg bg-gray-50 p-3">
               <p class="text-xs text-gray-500">Equipaje</p>
@@ -89,7 +104,27 @@ const { vehicle } = Astro.props;
                 <p class="text-sm font-semibold text-gray-900">{vehicle.interior_color}</p>
               </div>
             )}
+            {vehicle.drivetrain && (
+              <div class="rounded-lg bg-gray-50 p-3">
+                <p class="text-xs text-gray-500">Transmisión</p>
+                <p class="text-sm font-semibold text-gray-900">{vehicle.drivetrain}</p>
+              </div>
+            )}
           </div>
+
+          <!-- Best for -->
+          {bestForLabels.length > 0 && (
+            <div class="mt-6">
+              <h2 class="text-lg font-semibold text-gray-900">Ideal Para</h2>
+              <div class="mt-2 flex flex-wrap gap-2">
+                {bestForLabels.map((label) => (
+                  <span class="inline-flex items-center rounded-full bg-brand-pale px-3 py-1 text-sm font-medium text-brand-dark">
+                    {label.es}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
 
           <!-- Pricing -->
           <div class="mt-6 rounded-xl border border-gray-200 p-4">
@@ -125,23 +160,21 @@ const { vehicle } = Astro.props;
             </div>
           )}
 
-          <!-- Turo link -->
-          {vehicle.turo_url && (
+          <!-- Booking CTA -->
+          {vehicle.book_path && (
             <div class="mt-6">
               <a
-                href={vehicle.turo_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:border-brand hover:text-brand"
+                href={vehicle.book_path}
+                class="inline-flex items-center gap-2 rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-light"
               >
-                Ver en Turo ↗
+                Consultar disponibilidad en Turo ↗
               </a>
             </div>
           )}
 
-          <!-- Action -->
-          <div class="mt-8 flex flex-col sm:flex-row gap-3">
-            <a href="/es/contact/" class="inline-flex items-center justify-center rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-light">
+          <!-- Secondary actions -->
+          <div class="mt-4 flex flex-col sm:flex-row gap-3">
+            <a href="/es/contact/" class="inline-flex items-center justify-center rounded-lg border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700 hover:border-brand hover:text-brand">
               Consultar Sobre Este Vehículo
             </a>
             <a href="/es/rental-requirements/" class="inline-flex items-center justify-center rounded-lg border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700 hover:border-brand hover:text-brand">
@@ -149,7 +182,6 @@ const { vehicle } = Astro.props;
             </a>
           </div>
 
-          {/* Publication status note */}
           {vehicle.publication_status === "preview_only" && (
             <div class="mt-4 rounded-lg bg-yellow-50 border border-yellow-300 p-3">
               <p class="text-xs text-yellow-800">
@@ -159,6 +191,37 @@ const { vehicle } = Astro.props;
           )}
         </div>
       </div>
+
+      <!-- Related vehicles -->
+      {relatedVehicles.length > 0 && (
+        <section class="mt-16 border-t border-gray-200 pt-12">
+          <h2 class="text-2xl font-bold text-gray-900">Vehículos Similares</h2>
+          <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {relatedVehicles.map((rv) => (
+              <a
+                href={`/es/vehicles/${rv.slug}/`}
+                class="group bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm transition-all hover:border-brand hover:shadow-lg"
+              >
+                <div class="aspect-[4/3] bg-gray-200 flex items-center justify-center">
+                  {rv.hero_image ? (
+                    <img src={rv.hero_image} alt={rv.name} class="w-full h-full object-cover" />
+                  ) : (
+                    <span class="text-gray-400 text-sm">Foto pendiente</span>
+                  )}
+                </div>
+                <div class="p-4">
+                  <h3 class="text-base font-semibold text-gray-900 group-hover:text-brand">{rv.name}</h3>
+                  <p class="text-sm text-gray-500 mt-1 line-clamp-1">{rv.tagline_es || rv.tagline_en}</p>
+                  <div class="mt-2 flex items-center gap-3 text-xs text-gray-500">
+                    <span>🧑 {rv.passenger_capacity}</span>
+                    <span>{getFuelLabel(rv.fuel_type, "es")}</span>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   </main>
 

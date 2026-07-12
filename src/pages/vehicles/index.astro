@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/base/Header.astro";
 import Footer from "../../components/base/Footer.astro";
 import vehicles from "../../data/vehicles.json";
+import { getFuelLabel } from "../../config/labels";
 
 const visibleVehicles = vehicles.filter(
   (v) => v.publication_status === "preview_only" || v.publication_status === "published"
@@ -67,7 +68,7 @@ const visibleVehicles = vehicles.filter(
                   {vehicle.luggage_large && (
                     <span>🧳 {vehicle.luggage_large}</span>
                   )}
-                  <span class="capitalize">{vehicle.fuel_type.replace(/_/g, " ")}</span>
+                  <span class="capitalize">{getFuelLabel(vehicle.fuel_type, "en")}</span>
                 </div>
                 {vehicle.publication_status === "preview_only" && (
                   <div class="mt-2">

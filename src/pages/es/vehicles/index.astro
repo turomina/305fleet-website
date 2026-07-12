@@ -3,6 +3,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Header from "../../../components/base/Header.astro";
 import Footer from "../../../components/base/Footer.astro";
 import vehicles from "../../../data/vehicles.json";
+import { getFuelLabel } from "../../../config/labels";
 
 const publishedVehicles = vehicles.filter(
   (v) => v.publication_status === "preview_only" || v.publication_status === "published"
@@ -47,6 +48,7 @@ const publishedVehicles = vehicles.filter(
                 <div class="mt-3 flex items-center gap-4 text-sm text-gray-500">
                   <span>🧑‍🤝‍🧑 {vehicle.passenger_capacity} pasajeros</span>
                   <span>🧳 {vehicle.luggage_large} maletas grandes</span>
+                  <span>{getFuelLabel(vehicle.fuel_type, "es")}</span>
                 </div>
                 <div class="mt-4 flex items-center justify-between">
                   <span class="text-lg font-semibold text-brand">
