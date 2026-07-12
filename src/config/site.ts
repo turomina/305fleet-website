@@ -86,3 +86,10 @@ export const BENEFITS = [
     description: "Established rental reputation — straightforward and reliable",
   },
 ] as const;
+
+export const CTA = {
+  primary: "Book Now",
+  primaryEs: "Reservar ahora",
+  disclosure: "Reservation currently completed through Turo.",
+  disclosureEs: "La reservación actualmente se completa a través de Turo.",
+} as const;
