@@ -179,12 +179,12 @@ const images = [
       </div>
     </section>
 
-    {/* Airport Delivery */}
+    {/* Airport Pickup */}
     <section class="section bg-white">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-ink text-center mb-3">Airport Delivery</h2>
+        <h2 class="text-3xl font-bold text-ink text-center mb-3">Airport Pickup</h2>
         <p class="text-center text-ink-secondary max-w-xl mx-auto mb-10">
-          Pick up your {vehicle.name} at MIA, FLL, or PBI. Contactless handoff — exact location sent privately.
+          Pick up your {vehicle.name} at MIA, FLL, or PBI. Contactless handoff from designated airport parking — exact location sent privately.
         </p>
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
           {["MIA", "FLL", "PBI"].map(code => (
@@ -231,11 +231,7 @@ const images = [
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <h2 class="text-4xl font-bold tracking-tight">Ready to drive the {vehicle.name}?</h2>
         <div class="mt-6">
-          {vehicle.book_path ? (
-            <a href={vehicle.book_path} class="btn btn-light btn-primary-lg">Book Now</a>
-          ) : (
-            <a href="/contact/" class="btn btn-light btn-primary-lg">Inquire Now</a>
-          )}
+          <a href="/vehicles/" class="btn btn-light btn-primary-lg">Book Now</a>
         </div>
       </div>
     </section>

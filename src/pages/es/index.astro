@@ -9,27 +9,31 @@ const allVehicles = vehicles.filter(v => v.publication_status === "preview_only"
 const featuredVehicles = allVehicles.slice(0, 3);
 
 const airports = [
-  { code: "MIA", name: "Miami International", slug: "miami-international-airport", desc: "Garajes Dolphin, Flamingo e Ibis — ubicación exacta enviada de forma privada" },
-  { code: "FLL", name: "Fort Lauderdale", slug: "fort-lauderdale-airport", desc: "Cypress Garage, Nivel 7, Zona 7NN — ubicación exacta enviada de forma privada" },
-  { code: "PBI", name: "Palm Beach", slug: "palm-beach-airport", desc: "Long-Term Garage 1 o 2 — Premium Parking disponible por solicitud" },
+  { code: "MIA", name: "Miami International", slug: "miami-international-airport", desc: "Garajes Dolphin, Flamingo e Ibis" },
+  { code: "FLL", name: "Fort Lauderdale", slug: "fort-lauderdale-airport", desc: "Cypress Garage, Nivel 7, Zona 7NN" },
+  { code: "PBI", name: "Palm Beach", slug: "palm-beach-airport", desc: "Long-Term Garage 1 o 2 — Premium Parking por solicitud" },
 ];
 
 const steps = [
-  { num: "1", title: "Elija Su Vehículo", desc: "Explore nuestra flota de vehículos recientes con fotos reales y especificaciones completas." },
-  { num: "2", title: "Seleccione Fechas y Aeropuerto", desc: "Elija MIA, FLL o PBI. Seleccione sus fechas de alquiler. Confirmamos disponibilidad." },
-  { num: "3", title: "Complete la Reservación", desc: "Proporcione la información necesaria para confirmar su reservación directa de forma segura." },
-  { num: "4", title: "Recoja y Conduzca", desc: "Reciba instrucciones privadas de ubicación. Recogida sin contacto. Disfrute del sur de Florida." },
+  { num: "1", title: "Elija Su Vehículo", desc: "Explore nuestra flota de vehículos cuidadosamente seleccionados con fotos reales y especificaciones completas." },
+  { num: "2", title: "Seleccione Fechas y Aeropuerto", desc: "Elija MIA, FLL o PBI. Seleccione sus fechas de alquiler. Los detalles de la reservación se confirman antes de la recogida." },
+  { num: "3", title: "Complete la Reservación", desc: "Proporcione la información requerida para confirmar su alquiler directo." },
+  { num: "4", title: "Recoja y Conduzca", desc: "Reciba instrucciones privadas de ubicación. Recogida sin contacto desde el estacionamiento designado del aeropuerto. Disfrute del sur de Florida." },
 ];
 ---
 
-<BaseLayout lang="es" title="Alquiler Directo de Vehículos en el Sur de Florida" description="Alquiler directo de vehículos en el sur de Florida. Flota reciente, entrega en MIA, FLL y PBI, recogida sin contacto. Reserve con un operador local.">
+<BaseLayout lang="es" title="Alquiler Directo de Vehículos en el Sur de Florida" description="Alquiler directo de vehículos en el sur de Florida. Flota cuidadosamente seleccionada, recogida sin contacto en estacionamientos designados de MIA, FLL y PBI. Reserve con un operador local.">
   <Header />
 
   <main id="main-content" class="flex-1">
     <!-- Hero -->
     <section class="relative min-h-[90vh] flex items-center bg-brand-900 overflow-hidden">
       <div class="absolute inset-0">
-        <img src="/images/generated/hero-bg.png" alt="" class="w-full h-full object-cover" loading="eager" />
+        <picture>
+          <source srcset="/images/generated/hero-bg.avif" type="image/avif" />
+          <source srcset="/images/generated/hero-bg.webp" type="image/webp" />
+          <img src="/images/generated/hero-bg.png" alt="" class="w-full h-full object-cover" loading="eager" />
+        </picture>
       </div>
       <div class="absolute inset-0 gradient-hero-overlay"></div>
 
@@ -40,8 +44,8 @@ const steps = [
             Vehículos premium.<br class="hidden sm:block" />Recogida sin contacto.<br class="hidden sm:block" />Servicio local real.
           </h1>
           <p class="mt-6 text-lg sm:text-xl text-white/80 leading-relaxed max-w-xl">
-            Alquiler directo de un operador de flota del sur de Florida. Entrega en MIA, FLL y PBI.
-            Sin mostradores, sin autobuses — solo un vehículo limpio y listo cuando llegue.
+            Alquiler directo de un operador de flota del sur de Florida. Recogida sin contacto en estacionamientos
+            designados de MIA, FLL y PBI. Sin mostradores, sin autobuses — solo un vehículo limpio y listo cuando llegue.
           </p>
           <div class="mt-10 flex flex-col sm:flex-row gap-4">
             <a href="/es/vehicles/" class="btn btn-light btn-primary-lg">Reservar ahora</a>
@@ -62,7 +66,7 @@ const steps = [
         <div class="max-w-2xl">
           <p class="section-eyebrow">Nuestra Flota</p>
           <h2 class="section-title">{allVehicles.length} vehículos. Un estándar.</h2>
-          <p class="section-subtitle">Cada vehículo es reciente, bien mantenido y presentado profesionalmente.</p>
+          <p class="section-subtitle">Cada vehículo es cuidadosamente seleccionado, bien mantenido y presentado profesionalmente.</p>
         </div>
         <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {featuredVehicles.map(v => (
@@ -80,7 +84,7 @@ const steps = [
                     <h3 class="text-xl font-semibold text-ink">{v.name}</h3>
                     <p class="text-sm text-ink-secondary mt-1 line-clamp-1">{v.tagline_es || v.tagline_en}</p>
                   </div>
-                  {v.book_path && <span class="btn btn-primary text-xs px-3 py-1.5">Reservar</span>}
+                  <span class="btn btn-primary text-xs px-3 py-1.5">Reservar</span>
                 </div>
                 <div class="mt-4 flex flex-wrap items-center gap-2">
                   <span class="chip">&#128103; {v.passenger_capacity}</span>
@@ -100,14 +104,18 @@ const steps = [
     <!-- Airports -->
     <section class="section relative bg-brand-900 overflow-hidden">
       <div class="absolute inset-0">
-        <img src="/images/generated/airport-visual.png" alt="" class="w-full h-full object-cover opacity-30" loading="lazy" />
+        <picture>
+          <source srcset="/images/generated/airport-visual.avif" type="image/avif" />
+          <source srcset="/images/generated/airport-visual.webp" type="image/webp" />
+          <img src="/images/generated/airport-visual.png" alt="" class="w-full h-full object-cover opacity-30" loading="lazy" />
+        </picture>
       </div>
       <div class="absolute inset-0 bg-gradient-to-b from-brand-900/90 via-brand-900/70 to-brand-900/90"></div>
       <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto">
-          <p class="text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-4">Entrega en Aeropuerto</p>
+          <p class="text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-4">Recogida en Aeropuerto</p>
           <h2 class="text-4xl font-bold tracking-tight text-white">MIA · FLL · PBI</h2>
-          <p class="mt-4 text-lg text-white/70">Recogida sin contacto en los tres aeropuertos. Ubicación exacta enviada de forma privada.</p>
+          <p class="mt-4 text-lg text-white/70">Recogida sin contacto desde estacionamientos designados en los tres aeropuertos. Ubicación exacta enviada de forma privada.</p>
         </div>
         <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
           {airports.map(a => (
@@ -145,7 +153,7 @@ const steps = [
     <section class="section gradient-brand text-white text-center">
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <h2 class="text-4xl sm:text-5xl font-bold tracking-tight">¿Listo para conducir?</h2>
-        <p class="mt-4 text-xl text-white/80">Explore nuestra flota. Entrega en MIA, FLL y PBI.</p>
+        <p class="mt-4 text-xl text-white/80">Explore nuestra flota. Recogida sin contacto en MIA, FLL y PBI.</p>
         <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
           <a href="/es/vehicles/" class="btn btn-light btn-primary-lg">Reservar ahora</a>
           <a href="/es/contact/" class="btn px-6 py-4 text-base font-semibold text-white border-2 border-white/30 rounded-lg hover:bg-white/10 transition-all">Contáctanos</a>

@@ -6,13 +6,13 @@ export const SITE = {
   legalName: "Turomina LLC dba 305Fleet",
   tagline: "South Florida Vehicle Rentals",
   description:
-    "A locally operated South Florida fleet offering newer, well-maintained vehicles, straightforward pricing, airport delivery, and responsive personal service.",
-  url: "https://305fleet.com", // placeholder — Ian to confirm
+    "A locally operated South Florida fleet offering carefully selected, well-maintained vehicles, clear rental expectations, and contactless airport pickup from designated parking facilities at MIA, FLL, and PBI.",
+  url: "https://305fleet.com",
   locale: "en",
   locales: ["en", "es"],
-  phone: "305-439-1247", // Ian — temporary
-  whatsapp: "", // Ian to provide
-  email: "nik@305fleet.com", // temporary contact email
+  phone: "", // pending Ian approval for public display
+  whatsapp: "", // pending Ian approval
+  email: "", // pending Ian approval for public business email
   serviceArea: ["Miami", "Fort Lauderdale", "Palm Beach"],
   airports: ["MIA", "FLL", "PBI"],
 } as const;
@@ -20,43 +20,40 @@ export const SITE = {
 export const NAV = {
   primary: [
     { label: "Vehicles", href: "/vehicles/" },
-    {
-      label: "Locations",
-      href: "/locations/",
-      children: [
-        { label: "Miami International Airport (MIA)", href: "/locations/miami-international-airport/" },
-        { label: "Fort Lauderdale Airport (FLL)", href: "/locations/fort-lauderdale-airport/" },
-        { label: "Palm Beach Airport (PBI)", href: "/locations/palm-beach-airport/" },
-      ],
-    },
-    {
-      label: "Rental Options",
-      href: "/rental-options/",
-      children: [
-        { label: "Daily Rentals", href: "/rental-options/daily/" },
-        { label: "Weekly Rentals", href: "/rental-options/weekly/" },
-        { label: "Monthly Rentals", href: "/rental-options/monthly/" },
-        { label: "Business & Corporate", href: "/rental-options/business-corporate/" },
-      ],
-    },
-    {
-      label: "How It Works",
-      href: "/how-it-works/",
-      children: [
-        { label: "Rental Requirements", href: "/rental-requirements/" },
-        { label: "Rental Policies", href: "/rental-policies/" },
-        { label: "Optional Extras", href: "/optional-extras/" },
-      ],
-    },
-    { label: "Reviews", href: "/reviews/" },
-    { label: "Deals", href: "/deals/" },
+    { label: "Airports", href: "/how-it-works/" },
+    { label: "How It Works", href: "/how-it-works/" },
     { label: "About", href: "/about/" },
-  ],
-  utility: [
     { label: "Contact", href: "/contact/" },
-    { label: "FAQ", href: "/faq/" },
-    { label: "Support", href: "/support/" },
   ],
+  footer: {
+    rentals: [
+      { label: "Vehicles", href: "/vehicles/" },
+      { label: "Daily Rentals", href: "/rental-options/daily/" },
+      { label: "Weekly Rentals", href: "/rental-options/weekly/" },
+      { label: "Monthly Rentals", href: "/rental-options/monthly/" },
+      { label: "Business & Corporate", href: "/rental-options/business-corporate/" },
+      { label: "Deals", href: "/deals/" },
+    ],
+    locations: [
+      { label: "Miami International (MIA)", href: "/locations/miami-international-airport/" },
+      { label: "Fort Lauderdale (FLL)", href: "/locations/fort-lauderdale-airport/" },
+      { label: "Palm Beach (PBI)", href: "/locations/palm-beach-airport/" },
+    ],
+    info: [
+      { label: "How It Works", href: "/how-it-works/" },
+      { label: "Rental Requirements", href: "/rental-requirements/" },
+      { label: "Rental Policies", href: "/rental-policies/" },
+      { label: "Optional Extras", href: "/optional-extras/" },
+      { label: "Reviews", href: "/reviews/" },
+    ],
+    support: [
+      { label: "Contact", href: "/contact/" },
+      { label: "FAQ", href: "/faq/" },
+      { label: "Support", href: "/support/" },
+      { label: "About 305 Fleet", href: "/about/" },
+    ],
+  },
+  utility: [],
   legal: [
     { label: "Privacy Policy", href: "/privacy/" },
     { label: "Terms", href: "/terms/" },
@@ -67,29 +64,29 @@ export const NAV = {
 export const BENEFITS = [
   {
     icon: "plane",
-    title: "Airport Delivery",
-    description: "MIA · FLL · PBI — we meet you at the terminal",
+    title: "Airport Pickup",
+    description: "MIA · FLL · PBI — contactless pickup from designated parking facilities",
   },
   {
     icon: "car",
-    title: "Newer Fleet",
-    description: "Well-maintained vehicles, professionally presented",
+    title: "Quality Fleet",
+    description: "Carefully selected, well-maintained vehicles, professionally presented",
   },
   {
     icon: "phone",
     title: "Real Operator",
-    description: "Direct contact with a local South Florida team",
+    description: "Direct communication with a local South Florida team",
   },
   {
     icon: "star",
     title: "Trusted Reputation",
-    description: "Established rental reputation — straightforward and reliable",
+    description: "Established rental reputation — direct and reliable",
   },
 ] as const;
 
 export const CTA = {
   primary: "Book Now",
   primaryEs: "Reservar ahora",
-  disclosure: "Reservation system coming soon — direct booking available shortly.",
-  disclosureEs: "Sistema de reservación próximamente — reservas directas disponibles pronto.",
+  disclosure: "Direct booking experience under development. Browse our fleet and contact us for availability.",
+  disclosureEs: "Sistema de reservación directa en desarrollo. Explore nuestra flota y contáctenos para disponibilidad.",
 } as const;

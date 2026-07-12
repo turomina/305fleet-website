@@ -6,7 +6,7 @@ import Footer from "../components/base/Footer.astro";
 
 <BaseLayout
   title="How It Works"
-  description="How direct vehicle rentals work with 305 Fleet — choose your vehicle, select dates and airport, complete your reservation, and pick up contactlessly at MIA, FLL, or PBI."
+  description="How direct vehicle rentals work with 305 Fleet — choose your vehicle, select dates and airport, complete your reservation, and pick up contactlessly from designated parking at MIA, FLL, or PBI."
 >
   <Header />
 
@@ -17,7 +17,7 @@ import Footer from "../components/base/Footer.astro";
         <p class="text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-4">How It Works</p>
         <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">Simple, direct, contactless.</h1>
         <p class="mt-4 text-lg text-white/70 max-w-xl">
-          Four steps from browsing to driving. No counter lines, no paperwork delays — just a clean vehicle ready when you arrive.
+          From browsing to driving — contactless pickup from designated airport parking facilities. No counter lines — just a clean vehicle ready when you arrive.
         </p>
       </div>
     </section>
@@ -27,11 +27,11 @@ import Footer from "../components/base/Footer.astro";
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <div class="space-y-12">
           {[
-            { num: "01", title: "Choose Your Vehicle", desc: "Browse our fleet of newer, well-maintained vehicles. Real photos, full specifications, no 'or similar' substitutions. Each listing shows passenger capacity, luggage space, and fuel type so you know exactly what you're getting.", icon: "car" },
-            { num: "02", title: "Select Dates & Airport", desc: "Pick your rental dates and choose your airport — MIA, FLL, or PBI. We confirm availability for your selected vehicle. Airport parking charges are disclosed in reservation terms.", icon: "calendar" },
-            { num: "03", title: "Complete Reservation", desc: "Provide the required information to confirm your direct rental. Your reservation is secured once the requirements are completed and confirmed.", icon: "shield" },
+            { num: "01", title: "Choose Your Vehicle", desc: "Browse our fleet of carefully selected, well-maintained vehicles. Real photos, full specifications, no 'or similar' substitutions. Each listing shows passenger capacity, luggage space, and fuel type so you know exactly what you're getting.", icon: "car" },
+            { num: "02", title: "Select Dates & Airport", desc: "Pick your rental dates and choose your airport — MIA, FLL, or PBI. Airport parking charges are disclosed in reservation terms.", icon: "calendar" },
+            { num: "03", title: "Complete Reservation", desc: "Provide the required information to confirm your direct rental. Reservation details are confirmed before your pickup.", icon: "shield" },
             { num: "04", title: "Receive Private Instructions", desc: "Before your pickup time, you'll receive your exact vehicle location privately — including garage, level, zone or row, and space number. No wandering through parking structures.", icon: "map" },
-            { num: "05", title: "Contactless Pickup", desc: "Walk to your vehicle's exact location. Access it using the private instructions provided. No counter, no keys to collect — just get in and drive.", icon: "key" },
+            { num: "05", title: "Contactless Pickup", desc: "Walk to your vehicle's exact location in the designated airport parking facility. Access it using the private instructions provided. No counter, no keys to collect — just get in and drive.", icon: "key" },
             { num: "06", title: "Contactless Return", desc: "Park in the instructed facility. Photograph the vehicle location. Confirm the garage, level, and space in writing. Secure the key and garage ticket per the private return procedure.", icon: "check" },
           ].map((step, i) => (
             <div class="flex flex-col sm:flex-row gap-6 sm:gap-10 items-start">
