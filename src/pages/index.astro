@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/base/Header.astro";
 import Footer from "../components/base/Footer.astro";
+import AvailabilitySearch from "../components/booking/AvailabilitySearch.astro";
 import vehicles from "../data/vehicles.json";
 import { getFuelLabel } from "../config/labels";
 
@@ -9,9 +10,9 @@ const allVehicles = vehicles.filter(v => v.publication_status === "preview_only"
 const featuredVehicles = allVehicles.slice(0, 3);
 
 const airports = [
-  { code: "MIA", name: "Miami International", slug: "miami-international-airport", desc: "Dolphin, Flamingo & Ibis garages" },
-  { code: "FLL", name: "Fort Lauderdale", slug: "fort-lauderdale-airport", desc: "Cypress Garage, Level 7, Zone 7NN" },
-  { code: "PBI", name: "Palm Beach", slug: "palm-beach-airport", desc: "Long-Term Garage 1 or 2 — Premium Parking by request" },
+  { code: "MIA", name: "Miami International", slug: "miami-international-airport", desc: "Dolphin, Flamingo & Ibis garages", pos: [-2.2, 0.4, 0], color: "0xEA5E2D" },
+  { code: "FLL", name: "Fort Lauderdale", slug: "fort-lauderdale-airport", desc: "Cypress Garage, Level 7, Zone 7NN", pos: [0, -0.6, 0], color: "0x607EA2" },
+  { code: "PBI", name: "Palm Beach", slug: "palm-beach-airport", desc: "Long-Term Garage 1 or 2", pos: [2.4, 0.2, 0], color: "0x314B6E" },
 ];
 
 const benefits = [
@@ -37,16 +38,16 @@ const steps = [
 
   <main id="main-content" class="flex-1">
     <!-- ═══════════════════ HERO ═══════════════════ -->
-    <section class="relative min-h-[90vh] flex items-center bg-brand-900 overflow-hidden">
-      <!-- Generated hero background -->
-      <div class="absolute inset-0">
+    <section id="hero" class="relative min-h-[95vh] flex items-center bg-brand-900 overflow-hidden">
+      <!-- Hero background visual -->
+      <div class="absolute inset-0 hero-visual" data-anim="hero-bg">
         <picture>
           <source srcset="/images/generated/hero-bg.avif" type="image/avif" />
           <source srcset="/images/generated/hero-bg.webp" type="image/webp" />
           <img
             src="/images/generated/hero-bg.png"
             alt=""
-            class="w-full h-full object-cover"
+            class="w-full h-full object-cover hero-bg-img"
             loading="eager"
             fetchpriority="high"
           />
@@ -54,52 +55,59 @@ const steps = [
       </div>
       <div class="absolute inset-0 gradient-hero-overlay"></div>
 
-      <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-28 w-full">
-        <div class="max-w-3xl">
-          <p class="text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-6 fade-in">
+      <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 lg:py-32 w-full">
+        <div class="max-w-3xl mx-auto text-center">
+          <!-- Badge -->
+          <p class="hero-label inline-block text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-6" data-anim="hero-label">
             Direct Rentals — South Florida
           </p>
-          <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.08]">
-            Premium vehicles.<br class="hidden sm:block" />Contactless pickup.<br class="hidden sm:block" />Real local service.
+
+          <!-- Headline with staggered lines -->
+          <h1 class="hero-headline text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.08] mb-6" data-anim="hero-headline">
+            <span class="hero-line block overflow-hidden"><span class="hero-line-inner block">Premium vehicles.</span></span>
+            <span class="hero-line block overflow-hidden"><span class="hero-line-inner block">Contactless pickup.</span></span>
+            <span class="hero-line block overflow-hidden"><span class="hero-line-inner block">Real local service.</span></span>
           </h1>
-          <p class="mt-6 text-lg sm:text-xl text-white/80 leading-relaxed max-w-xl">
-            Direct rentals from a South Florida fleet operator. Contactless airport pickup from designated parking
-            facilities at MIA, FLL, and PBI. No counter lines, no shuttle buses — just a clean, well-maintained
-            vehicle ready when you arrive.
+
+          <!-- Supporting message -->
+          <p class="hero-sub text-lg sm:text-xl text-white/70 leading-relaxed max-w-xl mx-auto mb-10" data-anim="hero-sub">
+            Direct rentals from a South Florida fleet operator. Contactless airport pickup from
+            designated parking facilities at MIA, FLL, and PBI.
           </p>
-          <div class="mt-10 flex flex-col sm:flex-row gap-4">
-            <a href="/vehicles/" class="btn btn-light btn-primary-lg">
-              Book Now
-            </a>
-            <a href="/how-it-works/" class="btn px-6 py-4 text-base font-semibold text-white border-2 border-white/30 rounded-lg hover:bg-white/10 transition-all duration-300">
-              How It Works
-            </a>
+
+          <!-- ═══ CENTRAL SEARCH PILL ═══ -->
+          <div class="hero-search" data-anim="hero-search">
+            <AvailabilitySearch lang="en" />
           </div>
-          <div class="mt-12 flex items-center gap-6 text-sm text-white/60">
+
+          <!-- Trust badges -->
+          <div class="hero-trust mt-8 flex items-center justify-center gap-6 text-sm text-white/50" data-anim="hero-trust">
             <span class="flex items-center gap-1.5">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
               MIA · FLL · PBI
             </span>
             <span class="flex items-center gap-1.5">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
               Contactless Handoff
             </span>
             <span class="flex items-center gap-1.5">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
               Local Operator
             </span>
           </div>
-        </div>
 
-        <!-- Scroll indicator -->
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <svg class="w-6 h-6 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+          <!-- Scroll indicator -->
+          <div class="hero-scroll absolute bottom-10 left-1/2 -translate-x-1/2" data-anim="hero-scroll">
+            <div class="scroll-indicator w-8 h-14 border-2 border-white/20 rounded-full flex justify-center pt-3">
+              <div class="scroll-dot w-1.5 h-1.5 bg-accent rounded-full"></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- ═══════════════════ FEATURED FLEET ═══════════════════ -->
-    <section class="section bg-surface">
+    <section id="fleet" class="section bg-surface">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="max-w-2xl">
           <p class="section-eyebrow">Our Fleet</p>
@@ -110,15 +118,15 @@ const steps = [
           </p>
         </div>
 
-        <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" id="fleet-grid">
           {featuredVehicles.map(v => (
-            <a href={`/vehicles/${v.slug}/`} class="card group">
+            <a href={`/vehicles/${v.slug}/`} class="card fleet-card group">
               <div class="aspect-[16/10] bg-brand-100 overflow-hidden">
                 {v.hero_image ? (
                   <img
                     src={v.hero_image}
                     alt={v.name}
-                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                    class="fleet-card-img w-full h-full object-cover"
                     loading="lazy"
                     width="800" height="500"
                   />
@@ -155,14 +163,12 @@ const steps = [
     </section>
 
     <!-- ═══════════════════ AIRPORT PICKUP ═══════════════════ -->
-    <section class="section relative bg-brand-900 overflow-hidden">
-      <!-- Generated airport visual backdrop -->
-      <div class="absolute inset-0">
-        <picture>
-          <source srcset="/images/generated/airport-visual.avif" type="image/avif" />
-          <source srcset="/images/generated/airport-visual.webp" type="image/webp" />
-          <img src="/images/generated/airport-visual.png" alt="" class="w-full h-full object-cover opacity-30" loading="lazy" />
-        </picture>
+    <section id="airport" class="section relative bg-brand-900 overflow-hidden">
+      <!-- Three.js canvas (lazy loaded) -->
+      <canvas class="airport-canvas absolute inset-0 z-0 opacity-40" id="airport-canvas"></canvas>
+      <!-- CSS fallback -->
+      <div class="airport-fallback absolute inset-0 z-0" aria-hidden="true">
+        <div class="absolute inset-0 bg-gradient-radial from-brand/30 to-transparent"></div>
       </div>
       <div class="absolute inset-0 bg-gradient-to-b from-brand-900/90 via-brand-900/70 to-brand-900/90"></div>
 
@@ -171,14 +177,13 @@ const steps = [
           <p class="text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-4">Airport Pickup</p>
           <h2 class="text-4xl font-bold tracking-tight text-white">MIA · FLL · PBI</h2>
           <p class="mt-4 text-lg text-white/70 leading-relaxed">
-            Contactless pickup from designated parking facilities at all three South Florida airports. Your exact
-            vehicle location is sent privately before your reservation begins.
+            Contactless pickup from designated parking facilities at all three South Florida airports.
           </p>
         </div>
 
-        <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3" id="airport-cards">
           {airports.map(a => (
-            <a href={`/locations/${a.slug}/`} class="block rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 p-8 hover:bg-white/15 transition-all duration-300 group">
+            <a href={`/locations/${a.slug}/`} class="airport-card block rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 p-8 hover:bg-white/15 transition-all duration-300 group">
               <div class="text-5xl font-bold text-accent mb-3">{a.code}</div>
               <h3 class="text-xl font-semibold text-white group-hover:text-accent transition-colors">{a.name}</h3>
               <p class="mt-2 text-sm text-white/60 leading-relaxed">{a.desc}</p>
@@ -190,9 +195,7 @@ const steps = [
         </div>
 
         <div class="mt-8 text-center">
-          <p class="text-sm text-white/50">
-            Airport parking charges are the renter's responsibility — disclosed in reservation terms.
-          </p>
+          <p class="text-sm text-white/50">Airport parking charges are the renter's responsibility — disclosed in reservation terms.</p>
         </div>
       </div>
     </section>
@@ -203,27 +206,16 @@ const steps = [
         <div class="max-w-2xl">
           <p class="section-eyebrow">Why 305Fleet</p>
           <h2 class="section-title">A better way to rent in South Florida</h2>
-          <p class="section-subtitle">
-            We're not a faceless national chain. We're a local operator who knows South Florida — the airports, the roads, and what travelers actually need.
-          </p>
+          <p class="section-subtitle">We're a local operator who knows South Florida — the airports, the roads, and what travelers actually need.</p>
         </div>
-
         <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {benefits.map((b, i) => (
+          {benefits.map((b) => (
             <div class="text-center sm:text-left">
               <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand mb-4">
-                {b.icon === "fleet" && (
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z M3 7l4-4h10l4 4 M5 7h14v10H5z"/></svg>
-                )}
-                {b.icon === "local" && (
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
-                )}
-                {b.icon === "contactless" && (
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                )}
-                {b.icon === "bilingual" && (
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.175 4.19 13.507 2.25 18 2.25c1.287 0 2.513.46 3.5 1.207"/></svg>
-                )}
+                {b.icon === "fleet" && (<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z M3 7l4-4h10l4 4 M5 7h14v10H5z"/></svg>)}
+                {b.icon === "local" && (<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>)}
+                {b.icon === "contactless" && (<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>)}
+                {b.icon === "bilingual" && (<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.175 4.19 13.507 2.25 18 2.25c1.287 0 2.513.46 3.5 1.207"/></svg>)}
               </div>
               <h3 class="text-base font-semibold text-ink mb-2">{b.title}</h3>
               <p class="text-sm text-ink-secondary leading-relaxed">{b.desc}</p>
@@ -239,11 +231,7 @@ const steps = [
         <div class="text-center max-w-2xl mx-auto">
           <p class="section-eyebrow">How It Works</p>
           <h2 class="section-title">Simple, direct, contactless</h2>
-          <p class="section-subtitle mx-auto text-center">
-            Four steps from browsing to driving. Contactless pickup from designated airport parking.
-          </p>
         </div>
-
         <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map(s => (
             <div class="relative rounded-2xl bg-white p-8 border border-border shadow-sm">
@@ -253,36 +241,8 @@ const steps = [
             </div>
           ))}
         </div>
-
         <div class="mt-10 text-center">
           <a href="/how-it-works/" class="btn btn-secondary">Full Process Details &rarr;</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════ RENTAL OPTIONS ═══════════════════ -->
-    <section class="section bg-surface">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="max-w-2xl">
-          <p class="section-eyebrow">Rental Options</p>
-          <h2 class="section-title">Vehicles for every trip</h2>
-          <p class="section-subtitle">
-            From daily rentals to extended stays — our fleet adapts to your needs.
-          </p>
-        </div>
-        <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            { title: "Daily Rentals", desc: "Airport pickup, flexible returns", href: "/rental-options/daily/", icon: "calendar" },
-            { title: "Weekly Rentals", desc: "Extended stays, better rates", href: "/rental-options/weekly/", icon: "clock" },
-            { title: "Monthly Rentals", desc: "Long-term flexibility", href: "/rental-options/monthly/", icon: "home" },
-            { title: "Business & Corporate", desc: "Professional fleet, quick pickup", href: "/rental-options/business-corporate/", icon: "briefcase" },
-          ].map(opt => (
-            <a href={opt.href} class="card card-padded group">
-              <h3 class="text-lg font-semibold text-ink mb-2 group-hover:text-brand transition-colors">{opt.title}</h3>
-              <p class="text-sm text-ink-secondary">{opt.desc}</p>
-              <span class="mt-4 inline-block text-sm font-medium text-accent group-hover:gap-2 transition-all">Learn more &rarr;</span>
-            </a>
-          ))}
         </div>
       </div>
     </section>
@@ -290,14 +250,10 @@ const steps = [
     <!-- ═══════════════════ FINAL CTA ═══════════════════ -->
     <section class="section gradient-brand text-white text-center">
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <h2 class="text-4xl sm:text-5xl font-bold tracking-tight">
-          Ready to hit the road?
-        </h2>
-        <p class="mt-4 text-xl text-white/80 max-w-2xl mx-auto">
-          Browse our fleet of carefully selected, well-maintained vehicles. Contactless airport pickup at MIA, FLL, and PBI.
-        </p>
+        <h2 class="text-4xl sm:text-5xl font-bold tracking-tight">Ready to hit the road?</h2>
+        <p class="mt-4 text-xl text-white/80 max-w-2xl mx-auto">Browse our fleet. Contactless airport pickup at MIA, FLL, and PBI.</p>
         <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-          <a href="/vehicles/" class="btn btn-light btn-primary-lg">Book Now</a>
+          <a href="/vehicles/" class="btn btn-light btn-primary-lg">View Fleet</a>
           <a href="/contact/" class="btn px-6 py-4 text-base font-semibold text-white border-2 border-white/30 rounded-lg hover:bg-white/10 transition-all">Contact Us</a>
         </div>
       </div>
@@ -306,13 +262,202 @@ const steps = [
 
   <Footer />
 
+  <!-- ═══ GSAP + Three.js Scripts ═══ -->
+  <script>
+    window.__HP_REDUCED__ = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  </script>
+  <script type="module">
+    import gsap from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+    gsap.registerPlugin(ScrollTrigger);
+
+    const reduced = window.__HP_REDUCED__;
+
+    if (!reduced) {
+      // ── Hero sequence ──
+      const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      heroTl
+        .fromTo('[data-anim="hero-label"]', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.7, delay: 0.1 })
+        .fromTo('.hero-line-inner', { y: '100%' }, { y: 0, duration: 0.85, stagger: 0.18 }, '-=0.3')
+        .fromTo('[data-anim="hero-sub"]', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.65 }, '-=0.25')
+        .fromTo('[data-anim="hero-search"]', { opacity: 0, y: 24, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.7 }, '-=0.2')
+        .fromTo('[data-anim="hero-trust"]', { opacity: 0 }, { opacity: 1, duration: 0.5 }, '-=0.15')
+        .fromTo('[data-anim="hero-scroll"]', { opacity: 0 }, { opacity: 1, duration: 0.5 }, '-=0.1');
+
+      // Hero parallax
+      gsap.to('.hero-bg-img', {
+        y: 40,
+        ease: 'none',
+        scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true },
+      });
+
+      // Scroll dot pulse
+      gsap.to('.scroll-dot', {
+        y: 20, opacity: 0.3, duration: 1.5, repeat: -1, yoyo: true, ease: 'power2.inOut',
+      });
+
+      // ── Fleet card reveals ──
+      gsap.fromTo('.fleet-card', { opacity: 0, y: 50 }, {
+        opacity: 1, y: 0, duration: 0.65, stagger: 0.1, ease: 'power3.out',
+        scrollTrigger: { trigger: '#fleet-grid', start: 'top 80%', toggleActions: 'play none none none' },
+      });
+      document.querySelectorAll('.fleet-card-img').forEach(img => {
+        gsap.fromTo(img, { scale: 1.08 }, {
+          scale: 1, duration: 1.2, ease: 'power3.out',
+          scrollTrigger: { trigger: img.closest('.fleet-card')!, start: 'top 90%', toggleActions: 'play none none none' },
+        });
+      });
+
+      // ── Airport card reveals ──
+      gsap.fromTo('.airport-card', { opacity: 0, y: 36 }, {
+        opacity: 1, y: 0, duration: 0.55, stagger: 0.14, ease: 'power3.out',
+        scrollTrigger: { trigger: '#airport-cards', start: 'top 88%', toggleActions: 'play none none none' },
+      });
+      gsap.to('#airport .relative.z-10 > div:first-child', {
+        y: -24,
+        ease: 'none',
+        scrollTrigger: { trigger: '#airport', start: 'top bottom', end: 'bottom top', scrub: true },
+      });
+    }
+
+    // ── Three.js Airport Visual (lazy-loaded) ──
+    const airportSection = document.getElementById('airport');
+    const airportCanvas = document.getElementById('airport-canvas') as HTMLCanvasElement | null;
+    if (airportSection && airportCanvas) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            observer.disconnect();
+            initAirportVisual();
+          }
+        });
+      }, { rootMargin: '300px 0px' });
+      observer.observe(airportSection);
+
+      async function initAirportVisual() {
+        if (reduced) return;
+        const hasWebGL = (() => {
+          try { const c = document.createElement('canvas'); return !!(window.WebGLRenderingContext && (c.getContext('webgl') || c.getContext('experimental-webgl'))); }
+          catch { return false; }
+        })();
+        if (!hasWebGL) { document.body.classList.add('no-webgl'); return; }
+
+        try {
+          const THREE = await import('three');
+          const canvas = airportCanvas;
+          const section = document.getElementById('airport')!;
+          const rect = section.getBoundingClientRect();
+          const dpr = Math.min(window.devicePixelRatio, 2);
+
+          const scene = new THREE.Scene();
+          const w = rect.width || window.innerWidth;
+          const h = rect.height || window.innerHeight;
+          const camera = new THREE.PerspectiveCamera(45, w / Math.max(h, 1), 0.1, 100);
+          camera.position.set(0, 0, 8);
+
+          const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+          renderer.setSize(w, h, false);
+          renderer.setPixelRatio(dpr);
+
+          const nodeGeo = new THREE.SphereGeometry(0.12, 32, 32);
+          const positions: Record<string, number[]> = { MIA: [-2.2, 0.4, 0], FLL: [0, -0.6, 0], PBI: [2.4, 0.2, 0] };
+          const colors: Record<string, number> = { MIA: 0xEA5E2D, FLL: 0x607EA2, PBI: 0x314B6E };
+          const nodes: Record<string, THREE.Mesh> = {};
+
+          Object.entries(positions).forEach(([code, pos]) => {
+            const mat = new THREE.MeshStandardMaterial({ color: colors[code], roughness: 0.3, metalness: 0.1, emissive: colors[code], emissiveIntensity: 0.3 });
+            const n = new THREE.Mesh(nodeGeo, mat);
+            n.position.set(pos[0], pos[1], pos[2]);
+            n.userData = { basePos: pos, code };
+            scene.add(n); nodes[code] = n;
+
+            const ringGeo = new THREE.TorusGeometry(0.2, 0.015, 16, 48);
+            const ringMat = new THREE.MeshBasicMaterial({ color: colors[code], transparent: true, opacity: 0.4 });
+            const ring = new THREE.Mesh(ringGeo, ringMat);
+            ring.position.copy(n.position); ring.rotation.x = Math.PI / 2;
+            ring.userData = { parent: code };
+            scene.add(ring); nodes[`${code}_ring`] = ring;
+          });
+
+          // Route lines
+          const createLine = (from: string, to: string, col: number) => {
+            const pts = [new THREE.Vector3(...positions[from] as [number,number,number]), new THREE.Vector3(...positions[to] as [number,number,number])];
+            const curve = new THREE.CatmullRomCurve3(pts, false, 'catmullrom', 0.5);
+            const g = new THREE.BufferGeometry().setFromPoints(curve.getPoints(40));
+            const m = new THREE.LineBasicMaterial({ color: col, transparent: true, opacity: 0.3, linewidth: 1 });
+            scene.add(new THREE.Line(g, m));
+          };
+          createLine('MIA', 'FLL', 0x607EA2);
+          createLine('FLL', 'PBI', 0x314B6E);
+
+          // Particles
+          const pCount = 80;
+          const pGeo = new THREE.BufferGeometry();
+          const pPositions = new Float32Array(pCount * 3);
+          for (let i = 0; i < pCount; i++) {
+            pPositions[i * 3] = (Math.random() - 0.5) * 6;
+            pPositions[i * 3 + 1] = (Math.random() - 0.5) * 4;
+            pPositions[i * 3 + 2] = (Math.random() - 0.5) * 2;
+          }
+          pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
+          const pMat = new THREE.PointsMaterial({ color: 0x607EA2, size: 0.03, transparent: true, opacity: 0.5 });
+          const particles = new THREE.Points(pGeo, pMat);
+          scene.add(particles);
+
+          scene.add(new THREE.AmbientLight(0x314B6E, 0.6));
+          const pLight = new THREE.PointLight(0xEA5E2D, 1.5, 12);
+          pLight.position.set(0, 0, 4); scene.add(pLight);
+
+          let animId: number;
+          const animate: FrameRequestCallback = (time) => {
+            animId = requestAnimationFrame(animate);
+            const t = time * 0.001;
+            Object.values(nodes).forEach(node => {
+              if (node.userData?.parent) {
+                const p = positions[node.userData.parent];
+                node.position.y = (p ? p[1] : 0) + Math.sin(t * 1.5 + node.position.x) * 0.08;
+              }
+            });
+            particles.rotation.y += 0.0005;
+            particles.rotation.x += 0.0003;
+            renderer.render(scene, camera);
+          };
+
+          const visObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+              if (e.isIntersecting) { if (!animId) animate(performance.now()); canvas.style.opacity = '1'; }
+              else { if (animId) { cancelAnimationFrame(animId); animId = 0; } canvas.style.opacity = '0'; }
+            });
+          }, { threshold: 0.05 });
+          visObs.observe(section);
+
+          window.addEventListener('resize', () => {
+            const r = section.getBoundingClientRect();
+            if (r.width > 0 && r.height > 0) { renderer.setSize(r.width, r.height, false); camera.aspect = r.width / Math.max(r.height, 1); camera.updateProjectionMatrix(); }
+          });
+
+          animate(performance.now());
+          document.documentElement.setAttribute('data-threejs-ready', 'true');
+        } catch {
+          document.body.classList.add('no-webgl');
+        }
+      }
+    }
+
+    // Signal motion ready
+    setTimeout(() => { document.documentElement.setAttribute('data-motion-ready', 'true'); }, 500);
+  </script>
+
   <style>
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
-    .fade-in { animation: fadeIn 0.8s cubic-bezier(0.19, 1, 0.22, 1) both; }
-    .animate-bounce { animation: bounce 2s ease-in-out infinite; }
+    .hero-line-inner { display: block; }
+    .gradient-hero-overlay { background: linear-gradient(180deg, rgba(13,20,28,0.35) 0%, rgba(13,20,28,0.80) 100%); }
+    .hero-search { max-width: 960px; margin: 0 auto; }
+    .airport-fallback { display: block; }
+    .no-webgl .airport-canvas { display: none; }
     @media (prefers-reduced-motion: reduce) {
-      .fade-in, .animate-bounce { animation: none; }
+      [data-anim] { opacity: 1 !important; transform: none !important; }
+      .hero-line-inner { transform: translateY(0) !important; }
+      .scroll-dot { animation: none !important; }
     }
   </style>
 </BaseLayout>

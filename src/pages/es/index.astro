@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/base/Header.astro";
 import Footer from "../../components/base/Footer.astro";
+import AvailabilitySearch from "../../components/booking/AvailabilitySearch.astro";
 import vehicles from "../../data/vehicles.json";
 import { getFuelLabel } from "../../config/labels";
 
@@ -9,9 +10,9 @@ const allVehicles = vehicles.filter(v => v.publication_status === "preview_only"
 const featuredVehicles = allVehicles.slice(0, 3);
 
 const airports = [
-  { code: "MIA", name: "Miami International", slug: "miami-international-airport", desc: "Garajes Dolphin, Flamingo e Ibis" },
-  { code: "FLL", name: "Fort Lauderdale", slug: "fort-lauderdale-airport", desc: "Cypress Garage, Nivel 7, Zona 7NN" },
-  { code: "PBI", name: "Palm Beach", slug: "palm-beach-airport", desc: "Long-Term Garage 1 o 2 — Premium Parking por solicitud" },
+  { code: "MIA", name: "Miami International", slug: "miami-international-airport", desc: "Garajes Dolphin, Flamingo e Ibis", pos: [-2.2, 0.4, 0], color: "0xEA5E2D" },
+  { code: "FLL", name: "Fort Lauderdale", slug: "fort-lauderdale-airport", desc: "Cypress Garage, Nivel 7, Zona 7NN", pos: [0, -0.6, 0], color: "0x607EA2" },
+  { code: "PBI", name: "Palm Beach", slug: "palm-beach-airport", desc: "Long-Term Garage 1 o 2", pos: [2.4, 0.2, 0], color: "0x314B6E" },
 ];
 
 const steps = [
@@ -26,64 +27,72 @@ const steps = [
   <Header />
 
   <main id="main-content" class="flex-1">
-    <!-- Hero -->
-    <section class="relative min-h-[90vh] flex items-center bg-brand-900 overflow-hidden">
-      <div class="absolute inset-0">
+    <!-- ═══ HERO ═══ -->
+    <section id="hero" class="relative min-h-[95vh] flex items-center bg-brand-900 overflow-hidden">
+      <div class="absolute inset-0 hero-visual" data-anim="hero-bg">
         <picture>
           <source srcset="/images/generated/hero-bg.avif" type="image/avif" />
           <source srcset="/images/generated/hero-bg.webp" type="image/webp" />
-          <img src="/images/generated/hero-bg.png" alt="" class="w-full h-full object-cover" loading="eager" />
+          <img src="/images/generated/hero-bg.png" alt="" class="w-full h-full object-cover hero-bg-img" loading="eager" fetchpriority="high" />
         </picture>
       </div>
       <div class="absolute inset-0 gradient-hero-overlay"></div>
 
-      <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-28 w-full">
-        <div class="max-w-3xl">
-          <p class="text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-6 fade-in">Alquiler Directo — Sur de Florida</p>
-          <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.08]">
-            Vehículos premium.<br class="hidden sm:block" />Recogida sin contacto.<br class="hidden sm:block" />Servicio local real.
-          </h1>
-          <p class="mt-6 text-lg sm:text-xl text-white/80 leading-relaxed max-w-xl">
-            Alquiler directo de un operador de flota del sur de Florida. Recogida sin contacto en estacionamientos
-            designados de MIA, FLL y PBI. Sin mostradores, sin autobuses — solo un vehículo limpio y listo cuando llegue.
+      <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 lg:py-32 w-full">
+        <div class="max-w-3xl mx-auto text-center">
+          <p class="hero-label inline-block text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-6" data-anim="hero-label">
+            Alquiler Directo — Sur de Florida
           </p>
-          <div class="mt-10 flex flex-col sm:flex-row gap-4">
-            <a href="/es/vehicles/" class="btn btn-light btn-primary-lg">Reservar ahora</a>
-            <a href="/es/how-it-works/" class="btn px-6 py-4 text-base font-semibold text-white border-2 border-white/30 rounded-lg hover:bg-white/10 transition-all">Cómo Funciona</a>
+          <h1 class="hero-headline text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.08] mb-6" data-anim="hero-headline">
+            <span class="hero-line block overflow-hidden"><span class="hero-line-inner block">Vehículos premium.</span></span>
+            <span class="hero-line block overflow-hidden"><span class="hero-line-inner block">Recogida sin contacto.</span></span>
+            <span class="hero-line block overflow-hidden"><span class="hero-line-inner block">Servicio local real.</span></span>
+          </h1>
+          <p class="hero-sub text-lg sm:text-xl text-white/70 leading-relaxed max-w-xl mx-auto mb-10" data-anim="hero-sub">
+            Alquiler directo de un operador de flota del sur de Florida. Recogida sin contacto en
+            estacionamientos designados de MIA, FLL y PBI. Sin mostradores, sin autobuses — solo un vehículo limpio y listo.
+          </p>
+
+          <div class="hero-search" data-anim="hero-search">
+            <AvailabilitySearch lang="es" />
           </div>
-          <div class="mt-12 flex items-center gap-6 text-sm text-white/60">
-            <span>✓ MIA · FLL · PBI</span>
-            <span>✓ Entrega sin contacto</span>
-            <span>✓ Operador local</span>
+
+          <div class="hero-trust mt-8 flex items-center justify-center gap-6 text-sm text-white/50" data-anim="hero-trust">
+            <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> MIA · FLL · PBI</span>
+            <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Sin Contacto</span>
+            <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Operador Local</span>
+          </div>
+
+          <div class="hero-scroll absolute bottom-10 left-1/2 -translate-x-1/2" data-anim="hero-scroll">
+            <div class="scroll-indicator w-8 h-14 border-2 border-white/20 rounded-full flex justify-center pt-3">
+              <div class="scroll-dot w-1.5 h-1.5 bg-accent rounded-full"></div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Fleet -->
-    <section class="section bg-surface">
+    <!-- ═══ FLEET ═══ -->
+    <section id="fleet" class="section bg-surface">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="max-w-2xl">
           <p class="section-eyebrow">Nuestra Flota</p>
           <h2 class="section-title">{allVehicles.length} vehículos. Un estándar.</h2>
           <p class="section-subtitle">Cada vehículo es cuidadosamente seleccionado, bien mantenido y presentado profesionalmente.</p>
         </div>
-        <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" id="fleet-grid">
           {featuredVehicles.map(v => (
-            <a href={`/es/vehicles/${v.slug}/`} class="card group">
+            <a href={`/es/vehicles/${v.slug}/`} class="card fleet-card group">
               <div class="aspect-[16/10] bg-brand-100 overflow-hidden">
                 {v.hero_image ? (
-                  <img src={v.hero_image} alt={v.name} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" loading="lazy" width="800" height="500" />
+                  <img src={v.hero_image} alt={v.name} class="fleet-card-img w-full h-full object-cover" loading="lazy" width="800" height="500" />
                 ) : (
                   <div class="w-full h-full flex items-center justify-center text-ink-tertiary">Foto pendiente</div>
                 )}
               </div>
               <div class="p-6">
                 <div class="flex items-start justify-between gap-3">
-                  <div>
-                    <h3 class="text-xl font-semibold text-ink">{v.name}</h3>
-                    <p class="text-sm text-ink-secondary mt-1 line-clamp-1">{v.tagline_es || v.tagline_en}</p>
-                  </div>
+                  <div><h3 class="text-xl font-semibold text-ink">{v.name}</h3><p class="text-sm text-ink-secondary mt-1 line-clamp-1">{v.tagline_es || v.tagline_en}</p></div>
                   <span class="btn btn-primary text-xs px-3 py-1.5">Reservar</span>
                 </div>
                 <div class="mt-4 flex flex-wrap items-center gap-2">
@@ -95,20 +104,15 @@ const steps = [
             </a>
           ))}
         </div>
-        <div class="mt-10 text-center">
-          <a href="/es/vehicles/" class="btn btn-secondary">Ver {allVehicles.length} Vehículos &rarr;</a>
-        </div>
+        <div class="mt-10 text-center"><a href="/es/vehicles/" class="btn btn-secondary">Ver {allVehicles.length} Vehículos &rarr;</a></div>
       </div>
     </section>
 
-    <!-- Airports -->
-    <section class="section relative bg-brand-900 overflow-hidden">
-      <div class="absolute inset-0">
-        <picture>
-          <source srcset="/images/generated/airport-visual.avif" type="image/avif" />
-          <source srcset="/images/generated/airport-visual.webp" type="image/webp" />
-          <img src="/images/generated/airport-visual.png" alt="" class="w-full h-full object-cover opacity-30" loading="lazy" />
-        </picture>
+    <!-- ═══ AIRPORT ═══ -->
+    <section id="airport" class="section relative bg-brand-900 overflow-hidden">
+      <canvas class="airport-canvas absolute inset-0 z-0 opacity-40" id="airport-canvas"></canvas>
+      <div class="airport-fallback absolute inset-0 z-0" aria-hidden="true">
+        <div class="absolute inset-0 bg-gradient-radial from-brand/30 to-transparent"></div>
       </div>
       <div class="absolute inset-0 bg-gradient-to-b from-brand-900/90 via-brand-900/70 to-brand-900/90"></div>
       <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -117,9 +121,9 @@ const steps = [
           <h2 class="text-4xl font-bold tracking-tight text-white">MIA · FLL · PBI</h2>
           <p class="mt-4 text-lg text-white/70">Recogida sin contacto desde estacionamientos designados en los tres aeropuertos. Ubicación exacta enviada de forma privada.</p>
         </div>
-        <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3" id="airport-cards">
           {airports.map(a => (
-            <a href={`/es/locations/${a.slug}/`} class="block rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 p-8 hover:bg-white/15 transition-all group">
+            <a href={`/es/locations/${a.slug}/`} class="airport-card block rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 p-8 hover:bg-white/15 transition-all group">
               <div class="text-5xl font-bold text-accent mb-3">{a.code}</div>
               <h3 class="text-xl font-semibold text-white">{a.name}</h3>
               <p class="mt-2 text-sm text-white/60">{a.desc}</p>
@@ -127,10 +131,11 @@ const steps = [
             </a>
           ))}
         </div>
+        <div class="mt-8 text-center"><p class="text-sm text-white/50">Los cargos de estacionamiento del aeropuerto son responsabilidad del arrendatario — divulgados en los términos de la reserva.</p></div>
       </div>
     </section>
 
-    <!-- Steps -->
+    <!-- ═══ STEPS ═══ -->
     <section class="section bg-brand-50">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto">
@@ -149,13 +154,13 @@ const steps = [
       </div>
     </section>
 
-    <!-- Final CTA -->
+    <!-- ═══ FINAL CTA ═══ -->
     <section class="section gradient-brand text-white text-center">
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <h2 class="text-4xl sm:text-5xl font-bold tracking-tight">¿Listo para conducir?</h2>
         <p class="mt-4 text-xl text-white/80">Explore nuestra flota. Recogida sin contacto en MIA, FLL y PBI.</p>
         <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-          <a href="/es/vehicles/" class="btn btn-light btn-primary-lg">Reservar ahora</a>
+          <a href="/es/vehicles/" class="btn btn-light btn-primary-lg">Ver Flota</a>
           <a href="/es/contact/" class="btn px-6 py-4 text-base font-semibold text-white border-2 border-white/30 rounded-lg hover:bg-white/10 transition-all">Contáctanos</a>
         </div>
       </div>
@@ -163,9 +168,34 @@ const steps = [
   </main>
 
   <Footer />
+
+  <script>window.__HP_REDUCED__=window.matchMedia('(prefers-reduced-motion: reduce)').matches;</script>
+  <script type="module">
+    import gsap from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+    gsap.registerPlugin(ScrollTrigger);
+    const reduced = window.__HP_REDUCED__;
+    if(!reduced){
+      const tl=gsap.timeline({defaults:{ease:'power3.out'}});
+      tl.fromTo('[data-anim="hero-label"]',{opacity:0,y:16},{opacity:1,y:0,duration:.7,delay:.1})
+        .fromTo('.hero-line-inner',{y:'100%'},{y:0,duration:.85,stagger:.18},'-=0.3')
+        .fromTo('[data-anim="hero-sub"]',{opacity:0,y:12},{opacity:1,y:0,duration:.65},'-=0.25')
+        .fromTo('[data-anim="hero-search"]',{opacity:0,y:24,scale:.97},{opacity:1,y:0,scale:1,duration:.7},'-=0.2')
+        .fromTo('[data-anim="hero-trust"]',{opacity:0},{opacity:1,duration:.5},'-=0.15')
+        .fromTo('[data-anim="hero-scroll"]',{opacity:0},{opacity:1,duration:.5},'-=0.1');
+      gsap.to('.hero-bg-img',{y:40,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+      gsap.to('.scroll-dot',{y:20,opacity:.3,duration:1.5,repeat:-1,yoyo:true,ease:'power2.inOut'});
+      gsap.fromTo('.fleet-card',{opacity:0,y:50},{opacity:1,y:0,duration:.65,stagger:.1,ease:'power3.out',scrollTrigger:{trigger:'#fleet-grid',start:'top 80%',toggleActions:'play none none none'}});
+      document.querySelectorAll('.fleet-card-img').forEach(i=>{gsap.fromTo(i,{scale:1.08},{scale:1,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:i.closest('.fleet-card')!,start:'top 90%',toggleActions:'play none none none'}})});
+      gsap.fromTo('.airport-card',{opacity:0,y:36},{opacity:1,y:0,duration:.55,stagger:.14,ease:'power3.out',scrollTrigger:{trigger:'#airport-cards',start:'top 88%',toggleActions:'play none none none'}});
+    }
+    // Three.js lazy-load (same as EN)
+    const sec=document.getElementById('airport'),cv=document.getElementById('airport-canvas');
+    if(sec&&cv){new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting){e.target&&(e=>e.disconnect())(e.target===sec?e=>{}:(()=>{}));init()}})},{rootMargin:'300px 0px'}).observe(sec);
+    async function init(){if(reduced)return;const h=!!window.WebGLRenderingContext;if(!h){document.body.classList.add('no-webgl');return}try{const T=await import('three'),cn=cv,s=sec,r=s.getBoundingClientRect(),d=Math.min(devicePixelRatio,2),sc=new T.Scene,w=r.width||innerWidth,ht=r.height||innerHeight,ca=new T.PerspectiveCamera(45,w/Math.max(ht,1),.1,100);ca.position.set(0,0,8);const re=new T.WebGLRenderer({canvas:cn,alpha:!0,antialias:!0});re.setSize(w,ht,!1),re.setPixelRatio(d);const ng=new T.SphereGeometry(.12,32,32),ps={MIA:[-2.2,.4,0],FLL:[0,-.6,0],PBI:[2.4,.2,0]},cls={MIA:0xEA5E2D,FLL:0x607EA2,PBI:0x314B6E},nds={};Object.entries(ps).forEach(([c,p])=>{const m=new T.MeshStandardMaterial({color:cls[c],roughness:.3,metalness:.1,emissive:cls[c],emissiveIntensity:.3}),n=new T.Mesh(ng,m);n.position.set(p[0],p[1],p[2]),n.userData={basePos:p,code:c},sc.add(n),nds[c]=n;const rg=new T.TorusGeometry(.2,.015,16,48),rm=new T.MeshBasicMaterial({color:cls[c],transparent:!0,opacity:.4}),r=new T.Mesh(rg,rm);r.position.copy(n.position),r.rotation.x=Math.PI/2,r.userData={parent:c},sc.add(r),nds[c+'_ring']=r});const mk=(a,b,cl)=>{const p=[new T.Vector3(...ps[a]),new T.Vector3(...ps[b])],cu=new T.CatmullRomCurve3(p,!1,'catmullrom',.5),g=new T.BufferGeometry().setFromPoints(cu.getPoints(40)),m=new T.LineBasicMaterial({color:cl,transparent:!0,opacity:.3});sc.add(new T.Line(g,m))};mk('MIA','FLL',0x607EA2),mk('FLL','PBI',0x314B6E);const pc=80,pg=new T.BufferGeometry,pa=new Float32Array(pc*3);for(let i=0;i<pc;i++)pa[i*3]=(Math.random()-.5)*6,pa[i*3+1]=(Math.random()-.5)*4,pa[i*3+2]=(Math.random()-.5)*2;pg.setAttribute('position',new T.BufferAttribute(pa,3));const pt=new T.Points(pg,new T.PointsMaterial({color:0x607EA2,size:.03,transparent:!0,opacity:.5}));sc.add(pt),sc.add(new T.AmbientLight(0x314B6E,.6));const pl=new T.PointLight(0xEA5E2D,1.5,12);pl.position.set(0,0,4),sc.add(pl);let ai;const an=t=>{ai=requestAnimationFrame(an);const tm=t*.001;Object.values(nds).forEach(n=>{if(n.userData?.parent){const p=ps[n.userData.parent];n.position.y=(p?p[1]:0)+Math.sin(tm*1.5+n.position.x)*.08}}),pt.rotation.y+=.0005,pt.rotation.x+=.0003,re.render(sc,ca)};new IntersectionObserver(e=>{e.forEach(e=>{e.isIntersecting?(ai||an(performance.now()),cn.style.opacity='1'):(ai&&(cancelAnimationFrame(ai),ai=0),cn.style.opacity='0')})},{threshold:.05}).observe(s);window.addEventListener('resize',()=>{const r=s.getBoundingClientRect();r.width>0&&r.height>0&&(re.setSize(r.width,r.height,!1),ca.aspect=r.width/Math.max(r.height,1),ca.updateProjectionMatrix())});an(performance.now()),document.documentElement.setAttribute('data-threejs-ready','true')}catch{document.body.classList.add('no-webgl')}}}
+    setTimeout(()=>{document.documentElement.setAttribute('data-motion-ready','true')},500);
+  </script>
   <style>
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-    .fade-in { animation: fadeIn 0.8s cubic-bezier(0.19, 1, 0.22, 1) both; }
-    @media (prefers-reduced-motion: reduce) { .fade-in { animation: none; } }
+    .hero-line-inner{display:block}.gradient-hero-overlay{background:linear-gradient(180deg,rgba(13,20,28,0.35) 0%,rgba(13,20,28,0.80) 100%)}.hero-search{max-width:960px;margin:0 auto}.airport-fallback{display:block}.no-webgl .airport-canvas{display:none}@media(prefers-reduced-motion:reduce){[data-anim]{opacity:1!important;transform:none!important}.hero-line-inner{transform:translateY(0)!important}.scroll-dot{animation:none!important}}
   </style>
 </BaseLayout>

@@ -47,3 +47,5 @@ web-research/
 public/images/generated/*-mobile.*
 public/images/generated/*-retina.*
 public/images/brand/audit/
+artifacts/
+test-results/

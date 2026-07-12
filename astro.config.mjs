@@ -9,7 +9,7 @@ export default defineConfig({
     sitemap({
       lastmod: new Date(),
       changefreq: 'weekly',
-      filter: (page) => !page.includes('/brand-preview'),
+      filter: (page) => !page.includes('/brand-preview') && !page.includes('/motion-lab') && !page.includes('/search-results'),
       serialize(item) {
         const url = item.url;
         if (url === 'https://305fleet.com/') return { ...item, priority: 1.0 };
