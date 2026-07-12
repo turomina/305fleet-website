@@ -1,0 +1,151 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/base/Header.astro";
+import Footer from "../../components/base/Footer.astro";
+
+export async function getStaticPaths() {
+  const locations = [
+    {
+      slug: "miami-international-airport",
+      code: "MIA",
+      name: "Miami International Airport",
+      shortName: "Miami International",
+      city: "Miami",
+      cityEs: "Miami",
+      state: "FL",
+      publicEN: "Contactless pickup and return are available at selected Miami International Airport garages, including Dolphin, Flamingo, and Ibis. Your exact garage and vehicle location will be provided privately before pickup.",
+      publicES: "La recogida y devolución sin contacto están disponibles en los garajes seleccionados del Aeropuerto Internacional de Miami, incluyendo Dolphin, Flamingo e Ibis. El garaje exacto y la ubicación del vehículo se le proporcionarán de forma privada antes de la recogida.",
+    },
+    {
+      slug: "fort-lauderdale-airport",
+      code: "FLL",
+      name: "Fort Lauderdale-Hollywood International Airport",
+      shortName: "Fort Lauderdale",
+      city: "Fort Lauderdale",
+      cityEs: "Fort Lauderdale",
+      state: "FL",
+      publicEN: "Fort Lauderdale airport pickup and return are generally coordinated through Cypress Garage, Level 7, Zone 7NN. Your exact vehicle location will be provided privately before pickup.",
+      publicES: "La recogida y devolución en el aeropuerto de Fort Lauderdale se coordinan generalmente a través del Cypress Garage, Nivel 7, Zona 7NN. La ubicación exacta del vehículo se le proporcionará de forma privada antes de la recogida.",
+    },
+    {
+      slug: "palm-beach-airport",
+      code: "PBI",
+      name: "Palm Beach International Airport",
+      shortName: "Palm Beach",
+      city: "West Palm Beach",
+      cityEs: "West Palm Beach",
+      state: "FL",
+      publicEN: "Palm Beach airport pickup and return are generally coordinated through Long-Term Parking Garage 1 or 2. Premium Parking may be arranged when requested and approved.",
+      publicES: "La recogida y devolución en el aeropuerto de Palm Beach se coordinan generalmente a través del Long-Term Parking Garage 1 o 2. El Premium Parking puede ser solicitado cuando se solicite y sea aprobado.",
+    },
+  ];
+
+  return locations.map((loc) => ({
+    params: { slug: loc.slug },
+    props: { loc },
+  }));
+}
+
+const { loc } = Astro.props;
+
+const parkingDisclosureEN = "Airport parking charges associated with pickup and post-rental vehicle retrieval are the renter's responsibility and will be disclosed in the reservation terms.";
+const parkingDisclosureES = "Los cargos de estacionamiento del aeropuerto asociados con la recogida y la recuperación del vehículo después del alquiler son responsabilidad del arrendatario y se divulgarán en los términos de la reservación.";
+---
+
+<BaseLayout
+  title={`${loc.code} — ${loc.name}`}
+  description={`305 Fleet direct vehicle rentals at ${loc.name} (${loc.code}). Contactless airport pickup and return.`}
+>
+  <Header />
+
+  <main id="main-content" class="flex-1 bg-surface">
+    <!-- Hero -->
+    <section class="bg-navy-900 text-white py-16 lg:py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-4xl">✈️</span>
+            <span class="text-5xl font-bold tracking-tight">{loc.code}</span>
+          </div>
+          <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">{loc.name}</h1>
+          <p class="mt-2 text-lg text-navy-100">{loc.city}, {loc.state}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Airport Summary -->
+    <section class="py-12 lg:py-16">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="prose prose-lg prose-gray max-w-none">
+          <p class="text-lg text-ink leading-relaxed">{loc.publicEN}</p>
+        </div>
+
+        <!-- Key facts -->
+        <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div class="rounded-xl border border-border bg-surface p-6 shadow-xs">
+            <div class="flex items-center gap-2 mb-2">
+              <svg class="h-5 w-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z M3 7l4-4h10l4 4 M5 7h14v10H5z" /></svg>
+              <h2 class="text-base font-semibold text-navy-900">Contactless Pickup</h2>
+            </div>
+            <p class="text-sm text-ink-secondary">Exact garage, level, and vehicle location sent privately before your reservation begins.</p>
+          </div>
+          <div class="rounded-xl border border-border bg-surface p-6 shadow-xs">
+            <div class="flex items-center gap-2 mb-2">
+              <svg class="h-5 w-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4 M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
+              <h2 class="text-base font-semibold text-navy-900">Contactless Return</h2>
+            </div>
+            <p class="text-sm text-ink-secondary">Return to the instructed facility, photograph the location, and confirm in writing.</p>
+          </div>
+        </div>
+
+        <!-- Parking disclosure -->
+        <div class="mt-6 rounded-lg bg-surface-light border border-border p-4">
+          <div class="flex gap-3">
+            <svg class="h-5 w-5 shrink-0 text-info mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <p class="text-sm text-ink-secondary leading-relaxed">{parkingDisclosureEN}</p>
+          </div>
+        </div>
+
+        <!-- Process summary -->
+        <div class="mt-8 rounded-xl border border-border p-6">
+          <h2 class="text-xl font-semibold text-navy-900">Pickup & Return Process</h2>
+          <ol class="mt-4 space-y-3">
+            <li class="flex gap-3"><span class="font-bold text-brand">1.</span> <span class="text-ink-secondary">Receive your exact garage, level, and vehicle location privately before pickup.</span></li>
+            <li class="flex gap-3"><span class="font-bold text-brand">2.</span> <span class="text-ink-secondary">Access the vehicle using the private instructions sent shortly before your scheduled start time.</span></li>
+            <li class="flex gap-3"><span class="font-bold text-brand">3.</span> <span class="text-ink-secondary">At return, park in the instructed facility and photograph the location.</span></li>
+            <li class="flex gap-3"><span class="font-bold text-brand">4.</span> <span class="text-ink-secondary">Confirm garage, level, row/zone, and space in writing. Secure the garage-entry ticket per the private procedure.</span></li>
+          </ol>
+        </div>
+
+        {/* Premium Parking note for PBI */}
+        {loc.code === "PBI" && (
+          <div class="mt-6 rounded-lg bg-brand-pale border border-border p-4">
+            <h3 class="text-sm font-semibold text-brand">Premium Parking</h3>
+            <p class="mt-1 text-sm text-ink-secondary">
+              Premium Parking at PBI may be available by request and requires operational approval.
+              It is not the default option. When requested, any parking cost differences will be disclosed.
+            </p>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-surface-light py-12 border-t border-border">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-2xl font-bold text-navy-900">Ready to book?</h2>
+        <p class="mt-2 text-base text-ink-secondary">Browse our fleet of newer, well-maintained vehicles.</p>
+        <div class="mt-6 flex flex-col sm:flex-row justify-center gap-3">
+          <a href="/vehicles/" class="inline-flex items-center justify-center rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-light">
+            Book Now
+          </a>
+          <a href="/contact/" class="inline-flex items-center justify-center rounded-lg border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700 hover:border-brand hover:text-brand">
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
