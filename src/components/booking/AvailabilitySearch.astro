@@ -1,0 +1,811 @@
+---
+// AvailabilitySearch.astro — Central hero search pill
+// Props: lang ("en" | "es")
+const { lang = "en" } = Astro.props as { lang?: "en" | "es" };
+const isEs = lang === "es";
+---
+
+<div id="availability-search" class="availability-search" data-lang={lang}>
+  <!-- Location -->
+  <div class="as-field as-field-location" data-field="location">
+    <label class="as-label" for="as-location">{isEs ? "Dónde" : "Where"}</label>
+    <button
+      type="button"
+      id="as-location"
+      class="as-value"
+      aria-haspopup="listbox"
+      aria-expanded="false"
+      data-default={isEs ? "Seleccione lugar de recogida" : "Select pickup location"}
+    >
+      <span class="as-value-text">{isEs ? "Seleccione lugar de recogida" : "Select pickup location"}</span>
+      <svg class="as-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 6l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="as-dropdown" role="listbox" aria-label={isEs ? "Lugar de recogida" : "Pickup location"} hidden>
+      <div class="as-dropdown-section-label">{isEs ? "Aeropuertos" : "Airports"}</div>
+      <button type="button" role="option" data-value="MIA" class="as-option">
+        <span class="as-option-code">MIA</span>
+        <span class="as-option-name">{isEs ? "Aeropuerto Internacional de Miami" : "Miami International Airport"}</span>
+      </button>
+      <button type="button" role="option" data-value="FLL" class="as-option">
+        <span class="as-option-code">FLL</span>
+        <span class="as-option-name">{isEs ? "Aeropuerto Internacional de Fort Lauderdale-Hollywood" : "Fort Lauderdale-Hollywood International Airport"}</span>
+      </button>
+      <button type="button" role="option" data-value="PBI" class="as-option">
+        <span class="as-option-code">PBI</span>
+        <span class="as-option-name">{isEs ? "Aeropuerto Internacional de Palm Beach" : "Palm Beach International Airport"}</span>
+      </button>
+      <div class="as-dropdown-divider"></div>
+      <button type="button" role="option" data-value="custom" class="as-option as-option-custom">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M8 14s6-4.5 6-8.5A6 6 0 002 5.5C2 9.5 8 14 8 14z" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="8" cy="5.5" r="2"/>
+        </svg>
+        <span class="as-option-name">{isEs ? "Dirección de entrega personalizada" : "Custom delivery address"}</span>
+      </button>
+    </div>
+    <!-- Custom address input (hidden until selected) -->
+    <div class="as-custom-address" hidden>
+      <input
+        type="text"
+        id="as-custom-address-input"
+        class="as-custom-input"
+        placeholder={isEs ? "Ingrese la dirección de entrega" : "Enter delivery address"}
+        aria-label={isEs ? "Dirección de entrega personalizada" : "Custom delivery address"}
+      />
+      <p class="as-custom-notice">{isEs ? "La entrega personalizada está sujeta a confirmación." : "Custom delivery is subject to confirmation."}</p>
+    </div>
+  </div>
+
+  <div class="as-separator" aria-hidden="true"></div>
+
+  <!-- Start Date -->
+  <div class="as-field as-field-date" data-field="startDate">
+    <label class="as-label" for="as-start-date">{isEs ? "Desde" : "From"}</label>
+    <button
+      type="button"
+      id="as-start-date"
+      class="as-value"
+      aria-haspopup="dialog"
+      aria-expanded="false"
+      data-default={isEs ? "Seleccionar fecha" : "Select date"}
+    >
+      <span class="as-value-text">{isEs ? "Seleccionar fecha" : "Select date"}</span>
+    </button>
+    <div class="as-calendar" role="dialog" aria-label={isEs ? "Seleccionar fecha de inicio" : "Select start date"} hidden>
+      <div class="as-calendar-header">
+        <button type="button" class="as-calendar-nav" data-nav="prev" aria-label={isEs ? "Mes anterior" : "Previous month"}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 4L6 8l4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <span class="as-calendar-month"></span>
+        <button type="button" class="as-calendar-nav" data-nav="next" aria-label={isEs ? "Mes siguiente" : "Next month"}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div class="as-calendar-weekdays"></div>
+      <div class="as-calendar-grid"></div>
+    </div>
+  </div>
+
+  <!-- Start Time -->
+  <div class="as-field as-field-time" data-field="startTime">
+    <label class="as-label" for="as-start-time">{isEs ? "Hora de inicio" : "Start time"}</label>
+    <button
+      type="button"
+      id="as-start-time"
+      class="as-value"
+      aria-haspopup="listbox"
+      aria-expanded="false"
+      data-default="10:00"
+    >
+      <span class="as-value-text">10:00 AM</span>
+    </button>
+    <div class="as-dropdown as-time-dropdown" role="listbox" aria-label={isEs ? "Hora de inicio" : "Start time"} hidden>
+    </div>
+  </div>
+
+  <div class="as-separator" aria-hidden="true"></div>
+
+  <!-- End Date -->
+  <div class="as-field as-field-date" data-field="endDate">
+    <label class="as-label" for="as-end-date">{isEs ? "Hasta" : "Until"}</label>
+    <button
+      type="button"
+      id="as-end-date"
+      class="as-value"
+      aria-haspopup="dialog"
+      aria-expanded="false"
+      data-default={isEs ? "Seleccionar fecha" : "Select date"}
+    >
+      <span class="as-value-text">{isEs ? "Seleccionar fecha" : "Select date"}</span>
+    </button>
+    <div class="as-calendar" role="dialog" aria-label={isEs ? "Seleccionar fecha de fin" : "Select end date"} hidden>
+      <div class="as-calendar-header">
+        <button type="button" class="as-calendar-nav" data-nav="prev" aria-label={isEs ? "Mes anterior" : "Previous month"}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 4L6 8l4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <span class="as-calendar-month"></span>
+        <button type="button" class="as-calendar-nav" data-nav="next" aria-label={isEs ? "Mes siguiente" : "Next month"}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div class="as-calendar-weekdays"></div>
+      <div class="as-calendar-grid"></div>
+    </div>
+  </div>
+
+  <!-- End Time -->
+  <div class="as-field as-field-time" data-field="endTime">
+    <label class="as-label" for="as-end-time">{isEs ? "Hora de fin" : "End time"}</label>
+    <button
+      type="button"
+      id="as-end-time"
+      class="as-value"
+      aria-haspopup="listbox"
+      aria-expanded="false"
+      data-default="12:00"
+    >
+      <span class="as-value-text">12:00 PM</span>
+    </button>
+    <div class="as-dropdown as-time-dropdown" role="listbox" aria-label={isEs ? "Hora de fin" : "End time"} hidden>
+    </div>
+  </div>
+
+  <!-- Search Button -->
+  <button type="button" id="as-search-btn" class="as-search-btn">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/>
+      <path d="M21 21l-4.35-4.35"/>
+    </svg>
+    <span>{isEs ? "Buscar" : "Search"}</span>
+  </button>
+</div>
+
+<!-- Validation message -->
+<div id="as-validation" class="as-validation" role="alert" hidden></div>
+
+<style>
+  /* ── Search Pill Container ── */
+  .availability-search {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: var(--color-surface, #FFFFFF);
+    border: 1px solid var(--color-border, #DCE2EA);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+    overflow: visible;
+    width: 100%;
+    max-width: 960px;
+    position: relative;
+  }
+
+  /* ── Fields ── */
+  .as-field {
+    flex: 1 1 0;
+    min-width: 0;
+    position: relative;
+    padding: 10px 12px;
+    cursor: pointer;
+  }
+  .as-field-location { flex: 1.3; }
+  .as-field-date { flex: 1.2; }
+  .as-field-time { flex: 0.8; min-width: 100px; }
+
+  .as-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-ink-secondary, #58585A);
+    margin-bottom: 4px;
+    user-select: none;
+  }
+
+  .as-value {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 4px 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-ink, #0D141C);
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    transition: color 0.2s;
+  }
+  .as-value:hover { color: var(--color-brand, #314B6E); }
+  .as-value:focus-visible {
+    outline: 2px solid var(--color-accent, #EA5E2D);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  .as-value.is-placeholder { color: var(--color-ink-tertiary, #8E8E90); }
+  .as-value.is-selected { color: var(--color-ink, #0D141C); font-weight: 600; }
+
+  .as-chevron {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+    color: var(--color-ink-tertiary, #8E8E90);
+  }
+  .as-field.is-open .as-chevron { transform: rotate(180deg); }
+
+  /* ── Dropdown ── */
+  .as-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    min-width: 240px;
+    background: var(--color-surface, #FFFFFF);
+    border: 1px solid var(--color-border, #DCE2EA);
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    z-index: 50;
+    padding: 6px;
+    overflow-y: auto;
+    max-height: 320px;
+  }
+  .as-dropdown[hidden] { display: none; }
+
+  .as-dropdown-section-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-ink-tertiary, #8E8E90);
+    padding: 8px 12px 4px;
+  }
+  .as-dropdown-divider {
+    height: 1px;
+    background: var(--color-border, #DCE2EA);
+    margin: 4px 8px;
+  }
+
+  .as-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 12px;
+    background: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: inherit;
+    text-align: left;
+    color: var(--color-ink, #0D141C);
+    transition: background 0.15s;
+  }
+  .as-option:hover { background: var(--color-brand-50, #F4FBFE); }
+  .as-option:focus-visible { background: var(--color-brand-50, #F4FBFE); outline: 2px solid var(--color-accent, #EA5E2D); outline-offset: -2px; border-radius: 8px; }
+  .as-option[aria-selected="true"] { background: var(--color-brand-100, #E8F1F8); color: var(--color-brand, #314B6E); font-weight: 600; }
+
+  .as-option-code {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: var(--color-accent, #EA5E2D);
+    min-width: 32px;
+  }
+  .as-option-name { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* ── Custom Address ── */
+  .as-custom-address { margin-top: 8px; }
+  .as-custom-address[hidden] { display: none; }
+  .as-custom-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--color-border, #DCE2EA);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.2s;
+  }
+  .as-custom-input:focus { border-color: var(--color-accent, #EA5E2D); outline: none; box-shadow: 0 0 0 3px rgba(234,94,45,0.12); }
+  .as-custom-notice { font-size: 11px; color: var(--color-ink-tertiary, #8E8E90); margin-top: 4px; }
+
+  /* ── Calendar ── */
+  .as-calendar {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    min-width: 280px;
+    background: var(--color-surface, #FFFFFF);
+    border: 1px solid var(--color-border, #DCE2EA);
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    z-index: 50;
+    padding: 12px;
+  }
+  .as-calendar[hidden] { display: none; }
+  .as-calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .as-calendar-month { font-size: 15px; font-weight: 600; color: var(--color-ink, #0D141C); }
+  .as-calendar-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; height: 32px;
+    border: none; background: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--color-ink-secondary, #58585A);
+    transition: background 0.15s;
+  }
+  .as-calendar-nav:hover { background: var(--color-brand-50, #F4FBFE); }
+  .as-calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-ink-tertiary, #8E8E90);
+    margin-bottom: 4px;
+    padding: 0 2px;
+  }
+  .as-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+  }
+  .as-calendar-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 1;
+    border: none;
+    background: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+    color: var(--color-ink, #0D141C);
+    transition: background 0.15s, color 0.15s;
+  }
+  .as-calendar-day:hover:not(.is-disabled):not(.is-empty) {
+    background: var(--color-brand-50, #F4FBFE);
+  }
+  .as-calendar-day.is-empty { cursor: default; }
+  .as-calendar-day.is-disabled { color: var(--color-ink-tertiary, #8E8E90); cursor: not-allowed; opacity: 0.4; }
+  .as-calendar-day.is-today { font-weight: 700; }
+  .as-calendar-day.is-selected { background: var(--color-brand, #314B6E); color: white; font-weight: 600; }
+  .as-calendar-day.is-in-range { background: var(--color-brand-100, #E8F1F8); border-radius: 0; }
+  .as-calendar-day.is-range-start { background: var(--color-brand, #314B6E); color: white; border-radius: 8px 0 0 8px; font-weight: 600; }
+  .as-calendar-day.is-range-end { background: var(--color-brand, #314B6E); color: white; border-radius: 0 8px 8px 0; font-weight: 600; }
+  .as-calendar-day.is-range-start.is-range-end { border-radius: 8px; }
+
+  /* ── Separator ── */
+  .as-separator {
+    width: 1px;
+    height: 36px;
+    background: var(--color-border, #DCE2EA);
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  /* ── Search Button ── */
+  .as-search-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    margin: 6px 6px 6px 0;
+    background: var(--color-accent, #EA5E2D);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    white-space: nowrap;
+  }
+  .as-search-btn:hover { background: var(--color-accent-600, #D04D1F); box-shadow: 0 4px 16px rgba(234,94,45,0.3); }
+  .as-search-btn:active { transform: scale(0.97); }
+  .as-search-btn:focus-visible { outline: 3px solid var(--color-accent, #EA5E2D); outline-offset: 2px; }
+  .as-search-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  /* ── Validation ── */
+  .as-validation {
+    margin-top: 8px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    width: 100%;
+  }
+  .as-validation[hidden] { display: none; }
+  .as-validation.is-error {
+    background: rgba(220,38,38,0.08);
+    color: var(--color-error, #DC2626);
+  }
+
+  /* ── Full-width field opener ── */
+  .as-dropdown-overlay {
+    position: fixed; inset: 0; z-index: 49;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 768px) {
+    .availability-search {
+      flex-direction: column;
+      align-items: stretch;
+      border-radius: 16px;
+      gap: 0;
+      max-width: 100%;
+    }
+    .as-field {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--color-border, #DCE2EA);
+    }
+    .as-field:last-of-type { border-bottom: none; }
+    .as-separator { display: none; }
+    .as-search-btn {
+      margin: 0 12px 12px;
+      justify-content: center;
+      padding: 16px 24px;
+      border-radius: 12px;
+    }
+    .as-dropdown, .as-calendar {
+      position: fixed;
+      top: auto;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      max-height: 50vh;
+      border-radius: 16px 16px 0 0;
+      box-shadow: 0 -8px 40px rgba(0,0,0,0.15);
+      z-index: 60;
+    }
+    .as-field-time { flex: 1; }
+  }
+
+  @media (max-width: 430px) {
+    .as-field-date { flex: 1; }
+    .as-field-time { min-width: 90px; }
+    .as-value { font-size: 14px; }
+    .as-search-btn { font-size: 14px; padding: 14px 20px; }
+  }
+</style>
+
+<script>
+  // Availability Search — Client logic
+  // Runs once, attaches event handlers, manages state
+  (function () {
+    const root = document.getElementById('availability-search');
+    if (!root || root.dataset.initialized) return;
+    root.dataset.initialized = 'true';
+
+    const lang = root.dataset.lang || 'en';
+    const isEs = lang === 'es';
+
+    // State
+    const state = {
+      location: null as string | null,
+      customAddress: '',
+      startDate: null as Date | null,
+      endDate: null as Date | null,
+      startTime: '10:00',
+      endTime: '12:00',
+      calendarMonth: new Date(),
+      activeCalendar: null as 'start' | 'end' | null,
+      activeDropdown: null as string | null,
+    };
+
+    // Helpers
+    function $<T extends HTMLElement>(sel: string): T { return root.querySelector(sel) as T; }
+    function $$<T extends HTMLElement>(sel: string): NodeListOf<T> { return root.querySelectorAll(sel); }
+
+    // ── Location Dropdown ──
+    const locBtn = $<HTMLButtonElement>('#as-location');
+    const locDropdown = $<HTMLElement>('.as-field-location .as-dropdown');
+    const locOptions = $$<HTMLButtonElement>('.as-field-location .as-option');
+    const customAddr = $<HTMLElement>('.as-custom-address');
+    const customInput = $<HTMLInputElement>('#as-custom-address-input');
+    const validation = $<HTMLElement>('#as-validation');
+
+    function openDropdown(field: string) {
+      closeAll();
+      state.activeDropdown = field;
+      if (field === 'location') {
+        locBtn.setAttribute('aria-expanded', 'true');
+        locDropdown.hidden = false;
+        locBtn.closest('.as-field')?.classList.add('is-open');
+      }
+      requestAnimationFrame(() => {
+        const overlay = document.createElement('div');
+        overlay.className = 'as-dropdown-overlay';
+        overlay.addEventListener('click', closeAll);
+        root.appendChild(overlay);
+      });
+    }
+
+    function closeAll() {
+      state.activeDropdown = null;
+      state.activeCalendar = null;
+      locBtn.setAttribute('aria-expanded', 'false');
+      locDropdown.hidden = true;
+      locBtn.closest('.as-field')?.classList.remove('is-open');
+      // Time dropdowns
+      $$('.as-time-dropdown').forEach(d => d.hidden = true);
+      $$('.as-field-time').forEach(f => f.classList.remove('is-open'));
+      $$('[aria-expanded="true"]').forEach(b => b.setAttribute('aria-expanded', 'false'));
+      // Calendars
+      $$('.as-calendar').forEach(c => c.hidden = true);
+      // Overlays
+      root.querySelectorAll('.as-dropdown-overlay').forEach(o => o.remove());
+    }
+
+    // Location button
+    locBtn.addEventListener('click', () => {
+      if (state.activeDropdown === 'location') { closeAll(); return; }
+      openDropdown('location');
+    });
+
+    locOptions.forEach(opt => {
+      opt.addEventListener('click', () => {
+        const val = opt.dataset.value!;
+        state.location = val;
+        const txt = opt.querySelector('.as-option-name')?.textContent || opt.textContent || '';
+        locBtn.querySelector('.as-value-text')!.textContent = txt;
+        locBtn.classList.remove('is-placeholder');
+        locBtn.classList.add('is-selected');
+        locOptions.forEach(o => o.setAttribute('aria-selected', 'false'));
+        opt.setAttribute('aria-selected', 'true');
+
+        if (val === 'custom') {
+          customAddr.hidden = false;
+          setTimeout(() => customInput?.focus(), 100);
+        } else {
+          customAddr.hidden = true;
+          if (customInput) customInput.value = '';
+          state.customAddress = '';
+        }
+        closeAll();
+      });
+    });
+
+    customInput?.addEventListener('input', () => {
+      state.customAddress = customInput.value;
+    });
+
+    // ── Calendar ──
+    const MONTHS = isEs
+      ? ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
+      : ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const DAYS = isEs
+      ? ['Do','Lu','Ma','Mi','Ju','Vi','Sá']
+      : ['Su','Mo','Tu','We','Th','Fr','Sa'];
+
+    function renderCalendar(container: HTMLElement, which: 'start' | 'end') {
+      const monthEl = container.querySelector('.as-calendar-month')!;
+      const grid = container.querySelector('.as-calendar-grid')!;
+      const weekdays = container.querySelector('.as-calendar-weekdays')!;
+      const m = state.calendarMonth;
+
+      monthEl.textContent = `${MONTHS[m.getMonth()]} ${m.getFullYear()}`;
+      weekdays.innerHTML = DAYS.map(d => `<span>${d}</span>`).join('');
+
+      const today = new Date(); today.setHours(0,0,0,0);
+      const first = new Date(m.getFullYear(), m.getMonth(), 1);
+      const last = new Date(m.getFullYear(), m.getMonth() + 1, 0);
+      const startPad = first.getDay();
+      const days: (Date | null)[] = [];
+      for (let i = 0; i < startPad; i++) days.push(null);
+      for (let d = 1; d <= last.getDate(); d++) days.push(new Date(m.getFullYear(), m.getMonth(), d));
+
+      grid.innerHTML = '';
+      const minDate = which === 'end' && state.startDate ? new Date(state.startDate) : today;
+
+      days.forEach(day => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'as-calendar-day';
+        if (!day) {
+          btn.classList.add('is-empty');
+        } else {
+          if (day < today) btn.classList.add('is-disabled');
+          if (which === 'end' && state.startDate && day <= state.startDate) btn.classList.add('is-disabled');
+          if (day.getTime() === today.getTime()) btn.classList.add('is-today');
+          if (which === 'start' && state.startDate && day.getTime() === state.startDate.getTime()) btn.classList.add('is-selected');
+          if (which === 'end' && state.endDate && day.getTime() === state.endDate.getTime()) btn.classList.add('is-selected');
+          if (which === 'start' && state.startDate && state.endDate && day >= state.startDate && day <= state.endDate) btn.classList.add('is-in-range');
+          if (which === 'end' && state.startDate && state.endDate && day >= state.startDate && day <= state.endDate) btn.classList.add('is-in-range');
+
+          if (!btn.classList.contains('is-disabled')) {
+            btn.addEventListener('click', () => {
+              if (which === 'start') {
+                state.startDate = day;
+                // Auto-advance to end calendar or clear end if invalid
+                if (state.endDate && state.endDate <= day) state.endDate = null;
+                updateDateDisplay('startDate', day);
+                updateDateDisplay('endDate', null);
+              } else {
+                state.endDate = day;
+                updateDateDisplay('endDate', day);
+              }
+              renderCalendar(container, which);
+              closeAll();
+            });
+          }
+          btn.textContent = String(day.getDate());
+        }
+        grid.appendChild(btn);
+      });
+    }
+
+    function updateDateDisplay(which: 'startDate' | 'endDate', d: Date | null) {
+      const btn = $(`#as-${which === 'startDate' ? 'start-date' : 'end-date'}`);
+      const txt = btn.querySelector('.as-value-text')!;
+      if (d) {
+        txt.textContent = `${MONTHS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+        btn.classList.remove('is-placeholder');
+        btn.classList.add('is-selected');
+      } else {
+        txt.textContent = btn.dataset.default || '';
+        btn.classList.add('is-placeholder');
+        btn.classList.remove('is-selected');
+      }
+    }
+
+    // Calendar buttons
+    $$('.as-field-date .as-value').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const field = btn.closest('.as-field')!;
+        const which = field.dataset.field === 'startDate' ? 'start' : 'end';
+        if (state.activeCalendar === which) { closeAll(); return; }
+        closeAll();
+        state.activeCalendar = which;
+        const cal = field.querySelector('.as-calendar')!;
+        cal.hidden = false;
+        btn.setAttribute('aria-expanded', 'true');
+        renderCalendar(cal, which);
+
+        // Nav buttons
+        cal.querySelectorAll('.as-calendar-nav').forEach(nav => {
+          nav.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const dir = (nav as HTMLElement).dataset.nav;
+            const m = state.calendarMonth;
+            state.calendarMonth = dir === 'prev'
+              ? new Date(m.getFullYear(), m.getMonth() - 1, 1)
+              : new Date(m.getFullYear(), m.getMonth() + 1, 1);
+            renderCalendar(cal, which);
+          });
+        });
+      });
+    });
+
+    // ── Time Selectors ──
+    function renderTimes(container: HTMLElement, which: 'startTime' | 'endTime') {
+      const times: string[] = [];
+      for (let h = 0; h < 24; h++) {
+        for (const m of ['00', '30']) times.push(`${String(h).padStart(2,'0')}:${m}`);
+      }
+      container.innerHTML = '';
+      times.forEach(t => {
+        const opt = document.createElement('button');
+        opt.type = 'button';
+        opt.className = 'as-option';
+        opt.setAttribute('role', 'option');
+        const [hh, mm] = t.split(':').map(Number);
+        const ampm = hh < 12 ? 'AM' : 'PM';
+        const h12 = hh === 0 ? 12 : hh > 12 ? hh - 12 : hh;
+        opt.textContent = `${h12}:${String(mm).padStart(2,'0')} ${ampm}`;
+        if ((which === 'startTime' && t === state.startTime) || (which === 'endTime' && t === state.endTime)) {
+          opt.setAttribute('aria-selected', 'true');
+        }
+        opt.addEventListener('click', () => {
+          if (which === 'startTime') state.startTime = t;
+          else state.endTime = t;
+          const btn = $(which === 'startTime' ? '#as-start-time' : '#as-end-time');
+          btn.querySelector('.as-value-text')!.textContent = `${h12}:${String(mm).padStart(2,'0')} ${ampm}`;
+          btn.classList.remove('is-placeholder');
+          closeAll();
+        });
+        container.appendChild(opt);
+      });
+    }
+
+    $$('.as-field-time .as-value').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const field = btn.closest('.as-field')!;
+        const which = field.dataset.field === 'startTime' ? 'startTime' : 'endTime';
+        if (state.activeDropdown === which) { closeAll(); return; }
+        closeAll();
+        openDropdown(which);
+        const dd = field.querySelector('.as-time-dropdown')!;
+        dd.hidden = false;
+        btn.setAttribute('aria-expanded', 'true');
+        field.classList.add('is-open');
+        renderTimes(dd, which);
+      });
+    });
+
+    // ── Search ──
+    const searchBtn = $<HTMLButtonElement>('#as-search-btn');
+    searchBtn.addEventListener('click', () => {
+      if (!state.location) {
+        showValidation(isEs ? 'Seleccione un lugar de recogida.' : 'Please select a pickup location.');
+        return;
+      }
+      if (!state.startDate) {
+        showValidation(isEs ? 'Seleccione una fecha de inicio.' : 'Please select a start date.');
+        return;
+      }
+      if (!state.endDate) {
+        showValidation(isEs ? 'Seleccione una fecha de fin.' : 'Please select an end date.');
+        return;
+      }
+      if (state.endDate < state.startDate) {
+        showValidation(isEs ? 'La fecha de fin debe ser posterior a la de inicio.' : 'End date must be after start date.');
+        return;
+      }
+      if (state.endDate.getTime() === state.startDate.getTime() && state.endTime <= state.startTime) {
+        showValidation(isEs ? 'Para alquileres el mismo día, la hora de fin debe ser posterior a la de inicio.' : 'For same-day rentals, end time must be after start time.');
+        return;
+      }
+      if (state.location === 'custom' && !state.customAddress.trim()) {
+        showValidation(isEs ? 'Ingrese una dirección de entrega.' : 'Please enter a delivery address.');
+        return;
+      }
+
+      hideValidation();
+      searchBtn.disabled = true;
+      const orig = searchBtn.querySelector('span')!.textContent;
+      searchBtn.querySelector('span')!.textContent = isEs ? 'Buscando…' : 'Searching…';
+
+      // Build URL params
+      const params = new URLSearchParams();
+      params.set('location', state.location);
+      if (state.location === 'custom') params.set('address', state.customAddress);
+      params.set('startDate', state.startDate.toISOString().split('T')[0]);
+      params.set('endDate', state.endDate.toISOString().split('T')[0]);
+      params.set('startTime', state.startTime);
+      params.set('endTime', state.endTime);
+
+      const basePath = isEs ? '/es/search-results/' : '/search-results/';
+      const url = `${basePath}?${params.toString()}`;
+
+      // Navigate to results
+      const navUrl = `${basePath}?${params.toString()}`;
+      window.location.assign(navUrl);
+    });
+
+    function showValidation(msg: string) {
+      validation.textContent = msg;
+      validation.classList.add('is-error');
+      validation.hidden = false;
+      validation.setAttribute('role', 'alert');
+    }
+    function hideValidation() { validation.hidden = true; validation.classList.remove('is-error'); }
+
+    // ── Keyboard: Escape closes everything ──
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeAll();
+    });
+
+    // ── Click outside ──
+    document.addEventListener('click', (e) => {
+      if (!root.contains(e.target as Node)) closeAll();
+    });
+
+    // ── Mark ready ──
+    root.setAttribute('data-search-ready', 'true');
+  })();
+</script>

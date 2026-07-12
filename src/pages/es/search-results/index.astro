@@ -1,0 +1,49 @@
+---
+// Search Results — ES
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/base/Header.astro";
+import Footer from "../../../components/base/Footer.astro";
+---
+
+<BaseLayout lang="es" title="Resultados de Búsqueda — 305 Fleet" description="Resultados de búsqueda de alquiler de vehículos.">
+  <Header />
+  <main class="flex-1 min-h-screen" id="search-results-page">
+    <section class="py-20 px-4">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="section-eyebrow text-accent">Resultados de Búsqueda</p>
+        <h1 class="text-4xl font-bold tracking-tight text-ink mt-3">Su Búsqueda de Alquiler</h1>
+        <div id="sr-summary" class="mt-8 bg-surface rounded-2xl border border-border p-8 text-left space-y-4" style="display:none"></div>
+        <p id="sr-empty" class="mt-8 text-ink-secondary">No se proporcionaron parámetros de búsqueda. Utilice el formulario de búsqueda en la página principal.</p>
+        <div class="mt-10 bg-brand-50 rounded-2xl p-8 border border-brand-100">
+          <svg class="w-12 h-12 text-brand mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"/></svg>
+          <h2 class="text-xl font-bold text-ink mb-3">Disponibilidad en Vivo Próximamente</h2>
+          <p class="text-ink-secondary leading-relaxed max-w-lg mx-auto">La integración de reserva directa está en desarrollo. Pronto podrá consultar la disponibilidad de vehículos en tiempo real, confirmar precios y completar su reserva aquí.</p>
+          <p class="text-sm text-ink-tertiary mt-4">Mientras tanto, explore nuestra flota completa. Todos los vehículos están disponibles para alquiler directo.</p>
+        </div>
+        <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center" id="sr-actions" style="display:none">
+          <a id="sr-edit-link" href="/es/" class="btn btn-secondary">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+            Editar Búsqueda
+          </a>
+          <a href="/es/vehicles/" class="btn btn-primary">Ver Flota Completa &rarr;</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  (function(){
+    const L = { MIA:"Aeropuerto Internacional de Miami (MIA)", FLL:"Aeropuerto Internacional de Fort Lauderdale-Hollywood (FLL)", PBI:"Aeropuerto Internacional de Palm Beach (PBI)" };
+    function ft(s){ if(!s)return ""; const [h,m]=s.split(":").map(Number); if(isNaN(h)||isNaN(m))return s; const a=h<12?"AM":"PM",h12=h===0?12:h>12?h-12:h; return h12+":"+String(m).padStart(2,"0")+" "+a }
+    function fd(d){ if(!d)return ""; return new Date(d+"T00:00:00").toLocaleDateString("es-US",{weekday:"short",month:"short",day:"numeric",year:"numeric"}) }
+    const p=new URLSearchParams(location.search),loc=p.get("location"),addr=p.get("address"),sd=p.get("startDate"),ed=p.get("endDate"),st=p.get("startTime"),et=p.get("endTime");
+    if(loc&&sd&&ed){document.getElementById("sr-empty").style.display="none";
+      var ld=loc==="custom"?(addr||"Dirección de entrega personalizada"):(L[loc]||loc);
+      var cn=loc==="custom"&&addr?'<p class="text-sm text-ink-secondary mt-1">La entrega personalizada está sujeta a confirmación.</p>':'';
+      document.getElementById("sr-summary").innerHTML='<div class="grid grid-cols-1 sm:grid-cols-2 gap-6"><div><p class="text-xs font-semibold uppercase tracking-wider text-ink-tertiary mb-1">Lugar de Recogida</p><p class="text-lg font-semibold text-ink">'+ld+'</p>'+cn+'</div><div><p class="text-xs font-semibold uppercase tracking-wider text-ink-tertiary mb-1">Desde</p><p class="text-lg font-semibold text-ink">'+fd(sd)+' a las '+ft(st)+'</p></div><div><p class="text-xs font-semibold uppercase tracking-wider text-ink-tertiary mb-1">Hasta</p><p class="text-lg font-semibold text-ink">'+fd(ed)+' a las '+ft(et)+'</p></div></div>';
+      document.getElementById("sr-summary").style.display="block";document.getElementById("sr-actions").style.display="flex";
+      document.getElementById("sr-edit-link").setAttribute("href","/es/?"+p.toString())}
+  })();
+</script>
