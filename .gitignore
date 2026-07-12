@@ -46,4 +46,5 @@ web-research/
 # Unused image derivatives (mobile/retina kept for future responsive work)
 public/images/generated/*-mobile.*
 public/images/generated/*-retina.*
-public/images/brand/audit/
+public/images/brand/audit/artifacts/
+test-results/
