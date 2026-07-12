@@ -220,25 +220,24 @@ import { SITE, BENEFITS } from "../config/site";
   </section>
 
   <!-- ═══ SCRIPTS ═══ -->
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://unpkg.com/three@0.185.1/build/three.module.js"
-    }
-  }
+  <script>
+    // Guard: if JS is disabled or module fails, no motion
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.__MOTION_LAB__ = { prefersReduced };
   </script>
-  <script src="https://unpkg.com/gsap@3.15.0/dist/gsap.min.js"></script>
-  <script src="https://unpkg.com/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
 
   <script type="module">
     // ═══════════════════════════════════════════════════
     // 305Fleet Motion Lab — GSAP + Three.js
+    // All dependencies locally bundled (no CDN requests)
     // ═══════════════════════════════════════════════════
 
-    // GSAP available as global (loaded via script src)
+    import gsap from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
     gsap.registerPlugin(ScrollTrigger);
 
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const prefersReduced = window.__MOTION_LAB__?.prefersReduced ?? window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // ── Fleet vehicle data (sanitized, real data) ──
     const fleetData = [
@@ -272,10 +271,10 @@ import { SITE, BENEFITS } from "../config/site";
     if (!prefersReduced) {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
       tl.to('.hero-label', { opacity: 1, y: 0, duration: 0.8, delay: 0.2 })
-        .to('.hero-headline .line-inner', { y: 0, duration: 0.9, stagger: 0.15 }, '-=0.4')
+        .to('.hero-headline .line-inner', { y: 0, duration: 0.9, stagger: 0.2 }, '-=0.3')
         .to('.hero-sub', { opacity: 1, y: 0, duration: 0.7 }, '-=0.3')
         .to('.hero-cta', { opacity: 1, y: 0, duration: 0.6 }, '-=0.2')
-        .to('.hero-scroll', { opacity: 1, duration: 0.6 }, '-=0.2');
+        .to('.hero-scroll', { opacity: 1, duration: 0.5 }, '-=0.1');
 
       // Subtle hero parallax
       gsap.to('.hero-visual img', {
@@ -479,6 +478,9 @@ import { SITE, BENEFITS } from "../config/site";
     initAirportVisual().catch(() => {
       document.body.classList.add('no-webgl');
     });
+
+    // Signal successful initialization
+    document.documentElement.setAttribute('data-motion-ready', 'true');
   </script>
 </body>
 </html>
