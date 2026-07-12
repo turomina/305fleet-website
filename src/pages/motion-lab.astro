@@ -1,0 +1,484 @@
+---
+// 305Fleet Motion Lab — Phase 1B Prototype
+// Isolated, noindex, unlinked, excluded from sitemap
+// GSAP-driven motion narrative: Hero → Fleet Cards → Airport
+import { SITE, BENEFITS } from "../config/site";
+
+// Filter motion-lab from sitemap via astro.config.ts filter, but also set noindex
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Motion Lab — 305 Fleet Prototype</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root {
+      --brand: #314B6E;
+      --brand-200: #AFCEE2;
+      --brand-300: #607EA2;
+      --brand-50: #F4FBFE;
+      --brand-900: #0D141C;
+      --accent: #EA5E2D;
+      --ink: #0D141C;
+      --ink-secondary: #58585A;
+      --surface: #FFFFFF;
+      --surface-light: #F4FBFE;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--brand-900);
+      color: var(--surface);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* Motion Lab chrome */
+    .lab-badge {
+      position: fixed; top: 16px; left: 16px; z-index: 100;
+      background: var(--accent); color: white; font-size: 11px; font-weight: 700;
+      padding: 4px 12px; border-radius: 4px; letter-spacing: 0.5px;
+      text-transform: uppercase; opacity: 0.9;
+    }
+    .lab-frame {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      border: 1px solid rgba(255,255,255,0.05); pointer-events: none; z-index: 99;
+      margin: 8px; border-radius: 4px;
+    }
+    section { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 80px 24px; }
+    .container { max-width: 1200px; width: 100%; margin: 0 auto; }
+
+    /* ── Hero Section ── */
+    #hero { overflow: hidden; }
+    .hero-content { text-align: center; max-width: 800px; }
+    .hero-visual { position: absolute; inset: 0; z-index: 0; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,20,28,0.4) 0%, rgba(13,20,28,0.85) 100%); z-index: 1; }
+    .hero-text { position: relative; z-index: 2; }
+    .hero-label { font-size: 14px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; opacity: 0; }
+    .hero-headline { font-size: clamp(40px, 6vw, 72px); font-weight: 700; line-height: 1.05; margin-bottom: 24px; opacity: 0; letter-spacing: -0.5px; }
+    .hero-headline .line { display: block; overflow: hidden; }
+    .hero-headline .line-inner { display: block; transform: translateY(100%); }
+    .hero-sub { font-size: clamp(16px, 2vw, 20px); color: rgba(255,255,255,0.7); max-width: 540px; margin: 0 auto 40px; opacity: 0; line-height: 1.5; }
+    .hero-cta { opacity: 0; display: inline-flex; gap: 12px; }
+    .btn-primary, .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px;
+      font-size: 15px; font-weight: 600; border-radius: 8px; cursor: pointer;
+      text-decoration: none; transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+    }
+    .btn-primary { background: var(--accent); color: white; border: none; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(234,94,45,0.35); }
+    .btn-secondary { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.15); }
+    .btn-secondary:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
+    .hero-scroll { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 2; opacity: 0; }
+    .scroll-indicator { width: 32px; height: 56px; border: 2px solid rgba(255,255,255,0.2); border-radius: 16px; display: flex; justify-content: center; padding-top: 12px; }
+    .scroll-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+
+    /* ── Fleet Section ── */
+    #fleet { background: var(--surface); color: var(--ink); }
+    #fleet .section-label { font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    #fleet .section-headline { font-size: clamp(28px, 4vw, 44px); font-weight: 700; margin-bottom: 48px; letter-spacing: -0.3px; color: var(--ink); }
+    .fleet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+    .fleet-card {
+      background: var(--surface-light); border-radius: 16px; overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.06); opacity: 0;
+      transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+    }
+    .fleet-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+    .fleet-card-image { width: 100%; height: 220px; object-fit: cover; display: block; }
+    .fleet-card-body { padding: 20px; }
+    .fleet-card-name { font-size: 20px; font-weight: 700; margin-bottom: 4px; color: var(--ink); }
+    .fleet-card-year { font-size: 13px; color: var(--ink-secondary); margin-bottom: 12px; }
+    .fleet-specs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .fleet-spec { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 6px; background: var(--brand-50); color: var(--brand); border: 1px solid var(--brand-200); }
+    .fleet-card-cta { font-size: 14px; font-weight: 600; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.3s var(--ease-out); }
+    .fleet-card-cta:hover { gap: 10px; }
+    @media (hover: none) {
+      .fleet-card:hover { transform: none; box-shadow: none; }
+      .fleet-card:active { transform: scale(0.98); }
+    }
+
+    /* ── Airport Section ── */
+    #airport { background: var(--brand-900); overflow: hidden; }
+    #airport .airport-canvas { position: absolute; inset: 0; z-index: 0; opacity: 0.4; }
+    #airport .airport-content { position: relative; z-index: 2; text-align: center; }
+    #airport .section-label { font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    #airport .section-headline { font-size: clamp(28px, 4vw, 44px); font-weight: 700; margin-bottom: 16px; letter-spacing: -0.3px; }
+    #airport .section-sub { font-size: 16px; color: rgba(255,255,255,0.6); margin-bottom: 48px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.5; }
+    .airport-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .airport-card {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 32px 24px; text-align: left; opacity: 0;
+      backdrop-filter: blur(8px); transition: transform 0.4s var(--ease-out), background 0.3s;
+    }
+    .airport-card:hover { background: rgba(255,255,255,0.08); transform: translateY(-4px); }
+    .airport-code { font-size: 36px; font-weight: 800; letter-spacing: -1px; color: var(--accent); margin-bottom: 8px; }
+    .airport-name { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .airport-detail { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.5; }
+    .route-line { position: absolute; z-index: 1; }
+    @media (hover: none) {
+      .airport-card:hover { transform: none; background: rgba(255,255,255,0.05); }
+    }
+
+    /* ── WebGL Fallback ── */
+    .webgl-fallback { display: none; position: absolute; inset: 0; z-index: 0; }
+    .no-webgl .webgl-fallback { display: block; }
+    .no-webgl .airport-canvas { display: none; }
+    .fallback-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(49,75,110,0.3) 0%, transparent 70%); }
+
+    /* ── Reduced Motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+      .fleet-card, .airport-card, .hero-label, .hero-headline, .hero-sub, .hero-cta, .hero-scroll { opacity: 1 !important; }
+      .hero-headline .line-inner { transform: translateY(0) !important; }
+      .scroll-dot { animation: none !important; }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      section { padding: 60px 16px; min-height: auto; }
+      #hero { min-height: 100vh; }
+      .fleet-grid { grid-template-columns: 1fr; }
+      .airport-cards { grid-template-columns: 1fr; }
+      .hero-headline { font-size: clamp(32px, 8vw, 48px); }
+      .hero-cta { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="lab-badge">Motion Lab v1</div>
+  <div class="lab-frame"></div>
+
+  <!-- ═══ HERO SECTION ═══ -->
+  <section id="hero">
+    <div class="hero-visual">
+      <img src="/images/generated/hero-bg.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center" loading="eager" />
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <div class="hero-text">
+        <p class="hero-label" data-anim="fade-up">Direct Rentals · South Florida</p>
+        <h1 class="hero-headline">
+          <span class="line"><span class="line-inner" data-anim="line-reveal">Premium vehicles.</span></span>
+          <span class="line"><span class="line-inner" data-anim="line-reveal">Contactless pickup.</span></span>
+          <span class="line"><span class="line-inner" data-anim="line-reveal">Real local service.</span></span>
+        </h1>
+        <p class="hero-sub" data-anim="fade-up">Direct rentals from a South Florida fleet operator. Contactless airport pickup from designated parking facilities at MIA, FLL, and PBI.</p>
+        <div class="hero-cta" data-anim="fade-up">
+          <a href="/vehicles/" class="btn-primary">Book Now →</a>
+          <a href="/how-it-works/" class="btn-secondary">How It Works</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll" data-anim="fade-up">
+      <div class="scroll-indicator"><div class="scroll-dot"></div></div>
+    </div>
+  </section>
+
+  <!-- ═══ FLEET SECTION ═══ -->
+  <section id="fleet">
+    <div class="container">
+      <p class="section-label">Our Fleet</p>
+      <h2 class="section-headline">7 vehicles. One standard.</h2>
+      <div class="fleet-grid" id="fleet-grid">
+        <!-- Cards injected via JS after data load -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ AIRPORT SECTION ═══ -->
+  <section id="airport">
+    <canvas class="airport-canvas" id="airport-canvas"></canvas>
+    <div class="webgl-fallback"><div class="fallback-bg"></div></div>
+    <div class="container airport-content">
+      <p class="section-label">Airport Pickup</p>
+      <h2 class="section-headline">MIA · FLL · PBI</h2>
+      <p class="section-sub">Contactless pickup from designated parking facilities at all three South Florida airports.</p>
+      <div class="airport-cards" id="airport-cards">
+        <div class="airport-card" data-airport="MIA">
+          <div class="airport-code">MIA</div>
+          <div class="airport-name">Miami International</div>
+          <div class="airport-detail">Designated garage — Dolphin, Flamingo, or Ibis. Private location instructions sent before pickup.</div>
+        </div>
+        <div class="airport-card" data-airport="FLL">
+          <div class="airport-code">FLL</div>
+          <div class="airport-name">Fort Lauderdale</div>
+          <div class="airport-detail">Cypress Garage, Level 7, Zone 7NN. Photo + written confirmation provided.</div>
+        </div>
+        <div class="airport-card" data-airport="PBI">
+          <div class="airport-code">PBI</div>
+          <div class="airport-name">Palm Beach</div>
+          <div class="airport-detail">Long-Term Parking Garage 1 or 2. Premium Parking by approved request.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SCRIPTS ═══ -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.185.1/build/three.module.js"
+    }
+  }
+  </script>
+  <script src="https://unpkg.com/gsap@3.15.0/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+
+  <script type="module">
+    // ═══════════════════════════════════════════════════
+    // 305Fleet Motion Lab — GSAP + Three.js
+    // ═══════════════════════════════════════════════════
+
+    // GSAP available as global (loaded via script src)
+    gsap.registerPlugin(ScrollTrigger);
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ── Fleet vehicle data (sanitized, real data) ──
+    const fleetData = [
+      { name: "Cadillac Escalade ESV", year: "2025", slug: "2025-cadillac-escalade-esv", specs: ["Full-Size SUV", "Premium", "7–8 Seats"], image: "/images/vehicles/2025-cadillac-escalade-esv/exterior-side.webp" },
+      { name: "Audi Q4 e-tron", year: "2024", slug: "2024-audi-q4-e-tron", specs: ["Fully Electric", "Compact SUV", "5 Seats"], image: "/images/vehicles/2024-audi-q4-e-tron/exterior-side.webp" },
+      { name: "Volvo XC90 T8 PHEV", year: "2025", slug: "2025-volvo-xc90-t8-phev", specs: ["Plug-In Hybrid", "Mid-Size SUV", "6–7 Seats"], image: "/images/vehicles/2025-volvo-xc90-t8-phev/exterior-side.webp" },
+      { name: "Mercedes-Benz GLC300", year: "2026", slug: "2026-mercedes-glc300", specs: ["Luxury SUV", "Newer Model", "5 Seats"], image: "/images/vehicles/2026-mercedes-glc300/exterior-side.webp" },
+      { name: "Toyota Highlander Hybrid", year: "2021", slug: "2021-toyota-highlander-hybrid", specs: ["Hybrid", "Mid-Size SUV", "7–8 Seats"], image: "/images/vehicles/2021-toyota-highlander-hybrid/exterior-side.webp" },
+      { name: "Mitsubishi Outlander PHEV", year: "2025", slug: "2025-mitsubishi-outlander-phev", specs: ["Plug-In Hybrid", "Compact SUV", "5–7 Seats"], image: "/images/vehicles/2025-mitsubishi-outlander-phev/exterior-side.webp" },
+    ];
+
+    // ── Render fleet cards ──
+    const fleetGrid = document.getElementById('fleet-grid');
+    fleetData.forEach((v, i) => {
+      const card = document.createElement('div');
+      card.className = 'fleet-card';
+      card.setAttribute('data-fleet-index', i);
+      card.innerHTML = `
+        <img src="${v.image}" alt="${v.name}" class="fleet-card-image" loading="lazy" />
+        <div class="fleet-card-body">
+          <div class="fleet-card-name">${v.name}</div>
+          <div class="fleet-card-year">${v.year}</div>
+          <div class="fleet-specs">${v.specs.map(s => `<span class="fleet-spec">${s}</span>`).join('')}</div>
+          <a href="/vehicles/${v.slug}/" class="fleet-card-cta">View Details →</a>
+        </div>
+      `;
+      fleetGrid.appendChild(card);
+    });
+
+    // ═══ HERO SEQUENCE ═══
+    if (!prefersReduced) {
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      tl.to('.hero-label', { opacity: 1, y: 0, duration: 0.8, delay: 0.2 })
+        .to('.hero-headline .line-inner', { y: 0, duration: 0.9, stagger: 0.15 }, '-=0.4')
+        .to('.hero-sub', { opacity: 1, y: 0, duration: 0.7 }, '-=0.3')
+        .to('.hero-cta', { opacity: 1, y: 0, duration: 0.6 }, '-=0.2')
+        .to('.hero-scroll', { opacity: 1, duration: 0.6 }, '-=0.2');
+
+      // Subtle hero parallax
+      gsap.to('.hero-visual img', {
+        y: 40,
+        ease: 'none',
+        scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
+      });
+
+      // Scroll-dot pulse
+      gsap.to('.scroll-dot', { y: 20, opacity: 0.3, duration: 1.5, repeat: -1, yoyo: true, ease: 'power2.inOut' });
+    }
+
+    // ═══ FLEET CARD SEQUENCE ═══
+    if (!prefersReduced) {
+      const fleetCards = document.querySelectorAll('.fleet-card');
+      gsap.fromTo(fleetCards, { opacity: 0, y: 60 }, {
+        opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out',
+        scrollTrigger: { trigger: '#fleet-grid', start: 'top 80%', toggleActions: 'play none none none' }
+      });
+
+      // Image mask reveal on scroll
+      fleetCards.forEach((card) => {
+        const img = card.querySelector('.fleet-card-image');
+        gsap.fromTo(img, { scale: 1.08 }, {
+          scale: 1, duration: 1.2, ease: 'power3.out',
+          scrollTrigger: { trigger: card, start: 'top 90%', toggleActions: 'play none none none' }
+        });
+      });
+    }
+
+    // ═══ AIRPORT CARD SEQUENCE ═══
+    if (!prefersReduced) {
+      const airportCards = document.querySelectorAll('.airport-card');
+      gsap.fromTo(airportCards, { opacity: 0, y: 40 }, {
+        opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: 'power3.out',
+        scrollTrigger: { trigger: '#airport-cards', start: 'top 85%', toggleActions: 'play none none none' }
+      });
+
+      // Subtle parallax on section heading
+      gsap.to('#airport .airport-content', {
+        y: -20,
+        ease: 'none',
+        scrollTrigger: { trigger: '#airport', start: 'top bottom', end: 'bottom top', scrub: true }
+      });
+    }
+
+    // ═══ THREE.JS — Airport Route Visualization ═══
+    async function initAirportVisual() {
+      const canvas = document.getElementById('airport-canvas');
+      if (!canvas) return;
+
+      // Check WebGL support
+      const hasWebGL = (() => {
+        try {
+          const c = document.createElement('canvas');
+          return !!(window.WebGLRenderingContext && (c.getContext('webgl') || c.getContext('experimental-webgl')));
+        } catch { return false; }
+      })();
+
+      if (!hasWebGL) {
+        document.body.classList.add('no-webgl');
+        return;
+      }
+      if (prefersReduced) return;
+
+      const THREE = await import('three');
+
+      const section = document.getElementById('airport');
+      const rect = section.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio, 2);
+
+      // Scene
+      const scene = new THREE.Scene();
+      const w = rect.width || window.innerWidth;
+      const h = rect.height || window.innerHeight;
+
+      // Camera
+      const camera = new THREE.PerspectiveCamera(45, w / Math.max(h, 1), 0.1, 100);
+      camera.position.set(0, 0, 8);
+
+      // Renderer
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      renderer.setSize(w, h, false);
+      renderer.setPixelRatio(dpr);
+
+      // ── Airport nodes ──
+      const nodeGeo = new THREE.SphereGeometry(0.12, 32, 32);
+      const positions = { MIA: [-2.2, 0.4, 0], FLL: [0, -0.6, 0], PBI: [2.4, 0.2, 0] };
+      const airportColors = { MIA: 0xEA5E2D, FLL: 0x607EA2, PBI: 0x314B6E };
+
+      const nodes = {};
+      Object.entries(positions).forEach(([code, pos]) => {
+        const mat = new THREE.MeshStandardMaterial({ color: airportColors[code], roughness: 0.3, metalness: 0.1, emissive: airportColors[code], emissiveIntensity: 0.3 });
+        const node = new THREE.Mesh(nodeGeo, mat);
+        node.position.set(...pos);
+        node.userData = { basePos: pos, code };
+        scene.add(node);
+        nodes[code] = node;
+
+        // Glow ring
+        const ringGeo = new THREE.TorusGeometry(0.2, 0.015, 16, 48);
+        const ringMat = new THREE.MeshBasicMaterial({ color: airportColors[code], transparent: true, opacity: 0.4 });
+        const ring = new THREE.Mesh(ringGeo, ringMat);
+        ring.position.copy(node.position);
+        ring.rotation.x = Math.PI / 2;
+        ring.userData = { parent: code };
+        scene.add(ring);
+        nodes[code + '_ring'] = ring;
+      });
+
+      // ── Route lines ──
+      function createRoute(from, to, color) {
+        const points = [
+          new THREE.Vector3(...positions[from]),
+          new THREE.Vector3(...positions[to])
+        ];
+        const curve = new THREE.CatmullRomCurve3(points, false, 'catmullrom', 0.5);
+        const curvePoints = curve.getPoints(40);
+        const geo = new THREE.BufferGeometry().setFromPoints(curvePoints);
+        const mat = new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.25, linewidth: 1 });
+        const line = new THREE.Line(geo, mat);
+        scene.add(line);
+        return line;
+      }
+      createRoute('MIA', 'FLL', 0x607EA2);
+      createRoute('FLL', 'PBI', 0x314B6E);
+
+      // ── Particle field ──
+      const particleCount = 80;
+      const particleGeo = new THREE.BufferGeometry();
+      const particlePositions = new Float32Array(particleCount * 3);
+      for (let i = 0; i < particleCount; i++) {
+        particlePositions[i * 3] = (Math.random() - 0.5) * 6;
+        particlePositions[i * 3 + 1] = (Math.random() - 0.5) * 4;
+        particlePositions[i * 3 + 2] = (Math.random() - 0.5) * 2;
+      }
+      particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+      const particleMat = new THREE.PointsMaterial({ color: 0x607EA2, size: 0.03, transparent: true, opacity: 0.5 });
+      const particles = new THREE.Points(particleGeo, particleMat);
+      scene.add(particles);
+
+      // ── Lighting ──
+      const ambient = new THREE.AmbientLight(0x314B6E, 0.6);
+      scene.add(ambient);
+      const point = new THREE.PointLight(0xEA5E2D, 1.5, 12);
+      point.position.set(0, 0, 4);
+      scene.add(point);
+
+      // ── Render loop ──
+      let animId;
+      function animate(time) {
+        animId = requestAnimationFrame(animate);
+        const t = time * 0.001;
+
+        // Gentle node float
+        Object.values(nodes).forEach(node => {
+          if (!node.userData || node.userData.parent) {
+            node.position.y = (node.userData?.parent ? positions[node.userData.parent][1] : 0) + Math.sin(t * 1.5 + node.position.x) * 0.08;
+          }
+        });
+
+        // Particle drift
+        particles.rotation.y += 0.0005;
+        particles.rotation.x += 0.0003;
+
+        renderer.render(scene, camera);
+      }
+
+      // ── Scroll-aware visibility ──
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            if (!animId) animate(performance.now());
+            canvas.style.opacity = '1';
+          } else {
+            if (animId) { cancelAnimationFrame(animId); animId = null; }
+            canvas.style.opacity = '0';
+          }
+        });
+      }, { threshold: 0.1 });
+      observer.observe(section);
+
+      // ── Resize ──
+      const onResize = () => {
+        const r = section.getBoundingClientRect();
+        if (r.width > 0 && r.height > 0) {
+          renderer.setSize(r.width, r.height, false);
+          camera.aspect = r.width / Math.max(r.height, 1);
+          camera.updateProjectionMatrix();
+        }
+      };
+      window.addEventListener('resize', onResize);
+
+      // ── Initial frame ──
+      animate(performance.now());
+
+      // ── Cleanup placeholder ──
+      // (Attached to page lifecycle — Astro handles navigation cleanup)
+    }
+
+    initAirportVisual().catch(() => {
+      document.body.classList.add('no-webgl');
+    });
+  </script>
+</body>
+</html>
