@@ -3,226 +3,182 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Header from "../../../components/base/Header.astro";
 import Footer from "../../../components/base/Footer.astro";
 import vehicles from "../../../data/vehicles.json";
-import { getFuelLabel, getBestForLabels } from "../../../config/labels";
+import { getFuelLabel } from "../../../config/labels";
 
 export async function getStaticPaths() {
   return vehicles
-    .filter((v) => v.publication_status === "preview_only" || v.publication_status === "published")
-    .map((v) => ({
-      params: { slug: v.slug },
-      props: { vehicle: v },
-    }));
+    .filter(v => v.publication_status === "preview_only" || v.publication_status === "published")
+    .map(v => ({ params: { slug: v.slug }, props: { vehicle: v } }));
 }
 
 const { vehicle } = Astro.props;
 
-// Related vehicles: same fuel type or same passenger tier, excluding self
+const luggageLabel = Number(vehicle.luggage_large) || Number(vehicle.luggage_small) || 0;
+const bestFor = (vehicle.best_for_es && vehicle.best_for_es.length > 0) ? vehicle.best_for_es : (vehicle.best_for_en || ["Recogida en aeropuerto"]);
+
 const relatedVehicles = vehicles
-  .filter((v) =>
-    v.slug !== vehicle.slug &&
-    (v.publication_status === "preview_only" || v.publication_status === "published")
-  )
-  .filter((v) =>
-    v.fuel_type === vehicle.fuel_type ||
-    (v.passenger_capacity >= 7 && vehicle.passenger_capacity >= 7) ||
-    (v.passenger_capacity <= 5 && vehicle.passenger_capacity <= 5)
-  )
+  .filter(v => v.slug !== vehicle.slug && (v.publication_status === "preview_only" || v.publication_status === "published"))
   .slice(0, 3);
 
-const bestForLabels = getBestForLabels(vehicle.best_for || [], "es");
+const images = [vehicle.hero_image, ...(vehicle.gallery || []).slice(0, 5).map(g => g.src || g)].filter(Boolean);
 ---
 
-<BaseLayout lang="es" title={vehicle.name} description={vehicle.tagline_es || vehicle.tagline_en}>
+<BaseLayout lang="es" title={`${vehicle.name} | 305 Fleet`}
+  description={`${vehicle.tagline_es || vehicle.tagline_en} — ${vehicle.name}. ${vehicle.passenger_capacity} asientos, ${getFuelLabel(vehicle.fuel_type, "es")}. Alquiler directo con entrega en MIA, FLL y PBI.`}
+>
   <Header />
 
-  <main id="main-content" class="flex-1 bg-white">
-    <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      <a href="/es/vehicles/" class="inline-flex items-center text-sm font-medium text-brand hover:underline">
-        ← Volver a Vehículos
-      </a>
-
-      <div class="mt-6 grid grid-cols-1 gap-8 lg:grid-cols-2">
-        <!-- Gallery area -->
-        <div>
-          <div class="aspect-[4/3] bg-gray-200 rounded-xl flex items-center justify-center">
-            {vehicle.hero_image ? (
-              <img src={vehicle.hero_image} alt={vehicle.name} class="w-full h-full object-cover rounded-xl" />
+  <main id="main-content" class="flex-1">
+    <section class="relative bg-brand-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+          <div class="relative">
+            {images[0] ? (
+              <img src={images[0]} alt={vehicle.name} class="w-full aspect-[16/10] object-cover rounded-2xl shadow-xl" loading="eager" width="800" height="500" />
             ) : (
-              <div class="text-center p-8">
-                <p class="text-gray-400 text-sm">Foto pendiente</p>
-                <p class="mt-2 text-xs text-gray-400">Próximamente fotografías reales del vehículo</p>
-              </div>
+              <div class="w-full aspect-[16/10] bg-brand-800/50 rounded-2xl flex items-center justify-center text-white/30">Foto pendiente</div>
             )}
           </div>
-
-          {vehicle.gallery && vehicle.gallery.length > 0 && (
-            <div class="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-4">
-              {vehicle.gallery.map((img) => (
-                <div class="aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden">
-                  <img
-                    src={img}
-                    alt={`${vehicle.name} photo`}
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-              ))}
+          <div class="text-white">
+            <p class="text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-3">{vehicle.year} &middot; {vehicle.make}</p>
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">{vehicle.name}</h1>
+            <p class="mt-3 text-lg text-white/70 leading-relaxed">{vehicle.tagline_es || vehicle.tagline_en}</p>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/10 text-sm">&#128103; {vehicle.passenger_capacity} asientos</span>
+              <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/10 text-sm">&#128718; {luggageLabel} equipaje</span>
+              <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/10 text-sm">{getFuelLabel(vehicle.fuel_type, "es")}</span>
             </div>
-          )}
-        </div>
-
-        <!-- Vehicle info -->
-        <div>
-          <h1 class="text-3xl font-bold text-gray-900">{vehicle.name}</h1>
-          {(vehicle.tagline_es || vehicle.tagline_en) && (
-            <p class="mt-2 text-lg text-gray-500">{vehicle.tagline_es || vehicle.tagline_en}</p>
-          )}
-
-          <!-- Specs grid -->
-          <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3">
-            <div class="rounded-lg bg-gray-50 p-3">
-              <p class="text-xs text-gray-500">Pasajeros</p>
-              <p class="text-xl font-semibold text-gray-900">{vehicle.passenger_capacity}</p>
+            <div class="mt-8 flex flex-col sm:flex-row gap-3">
+              {vehicle.book_path ? (
+                <a href={vehicle.book_path} class="btn btn-light btn-primary-lg">Reservar ahora</a>
+              ) : (
+                <a href="/es/contact/" class="btn btn-light btn-primary-lg">Consultar</a>
+              )}
+              <a href="/es/how-it-works/" class="btn px-6 py-4 text-base font-semibold text-white border-2 border-white/30 rounded-lg hover:bg-white/10 transition-all">Cómo Funciona &rarr;</a>
             </div>
-            <div class="rounded-lg bg-gray-50 p-3">
-              <p class="text-xs text-gray-500">Combustible</p>
-              <p class="text-sm font-semibold text-gray-900 pt-1">{getFuelLabel(vehicle.fuel_type, "es")}</p>
-            </div>
-            <div class="rounded-lg bg-gray-50 p-3">
-              <p class="text-xs text-gray-500">Equipaje</p>
-              <p class="text-xl font-semibold text-gray-900">{vehicle.luggage_large} grandes</p>
-            </div>
-            {vehicle.exterior_color && (
-              <div class="rounded-lg bg-gray-50 p-3">
-                <p class="text-xs text-gray-500">Exterior</p>
-                <p class="text-sm font-semibold text-gray-900">{vehicle.exterior_color}</p>
-              </div>
-            )}
-            {vehicle.interior_color && (
-              <div class="rounded-lg bg-gray-50 p-3">
-                <p class="text-xs text-gray-500">Interior</p>
-                <p class="text-sm font-semibold text-gray-900">{vehicle.interior_color}</p>
-              </div>
-            )}
-            {vehicle.drivetrain && (
-              <div class="rounded-lg bg-gray-50 p-3">
-                <p class="text-xs text-gray-500">Transmisión</p>
-                <p class="text-sm font-semibold text-gray-900">{vehicle.drivetrain}</p>
-              </div>
-            )}
           </div>
-
-          <!-- Best for -->
-          {bestForLabels.length > 0 && (
-            <div class="mt-6">
-              <h2 class="text-lg font-semibold text-gray-900">Ideal Para</h2>
-              <div class="mt-2 flex flex-wrap gap-2">
-                {bestForLabels.map((label) => (
-                  <span class="inline-flex items-center rounded-full bg-brand-pale px-3 py-1 text-sm font-medium text-brand-dark">
-                    {label.es}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-
-          <!-- Pricing -->
-          <div class="mt-6 rounded-xl border border-gray-200 p-4">
-            <p class="text-sm text-gray-500">Desde</p>
-            <p class="text-2xl font-bold text-brand">
-              {vehicle.price_display_daily ? vehicle.price_display_daily : "Precio por Confirmar"}
-            </p>
-            <p class="text-xs text-gray-400 mt-1">El precio final se confirma al reservar</p>
-          </div>
-
-          <!-- Description -->
-          {(vehicle.description_es || vehicle.description_en) && (
-            <div class="mt-6 prose prose-sm prose-gray max-w-none">
-              <h2 class="text-lg font-semibold text-gray-900">Sobre Este Vehículo</h2>
-              <p>{vehicle.description_es || vehicle.description_en}</p>
-            </div>
-          )}
-
-          <!-- Features -->
-          {vehicle.key_features && vehicle.key_features.length > 0 && (
-            <div class="mt-6">
-              <h2 class="text-lg font-semibold text-gray-900">Características Principales</h2>
-              <ul class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {vehicle.key_features.map((feature) => (
-                  <li class="flex items-center gap-2 text-sm text-gray-600">
-                    <svg class="w-4 h-4 text-brand shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          <!-- Booking CTA -->
-          {vehicle.book_path && (
-            <div class="mt-6">
-              <a
-                href={vehicle.book_path}
-                class="inline-flex items-center gap-2 rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-light"
-              >
-                Reservar ahora
-              </a>
-            </div>
-          )}
-
-          <!-- Secondary actions -->
-          <div class="mt-4 flex flex-col sm:flex-row gap-3">
-            <a href="/es/contact/" class="inline-flex items-center justify-center rounded-lg border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700 hover:border-brand hover:text-brand">
-              Consultar Sobre Este Vehículo
-            </a>
-            <a href="/es/rental-requirements/" class="inline-flex items-center justify-center rounded-lg border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700 hover:border-brand hover:text-brand">
-              Ver Requisitos
-            </a>
-          </div>
-
-          {vehicle.publication_status === "preview_only" && (
-            <div class="mt-4 rounded-lg bg-yellow-50 border border-yellow-300 p-3">
-              <p class="text-xs text-yellow-800">
-                ⓘ Vista previa — las especificaciones y precios mostrados aquí no son definitivos.
-              </p>
-            </div>
-          )}
         </div>
       </div>
+    </section>
 
-      <!-- Related vehicles -->
-      {relatedVehicles.length > 0 && (
-        <section class="mt-16 border-t border-gray-200 pt-12">
-          <h2 class="text-2xl font-bold text-gray-900">Vehículos Similares</h2>
-          <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {relatedVehicles.map((rv) => (
-              <a
-                href={`/es/vehicles/${rv.slug}/`}
-                class="group bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm transition-all hover:border-brand hover:shadow-lg"
-              >
-                <div class="aspect-[4/3] bg-gray-200 flex items-center justify-center">
+    {images.length > 1 && (
+      <section class="py-8 bg-brand-50 border-b border-border">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-3 lg:grid-cols-6 gap-3">
+            {images.slice(1, 7).map((src, i) => (
+              <img src={src} alt={`${vehicle.name} vista ${i+1}`} class="w-full aspect-[4/3] object-cover rounded-lg" loading="lazy" width="400" height="300" />
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <section class="section bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div>
+            <p class="section-eyebrow">Ideal Para</p>
+            <h2 class="section-title">Hecho para {bestFor[0]?.toLowerCase()}</h2>
+            <ul class="mt-6 space-y-3">
+              {bestFor.map((item) => (
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  <span class="text-ink-secondary">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="space-y-6">
+            <div class="rounded-2xl bg-brand-50 p-8">
+              <h3 class="text-lg font-semibold text-ink">Comodidad</h3>
+              <p class="mt-2 text-ink-secondary">Espacio para hasta {vehicle.passenger_capacity} pasajeros con amplio espacio para piernas y control de clima.</p>
+            </div>
+            <div class="rounded-2xl bg-brand-50 p-8">
+              <h3 class="text-lg font-semibold text-ink">Equipaje</h3>
+              <p class="mt-2 text-ink-secondary">Capacidad para {vehicle.luggage_large || "múltiples"} maletas grandes — espacio suficiente para viajes al aeropuerto.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-brand-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-ink mb-8">Especificaciones</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          {[
+            { label: "Año", value: vehicle.year },
+            { label: "Marca", value: vehicle.make },
+            { label: "Modelo", value: vehicle.model },
+            { label: "Combustible", value: getFuelLabel(vehicle.fuel_type, "es") },
+            { label: "Asientos", value: vehicle.passenger_capacity },
+            { label: "Equipaje", value: `${vehicle.luggage_large || "-"} grande` },
+          ].filter(s => s.value).map(spec => (
+            <div class="bg-white rounded-xl p-6 text-center">
+              <p class="text-2xl font-bold text-ink">{spec.value}</p>
+              <p class="text-xs text-ink-tertiary uppercase tracking-wider mt-1">{spec.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-ink text-center mb-3">Entrega en Aeropuerto</h2>
+        <p class="text-center text-ink-secondary max-w-xl mx-auto mb-10">
+          Recoja su {vehicle.name} en MIA, FLL o PBI. Entrega sin contacto — ubicación exacta enviada de forma privada.
+        </p>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          {["MIA", "FLL", "PBI"].map(code => (
+            <a href={`/es/locations/${code === "MIA" ? "miami-international-airport" : code === "FLL" ? "fort-lauderdale-airport" : "palm-beach-airport"}/`} class="card card-padded text-center group">
+              <div class="text-3xl font-bold text-accent mb-2">{code}</div>
+              <p class="text-sm text-ink-secondary">Recogida sin contacto disponible</p>
+              <span class="mt-3 inline-block text-xs font-medium text-accent">Detalles &rarr;</span>
+            </a>
+          ))}
+        </div>
+        <p class="mt-4 text-xs text-ink-tertiary text-center">Los cargos de estacionamiento son responsabilidad del arrendatario — divulgados en los términos de reservación.</p>
+      </div>
+    </section>
+
+    {relatedVehicles.length > 0 && (
+      <section class="section bg-brand-50">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 class="text-3xl font-bold text-ink text-center">Vehículos Relacionados</h2>
+          <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {relatedVehicles.map(rv => (
+              <a href={`/es/vehicles/${rv.slug}/`} class="card group">
+                <div class="aspect-[16/10] bg-brand-100 overflow-hidden">
                   {rv.hero_image ? (
-                    <img src={rv.hero_image} alt={rv.name} class="w-full h-full object-cover" />
+                    <img src={rv.hero_image} alt={rv.name} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" loading="lazy" width="600" height="375" />
                   ) : (
-                    <span class="text-gray-400 text-sm">Foto pendiente</span>
+                    <div class="w-full h-full flex items-center justify-center text-ink-tertiary text-sm">Foto pendiente</div>
                   )}
                 </div>
-                <div class="p-4">
-                  <h3 class="text-base font-semibold text-gray-900 group-hover:text-brand">{rv.name}</h3>
-                  <p class="text-sm text-gray-500 mt-1 line-clamp-1">{rv.tagline_es || rv.tagline_en}</p>
-                  <div class="mt-2 flex items-center gap-3 text-xs text-gray-500">
-                    <span>🧑 {rv.passenger_capacity}</span>
-                    <span>{getFuelLabel(rv.fuel_type, "es")}</span>
-                  </div>
+                <div class="p-5">
+                  <h3 class="font-semibold text-ink">{rv.name}</h3>
+                  <div class="mt-2 flex gap-2"><span class="chip text-xs">{rv.passenger_capacity} asientos</span><span class="chip text-xs">{getFuelLabel(rv.fuel_type, "es")}</span></div>
                 </div>
               </a>
             ))}
           </div>
-        </section>
-      )}
-    </div>
+        </div>
+      </section>
+    )}
+
+    <section class="section gradient-brand text-white text-center">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl font-bold tracking-tight">¿Listo para conducir el {vehicle.name}?</h2>
+        <div class="mt-6">
+          {vehicle.book_path ? (
+            <a href={vehicle.book_path} class="btn btn-light btn-primary-lg">Reservar ahora</a>
+          ) : (
+            <a href="/es/contact/" class="btn btn-light btn-primary-lg">Consultar</a>
+          )}
+        </div>
+      </div>
+    </section>
   </main>
 
   <Footer />

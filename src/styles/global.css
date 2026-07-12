@@ -1,68 +1,62 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════════════════
-   305Fleet Design Tokens — Official Brand Package
-   Source: GUIA LOGO.pdf by Claudia Anez (CorelDRAW 2025)
-   Colors extracted from designer-supplied brand assets.
+   305Fleet Premium Design System
+   Official brand: GUIA LOGO.pdf — Claudia Anez, CorelDRAW 2025
+   Inspiration: Apple-level clarity × Lusion-level depth
    ═══════════════════════════════════════════════════════════════ */
 
 @theme {
-  /* ── Official Brand Colors ── */
-  /* Primary navy — from designer logo (#314B6E dominant) */
-  --color-brand: #314B6E;
-  --color-brand-50: #F4FBFE;
-  --color-brand-100: #E8F1F8;
-  --color-brand-200: #AFCEE2;
-  --color-brand-300: #607EA2;
-  --color-brand-400: #4A6690;
-  --color-brand-500: #314B6E;
-  --color-brand-600: #2A4060;
-  --color-brand-700: #233550;
-  --color-brand-800: #1C2B40;
-  --color-brand-900: #0D141C;
+  /* ── Official Brand Palette ── */
+  --color-brand: #314B6E;           /* Primary navy */
+  --color-brand-50: #F4FBFE;        /* Lightest blue tint */
+  --color-brand-100: #E8F1F8;       /* Surface hover */
+  --color-brand-200: #AFCEE2;       /* Light blue accent */
+  --color-brand-300: #607EA2;       /* Secondary blue-grey */
+  --color-brand-400: #4A6690;       /* Mid navy */
+  --color-brand-500: #314B6E;       /* Primary */
+  --color-brand-600: #2A4060;       /* Dark navy */
+  --color-brand-700: #233550;       /* Darker navy */
+  --color-brand-800: #1C2B40;       /* Very dark navy */
+  --color-brand-900: #0D141C;       /* Near-black */
 
-  /* Secondary blue-grey — from designer logo (#607EA2) */
-  --color-brand-secondary: #607EA2;
-  --color-brand-secondary-light: #AFCEE2;
-  --color-brand-secondary-lighter: #F4FBFE;
-
-  /* Accent orange — from designer guideline (#EA5E2D) */
+  /* Accent orange (used sparingly per official guidelines) */
   --color-accent: #EA5E2D;
-  --color-accent-light: #FAEFE3;
   --color-accent-50: #FDF6F2;
   --color-accent-100: #FAEFE3;
   --color-accent-500: #EA5E2D;
   --color-accent-600: #D04D1F;
-  --color-accent-700: #B03E15;
 
-  /* Neutral text and surfaces */
+  /* Text */
   --color-ink: #0D141C;
   --color-ink-secondary: #58585A;
   --color-ink-tertiary: #8E8E90;
 
+  /* Surfaces */
   --color-surface: #FFFFFF;
   --color-surface-light: #F4FBFE;
   --color-surface-hover: #E8F1F8;
+  --color-surface-dark: #0D141C;
 
+  /* Borders */
   --color-border: #DCE2EA;
   --color-border-strong: #B8C2CF;
-  --color-border-focus: #607EA2;
 
-  /* Semantic colors */
+  /* Semantic */
   --color-success: #059669;
-  --color-success-light: #ECFDF5;
   --color-warning: #D97706;
-  --color-warning-light: #FFFBEB;
   --color-error: #DC2626;
-  --color-error-light: #FEF2F2;
   --color-info: #607EA2;
-  --color-info-light: #F4FBFE;
 
-  /* Typography */
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", Monaco, Consolas, monospace;
+  /* ── Typography ── */
+  /* Font note: GUIA LOGO.pdf is image-only, no embedded fonts.
+     Designer used a bold geometric sans-serif in CorelDRAW 2025.
+     No licensed font files found in brand package.
+     Using system-ui stack until designer font is identified and web-licensed. */
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI Variable", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Monaco, "Cascadia Code", Consolas, monospace;
 
-  /* Font sizes — modular scale */
+  /* ── Type Scale (modular) ── */
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
@@ -73,63 +67,62 @@
   --text-4xl: 2.25rem;
   --text-5xl: 3rem;
   --text-6xl: 3.75rem;
+  --text-7xl: 4.5rem;
 
-  /* Line heights */
-  --leading-tight: 1.25;
+  /* ── Leading ── */
+  --leading-tight: 1.2;
   --leading-normal: 1.5;
   --leading-relaxed: 1.625;
   --leading-loose: 2;
 
-  /* Border radii */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  /* ── Spacing (premium generous scale) ── */
+  --spacing-section-sm: 4rem;
+  --spacing-section: 6rem;
+  --spacing-section-lg: 8rem;
+
+  /* ── Radii ── */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
   --radius-full: 9999px;
 
-  /* Shadows — subtle */
-  --shadow-xs: 0 1px 2px 0 rgba(13, 20, 28, 0.04);
-  --shadow-sm: 0 1px 3px 0 rgba(13, 20, 28, 0.06), 0 1px 2px -1px rgba(13, 20, 28, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(13, 20, 28, 0.07), 0 2px 4px -2px rgba(13, 20, 28, 0.05);
-  --shadow-lg: 0 8px 15px -3px rgba(13, 20, 28, 0.08), 0 4px 6px -4px rgba(13, 20, 28, 0.05);
+  /* ── Shadows (refined) ── */
+  --shadow-sm: 0 1px 2px 0 rgba(13, 20, 28, 0.04);
+  --shadow-md: 0 4px 12px -2px rgba(13, 20, 28, 0.08);
+  --shadow-lg: 0 12px 40px -8px rgba(13, 20, 28, 0.12);
+  --shadow-xl: 0 20px 60px -12px rgba(13, 20, 28, 0.18);
+  --shadow-glow: 0 0 80px -20px rgba(49, 75, 110, 0.3);
 
-  /* Container widths */
+  /* ── Container widths ── */
   --container-sm: 640px;
   --container-md: 768px;
   --container-lg: 1024px;
   --container-xl: 1280px;
   --container-2xl: 1440px;
 
-  /* Header height */
-  --header-height: 64px;
-  --header-height-lg: 72px;
+  /* ── Header ── */
+  --header-height: 72px;
+  --header-height-lg: 80px;
 
-  /* Motion duration */
+  /* ── Motion ── */
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   --duration-fast: 150ms;
-  --duration-normal: 250ms;
-  --duration-slow: 400ms;
-  --ease: cubic-bezier(0.4, 0, 0.2, 1);
-
-  /* ── Backwards-compatibility aliases ── */
-  --color-brand-dark: #0D141C;
-  --color-brand-pale: #F4FBFE;
-  --color-brand-light: #607EA2;
-  --color-navy: #314B6E;
-  --color-navy-900: #0D141C;
-  --color-navy-700: #233550;
-  --color-navy-100: #E8F1F8;
-  --color-navy-50: #F4FBFE;
-  --color-blue: #607EA2;
-  --color-blue-500: #607EA2;
-  --color-coral: #EA5E2D;
-  --color-coral-500: #EA5E2D;
+  --duration-base: 300ms;
+  --duration-slow: 500ms;
+  --duration-reveal: 800ms;
 }
 
-/* ── Base Styles ── */
+/* ═══════════════════════════════════════════════
+   Base Layer
+   ═══════════════════════════════════════════════ */
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
@@ -137,40 +130,233 @@ body {
   color: var(--color-ink);
   background-color: var(--color-surface);
   line-height: var(--leading-normal);
+  overflow-x: hidden;
 }
 
-/* Focus visible for accessibility */
+::selection {
+  background-color: var(--color-brand);
+  color: white;
+}
+
+/* ── Focus ── */
 :focus-visible {
-  outline: 2px solid #607EA2;
-  outline-offset: 2px;
+  outline: 2px solid var(--color-brand-300);
+  outline-offset: 3px;
   border-radius: 4px;
 }
 
-/* Skip link */
+/* ── Skip link ── */
 .skip-link {
   position: absolute;
   top: -48px;
   left: 0;
-  background: #0D141C;
-  color: #fff;
+  background: var(--color-brand-900);
+  color: white;
   padding: 8px 16px;
   z-index: 100;
-  border-radius: 0 0 8px 0;
-  transition: top 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0 0 var(--radius-sm) 0;
+  transition: top var(--duration-fast) var(--ease-in-out);
 }
+.skip-link:focus { top: 0; }
 
-.skip-link:focus {
-  top: 0;
-}
-
-/* Reduced motion */
+/* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, ::before, ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ═══════════════════════════════════════════════
+   Premium Component Classes
+   ═══════════════════════════════════════════════ */
+
+/* ── Section rhythm ── */
+.section { padding-block: var(--spacing-section); }
+.section-sm { padding-block: var(--spacing-section-sm); }
+.section-lg { padding-block: var(--spacing-section-lg); }
+
+/* ── Section headers ── */
+.section-eyebrow {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.75rem;
+}
+.section-title {
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: var(--leading-tight);
+  color: var(--color-ink);
+}
+.section-subtitle {
+  font-size: var(--text-lg);
+  color: var(--color-ink-secondary);
+  line-height: var(--leading-relaxed);
+  max-width: 36rem;
+  margin-top: 0.75rem;
+}
+
+/* ── Premium button system ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  transition: all var(--duration-base) var(--ease-in-out);
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 1;
+}
+.btn:focus-visible { outline: 2px solid var(--color-brand-300); outline-offset: 2px; }
+
+.btn-primary {
+  background: var(--color-brand);
+  color: white;
+  padding: 0.875rem 1.75rem;
+  font-size: var(--text-sm);
+  box-shadow: 0 2px 8px -2px rgba(49, 75, 110, 0.3);
+}
+.btn-primary:hover { background: var(--color-brand-400); transform: translateY(-1px); box-shadow: 0 6px 20px -4px rgba(49, 75, 110, 0.35); }
+.btn-primary:active { transform: translateY(0); box-shadow: 0 2px 4px rgba(49, 75, 110, 0.2); }
+
+.btn-primary-lg {
+  padding: 1.125rem 2.5rem;
+  font-size: var(--text-base);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-brand);
+  border: 1.5px solid var(--color-brand);
+  padding: 0.875rem 1.75rem;
+  font-size: var(--text-sm);
+}
+.btn-secondary:hover { background: var(--color-brand-50); transform: translateY(-1px); }
+.btn-secondary:active { transform: translateY(0); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-ink-secondary);
+  padding: 0.625rem 1.25rem;
+  font-size: var(--text-sm);
+}
+.btn-ghost:hover { color: var(--color-brand); background: var(--color-brand-50); }
+
+.btn-light {
+  background: white;
+  color: var(--color-brand);
+  padding: 0.875rem 1.75rem;
+  font-size: var(--text-sm);
+  box-shadow: var(--shadow-md);
+}
+.btn-light:hover { transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+
+/* ── Premium card ── */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: all var(--duration-base) var(--ease-in-out);
+}
+.card:hover {
+  border-color: var(--color-brand-200);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.card-padded { padding: var(--spacing, 2rem); }
+
+/* ── Glass surface ── */
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* ── Gradient overlays ── */
+.gradient-brand {
+  background: linear-gradient(160deg, var(--color-brand-900) 0%, var(--color-brand-500) 50%, var(--color-brand-300) 100%);
+}
+.gradient-dark {
+  background: linear-gradient(160deg, var(--color-brand-900) 0%, var(--color-brand-700) 100%);
+}
+.gradient-hero-overlay {
+  background: linear-gradient(180deg, rgba(13, 20, 28, 0.4) 0%, rgba(13, 20, 28, 0.15) 60%, rgba(13, 20, 28, 0.7) 100%);
+}
+
+/* ── Reveal animation ── */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity var(--duration-reveal) var(--ease-out-expo),
+                transform var(--duration-reveal) var(--ease-out-expo);
+  }
+  .reveal-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-up-delay-1 { transition-delay: 100ms; }
+  .reveal-up-delay-2 { transition-delay: 200ms; }
+  .reveal-up-delay-3 { transition-delay: 300ms; }
+}
+
+/* ── Image treatments ── */
+.img-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.img-contain {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.img-grayscale { filter: grayscale(100%); }
+
+/* ── Chip / badge ── */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  border-radius: var(--radius-full);
+  background: var(--color-brand-50);
+  color: var(--color-brand);
+  border: 1px solid var(--color-brand-100);
+}
+
+/* ── Divider ── */
+.hr {
+  border: 0;
+  height: 1px;
+  background: var(--color-border);
+  margin: 0;
+}
+
+/* ── Number / stat ── */
+.stat-number {
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--color-brand);
+}
+.stat-label {
+  font-size: var(--text-sm);
+  color: var(--color-ink-secondary);
+  margin-top: 0.25rem;
 }

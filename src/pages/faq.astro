@@ -4,61 +4,54 @@ import Header from "../components/base/Header.astro";
 import Footer from "../components/base/Footer.astro";
 
 const faqs = [
-  { q: "Where do I pick up my vehicle?", a: "We offer airport delivery at Miami International Airport (MIA), Fort Lauderdale-Hollywood International Airport (FLL), and Palm Beach International Airport (PBI). Specific pickup details are confirmed at booking." },
-  { q: "What happens if my flight is delayed?", a: "We track your flight and adjust the pickup time accordingly at no charge. If your flight is significantly delayed or cancelled, please contact us as soon as possible to coordinate." },
-  { q: "Can I rent with a foreign driver's license?", a: "Yes. We accept valid driver's licenses from your home country along with your passport. An International Driving Permit (IDP) is recommended but not always required." },
-  { q: "What is included in the rental price?", a: "The rental price includes the vehicle for the rental period, the daily mileage allowance, and basic insurance options. Taxes, fees, optional extras, and deposits are itemized in your quote." },
-  { q: "Do you charge hidden fees?", a: "No. All charges are itemized in your quote before booking. You'll see the base rate, taxes, fees, and any optional extras before you confirm." },
-  { q: "Can I extend my rental?", a: "Yes, subject to vehicle availability. Contact us as soon as possible to request an extension. Additional charges will apply for the extended period." },
-  { q: "What is the cancellation policy?", a: "Full refund if cancelled more than 72 hours before pickup. 50% refund if cancelled 48-72 hours before pickup. No refund if cancelled less than 48 hours before pickup (deposit is still returned). Specific terms are confirmed in your rental agreement." },
-  { q: "Do you offer weekly or monthly rates?", a: "Yes. We offer daily, weekly, and monthly rental options with competitive rates for longer periods. See our Rental Options page for details." },
-  { q: "Is insurance required?", a: "Yes, insurance is required for all rentals. You can use your personal auto insurance, credit card rental coverage, or purchase coverage through our booking platform." },
-  { q: "Can I return the vehicle to a different location?", a: "One-way rentals (different pickup and return locations) may be available. Contact us to discuss your specific needs." },
-  { q: "What if the vehicle has a problem during my rental?", a: "Contact us immediately. We'll help resolve the issue — whether it's roadside assistance, a vehicle swap, or answering questions about the vehicle." },
-  { q: "Are the vehicle photos real?", a: "Yes. We use real photographs of our actual fleet vehicles. The vehicle you see in the listing is the vehicle you'll drive — no \"or similar\" substitutions." },
+  { q: "How does airport pickup work?", a: "After your reservation is confirmed, you'll receive the exact garage, level, and parking space location privately before your pickup time. Access the vehicle using the private instructions provided. It's contactless — no counter visit needed." },
+  { q: "Which airports do you serve?", a: "Miami International (MIA), Fort Lauderdale-Hollywood International (FLL), and Palm Beach International (PBI). Contactless pickup and return are available at all three." },
+  { q: "Who pays for airport parking?", a: "You're responsible for the parking charge to exit the garage at pickup, as well as the parking charge associated with post-rental vehicle retrieval. These are disclosed in the reservation terms and are separate from the vehicle rental." },
+  { q: "Can I choose a specific garage at MIA?", a: "We select the garage operationally for each trip — either Dolphin, Flamingo, or Ibis Garage. You'll receive the exact garage and location privately before your reservation begins." },
+  { q: "Is Premium Parking available at PBI?", a: "Yes, Premium Parking may be available by request and operational approval. It's not the default option. When requested, any parking cost differences will be disclosed." },
+  { q: "What's the return process?", a: "Park in the instructed facility. Photograph the vehicle and its location. Confirm the garage, level, zone or row, and space number in writing. Secure the key and new garage-entry ticket per the private return procedure." },
+  { q: "Is the vehicle I see in the listing the one I get?", a: "Yes. Every vehicle in our fleet is individually photographed and listed. No 'or similar' substitutions — what you see is what you drive." },
+  { q: "Do you offer long-term rentals?", a: "Yes. We offer daily, weekly, and monthly options. Business and corporate rentals are also available." },
+  { q: "How do I contact 305 Fleet?", a: "You can reach us through the contact channels listed on our contact page. We're a local South Florida team — not a remote call center." },
+  { q: "Is there a security deposit?", a: "Reservation requirements will be confirmed during the booking process. Final terms are governed by the 305Fleet rental agreement." },
 ];
 ---
 
 <BaseLayout
   title="FAQ"
-  description="Frequently asked questions about renting with 305 Fleet — pickup, insurance, cancellation, and more."
+  description="Frequently asked questions about 305 Fleet direct vehicle rentals — airport pickup, parking charges, vehicle selection, and more."
 >
   <Header />
 
-  <main id="main-content" class="flex-1 bg-white">
-    <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-      <h1 class="text-3xl font-bold text-gray-900">Frequently Asked Questions</h1>
-      <p class="mt-3 text-lg text-gray-500">
-        Answers to common questions about renting with 305 Fleet.
-      </p>
-
-      <div class="mt-8 space-y-4">
-        {faqs.map((faq: any) => (
-          <details class="group rounded-lg border border-gray-200 p-4 hover:border-gray-300 transition-colors">
-            <summary class="flex items-center justify-between cursor-pointer list-none">
-              <h2 class="text-base font-semibold text-gray-900">{faq.q}</h2>
-              <svg class="h-5 w-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <p class="mt-3 text-sm text-gray-600">{faq.a}</p>
-          </details>
-        ))}
+  <main id="main-content" class="flex-1">
+    <section class="section-sm gradient-dark text-white">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <p class="text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-4">FAQ</p>
+        <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">Common questions.</h1>
+        <p class="mt-4 text-lg text-white/70">Everything you need to know about renting with 305 Fleet.</p>
       </div>
+    </section>
 
-      <div class="mt-10 rounded-xl bg-brand-pale p-6 text-center">
-        <h3 class="text-lg font-semibold text-brand-dark">Still have questions?</h3>
-        <p class="mt-1 text-sm text-gray-600">We're here to help — reach out anytime.</p>
-        <div class="mt-4 flex justify-center gap-3">
-          <a href="/contact/" class="inline-flex items-center rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-light">
-            Contact Us
-          </a>
-          <a href="/support/" class="inline-flex items-center rounded-lg border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700 hover:border-brand hover:text-brand">
-            Support
-          </a>
+    <section class="section bg-surface">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div class="space-y-4">
+          {faqs.map((faq, i) => (
+            <details class="group rounded-2xl border border-border bg-white p-6 transition-all duration-300 hover:border-brand-200" open={i === 0}>
+              <summary class="flex items-center justify-between cursor-pointer list-none">
+                <h2 class="text-lg font-semibold text-ink pr-4">{faq.q}</h2>
+                <svg class="w-5 h-5 text-ink-tertiary shrink-0 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <p class="mt-4 text-ink-secondary leading-relaxed">{faq.a}</p>
+            </details>
+          ))}
+        </div>
+
+        <div class="mt-10 text-center">
+          <p class="text-ink-secondary mb-4">Still have questions?</p>
+          <a href="/contact/" class="btn btn-primary">Contact Us</a>
         </div>
       </div>
-    </div>
+    </section>
   </main>
 
   <Footer />

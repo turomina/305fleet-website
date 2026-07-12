@@ -2,138 +2,141 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/base/Header.astro";
 import Footer from "../components/base/Footer.astro";
-import { BENEFITS, CTA } from "../config/site";
 import vehicles from "../data/vehicles.json";
 import { getFuelLabel } from "../config/labels";
 
-// Featured vehicles: pick up to 3 as a balanced cross-section of the fleet
-const allVehicles = vehicles.filter(
-  (v) => v.publication_status === "preview_only" || v.publication_status === "published"
-);
+const allVehicles = vehicles.filter(v => v.publication_status === "preview_only" || v.publication_status === "published");
 const featuredVehicles = allVehicles.slice(0, 3);
+
+const airports = [
+  { code: "MIA", name: "Miami International", slug: "miami-international-airport", desc: "Dolphin, Flamingo & Ibis garages — exact location sent privately" },
+  { code: "FLL", name: "Fort Lauderdale", slug: "fort-lauderdale-airport", desc: "Cypress Garage, Level 7, Zone 7NN — exact location sent privately" },
+  { code: "PBI", name: "Palm Beach", slug: "palm-beach-airport", desc: "Long-Term Garage 1 or 2 — Premium Parking by request" },
+];
+
+const benefits = [
+  { icon: "fleet", title: "Real Vehicles", desc: "The vehicle you see is the one you drive — no substitutions, no surprises." },
+  { icon: "local", title: "Local Operation", desc: "A South Florida team you can reach directly — not a remote call center." },
+  { icon: "contactless", title: "Contactless Pickup", desc: "Receive your exact vehicle location privately. Walk up, get in, and drive." },
+  { icon: "bilingual", title: "English & Español", desc: "Bilingual support throughout your rental — from booking to return." },
+];
+
+const steps = [
+  { num: "1", title: "Choose Your Vehicle", desc: "Browse our fleet of newer, well-maintained vehicles with real photos and full specifications." },
+  { num: "2", title: "Select Dates & Airport", desc: "Pick MIA, FLL, or PBI. Choose your rental dates. We confirm availability." },
+  { num: "3", title: "Complete Reservation", desc: "Provide the necessary information to confirm your direct rental securely." },
+  { num: "4", title: "Pick Up & Drive", desc: "Receive private location instructions. Contactless pickup. Enjoy South Florida." },
+];
 ---
 
-<BaseLayout>
+<BaseLayout
+  title="South Florida Direct Vehicle Rentals"
+  description="Direct vehicle rentals in South Florida. Newer fleet, airport delivery at MIA, FLL & PBI, contactless pickup. Book with a local operator you can reach directly."
+>
   <Header />
 
   <main id="main-content" class="flex-1">
-    <!-- Hero Section -->
-    <section class="relative bg-brand-dark text-white overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-br from-brand-dark via-brand to-brand-light opacity-90"></div>
-      <div class="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-        <div class="max-w-2xl">
-          <h1 class="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-            South Florida's Local Fleet
-          </h1>
-          <p class="mt-6 text-lg text-gray-200 sm:text-xl">
-            Newer, well-maintained vehicles with airport delivery at MIA, FLL, and PBI.
-            Straightforward pricing. Real local operator. No surprises.
+    <!-- ═══════════════════ HERO ═══════════════════ -->
+    <section class="relative min-h-[90vh] flex items-center bg-brand-900 overflow-hidden">
+      <!-- Generated hero background -->
+      <div class="absolute inset-0">
+        <img
+          src="/images/generated/hero-bg.png"
+          alt=""
+          class="w-full h-full object-cover"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+      <div class="absolute inset-0 gradient-hero-overlay"></div>
+
+      <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-28 w-full">
+        <div class="max-w-3xl">
+          <p class="text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-6 fade-in">
+            Direct Rentals — South Florida
           </p>
-          <div class="mt-8 flex flex-col sm:flex-row gap-4">
-            <a
-              href="/vehicles/"
-              class="inline-flex items-center justify-center rounded-lg bg-white px-8 py-4 text-base font-semibold text-brand shadow-lg transition-colors hover:bg-gray-100"
-            >
+          <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.08]">
+            Premium vehicles.<br class="hidden sm:block" />Contactless pickup.<br class="hidden sm:block" />Real local service.
+          </h1>
+          <p class="mt-6 text-lg sm:text-xl text-white/80 leading-relaxed max-w-xl">
+            Direct rentals from a South Florida fleet operator. Airport delivery at MIA, FLL, and PBI.
+            No counter lines, no shuttle buses — just a clean, well-maintained vehicle ready when you arrive.
+          </p>
+          <div class="mt-10 flex flex-col sm:flex-row gap-4">
+            <a href="/vehicles/" class="btn btn-light btn-primary-lg">
               Book Now
             </a>
-            <a
-              href="/how-it-works/"
-              class="inline-flex items-center justify-center rounded-lg border-2 border-white/80 px-8 py-4 text-base font-semibold text-white transition-colors hover:bg-white/10"
-            >
+            <a href="/how-it-works/" class="btn px-6 py-4 text-base font-semibold text-white border-2 border-white/30 rounded-lg hover:bg-white/10 transition-all duration-300">
               How It Works
             </a>
           </div>
+          <div class="mt-12 flex items-center gap-6 text-sm text-white/60">
+            <span class="flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              MIA · FLL · PBI
+            </span>
+            <span class="flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              Contactless Handoff
+            </span>
+            <span class="flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              Local Operator
+            </span>
+          </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <svg class="w-6 h-6 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
         </div>
       </div>
     </section>
 
-    <!-- Benefit Strip -->
-    <section class="bg-white border-b border-gray-200">
-      <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-2 gap-6 lg:grid-cols-4 lg:gap-8">
-          {BENEFITS.map((benefit) => (
-            <div class="text-center">
-              <div class="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-brand-pale">
-                <svg class="h-6 w-6 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  {benefit.icon === "plane" && (
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                  )}
-                  {benefit.icon === "car" && (
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
-                  )}
-                  {benefit.icon === "phone" && (
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  )}
-                  {benefit.icon === "star" && (
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                  )}
-                </svg>
-              </div>
-              <h3 class="text-sm font-semibold text-gray-900 lg:text-base">{benefit.title}</h3>
-              <p class="mt-1 text-xs text-gray-500 lg:text-sm">{benefit.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Featured Vehicles -->
-    <section class="bg-gray-50 py-16 lg:py-20">
+    <!-- ═══════════════════ FEATURED FLEET ═══════════════════ -->
+    <section class="section bg-surface">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900">Our Fleet</h2>
-          <p class="mt-3 text-lg text-gray-500">
-            {allVehicles.length} well-maintained vehicles — airport delivery at MIA, FLL, and PBI.
+        <div class="max-w-2xl">
+          <p class="section-eyebrow">Our Fleet</p>
+          <h2 class="section-title">{allVehicles.length} vehicles. One standard.</h2>
+          <p class="section-subtitle">
+            Every vehicle in our fleet is newer, well-maintained, and professionally presented.
+            Browse by category or see the full catalog.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {featuredVehicles.map((v) => (
-            <a
-              href={`/vehicles/${v.slug}/`}
-              class="group bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm transition-all hover:border-brand hover:shadow-lg"
-            >
-              <div class="aspect-[4/3] bg-gray-200 flex items-center justify-center">
+        <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {featuredVehicles.map(v => (
+            <a href={`/vehicles/${v.slug}/`} class="card group">
+              <div class="aspect-[16/10] bg-brand-100 overflow-hidden">
                 {v.hero_image ? (
-                  <img src={v.hero_image} alt={v.name} class="w-full h-full object-cover" width="600" height="450" />
+                  <img
+                    src={v.hero_image}
+                    alt={v.name}
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                    loading="lazy"
+                    width="800" height="500"
+                  />
                 ) : (
-                  <div class="text-center p-8">
-                    <p class="text-gray-400 text-sm">Photo pending</p>
-                    <p class="mt-2 text-xs text-gray-400">Real photography in progress</p>
-                  </div>
+                  <div class="w-full h-full flex items-center justify-center text-ink-tertiary">Photo pending</div>
                 )}
               </div>
-              <div class="p-5">
-                <h3 class="text-lg font-semibold text-gray-900 group-hover:text-brand">{v.name}</h3>
-                <p class="text-sm text-gray-500 mt-1 line-clamp-1">{v.tagline_en}</p>
-                <div class="mt-3 flex items-center gap-4 text-sm text-gray-500">
-                  <span>🧑 {v.passenger_capacity}</span>
-                  <span>🧳 {v.luggage_large}</span>
-                  <span>{getFuelLabel(v.fuel_type, "en")}</span>
+              <div class="p-6">
+                <div class="flex items-start justify-between gap-3">
+                  <div>
+                    <h3 class="text-xl font-semibold text-ink group-hover:text-brand transition-colors">
+                      {v.name}
+                    </h3>
+                    <p class="text-sm text-ink-secondary mt-1 line-clamp-1">{v.tagline_en}</p>
+                  </div>
+                  {v.book_path && (
+                    <span class="btn btn-primary text-xs px-3 py-1.5">Book Now</span>
+                  )}
                 </div>
-                {v.publication_status === "preview_only" && (
-                  <div class="mt-2">
-                    <span class="inline-block rounded-full bg-yellow-100 px-2 py-0.5 text-xs font-medium text-yellow-800">
-                      Preview
-                    </span>
-                  </div>
-                )}
-                <div class="mt-4 flex items-center justify-between">
-                  <span class="text-lg font-semibold text-brand">
-                    {v.price_display_daily ? `$${v.price_display_daily}/day` : "Pricing TBD"}
-                  </span>
-                  <div class="flex items-center gap-2">
-                    {v.book_path && (
-                      <a
-                        href={v.book_path}
-                        class="inline-flex items-center rounded-lg bg-brand px-3 py-1.5 text-xs font-semibold text-white hover:bg-brand-light"
-                        onclick="event.stopPropagation()"
-                      >
-                        Book Now
-                      </a>
-                    )}
-                    <span class="text-sm font-medium text-brand group-hover:underline">Details →</span>
-                  </div>
+                <div class="mt-4 flex flex-wrap items-center gap-2">
+                  <span class="chip">&#128103; {v.passenger_capacity}</span>
+                  <span class="chip">&#128718; {v.luggage_large}</span>
+                  <span class="chip">{getFuelLabel(v.fuel_type, "en")}</span>
                 </div>
               </div>
             </a>
@@ -141,119 +144,167 @@ const featuredVehicles = allVehicles.slice(0, 3);
         </div>
 
         <div class="mt-10 text-center">
-          <a
-            href="/vehicles/"
-            class="inline-flex items-center justify-center rounded-lg border-2 border-brand px-6 py-3 text-base font-semibold text-brand transition-colors hover:bg-brand hover:text-white"
-          >
-            View All {allVehicles.length} Vehicles →
+          <a href="/vehicles/" class="btn btn-secondary">
+            View All {allVehicles.length} Vehicles &rarr;
           </a>
         </div>
       </div>
     </section>
 
-    <!-- Airport Coverage -->
-    <section class="bg-white py-16 lg:py-20 border-b border-gray-200">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-10">
-          <h2 class="text-3xl font-bold text-gray-900">Airport Delivery</h2>
-          <p class="mt-3 text-lg text-gray-500">
-            We meet you at the terminal at South Florida's three major airports.
+    <!-- ═══════════════════ AIRPORT DELIVERY ═══════════════════ -->
+    <section class="section relative bg-brand-900 overflow-hidden">
+      <!-- Generated airport visual backdrop -->
+      <div class="absolute inset-0">
+        <img src="/images/generated/airport-visual.png" alt="" class="w-full h-full object-cover opacity-30" loading="lazy" />
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-b from-brand-900/90 via-brand-900/70 to-brand-900/90"></div>
+
+      <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto">
+          <p class="text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-4">Airport Delivery</p>
+          <h2 class="text-4xl font-bold tracking-tight text-white">MIA · FLL · PBI</h2>
+          <p class="mt-4 text-lg text-white/70 leading-relaxed">
+            Contactless pickup at all three South Florida airports. Your exact vehicle location is sent privately before your reservation begins.
           </p>
         </div>
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {[
-            { code: "MIA", name: "Miami International", city: "Miami" },
-            { code: "FLL", name: "Fort Lauderdale-Hollywood International", city: "Fort Lauderdale" },
-            { code: "PBI", name: "Palm Beach International", city: "Palm Beach" },
-          ].map((airport) => (
-            <a
-              href={`/locations/${airport.code === "MIA" ? "miami-international-airport" : airport.code === "FLL" ? "fort-lauderdale-airport" : "palm-beach-airport"}/`}
-              class="group rounded-xl border border-gray-200 p-6 transition-all hover:border-brand hover:shadow-lg"
-            >
-              <div class="text-3xl font-bold text-brand">{airport.code}</div>
-              <h3 class="mt-2 text-lg font-semibold text-gray-900 group-hover:text-brand">
-                {airport.name}
-              </h3>
-              <p class="mt-1 text-sm text-gray-500">{airport.city}, FL</p>
-              <p class="mt-3 text-sm font-medium text-brand group-hover:underline">
-                View airport details →
-              </p>
+
+        <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+          {airports.map(a => (
+            <a href={`/locations/${a.slug}/`} class="block rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 p-8 hover:bg-white/15 transition-all duration-300 group">
+              <div class="text-5xl font-bold text-accent mb-3">{a.code}</div>
+              <h3 class="text-xl font-semibold text-white group-hover:text-accent transition-colors">{a.name}</h3>
+              <p class="mt-2 text-sm text-white/60 leading-relaxed">{a.desc}</p>
+              <span class="mt-4 inline-flex items-center text-sm font-medium text-accent group-hover:gap-2 transition-all">
+                Airport details &rarr;
+              </span>
             </a>
           ))}
+        </div>
+
+        <div class="mt-8 text-center">
+          <p class="text-sm text-white/50">
+            Airport parking charges are the renter's responsibility — disclosed in reservation terms.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- How It Works (preview) -->
-    <section class="bg-brand-pale py-16 lg:py-20">
+    <!-- ═══════════════════ WHY 305FLEET ═══════════════════ -->
+    <section class="section bg-surface">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-10">
-          <h2 class="text-3xl font-bold text-gray-900">How It Works</h2>
-          <p class="mt-3 text-lg text-gray-600">Renting with 305 Fleet is simple.</p>
+        <div class="max-w-2xl">
+          <p class="section-eyebrow">Why 305Fleet</p>
+          <h2 class="section-title">A better way to rent in South Florida</h2>
+          <p class="section-subtitle">
+            We're not a faceless national chain. We're a local operator who knows South Florida — the airports, the roads, and what travelers actually need.
+          </p>
         </div>
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
-          {[
-            { step: "1", title: "Browse Vehicles", desc: "Choose from our fleet of newer, well-maintained vehicles." },
-            { step: "2", title: "Check Availability", desc: "Select your dates and pickup location." },
-            { step: "3", title: "Complete Reservation", desc: "Complete the secure reservation requirements and confirm your booking." },
-            { step: "4", title: "Pick Up & Go", desc: "Receive your exact vehicle location privately. Contactless airport pickup at MIA, FLL, or PBI." },
-          ].map((item) => (
-            <div class="text-center">
-              <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand text-white font-bold text-lg">
-                {item.step}
+
+        <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {benefits.map((b, i) => (
+            <div class="text-center sm:text-left">
+              <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand mb-4">
+                {b.icon === "fleet" && (
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z M3 7l4-4h10l4 4 M5 7h14v10H5z"/></svg>
+                )}
+                {b.icon === "local" && (
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+                )}
+                {b.icon === "contactless" && (
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                )}
+                {b.icon === "bilingual" && (
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.175 4.19 13.507 2.25 18 2.25c1.287 0 2.513.46 3.5 1.207"/></svg>
+                )}
               </div>
-              <h3 class="text-base font-semibold text-gray-900">{item.title}</h3>
-              <p class="mt-2 text-sm text-gray-600">{item.desc}</p>
+              <h3 class="text-base font-semibold text-ink mb-2">{b.title}</h3>
+              <p class="text-sm text-ink-secondary leading-relaxed">{b.desc}</p>
             </div>
           ))}
         </div>
-        <div class="mt-10 text-center">
-          <a
-            href="/how-it-works/"
-            class="inline-flex items-center justify-center text-base font-semibold text-brand hover:underline"
-          >
-            Full process details →
-          </a>
-        </div>
       </div>
     </section>
 
-    <!-- Reviews placeholder -->
-    <section class="bg-white py-16 lg:py-20 border-b border-gray-200">
+    <!-- ═══════════════════ HOW IT WORKS ═══════════════════ -->
+    <section class="section bg-brand-50">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <h2 class="text-3xl font-bold text-gray-900">Trusted by South Florida Travelers</h2>
-          <p class="mt-3 text-lg text-gray-500">
-            Customer reviews coming soon.
+        <div class="text-center max-w-2xl mx-auto">
+          <p class="section-eyebrow">How It Works</p>
+          <h2 class="section-title">Simple, direct, contactless</h2>
+          <p class="section-subtitle mx-auto text-center">
+            Four steps from booking to driving. No counter lines, no paperwork delays.
           </p>
         </div>
+
+        <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {steps.map(s => (
+            <div class="relative rounded-2xl bg-white p-8 border border-border shadow-sm">
+              <div class="text-5xl font-bold text-brand-100 mb-4">{s.num}</div>
+              <h3 class="text-lg font-semibold text-ink mb-2">{s.title}</h3>
+              <p class="text-sm text-ink-secondary leading-relaxed">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-10 text-center">
+          <a href="/how-it-works/" class="btn btn-secondary">Full Process Details &rarr;</a>
+        </div>
       </div>
     </section>
 
-    <!-- Final CTA -->
-    <section class="bg-brand text-white py-16 lg:py-20">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold sm:text-4xl">Ready to hit the road?</h2>
-        <p class="mt-3 text-lg text-gray-200">
-          Browse our fleet or get in touch — we're here to help.
+    <!-- ═══════════════════ VEHICLE CATEGORIES ═══════════════════ -->
+    <section class="section bg-surface">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl">
+          <p class="section-eyebrow">Rental Options</p>
+          <h2 class="section-title">Vehicles for every trip</h2>
+          <p class="section-subtitle">
+            From daily rentals to extended stays — our fleet adapts to your needs.
+          </p>
+        </div>
+        <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { title: "Daily Rentals", desc: "Airport pickup, flexible returns", href: "/rental-options/daily/", icon: "calendar" },
+            { title: "Weekly Rentals", desc: "Extended stays, better rates", href: "/rental-options/weekly/", icon: "clock" },
+            { title: "Monthly Rentals", desc: "Long-term flexibility", href: "/rental-options/monthly/", icon: "home" },
+            { title: "Business & Corporate", desc: "Professional fleet, quick pickup", href: "/rental-options/business-corporate/", icon: "briefcase" },
+          ].map(opt => (
+            <a href={opt.href} class="card card-padded group">
+              <h3 class="text-lg font-semibold text-ink mb-2 group-hover:text-brand transition-colors">{opt.title}</h3>
+              <p class="text-sm text-ink-secondary">{opt.desc}</p>
+              <span class="mt-4 inline-block text-sm font-medium text-accent group-hover:gap-2 transition-all">Learn more &rarr;</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ FINAL CTA ═══════════════════ -->
+    <section class="section gradient-brand text-white text-center">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl sm:text-5xl font-bold tracking-tight">
+          Ready to hit the road?
+        </h2>
+        <p class="mt-4 text-xl text-white/80 max-w-2xl mx-auto">
+          Browse our fleet of newer, well-maintained vehicles. Airport delivery at MIA, FLL, and PBI.
         </p>
         <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-          <a
-            href="/vehicles/"
-            class="inline-flex items-center justify-center rounded-lg bg-white px-8 py-4 text-base font-semibold text-brand shadow-lg transition-colors hover:bg-gray-100"
-          >
-            Book Now
-          </a>
-          <a
-            href="/contact/"
-            class="inline-flex items-center justify-center rounded-lg border-2 border-white/80 px-8 py-4 text-base font-semibold text-white transition-colors hover:bg-white/10"
-          >
-            Contact Us
-          </a>
+          <a href="/vehicles/" class="btn btn-light btn-primary-lg">Book Now</a>
+          <a href="/contact/" class="btn px-6 py-4 text-base font-semibold text-white border-2 border-white/30 rounded-lg hover:bg-white/10 transition-all">Contact Us</a>
         </div>
       </div>
     </section>
   </main>
 
   <Footer />
+
+  <style>
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+    .fade-in { animation: fadeIn 0.8s cubic-bezier(0.19, 1, 0.22, 1) both; }
+    .animate-bounce { animation: bounce 2s ease-in-out infinite; }
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in, .animate-bounce { animation: none; }
+    }
+  </style>
 </BaseLayout>

@@ -5,56 +5,92 @@ import Footer from "../components/base/Footer.astro";
 ---
 
 <BaseLayout
-  title="About"
-  description="305 Fleet is a locally operated South Florida vehicle fleet serving Miami, Fort Lauderdale, and Palm Beach with newer vehicles and airport delivery."
+  title="About 305 Fleet"
+  description="305 Fleet is a locally operated South Florida direct vehicle rental service. Newer fleet, contactless airport delivery at MIA, FLL, and PBI. Real local operator — not a faceless chain."
 >
   <Header />
 
-  <main id="main-content" class="flex-1 bg-white">
-    <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-      <h1 class="text-3xl font-bold text-gray-900">About 305 Fleet</h1>
-
-      <div class="mt-6 prose prose-lg prose-gray max-w-none">
-        <p>
-          305 Fleet is a locally operated South Florida vehicle fleet serving Miami, Fort Lauderdale,
-          Palm Beach, and surrounding areas. We offer newer, well-maintained vehicles with straightforward
-          pricing, airport delivery, and responsive personal service.
+  <main id="main-content" class="flex-1">
+    <!-- Hero -->
+    <section class="section-sm gradient-dark text-white">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <p class="text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-4">About Us</p>
+        <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">South Florida's local fleet.</h1>
+        <p class="mt-4 text-lg text-white/70 max-w-2xl">
+          We're a direct-rental operator serving Miami, Fort Lauderdale, and Palm Beach with newer, well-maintained vehicles and contactless airport delivery.
         </p>
+      </div>
+    </section>
 
-        <h2>Our Approach</h2>
-        <p>
-          We're not a faceless national chain or a stereotypical Miami exotic-car rental. We're a real
-          local operator who knows South Florida — the airports, the traffic, the neighborhoods, and
-          the roads. We believe in transparent pricing, clean vehicles, and treating customers like
-          neighbors, not transactions.
-        </p>
-
-        <h2>What We Offer</h2>
-        <ul>
-          <li>Family vehicles with real passenger and luggage capacity</li>
-          <li>Business rentals — professional vehicles, quick pickup</li>
-          <li>Premium SUV options for special occasions</li>
-          <li>Electric and hybrid vehicles for eco-conscious travelers</li>
-          <li>Daily, weekly, and monthly rental options</li>
-          <li>Airport delivery at MIA, FLL, and PBI</li>
-        </ul>
-
-        <h2>Our Standards</h2>
-        <p>
-          Every vehicle in our fleet is newer, well-maintained, and professionally presented.
-          What you see in the photos is what you drive. No surprises, no "or similar" substitutions.
-        </p>
-
-        <div class="mt-8 rounded-lg bg-brand-pale p-6">
-          <p class="text-brand-dark font-medium">
-            Have questions? We're here to help.
-          </p>
-          <a href="/contact/" class="mt-2 inline-flex items-center text-brand font-semibold hover:underline">
-            Get in touch →
-          </a>
+    <!-- Story -->
+    <section class="section bg-surface">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div>
+            <h2 class="text-3xl font-bold text-ink mb-4">Why we exist</h2>
+            <p class="text-ink-secondary leading-relaxed mb-4">
+              305 Fleet exists because renting a vehicle in South Florida shouldn't mean choosing between impersonal national chains and unpredictable peer-to-peer platforms.
+            </p>
+            <p class="text-ink-secondary leading-relaxed mb-4">
+              We're a real local operator who knows South Florida — the airports, the traffic patterns, the neighborhoods, and what travelers and residents actually need.
+            </p>
+            <p class="text-ink-secondary leading-relaxed">
+              Our philosophy is simple: maintain a small, excellent fleet of newer vehicles. Present them professionally. Price them transparently. Deliver them to your airport terminal. That's it.
+            </p>
+          </div>
+          <div class="space-y-6">
+            <div class="rounded-2xl bg-brand-50 p-8">
+              <div class="text-4xl font-bold text-accent mb-2">3</div>
+              <h3 class="text-lg font-semibold text-ink">Airports Served</h3>
+              <p class="mt-1 text-sm text-ink-secondary">MIA, FLL, and PBI — contactless pickup at all three.</p>
+            </div>
+            <div class="rounded-2xl bg-brand-50 p-8">
+              <div class="text-4xl font-bold text-accent mb-2">Direct</div>
+              <h3 class="text-lg font-semibold text-ink">Rental Model</h3>
+              <p class="mt-1 text-sm text-ink-secondary">We rent directly. No platform middlemen. You deal with us — and only us.</p>
+            </div>
+            <div class="rounded-2xl bg-brand-50 p-8">
+              <div class="text-4xl font-bold text-accent mb-2">Local</div>
+              <h3 class="text-lg font-semibold text-ink">South Florida Team</h3>
+              <p class="mt-1 text-sm text-ink-secondary">English and Spanish support. Real people who know the area.</p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <!-- Standards -->
+    <section class="section bg-brand-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-ink text-center mb-10">Our Standards</h2>
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { title: "Real vehicles", desc: "What you see in the listing is exactly what you drive. No 'or similar' substitutions — ever." },
+            { title: "Professional presentation", desc: "Every vehicle is cleaned, inspected, and prepared before every rental." },
+            { title: "Transparent pricing", desc: "No hidden fees. Airport parking charges disclosed upfront in reservation terms." },
+            { title: "Contactless convenience", desc: "Receive your exact vehicle location privately. No counter lines, no paperwork delays." },
+            { title: "Bilingual service", desc: "English and Spanish support from booking through return." },
+            { title: "Local accountability", desc: "We live and work in South Florida. Our reputation depends on every single rental." },
+          ].map(s => (
+            <div class="bg-white rounded-2xl p-8 border border-border">
+              <h3 class="text-lg font-semibold text-ink mb-2">{s.title}</h3>
+              <p class="text-sm text-ink-secondary leading-relaxed">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section gradient-brand text-white text-center">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl font-bold tracking-tight">Ready to experience the difference?</h2>
+        <div class="mt-6 flex flex-col sm:flex-row justify-center gap-4">
+          <a href="/vehicles/" class="btn btn-light btn-primary-lg">Book Now</a>
+          <a href="/contact/" class="btn px-6 py-4 text-base font-semibold text-white border-2 border-white/30 rounded-lg hover:bg-white/10 transition-all">Contact Us</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <Footer />

@@ -2,202 +2,87 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/base/Header.astro";
 import Footer from "../components/base/Footer.astro";
-import CtaBand from "../components/ui/CtaBand.astro";
-import TrustBadge from "../components/ui/TrustBadge.astro";
-import AirportChip from "../components/ui/AirportChip.astro";
 ---
 
 <BaseLayout
   title="How It Works"
-  description="How renting with 305 Fleet works — choose your vehicle, select dates and location, complete reservation requirements, and pick up at MIA, FLL, or PBI."
+  description="How direct vehicle rentals work with 305 Fleet — choose your vehicle, select dates and airport, complete your reservation, and pick up contactlessly at MIA, FLL, or PBI."
 >
   <Header />
 
-  <main id="main-content" class="flex-1 bg-surface">
+  <main id="main-content" class="flex-1">
     <!-- Hero -->
-    <section class="bg-navy-900 text-white py-16 lg:py-20">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="max-w-2xl">
-          <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">How It Works</h1>
-          <p class="mt-4 text-lg text-navy-100 leading-relaxed">
-            Renting a vehicle with 305 Fleet is straightforward.
-            Here's the process from start to finish.
-          </p>
+    <section class="section-sm gradient-dark text-white">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <p class="text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-4">How It Works</p>
+        <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">Simple, direct, contactless.</h1>
+        <p class="mt-4 text-lg text-white/70 max-w-xl">
+          Four steps from browsing to driving. No counter lines, no paperwork delays — just a clean vehicle ready when you arrive.
+        </p>
+      </div>
+    </section>
+
+    <!-- Steps -->
+    <section class="section bg-surface">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="space-y-12">
+          {[
+            { num: "01", title: "Choose Your Vehicle", desc: "Browse our fleet of newer, well-maintained vehicles. Real photos, full specifications, no 'or similar' substitutions. Each listing shows passenger capacity, luggage space, and fuel type so you know exactly what you're getting.", icon: "car" },
+            { num: "02", title: "Select Dates & Airport", desc: "Pick your rental dates and choose your airport — MIA, FLL, or PBI. We confirm availability for your selected vehicle. Airport parking charges are disclosed in reservation terms.", icon: "calendar" },
+            { num: "03", title: "Complete Reservation", desc: "Provide the required information to confirm your direct rental. Your reservation is secured once the requirements are completed and confirmed.", icon: "shield" },
+            { num: "04", title: "Receive Private Instructions", desc: "Before your pickup time, you'll receive your exact vehicle location privately — including garage, level, zone or row, and space number. No wandering through parking structures.", icon: "map" },
+            { num: "05", title: "Contactless Pickup", desc: "Walk to your vehicle's exact location. Access it using the private instructions provided. No counter, no keys to collect — just get in and drive.", icon: "key" },
+            { num: "06", title: "Contactless Return", desc: "Park in the instructed facility. Photograph the vehicle location. Confirm the garage, level, and space in writing. Secure the key and garage ticket per the private return procedure.", icon: "check" },
+          ].map((step, i) => (
+            <div class="flex flex-col sm:flex-row gap-6 sm:gap-10 items-start">
+              <div class="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-brand-50 flex items-center justify-center">
+                <span class="text-2xl sm:text-3xl font-bold text-brand-200">{step.num}</span>
+              </div>
+              <div class="flex-1 pt-2">
+                <h2 class="text-2xl font-bold text-ink mb-3">{step.title}</h2>
+                <p class="text-ink-secondary leading-relaxed text-base">{step.desc}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
 
-    <!-- Process Steps -->
-    <section class="py-16 lg:py-20">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <!-- Desktop: horizontal connected path -->
-        <div class="hidden md:grid grid-cols-4 gap-8 relative">
-          <!-- Connector line -->
-          <div class="absolute top-7 left-[12.5%] right-[12.5%] h-0.5 bg-border"></div>
-
-          <div class="relative flex flex-col items-center text-center">
-            <div class="relative z-10 flex h-14 w-14 items-center justify-center rounded-full bg-navy-900 text-white shadow-md">
-              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z M3 7l4-4h10l4 4 M5 7h14v10H5z" /></svg>
-            </div>
-            <h2 class="mt-4 text-lg font-semibold text-navy-900">Choose your vehicle</h2>
-            <p class="mt-2 text-sm text-ink-secondary leading-relaxed max-w-xs">
-              Browse our fleet of newer, well-maintained vehicles with real photos and specifications.
-              No "or similar" substitutions — the vehicle you see is the vehicle you get.
-            </p>
-          </div>
-
-          <div class="relative flex flex-col items-center text-center">
-            <div class="relative z-10 flex h-14 w-14 items-center justify-center rounded-full bg-navy-900 text-white shadow-md">
-              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10 M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-            </div>
-            <h2 class="mt-4 text-lg font-semibold text-navy-900">Select your dates and location</h2>
-            <p class="mt-2 text-sm text-ink-secondary leading-relaxed max-w-xs">
-              Choose your pickup airport — MIA, FLL, or PBI — and your rental dates.
-              We confirm availability for your chosen vehicle.
-            </p>
-          </div>
-
-          <div class="relative flex flex-col items-center text-center">
-            <div class="relative z-10 flex h-14 w-14 items-center justify-center rounded-full bg-navy-900 text-white shadow-md">
-              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4 M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
-            </div>
-            <h2 class="mt-4 text-lg font-semibold text-navy-900">Complete the secure reservation requirements</h2>
-            <p class="mt-2 text-sm text-ink-secondary leading-relaxed max-w-xs">
-              Provide the necessary information to confirm your reservation securely.
-              Details are confirmed before your booking is finalized.
-            </p>
-          </div>
-
-          <div class="relative flex flex-col items-center text-center">
-            <div class="relative z-10 flex h-14 w-14 items-center justify-center rounded-full bg-navy-900 text-white shadow-md">
-              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>
-            </div>
-            <h2 class="mt-4 text-lg font-semibold text-navy-900">Pick up and enjoy your trip</h2>
-            <p class="mt-2 text-sm text-ink-secondary leading-relaxed max-w-xs">
-              Receive your exact vehicle location privately before pickup. Contactless airport pickup at MIA, FLL, or PBI.
-            </p>
-          </div>
+    <!-- Airport Summary -->
+    <section class="section bg-brand-50">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-ink text-center mb-8">Airport Pickup Locations</h2>
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
+          {[
+            { code: "MIA", name: "Miami International", desc: "Dolphin, Flamingo & Ibis garages", href: "/locations/miami-international-airport/" },
+            { code: "FLL", name: "Fort Lauderdale", desc: "Cypress Garage, Level 7, Zone 7NN", href: "/locations/fort-lauderdale-airport/" },
+            { code: "PBI", name: "Palm Beach", desc: "Long-Term Garage 1 or 2", href: "/locations/palm-beach-airport/" },
+          ].map(a => (
+            <a href={a.href} class="bg-white rounded-2xl p-8 text-center border border-border hover:border-brand hover:shadow-lg transition-all group">
+              <div class="text-4xl font-bold text-accent mb-3">{a.code}</div>
+              <h3 class="font-semibold text-ink group-hover:text-brand transition-colors">{a.name}</h3>
+              <p class="mt-1 text-sm text-ink-secondary">{a.desc}</p>
+            </a>
+          ))}
         </div>
-
-        <!-- Mobile: vertical timeline -->
-        <div class="md:hidden space-y-8">
-          <div class="flex gap-4">
-            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy-900 text-white font-bold text-lg">1</div>
-            <div class="pt-1">
-              <h2 class="text-lg font-semibold text-navy-900">Choose your vehicle</h2>
-              <p class="mt-1 text-sm text-ink-secondary leading-relaxed">
-                Browse our fleet of newer, well-maintained vehicles with real photos and specifications.
-              </p>
-            </div>
-          </div>
-          <div class="flex gap-4">
-            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy-900 text-white font-bold text-lg">2</div>
-            <div class="pt-1">
-              <h2 class="text-lg font-semibold text-navy-900">Select your dates and location</h2>
-              <p class="mt-1 text-sm text-ink-secondary leading-relaxed">
-                Choose your pickup airport — MIA, FLL, or PBI — and your rental dates.
-              </p>
-            </div>
-          </div>
-          <div class="flex gap-4">
-            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy-900 text-white font-bold text-lg">3</div>
-            <div class="pt-1">
-              <h2 class="text-lg font-semibold text-navy-900">Complete the secure reservation requirements</h2>
-              <p class="mt-1 text-sm text-ink-secondary leading-relaxed">
-                Provide the necessary information to confirm your reservation securely.
-              </p>
-            </div>
-          </div>
-          <div class="flex gap-4">
-            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy-900 text-white font-bold text-lg">4</div>
-            <div class="pt-1">
-              <h2 class="text-lg font-semibold text-navy-900">Pick up and enjoy your trip</h2>
-              <p class="mt-1 text-sm text-ink-secondary leading-relaxed">
-                We meet you at the airport or agreed location. Drive away with confidence.
-              </p>
-            </div>
-          </div>
-        </div>
+        <p class="mt-6 text-sm text-ink-tertiary text-center">
+          Airport parking charges associated with pickup and post-rental vehicle retrieval are the renter's responsibility — disclosed in reservation terms.
+        </p>
       </div>
     </section>
 
-    <!-- What to Expect -->
-    <section class="bg-surface-light py-16 lg:py-20 border-y border-border">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="max-w-2xl mx-auto text-center">
-          <h2 class="text-3xl font-bold text-navy-900">What to Expect</h2>
-          <p class="mt-3 text-lg text-ink-secondary">
-            Clear, straightforward rental experience with a local South Florida team.
-          </p>
-        </div>
-
-        <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <div class="rounded-xl border border-border bg-surface p-6 shadow-xs">
-            <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-navy-50">
-              <svg class="h-5 w-5 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z M3 7l4-4h10l4 4 M5 7h14v10H5z" /></svg>
-            </div>
-            <h3 class="text-base font-semibold text-navy-900">Real vehicles</h3>
-            <p class="mt-2 text-sm text-ink-secondary">The vehicle you see in the listing is the vehicle you drive. No substitutions.</p>
-          </div>
-          <div class="rounded-xl border border-border bg-surface p-6 shadow-xs">
-            <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-navy-50">
-              <svg class="h-5 w-5 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-            </div>
-            <h3 class="text-base font-semibold text-navy-900">Local operation</h3>
-            <p class="mt-2 text-sm text-ink-secondary">A South Florida team you can reach directly — not a remote call center.</p>
-          </div>
-          <div class="rounded-xl border border-border bg-surface p-6 shadow-xs">
-            <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-navy-50">
-              <svg class="h-5 w-5 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M3 12h12M3 19h12M17 5l4 4-4 4M17 12l4 4-4 4" /></svg>
-            </div>
-            <h3 class="text-base font-semibold text-navy-900">Bilingual assistance</h3>
-            <p class="mt-2 text-sm text-ink-secondary">English and Spanish support throughout the rental process.</p>
-          </div>
-          <div class="rounded-xl border border-border bg-surface p-6 shadow-xs">
-            <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-navy-50">
-              <svg class="h-5 w-5 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4 M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
-            </div>
-            <h3 class="text-base font-semibold text-navy-900">Clear expectations</h3>
-            <p class="mt-2 text-sm text-ink-secondary">Transparent terms, straightforward process, no hidden surprises.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Airport locations -->
-    <section class="py-12">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-2xl font-bold text-navy-900">Airport Pickup Locations</h2>
-        <p class="mt-2 text-base text-ink-secondary">We meet you at the terminal at all three South Florida airports.</p>
-        <div class="mt-6 flex flex-wrap justify-center gap-3">
-          <AirportChip code="MIA" name="Miami International" href="/locations/miami-international-airport/" />
-          <AirportChip code="FLL" name="Fort Lauderdale" href="/locations/fort-lauderdale-airport/" />
-          <AirportChip code="PBI" name="Palm Beach" href="/locations/palm-beach-airport/" />
-        </div>
-      </div>
-    </section>
-
-    <!-- Trust strip -->
-    <section class="pb-16">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-wrap justify-center gap-3">
-          <TrustBadge icon="M9 17a2 2 0 11-4 0 2 2 0 014 0z M19 17a2 2 0 11-4 0 2 2 0 014 0z" text="Real vehicles" />
-          <TrustBadge icon="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z" text="Local South Florida operation" />
-          <TrustBadge icon="M3 5h12M3 12h12M3 19h12M17 5l4 4-4 4M17 12l4 4-4 4" text="English & Spanish assistance" />
-          <TrustBadge icon="M9 12l2 2 4-4 M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" text="Clear rental expectations" />
+    <!-- Final CTA -->
+    <section class="section gradient-brand text-white text-center">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl font-bold tracking-tight">Ready to get started?</h2>
+        <p class="mt-4 text-lg text-white/70">Browse our fleet and find the right vehicle for your trip.</p>
+        <div class="mt-6 flex flex-col sm:flex-row justify-center gap-4">
+          <a href="/vehicles/" class="btn btn-light btn-primary-lg">Book Now</a>
+          <a href="/contact/" class="btn px-6 py-4 text-base font-semibold text-white border-2 border-white/30 rounded-lg hover:bg-white/10 transition-all">Contact Us</a>
         </div>
       </div>
     </section>
   </main>
-
-  <CtaBand
-    title="Ready to get started?"
-    subtitle="Browse our fleet or check your rental requirements."
-    primaryHref="/vehicles/"
-    primaryLabel="Book Now"
-    secondaryHref="/rental-requirements/"
-    secondaryLabel="View Requirements"
-  />
 
   <Footer />
 </BaseLayout>

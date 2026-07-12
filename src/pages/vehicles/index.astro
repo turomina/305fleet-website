@@ -5,98 +5,79 @@ import Footer from "../../components/base/Footer.astro";
 import vehicles from "../../data/vehicles.json";
 import { getFuelLabel } from "../../config/labels";
 
-const visibleVehicles = vehicles.filter(
-  (v) => v.publication_status === "preview_only" || v.publication_status === "published"
-);
+const allVehicles = vehicles.filter(v => v.publication_status === "preview_only" || v.publication_status === "published");
 ---
 
 <BaseLayout
-  title="Vehicles"
-  description="Browse the 305 Fleet vehicle inventory — newer, well-maintained vehicles for daily, weekly, and monthly rentals in South Florida."
+  title="Our Fleet"
+  description="Browse the 305 Fleet catalog — newer, well-maintained vehicles for direct rental in South Florida. Airport delivery at MIA, FLL, and PBI."
 >
   <Header />
 
-  <main id="main-content" class="flex-1 bg-gray-50">
-    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <h1 class="text-3xl font-bold text-gray-900">Our Vehicles</h1>
-      <p class="mt-3 text-lg text-gray-500">
-        Newer, well-maintained vehicles — airport delivery at MIA, FLL, and PBI.
-      </p>
-
-      <!-- Filter bar (placeholder) -->
-      <div class="mt-8 flex flex-wrap gap-3">
-        <button class="rounded-full bg-brand px-4 py-2 text-sm font-medium text-white">All</button>
-        <button class="rounded-full border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:border-brand hover:text-brand">SUVs</button>
-        <button class="rounded-full border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:border-brand hover:text-brand">Electric / Hybrid</button>
-        <button class="rounded-full border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:border-brand hover:text-brand">Premium</button>
+  <main id="main-content" class="flex-1">
+    <!-- Hero -->
+    <section class="section-sm gradient-dark text-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <p class="text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-4">Fleet Catalog</p>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">{allVehicles.length} vehicles. One standard.</h1>
+        <p class="mt-4 text-lg text-white/70 max-w-2xl">
+          Every vehicle is newer, well-maintained, and professionally presented.
+          Airport delivery available at MIA, FLL, and PBI.
+        </p>
       </div>
+    </section>
 
-      <!-- Vehicle grid -->
-      <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {visibleVehicles.length === 0 ? (
-          <div class="col-span-full text-center py-12">
-            <p class="text-gray-500">Vehicle inventory is being updated. Check back soon.</p>
+    <!-- Fleet Grid -->
+    <section class="section bg-surface">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {allVehicles.length === 0 ? (
+          <div class="text-center py-16">
+            <p class="text-xl text-ink-secondary">No vehicles available. Check back soon.</p>
           </div>
         ) : (
-          visibleVehicles.map((vehicle) => (
-            <a
-              href={`/vehicles/${vehicle.slug}/`}
-              class="group bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm transition-all hover:border-brand hover:shadow-lg"
-            >
-              <div class="aspect-[4/3] bg-gray-200 flex items-center justify-center">
-                {vehicle.hero_image ? (
-                  <img
-                    src={vehicle.hero_image}
-                    alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
-                    class="w-full h-full object-cover"
-                    width="600"
-                    height="450"
-                  />
-                ) : (
-                  <span class="text-gray-400 text-sm">Vehicle photo pending</span>
-                )}
-              </div>
-              <div class="p-5">
-                <h3 class="text-lg font-semibold text-gray-900">
-                  {vehicle.year} {vehicle.make} {vehicle.model}
-                </h3>
-                <p class="text-sm text-gray-500 mt-1">{vehicle.tagline_en}</p>
-                <div class="mt-3 flex items-center gap-4 text-sm text-gray-500">
-                  {vehicle.passenger_capacity && (
-                    <span>🧑‍🤝‍🧑 {vehicle.passenger_capacity}</span>
+          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {allVehicles.map(v => (
+              <a href={`/vehicles/${v.slug}/`} class="card group">
+                <div class="aspect-[16/10] bg-brand-100 overflow-hidden">
+                  {v.hero_image ? (
+                    <img src={v.hero_image} alt={v.name} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" loading="lazy" width="800" height="500" />
+                  ) : (
+                    <div class="w-full h-full flex items-center justify-center text-ink-tertiary text-sm">Photo pending</div>
                   )}
-                  {vehicle.luggage_large && (
-                    <span>🧳 {vehicle.luggage_large}</span>
-                  )}
-                  <span class="capitalize">{getFuelLabel(vehicle.fuel_type, "en")}</span>
                 </div>
-                {vehicle.publication_status === "preview_only" && (
-                  <div class="mt-2">
-                    <span class="inline-block rounded-full bg-yellow-100 px-2 py-0.5 text-xs font-medium text-yellow-800">
-                      Preview — not yet bookable
-                    </span>
+                <div class="p-6">
+                  <div class="flex items-start justify-between gap-3">
+                    <div>
+                      <h2 class="text-xl font-semibold text-ink group-hover:text-brand transition-colors">{v.name}</h2>
+                      <p class="text-sm text-ink-secondary mt-1">{v.tagline_en}</p>
+                    </div>
+                    {v.book_path && (
+                      <span class="btn btn-primary text-xs px-3 py-1.5 shrink-0">Book Now</span>
+                    )}
                   </div>
-                )}
-                <div class="mt-4 flex items-center justify-between">
-                  <span class="text-lg font-semibold text-brand">
-                    {vehicle.price_display_daily ? `$${vehicle.price_display_daily}/day` : "Pricing TBD"}
-                  </span>
-                  <span class="text-sm font-medium text-brand group-hover:underline">View details →</span>
+                  <div class="mt-4 flex flex-wrap items-center gap-2">
+                    <span class="chip">&#128103; {v.passenger_capacity}</span>
+                    <span class="chip">&#128718; {v.luggage_large}</span>
+                    <span class="chip">{getFuelLabel(v.fuel_type, "en")}</span>
+                  </div>
                 </div>
-              </div>
-            </a>
-          ))
+              </a>
+            ))}
+          </div>
         )}
       </div>
+    </section>
 
-      {visibleVehicles.length > 0 && (
-        <div class="mt-12 rounded-lg bg-brand-pale border border-brand-light/30 p-6 text-center">
-          <p class="text-sm text-brand-dark">
-            ⓘ Vehicle inventory is being updated. Real vehicle photos, specifications, and pricing will be available soon.
-          </p>
+    <!-- Bottom CTA -->
+    <section class="section-sm bg-brand-50">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-ink">Not sure which vehicle?</h2>
+        <p class="mt-3 text-ink-secondary">Our team can help you find the right vehicle for your trip.</p>
+        <div class="mt-6">
+          <a href="/contact/" class="btn btn-primary">Contact Us</a>
         </div>
-      )}
-    </div>
+      </div>
+    </section>
   </main>
 
   <Footer />
