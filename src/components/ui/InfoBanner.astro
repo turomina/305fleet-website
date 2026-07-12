@@ -1,0 +1,19 @@
+---
+// Reusable Info Banner component
+export interface Props {
+  variant?: "info" | "success" | "warning" | "error";
+  title?: string;
+}
+const { variant = "info", title } = Astro.props;
+const styles = {
+  info: "bg-blue-50 border-blue-200 text-blue-800",
+  success: "bg-success-light border-green-200 text-green-800",
+  warning: "bg-warning-light border-yellow-200 text-yellow-800",
+  error: "bg-error-light border-red-200 text-red-800",
+};
+---
+
+<div class={`rounded-lg border px-4 py-3 ${styles[variant]}`} role="alert" role={title ? "alert" : "status"}>
+  {title && <p class="font-semibold text-sm mb-1">{title}</p>}
+  <p class="text-sm"><slot /></p>
+</div>

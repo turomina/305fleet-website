@@ -1,0 +1,51 @@
+---
+// Reusable FAQ Accordion component
+export interface Props {
+  items: { question: string; answer: string }[];
+}
+const { items = [] } = Astro.props;
+---
+
+<div class="space-y-3">
+  {items.map((item, i) => (
+    <div class="rounded-lg border border-border bg-surface overflow-hidden">
+      <button
+        type="button"
+        class="flex w-full items-center justify-between px-5 py-4 text-left text-base font-medium text-navy-900 hover:bg-surface-light transition-colors"
+        aria-expanded="false"
+        aria-controls={`faq-panel-${i}`}
+        id={`faq-trigger-${i}`}
+      >
+        <span>{item.question}</span>
+        <svg class="h-5 w-5 shrink-0 text-ink-secondary transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      <div
+        id={`faq-panel-${i}`}
+        role="region"
+        aria-labelledby={`faq-trigger-${i}`}
+        class="hidden px-5 pb-4 text-sm text-ink-secondary leading-relaxed"
+      >
+        {item.answer}
+      </div>
+    </div>
+  ))}
+</div>
+
+<script>
+  document.querySelectorAll('[id^="faq-trigger-"]').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const expanded = trigger.getAttribute('aria-expanded') === 'true';
+      trigger.setAttribute('aria-expanded', String(!expanded));
+      const panel = document.getElementById(trigger.getAttribute('aria-controls') || '');
+      if (panel) {
+        panel.classList.toggle('hidden');
+        const icon = trigger.querySelector('svg');
+        if (icon) {
+          icon.style.transform = expanded ? '' : 'rotate(180deg)';
+        }
+      }
+    });
+  });
+</script>

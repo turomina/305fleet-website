@@ -1,0 +1,21 @@
+---
+// Reusable Airport Chip component
+export interface Props {
+  code: string;
+  name?: string;
+  href?: string;
+}
+const { code, name, href } = Astro.props;
+const Tag = href ? "a" : "div";
+---
+
+<Tag
+  href={href}
+  class="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium text-navy-700 transition-colors hover:border-navy-300 hover:bg-navy-50"
+>
+  <svg class="h-4 w-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+  </svg>
+  <span class="font-bold">{code}</span>
+  {name && <span class="text-ink-secondary font-normal">{name}</span>}
+</Tag>

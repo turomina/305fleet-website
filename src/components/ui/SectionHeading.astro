@@ -1,0 +1,24 @@
+---
+// Reusable Section Heading component
+export interface Props {
+  title: string;
+  subtitle?: string;
+  align?: "left" | "center";
+  level?: "h1" | "h2" | "h3";
+  class?: string;
+}
+const { title, subtitle, align = "center", level = "h2", class: className = "" } = Astro.props;
+const Tag = level;
+const alignClass = align === "center" ? "text-center mx-auto" : "text-left";
+---
+
+<div class={`max-w-2xl ${alignClass} ${className}`}>
+  <Tag class="text-2xl font-bold text-navy-900 sm:text-3xl lg:text-4xl tracking-tight">
+    {title}
+  </Tag>
+  {subtitle && (
+    <p class="mt-3 text-base text-ink-secondary sm:text-lg leading-relaxed">
+      {subtitle}
+    </p>
+  )}
+</div>

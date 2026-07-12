@@ -82,7 +82,7 @@ export const BENEFITS = [
   },
   {
     icon: "star",
-    title: "Trusted on Turo",
-    description: "Established Turo reputation — straightforward rentals",
+    title: "Trusted Reputation",
+    description: "Established rental reputation — straightforward and reliable",
   },
 ] as const;

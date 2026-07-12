@@ -1,0 +1,15 @@
+---
+// Reusable Trust Badge component
+export interface Props {
+  icon: string;
+  text: string;
+}
+const { icon, text } = Astro.props;
+---
+
+<div class="flex items-center gap-2.5 rounded-lg bg-surface-light px-4 py-2.5">
+  <svg class="h-5 w-5 shrink-0 text-navy-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+    <path stroke-linecap="round" stroke-linejoin="round" d={icon} />
+  </svg>
+  <span class="text-sm font-medium text-ink">{text}</span>
+</div>
