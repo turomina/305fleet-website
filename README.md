@@ -73,3 +73,9 @@ Not yet configured. Expected direction: Cloudflare Pages (similar to LIPP). Awai
 - Do not enable live payments, reservations, or driver verification
 - Do not store secrets in repository
 - Do not modify original brand assets
+
+## CI/CD
+- **Deployment:** Cloudflare Pages (Git-integrated, auto-deploy on push)
+- **Production branch:** `main`
+- **Preview branches:** All non-`main` branches
+- **Manual fallback:** `npm run deploy:prod`
