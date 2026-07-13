@@ -78,7 +78,7 @@ const images = [
             {/* CTA */}
             <div class="mt-8 flex flex-col sm:flex-row gap-3">
               {vehicle.book_path ? (
-                <a href={vehicle.book_path} class="btn btn-light btn-primary-lg">Book on Turo</a>
+                <a href={vehicle.book_path} class="btn btn-light btn-primary-lg" data-turo-booking data-vehicle-slug={vehicle.slug} data-locale="en">Book on Turo</a>
               ) : (
                 <a href="/contact/" class="btn btn-light btn-primary-lg">Inquire Now</a>
               )}

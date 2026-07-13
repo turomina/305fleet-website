@@ -50,7 +50,7 @@ const images = [vehicle.hero_image, ...(vehicle.gallery || []).slice(0, 5).map(g
             </div>
             <div class="mt-8 flex flex-col sm:flex-row gap-3">
               {vehicle.book_path ? (
-                <a href={vehicle.book_path} class="btn btn-light btn-primary-lg">Reservar en Turo</a>
+                <a href={vehicle.book_path} class="btn btn-light btn-primary-lg" data-turo-booking data-vehicle-slug={vehicle.slug} data-locale="es">Reservar en Turo</a>
               ) : (
                 <a href="/es/contact/" class="btn btn-light btn-primary-lg">Consultar</a>
               )}
@@ -172,7 +172,7 @@ const images = [vehicle.hero_image, ...(vehicle.gallery || []).slice(0, 5).map(g
         <h2 class="text-4xl font-bold tracking-tight">¿Listo para conducir el {vehicle.name}?</h2>
         <div class="mt-6">
           {vehicle.book_path ? (
-            <a href={vehicle.book_path} class="btn btn-light btn-primary-lg">Reservar en Turo</a>
+            <a href={vehicle.book_path} class="btn btn-light btn-primary-lg" data-turo-booking data-vehicle-slug={vehicle.slug} data-locale="es">Reservar en Turo</a>
           ) : (
             <a href="/es/contact/" class="btn btn-light btn-primary-lg">Consultar</a>
           )}

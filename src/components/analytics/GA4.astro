@@ -1,0 +1,89 @@
+---
+// GA4.astro — Privacy-safe Google Analytics 4 for 305Fleet.com
+// Loads only on production hosts, strips query params/fragment from page_location,
+// sends no PII or full availability-search URLs.
+const MEASUREMENT_ID = "G-0227444H2R";
+const PRODUCTION_HOSTS = ["305fleet.com", "www.305fleet.com"];
+---
+
+<script>
+  (function () {
+    const allowedHosts: string[] = ["305fleet.com", "www.305fleet.com"];
+    const measurementId = "G-0227444H2R";
+
+    if (!allowedHosts.includes(window.location.hostname)) return;
+
+    // ── Build sanitized page location ──
+    const sanitizedLocation = (): string => {
+      return window.location.origin + window.location.pathname;
+    };
+
+    // ── Determine locale from page path ──
+    const detectLocale = (): string => {
+      return window.location.pathname.startsWith("/es/") || window.location.pathname === "/es" ? "es" : "en";
+    };
+
+    // ── Load gtag ──
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+    document.head.appendChild(script);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(...args: any[]) { window.dataLayer.push(arguments); }
+    gtag("js", new Date());
+
+    // Configure: no automatic page_view, set sanitized page_location
+    const cleanLocation = sanitizedLocation();
+    gtag("config", measurementId, {
+      send_page_view: false,
+      page_location: cleanLocation,
+    });
+
+    // Set sanitized location for all subsequent events
+    gtag("set", { page_location: cleanLocation });
+
+    // ── Send manual page_view ──
+    gtag("event", "page_view", {
+      page_location: cleanLocation,
+    });
+
+    // ── availability_search_submit event ──
+    const searchForm = document.getElementById("availability-search");
+    if (searchForm) {
+      searchForm.addEventListener("submit", () => {
+        const lang: string = searchForm.dataset.lang || "en";
+        const hiddenLocation = document.getElementById("as-hid-location") as HTMLInputElement | null;
+        const pickupLocationType: string | null = hiddenLocation ? hiddenLocation.value : null;
+        const locale = pickupLocationType ? lang : lang; // always pass locale
+
+        const params: Record<string, string> = { locale };
+
+        if (pickupLocationType) {
+          params.pickup_location_type = pickupLocationType;
+          // Only send airport_code for known airports
+          if (["MIA", "FLL", "PBI"].includes(pickupLocationType)) {
+            params.airport_code = pickupLocationType;
+          }
+          // Never send: custom address, dates, times, raw query
+        }
+
+        gtag("event", "availability_search_submit", params);
+      });
+    }
+
+    // ── turo_booking_click event ──
+    document.addEventListener("click", (e) => {
+      const target = (e.target as Element).closest("[data-turo-booking]");
+      if (!target) return;
+      const el = target as HTMLElement;
+      const vehicleSlug: string = el.dataset.vehicleSlug || "";
+      const locale: string = el.dataset.locale || detectLocale();
+
+      gtag("event", "turo_booking_click", {
+        vehicle_slug: vehicleSlug,
+        locale,
+      });
+    });
+  })();
+</script>

@@ -4,6 +4,7 @@ import { SITE } from "../config/site";
 import { getLocale, getLocalizedPath } from "../config/i18n";
 import OrganizationJsonLd from "../components/seo/OrganizationJsonLd.astro";
 import WebSiteJsonLd from "../components/seo/WebSiteJsonLd.astro";
+import GA4 from "../components/analytics/GA4.astro";
 
 export interface Props {
   title?: string;
@@ -71,6 +72,7 @@ const xDefaultUrl = new URL("/", canonicalBase).href;
     <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
     <OrganizationJsonLd />
     <WebSiteJsonLd />
+    <GA4 />
     <slot name="head" />
   </head>
   <body class="min-h-screen flex flex-col bg-white text-gray-900 antialiased">
