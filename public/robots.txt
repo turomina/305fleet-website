@@ -1,8 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /search-results/
-Disallow: /es/search-results/
-Disallow: /motion-lab/
-Disallow: /404
 
 Sitemap: https://305fleet.com/sitemap-index.xml
