@@ -76,6 +76,7 @@ const PRODUCTION_HOSTS = ["305fleet.com", "www.305fleet.com"];
     // Uses event_callback pattern so the event is transmitted before navigation.
     // Preserves normal browser behavior for Ctrl/Cmd-click, Shift-click, middle-click,
     // and links explicitly opening in a new tab.
+    // Uses window.gtag (the real gtag.js API) for send_to + event_callback support.
     document.addEventListener("click", (e) => {
       const target = (e.target as Element).closest("[data-turo-booking]") as HTMLAnchorElement | null;
       if (!target) return;
@@ -95,7 +96,8 @@ const PRODUCTION_HOSTS = ["305fleet.com", "www.305fleet.com"];
       if (isModified) return;
 
       // Intercept normal left-click: capture destination, prevent navigation,
-      // send the event, then follow the link via callback or timeout fallback.
+      // send the event via the real gtag.js API, then follow the link via
+      // event_callback or timeout fallback.
       e.preventDefault();
       const destination = el.href;
       let navigated = false;
@@ -106,10 +108,17 @@ const PRODUCTION_HOSTS = ["305fleet.com", "www.305fleet.com"];
         window.location.href = destination;
       };
 
-      // Timeout fallback: never let navigation become stuck
+      // Independent timeout fallback: navigation can never become stuck
       setTimeout(go, 1000);
 
-      gtag("event", "turo_booking_click", {
+      // Use window.gtag (the real gtag.js API) for send_to + event_callback.
+      // Falls back to the local dataLayer wrapper if gtag.js hasn't loaded yet.
+      const gtagFn: (...args: any[]) => void =
+        typeof (window as any).gtag === "function"
+          ? (window as any).gtag
+          : (...args: any[]) => window.dataLayer.push(args);
+
+      gtagFn("event", "turo_booking_click", {
         vehicle_slug: vehicleSlug,
         locale,
         send_to: measurementId,
