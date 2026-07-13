@@ -31,25 +31,8 @@ const images = [
 ---
 
 <BaseLayout
-  title={`${vehicle.name} | 305 Fleet`}
+  title={vehicle.name}
   description={`${vehicle.tagline_en} — ${vehicle.name}. ${vehicle.passenger_capacity} ${seatsLabel}, ${getFuelLabel(vehicle.fuel_type, "en")}. Direct rental with airport delivery at MIA, FLL, and PBI.`}
-  structuredData={{
-    "@context": "https://schema.org",
-    "@type": "Car",
-    name: vehicle.name,
-    description: vehicle.tagline_en,
-    vehicleEngine: { fuelType: vehicle.fuel_type },
-    vehicleSeatingCapacity: vehicle.passenger_capacity,
-    cargoVolume: vehicle.luggage_large ? { value: vehicle.luggage_large, unitText: "large suitcases" } : undefined,
-    brand: { "@type": "Brand", name: vehicle.make },
-    model: vehicle.model,
-    vehicleModelDate: vehicle.year,
-    offers: {
-      "@type": "Offer",
-      availability: "https://schema.org/InStock",
-      areaServed: { "@type": "City", name: "Miami" },
-    },
-  }}
 >
   <Header />
 
@@ -95,7 +78,7 @@ const images = [
             {/* CTA */}
             <div class="mt-8 flex flex-col sm:flex-row gap-3">
               {vehicle.book_path ? (
-                <a href={vehicle.book_path} class="btn btn-light btn-primary-lg">Book Now</a>
+                <a href={vehicle.book_path} class="btn btn-light btn-primary-lg">Book on Turo</a>
               ) : (
                 <a href="/contact/" class="btn btn-light btn-primary-lg">Inquire Now</a>
               )}
@@ -231,7 +214,7 @@ const images = [
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <h2 class="text-4xl font-bold tracking-tight">Ready to drive the {vehicle.name}?</h2>
         <div class="mt-6">
-          <a href="/vehicles/" class="btn btn-light btn-primary-lg">Book Now</a>
+          <a href="/vehicles/" class="btn btn-light btn-primary-lg">View Fleet</a>
         </div>
       </div>
     </section>

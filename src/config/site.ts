@@ -85,8 +85,8 @@ export const BENEFITS = [
 ] as const;
 
 export const CTA = {
-  primary: "Book Now",
-  primaryEs: "Reservar ahora",
+  primary: "Book on Turo",
+  primaryEs: "Reservar en Turo",
   disclosure: "Direct booking experience under development. Browse our fleet and contact us for availability.",
   disclosureEs: "Sistema de reservación directa en desarrollo. Explore nuestra flota y contáctenos para disponibilidad.",
 } as const;

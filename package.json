@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev --host",
-    "build": "astro build",
+    "build": "astro build && node scripts/guard-preview-headers.mjs",
     "preview": "astro preview --host",
     "check": "astro check",
     "format": "prettier --write .",

@@ -23,7 +23,7 @@ const relatedVehicles = vehicles
 const images = [vehicle.hero_image, ...(vehicle.gallery || []).slice(0, 5).map(g => g.src || g)].filter(Boolean);
 ---
 
-<BaseLayout lang="es" title={`${vehicle.name} | 305 Fleet`}
+<BaseLayout lang="es" title={vehicle.name}
   description={`${vehicle.tagline_es || vehicle.tagline_en} — ${vehicle.name}. ${vehicle.passenger_capacity} asientos, ${getFuelLabel(vehicle.fuel_type, "es")}. Alquiler directo con entrega en MIA, FLL y PBI.`}
 >
   <Header />
@@ -50,7 +50,7 @@ const images = [vehicle.hero_image, ...(vehicle.gallery || []).slice(0, 5).map(g
             </div>
             <div class="mt-8 flex flex-col sm:flex-row gap-3">
               {vehicle.book_path ? (
-                <a href={vehicle.book_path} class="btn btn-light btn-primary-lg">Reservar ahora</a>
+                <a href={vehicle.book_path} class="btn btn-light btn-primary-lg">Reservar en Turo</a>
               ) : (
                 <a href="/es/contact/" class="btn btn-light btn-primary-lg">Consultar</a>
               )}
@@ -172,7 +172,7 @@ const images = [vehicle.hero_image, ...(vehicle.gallery || []).slice(0, 5).map(g
         <h2 class="text-4xl font-bold tracking-tight">¿Listo para conducir el {vehicle.name}?</h2>
         <div class="mt-6">
           {vehicle.book_path ? (
-            <a href={vehicle.book_path} class="btn btn-light btn-primary-lg">Reservar ahora</a>
+            <a href={vehicle.book_path} class="btn btn-light btn-primary-lg">Reservar en Turo</a>
           ) : (
             <a href="/es/contact/" class="btn btn-light btn-primary-lg">Consultar</a>
           )}
