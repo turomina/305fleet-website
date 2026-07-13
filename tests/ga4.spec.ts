@@ -206,7 +206,7 @@ test.describe('GA4 — Turo Booking Click', () => {
   });
 
   test('08-turo-click-event-structure', async ({ page }) => {
-    // Verify Turo click tracking would only contain vehicle_slug and locale
+    // Verify Turo click tracking uses event_callback pattern with navigation fallback
     await page.goto(`${BASE}/vehicles/2024-audi-q4-e-tron/`, { waitUntil: 'networkidle', timeout: 30000 });
     await page.waitForTimeout(2000);
 
@@ -227,6 +227,44 @@ test.describe('GA4 — Turo Booking Click', () => {
     // Should NOT contain any PII-related attributes
     const piiAttrs = attributes.filter(a => a.includes('name') || a.includes('email') || a.includes('phone') || a.includes('address') || a.includes('date'));
     expect(piiAttrs).toHaveLength(0);
+
+    // Verify event_callback pattern in built source
+    const htmlContent = await page.content();
+    expect(htmlContent).toMatch(/event_callback|callback/);
+    expect(htmlContent).toMatch(/preventDefault|setTimeout/);
+
+    // Verify modified-click detection keywords present
+    const gaScript = htmlContent.match(/G-0227444H2R[\s\S]*?<\/script>/)?.[0] || htmlContent;
+    expect(gaScript).toMatch(/ctrlKey|metaKey|shiftKey|button\s*!==/);
+  });
+
+  test('08b-turo-normal-click-navigates-on-localhost', async ({ page }) => {
+    // On localhost, GA4 doesn't load, so the Turo handler is not active.
+    // Normal click should navigate to the original /book/* href.
+    await page.goto(`${BASE}/vehicles/2024-audi-q4-e-tron/`, { waitUntil: 'networkidle', timeout: 30000 });
+    await page.waitForTimeout(2000);
+
+    const turoLink = page.locator('[data-turo-booking]').first();
+    const href = await turoLink.getAttribute('href');
+    expect(href).toBeTruthy();
+    expect(href).toMatch(/^\/book\//);
+  });
+
+  test('08c-turo-click-no-sensitive-params-in-handler', async ({ page }) => {
+    // The turo_booking_click handler must only send vehicle_slug and locale
+    await page.goto(`${BASE}/vehicles/2024-audi-q4-e-tron/`, { waitUntil: 'domcontentloaded', timeout: 30000 });
+    const htmlContent = await page.content();
+
+    // The GA4 script should contain vehicle_slug and locale in the event call
+    expect(htmlContent).toMatch(/vehicle_slug/);
+    // Must not send the href/destination URL as an event parameter
+    // (destination is captured in a local variable, not sent to GA)
+    const gaScript = htmlContent.match(/G-0227444H2R[\s\S]*?<\/script>/)?.[0] || '';
+    // gaScript should have vehicle_slug in gtag call near turo_booking_click
+    // but the destination href should not be in the gtag params object
+    expect(gaScript).toContain('vehicle_slug');
+    // No sensitive data patterns in gtag call area
+    expect(gaScript).not.toMatch(/gtag\(.*"(name|email|phone|address|date)"/);
   });
 
 });

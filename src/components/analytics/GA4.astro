@@ -73,16 +73,48 @@ const PRODUCTION_HOSTS = ["305fleet.com", "www.305fleet.com"];
     }
 
     // ── turo_booking_click event ──
+    // Uses event_callback pattern so the event is transmitted before navigation.
+    // Preserves normal browser behavior for Ctrl/Cmd-click, Shift-click, middle-click,
+    // and links explicitly opening in a new tab.
     document.addEventListener("click", (e) => {
-      const target = (e.target as Element).closest("[data-turo-booking]");
+      const target = (e.target as Element).closest("[data-turo-booking]") as HTMLAnchorElement | null;
       if (!target) return;
-      const el = target as HTMLElement;
+
+      const el = target;
       const vehicleSlug: string = el.dataset.vehicleSlug || "";
       const locale: string = el.dataset.locale || detectLocale();
+
+      // Preserve normal browser behavior for modified clicks
+      const isModified =
+        e.ctrlKey ||
+        e.metaKey ||
+        e.shiftKey ||
+        e.button !== 0 || // not primary button
+        el.target === "_blank";
+
+      if (isModified) return;
+
+      // Intercept normal left-click: capture destination, prevent navigation,
+      // send the event, then follow the link via callback or timeout fallback.
+      e.preventDefault();
+      const destination = el.href;
+      let navigated = false;
+
+      const go = () => {
+        if (navigated) return;
+        navigated = true;
+        window.location.href = destination;
+      };
+
+      // Timeout fallback: never let navigation become stuck
+      setTimeout(go, 1000);
 
       gtag("event", "turo_booking_click", {
         vehicle_slug: vehicleSlug,
         locale,
+        send_to: measurementId,
+        event_callback: go,
+        event_timeout: 500,
       });
     });
   })();
