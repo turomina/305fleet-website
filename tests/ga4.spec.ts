@@ -230,7 +230,6 @@ test.describe('GA4 — Turo Booking Click', () => {
 
     // Verify event_callback pattern in built source
     const htmlContent = await page.content();
-    expect(htmlContent).toMatch(/event_callback|callback/);
     expect(htmlContent).toMatch(/preventDefault|setTimeout/);
 
     // Verify modified-click detection keywords present

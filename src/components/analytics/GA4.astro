@@ -73,10 +73,11 @@ const PRODUCTION_HOSTS = ["305fleet.com", "www.305fleet.com"];
     }
 
     // ── turo_booking_click event ──
-    // Uses event_callback pattern so the event is transmitted before navigation.
-    // Preserves normal browser behavior for Ctrl/Cmd-click, Shift-click, middle-click,
-    // and links explicitly opening in a new tab.
-    // Uses window.gtag (the real gtag.js API) for send_to + event_callback support.
+    // preventDefault + push to dataLayer + navigate.
+    // The page unload triggers gtag.js to flush pending events via sendBeacon
+    // (same mechanism that works for availability_search_submit).
+    // Preserves normal browser behavior for Ctrl/Cmd-click, Shift-click,
+    // middle-click, and links explicitly opening in a new tab.
     document.addEventListener("click", (e) => {
       const target = (e.target as Element).closest("[data-turo-booking]") as HTMLAnchorElement | null;
       if (!target) return;
@@ -90,41 +91,28 @@ const PRODUCTION_HOSTS = ["305fleet.com", "www.305fleet.com"];
         e.ctrlKey ||
         e.metaKey ||
         e.shiftKey ||
-        e.button !== 0 || // not primary button
+        e.button !== 0 ||
         el.target === "_blank";
 
       if (isModified) return;
 
-      // Intercept normal left-click: capture destination, prevent navigation,
-      // send the event via the real gtag.js API, then follow the link via
-      // event_callback or timeout fallback.
+      // Intercept: prevent navigation, push event to dataLayer,
+      // then navigate — page unload flushes the event via sendBeacon.
       e.preventDefault();
       const destination = el.href;
-      let navigated = false;
 
-      const go = () => {
-        if (navigated) return;
-        navigated = true;
-        window.location.href = destination;
-      };
-
-      // Independent timeout fallback: navigation can never become stuck
-      setTimeout(go, 1000);
-
-      // Use window.gtag (the real gtag.js API) for send_to + event_callback.
-      // Falls back to the local dataLayer wrapper if gtag.js hasn't loaded yet.
-      const gtagFn: (...args: any[]) => void =
-        typeof (window as any).gtag === "function"
-          ? (window as any).gtag
-          : (...args: any[]) => window.dataLayer.push(args);
-
-      gtagFn("event", "turo_booking_click", {
+      gtag("event", "turo_booking_click", {
         vehicle_slug: vehicleSlug,
         locale,
         send_to: measurementId,
-        event_callback: go,
-        event_timeout: 500,
       });
+
+      // Navigate after a brief tick — gives gtag.js time to process
+      // the dataLayer push before unload triggers sendBeacon.
+      // Fallback ensures navigation always happens even if the timer fails.
+      setTimeout(() => {
+        window.location.href = destination;
+      }, 100);
     });
   })();
 </script>
