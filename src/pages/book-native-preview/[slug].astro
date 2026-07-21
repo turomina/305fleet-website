@@ -1,0 +1,165 @@
+---
+// Variant B — Per-vehicle Wheelbase listing-details
+// Route: /book-native-preview/[slug]/ — preview only
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/base/Header.astro";
+import Footer from "../../components/base/Footer.astro";
+import { getFuelLabel } from "../../config/labels";
+import {
+  DEALER_ID,
+  WHEELBASE_RENTAL_IDS,
+  getWheelbaseVehicles,
+} from "../../data/wheelbase-mapping";
+
+export function getStaticPaths() {
+  return getWheelbaseVehicles().map((v) => ({
+    params: { slug: v.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const vehicle = getWheelbaseVehicles().find((v) => v.slug === slug);
+const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBASE_RENTAL_IDS] : null;
+---
+
+<BaseLayout
+  title={vehicle ? `${vehicle.name} — Availability & Pricing` : "Vehicle Not Found"}
+  description={vehicle ? `Check real-time availability for the ${vehicle.name}. Pricing, dates, and protection from 305 Fleet.` : ""}
+  noindex={true}
+>
+  <Header />
+
+  <main id="main-content" class="flex-1">
+    {!vehicle || !wbId ? (
+      <section class="section bg-surface">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center py-16">
+          <h1 class="text-2xl font-bold text-ink">Vehicle not available</h1>
+          <p class="mt-2 text-ink-secondary">This vehicle is not currently available for online booking.</p>
+          <a href="/book-native-preview/" class="btn btn-primary mt-6">Back to fleet</a>
+        </div>
+      </section>
+    ) : (
+      <>
+        <!-- Native vehicle header -->
+        <section class="bg-navy-900 text-white section-sm">
+          <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <a
+              href="/book-native-preview/"
+              class="inline-flex items-center gap-1 text-sm text-white/60 hover:text-white/90 mb-3 transition-colors"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+              Back to fleet
+            </a>
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight">{vehicle.name}</h1>
+            <p class="mt-2 text-white/70 text-sm sm:text-base">{vehicle.tagline_en}</p>
+            <div class="mt-3 flex flex-wrap items-center gap-3 text-sm text-white/50">
+              <span class="inline-flex items-center gap-1">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m6-5.13a4 4 0 11-8 0 4 4 0 018 0zm6 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                {vehicle.passenger_capacity} passengers
+              </span>
+              <span class="inline-flex items-center gap-1">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                {vehicle.luggage_large} large bags
+              </span>
+              <span>{getFuelLabel(vehicle.fuel_type, "en")}</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Wheelbase listing-details -->
+        <section class="bg-surface section">
+          <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <!-- Delivery notice -->
+            <div class="mb-6 p-4 bg-brand-50 border border-brand-100 rounded-lg">
+              <p class="text-sm text-ink-secondary">
+                <strong class="text-ink">Delivery:</strong> Free pickup in Pembroke Pines &bull; Free delivery to MIA/FLL &bull; Paid delivery to PBI and service area. Airport parking charges are the guest's responsibility. Special delivery subject to confirmation.
+              </p>
+            </div>
+
+            <!-- Loading state -->
+            <div id="wb-loading" class="py-16 text-center">
+              <div class="inline-block w-8 h-8 border-3 border-brand-200 border-t-brand rounded-full animate-spin mb-4"></div>
+              <p class="text-ink-secondary">Loading availability&hellip;</p>
+            </div>
+
+            <!-- Error state -->
+            <div id="wb-error" class="hidden py-16 text-center">
+              <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent-50 mb-4">
+                <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold text-ink mb-2">Booking system unavailable</h3>
+              <p class="text-ink-secondary max-w-md mx-auto mb-6">
+                We're having trouble loading our booking system. Please try again or <a href="/contact/" class="text-brand underline">contact us</a> for availability.
+              </p>
+              <button type="button" id="wb-retry" class="btn btn-primary">Try Again</button>
+            </div>
+
+            <!-- Wheelbase listing-details -->
+            <div id="wb-root">
+              <listing-details
+                id="wb-listing-details"
+                dealer-id={DEALER_ID}
+                rental-id={String(wbId)}
+                locale="en-us"
+                primary-color="#EA5E2D"
+                secondary-color="#314B6E"
+                text-color="#0D141C"
+                text-secondary-color="#58585A"
+                surface-color="#F4FBFE"
+              ></listing-details>
+            </div>
+          </div>
+        </section>
+      </>
+    )}
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  const WIDGET_SCRIPT_URL = "https://d2toxav8qvoos4.cloudfront.net/latest/wheelbase-widget.js";
+  const LOAD_FLAG = "__305fleet_wheelbase_loaded";
+
+  function showError() {
+    document.getElementById("wb-loading")?.classList.add("hidden");
+    document.getElementById("wb-error")?.classList.remove("hidden");
+    document.getElementById("wb-root")?.classList.add("hidden");
+  }
+
+  function showList() {
+    document.getElementById("wb-loading")?.classList.add("hidden");
+    document.getElementById("wb-error")?.classList.add("hidden");
+    document.getElementById("wb-root")?.classList.remove("hidden");
+  }
+
+  async function loadWidget() {
+    if (window[LOAD_FLAG]) return;
+    window[LOAD_FLAG] = true;
+
+    try {
+      if (customElements.get("listing-details")) {
+        showList();
+        return;
+      }
+      await import(WIDGET_SCRIPT_URL);
+      await customElements.whenDefined("listing-details");
+      showList();
+    } catch (err) {
+      console.error("[305Fleet] Wheelbase listing-details failed to load:", err);
+      showError();
+    }
+  }
+
+  document.getElementById("wb-retry")?.addEventListener("click", () => {
+    window[LOAD_FLAG] = false;
+    document.getElementById("wb-error")?.classList.add("hidden");
+    document.getElementById("wb-loading")?.classList.remove("hidden");
+    loadWidget();
+  });
+
+  loadWidget();
+</script>

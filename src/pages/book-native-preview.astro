@@ -1,0 +1,122 @@
+---
+// Variant B — Native 305Fleet Fleet with Wheelbase Listing Details
+// Route: /book-native-preview/ — preview only, not in production navigation
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/base/Header.astro";
+import Footer from "../components/base/Footer.astro";
+import { getFuelLabel } from "../config/labels";
+import {
+  WHEELBASE_RENTAL_IDS,
+  getWheelbaseVehicles,
+} from "../data/wheelbase-mapping";
+
+const activeVehicles = getWheelbaseVehicles().filter(
+  (v) => v.publication_status === "preview_only" || v.publication_status === "published"
+);
+---
+
+<BaseLayout
+  title="Browse Our Fleet"
+  description="Browse our fleet and check real-time availability for your dates."
+  noindex={true}
+>
+  <Header />
+
+  <main id="main-content" class="flex-1">
+    <!-- Minimal page header -->
+    <section class="bg-navy-900 text-white section-sm">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">Choose your vehicle</h1>
+        <p class="mt-2 text-white/70 max-w-3xl text-sm sm:text-base">
+          Select a vehicle to check availability, view real-time pricing, and reserve.
+        </p>
+      </div>
+    </section>
+
+    <!-- Delivery options notice -->
+    <section class="bg-brand-50 border-b border-brand-100">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3">
+        <div class="flex flex-wrap items-start gap-x-4 gap-y-1 text-xs sm:text-sm text-ink-secondary">
+          <span class="inline-flex items-center gap-1">
+            <svg class="w-3.5 h-3.5 text-green-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span><strong class="text-ink">Free pickup:</strong> Pembroke Pines</span>
+          </span>
+          <span class="inline-flex items-center gap-1">
+            <svg class="w-3.5 h-3.5 text-green-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span><strong class="text-ink">Free delivery:</strong> MIA, FLL</span>
+          </span>
+          <span class="inline-flex items-center gap-1">
+            <svg class="w-3.5 h-3.5 text-amber-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span><strong class="text-ink">Paid delivery:</strong> PBI &amp; service area</span>
+          </span>
+        </div>
+        <p class="mt-1.5 text-xs text-ink-tertiary">
+          Airport parking charges are the guest's responsibility. Special delivery is subject to confirmation and applicable fees.
+        </p>
+      </div>
+    </section>
+
+    <!-- Native 305Fleet vehicle grid -->
+    <section class="section bg-surface">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {activeVehicles.map((v) => {
+            const wbId = WHEELBASE_RENTAL_IDS[v.slug as keyof typeof WHEELBASE_RENTAL_IDS];
+            return (
+              <div class="card group rounded-xl border border-border bg-white shadow-xs transition-all overflow-hidden">
+                <div class="aspect-[16/10] bg-brand-100 overflow-hidden">
+                  {v.hero_image ? (
+                    <img
+                      src={v.hero_image}
+                      alt={v.name}
+                      class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                      loading="lazy"
+                      width="800"
+                      height="500"
+                    />
+                  ) : (
+                    <div class="w-full h-full flex items-center justify-center text-ink-tertiary text-sm">Photo pending</div>
+                  )}
+                </div>
+                <div class="p-5">
+                  <h2 class="text-lg font-semibold text-navy-900 group-hover:text-brand transition-colors">
+                    {v.name}
+                  </h2>
+                  <p class="text-sm text-ink-secondary mt-1 line-clamp-2">{v.tagline_en}</p>
+                  <div class="mt-3 flex flex-wrap items-center gap-2">
+                    <span class="inline-flex items-center gap-1 text-xs text-ink-tertiary bg-surface rounded px-2 py-0.5">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m6-5.13a4 4 0 11-8 0 4 4 0 018 0zm6 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                      {v.passenger_capacity}
+                    </span>
+                    <span class="inline-flex items-center gap-1 text-xs text-ink-tertiary bg-surface rounded px-2 py-0.5">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                      {v.luggage_large}
+                    </span>
+                    <span class="inline-flex items-center gap-1 text-xs text-ink-tertiary bg-surface rounded px-2 py-0.5">
+                      {getFuelLabel(v.fuel_type, "en")}
+                    </span>
+                  </div>
+                  <div class="mt-4">
+                    {wbId ? (
+                      <a
+                        href={`/book-native-preview/${v.slug}/`}
+                        class="btn btn-primary w-full text-center text-sm"
+                      >
+                        Check availability &amp; pricing →
+                      </a>
+                    ) : (
+                      <p class="text-sm text-ink-tertiary italic">Not yet available for online booking</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
