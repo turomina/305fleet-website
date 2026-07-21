@@ -9,7 +9,7 @@ export default defineConfig({
     sitemap({
       lastmod: new Date(),
       changefreq: 'weekly',
-      filter: (page) => !page.includes('/brand-preview') && !page.includes('/motion-lab') && !page.includes('/search-results') && !page.includes('/privacy') && !page.includes('/terms') && !page.includes('/accessibility'),
+      filter: (page) => !page.includes('/brand-preview') && !page.includes('/motion-lab') && !page.includes('/search-results') && !page.includes('/privacy') && !page.includes('/terms') && !page.includes('/accessibility') && !page.includes('/book'),
       serialize(item) {
         const url = item.url;
         if (url === 'https://305fleet.com/') return { ...item, priority: 1.0 };
