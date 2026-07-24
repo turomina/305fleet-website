@@ -1,0 +1,230 @@
+---
+// VehicleEntryPill.astro — Interim vehicle-selection entry point
+// Replaces the full availability search form until a documented Wheelbase
+// search handoff exists. Retains the premium visual shell but does not
+// collect dates/times that would be silently discarded.
+const { lang = "en" } = Astro.props as { lang?: "en" | "es" };
+const isEs = lang === "es";
+---
+
+<div class="vehicle-entry-pill" data-lang={lang}>
+  <!-- Label row -->
+  <div class="vep-label-row">
+    <span class="vep-label">
+      {isEs ? "Dónde" : "Where"}
+    </span>
+  </div>
+
+  <!-- Location info — static, not interactive -->
+  <div class="vep-content-row">
+    <div class="vep-location-card">
+      <div class="vep-location-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 14s6-4.5 6-8.5A6 6 0 006.5 5.5C4 7 4 10 4 10s0 4 4 4z"/>
+          <circle cx="8" cy="4" r="2"/>
+        </svg>
+      </div>
+      <div class="vep-location-text">
+        <span class="vep-location-primary">
+          {isEs ? "Entrega gratuita en MIA y FLL" : "Free delivery to MIA &amp; FLL"}
+        </span>
+        <span class="vep-location-secondary">
+          {isEs ? "Entrega con costo a PBI y área local · Sujeto a confirmación" : "Paid delivery to PBI &amp; local area · Subject to confirmation"}
+        </span>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="vep-divider" aria-hidden="true"></div>
+
+    <!-- Supporting copy -->
+    <div class="vep-info-card">
+      <div class="vep-info-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 16v-4M12 8h.01"/>
+        </svg>
+      </div>
+      <div class="vep-info-text">
+        <span class="vep-info-primary">
+          {isEs ? "Seleccione un vehículo para ver disponibilidad y precios en vivo" : "Select a vehicle to check live availability and pricing"}
+        </span>
+        <span class="vep-info-secondary">
+          {isEs ? "a través de nuestro sistema de reservación seguro." : "through our secure booking system."}
+        </span>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <a href={isEs ? "/es/vehicles/" : "/vehicles/"} class="vep-cta">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+      <span>{isEs ? "Elegir un vehículo" : "Choose a vehicle"}</span>
+    </a>
+  </div>
+</div>
+
+<style>
+  .vehicle-entry-pill {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: var(--color-surface, #FFFFFF);
+    border: 1px solid var(--color-border, #DCE2EA);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+    width: 100%;
+    max-width: 960px;
+    padding: 0;
+  }
+
+  .vep-label-row {
+    padding: 10px 20px 6px;
+  }
+
+  .vep-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-ink-secondary, #58585A);
+    user-select: none;
+  }
+
+  .vep-content-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 6px 6px 6px 20px;
+  }
+
+  .vep-location-card,
+  .vep-info-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 8px 0;
+  }
+
+  .vep-location-icon,
+  .vep-info-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: var(--color-accent, #EA5E2D);
+    margin-top: 2px;
+  }
+
+  .vep-location-icon {
+    background: rgba(234,94,45,0.1);
+  }
+
+  .vep-info-icon {
+    background: rgba(49,75,110,0.08);
+    color: var(--color-brand, #314B6E);
+  }
+
+  .vep-location-text,
+  .vep-info-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .vep-location-primary,
+  .vep-info-primary {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-ink, #0D141C);
+    line-height: 1.3;
+  }
+
+  .vep-info-primary {
+    font-weight: 500;
+  }
+
+  .vep-location-secondary,
+  .vep-info-secondary {
+    font-size: 12px;
+    color: var(--color-ink-tertiary, #8E8E90);
+    line-height: 1.3;
+  }
+
+  .vep-divider {
+    width: 1px;
+    height: 48px;
+    background: var(--color-border, #DCE2EA);
+    flex-shrink: 0;
+    margin: 0 4px;
+  }
+
+  .vep-cta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background: var(--color-accent, #EA5E2D);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .vep-cta:hover {
+    background: var(--color-accent-600, #D04D1F);
+    box-shadow: 0 4px 16px rgba(234,94,45,0.3);
+    transform: translateY(-1px);
+  }
+
+  .vep-cta:active {
+    transform: scale(0.97);
+  }
+
+  .vep-cta:focus-visible {
+    outline: 3px solid var(--color-accent, #EA5E2D);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .vep-content-row {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 6px 16px 16px;
+    }
+
+    .vep-label-row {
+      padding: 14px 16px 6px;
+    }
+
+    .vep-location-card,
+    .vep-info-card {
+      padding: 8px 0;
+    }
+
+    .vep-divider {
+      width: 100%;
+      height: 1px;
+      margin: 4px 0;
+    }
+
+    .vep-cta {
+      justify-content: center;
+      padding: 16px 24px;
+      margin-top: 8px;
+    }
+  }
+</style>

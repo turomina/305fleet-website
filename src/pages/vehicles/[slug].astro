@@ -32,7 +32,7 @@ const images = [
 
 <BaseLayout
   title={vehicle.name}
-  description={`${vehicle.tagline_en} — ${vehicle.name}. ${vehicle.passenger_capacity} ${seatsLabel}, ${getFuelLabel(vehicle.fuel_type, "en")}. Direct rental with airport delivery at MIA, FLL, and PBI.`}
+  description={`${vehicle.tagline_en} — ${vehicle.name}. ${vehicle.passenger_capacity} ${seatsLabel}, ${getFuelLabel(vehicle.fuel_type, "en")}. Direct rental with free airport delivery at MIA and FLL.`}
 >
   <Header />
 
@@ -161,16 +161,16 @@ const images = [
     {/* Airport Pickup */}
     <section class="section bg-white">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-ink text-center mb-3">Airport Pickup</h2>
+        <h2 class="text-3xl font-bold text-ink text-center mb-3">Airport Delivery</h2>
         <p class="text-center text-ink-secondary max-w-xl mx-auto mb-10">
-          Pick up your {vehicle.name} at MIA, FLL, or PBI. Contactless handoff from designated airport parking — exact location sent privately.
+          Free delivery to MIA and FLL. Paid delivery to PBI. Contactless handoff from designated airport parking — exact location sent privately.
         </p>
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
           {["MIA", "FLL", "PBI"].map(code => (
             <a href={`/locations/${code === "MIA" ? "miami-international-airport" : code === "FLL" ? "fort-lauderdale-airport" : "palm-beach-airport"}/`}
                class="card card-padded text-center group">
               <div class="text-3xl font-bold text-accent mb-2">{code}</div>
-              <p class="text-sm text-ink-secondary">Contactless pickup available</p>
+              <p class="text-sm text-ink-secondary">{code === "PBI" ? "Paid delivery available" : "Free delivery available"}</p>
               <span class="mt-3 inline-block text-xs font-medium text-accent group-hover:gap-1.5 transition-all">Details &rarr;</span>
             </a>
           ))}

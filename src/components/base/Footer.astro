@@ -2,6 +2,12 @@
 import { SITE, NAV } from "../../config/site";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 const year = new Date().getFullYear();
+
+interface Props {
+  esPath?: string;
+}
+
+const { esPath } = Astro.props as Props;
 ---
 
 <footer class="bg-brand-dark text-white">
@@ -20,7 +26,11 @@ const year = new Date().getFullYear();
           {SITE.tagline} — {SITE.description}
         </p>
         <div class="mt-4">
-          <LanguageSwitcher />
+          {esPath != null ? (
+            <a href={esPath} class="text-sm font-medium text-accent hover:text-accent-600 transition-colors">Información en español</a>
+          ) : (
+            <LanguageSwitcher />
+          )}
         </div>
       </div>
 

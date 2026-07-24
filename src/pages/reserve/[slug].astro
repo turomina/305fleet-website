@@ -30,7 +30,7 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
   noindex={true}
   hideSpanishHreflang={true}
 >
-  <Header />
+  <Header esPath={`/es/vehicles/${vehicle.slug}/`} />
 
   <main id="main-content" class="flex-1">
     {!vehicle || !wbId ? (
@@ -133,7 +133,7 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
     )}
   </main>
 
-  <Footer />
+  <Footer esPath={`/es/vehicles/${vehicle.slug}/`} />
 </BaseLayout>
 
 <script>

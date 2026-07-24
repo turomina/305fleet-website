@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/base/Header.astro";
 import Footer from "../components/base/Footer.astro";
-import AvailabilitySearch from "../components/booking/AvailabilitySearch.astro";
+import VehicleEntryPill from "../components/booking/VehicleEntryPill.astro";
 import vehicles from "../data/vehicles.json";
 import { getFuelLabel } from "../config/labels";
 
@@ -12,7 +12,7 @@ const featuredVehicles = allVehicles.slice(0, 3);
 const airports = [
   { code: "MIA", name: "Miami International", slug: "miami-international-airport", desc: "Dolphin, Flamingo & Ibis garages", pos: [-2.2, 0.4, 0], color: "0xEA5E2D" },
   { code: "FLL", name: "Fort Lauderdale", slug: "fort-lauderdale-airport", desc: "Cypress Garage, Level 7, Zone 7NN", pos: [0, -0.6, 0], color: "0x607EA2" },
-  { code: "PBI", name: "Palm Beach", slug: "palm-beach-airport", desc: "Long-Term Garage 1 or 2", pos: [2.4, 0.2, 0], color: "0x314B6E" },
+  { code: "PBI", name: "Palm Beach", slug: "palm-beach-airport", desc: "Paid delivery · Long-Term Garage 1 or 2", pos: [2.4, 0.2, 0], color: "0x314B6E" },
 ];
 
 const benefits = [
@@ -24,7 +24,7 @@ const benefits = [
 
 const steps = [
   { num: "1", title: "Choose Your Vehicle", desc: "Browse our fleet of carefully selected, well-maintained vehicles with real photos and full specifications." },
-  { num: "2", title: "Select Dates & Airport", desc: "Pick MIA, FLL, or PBI. Choose your rental dates. Reservation details confirmed before pickup." },
+  { num: "2", title: "Select Dates & Airport", desc: "Pick MIA, FLL, or PBI. Free delivery to MIA and FLL. Paid delivery to PBI. Reservation details confirmed before pickup." },
   { num: "3", title: "Complete Reservation", desc: "Provide the required information to confirm your direct rental." },
   { num: "4", title: "Pick Up & Drive", desc: "Receive private location instructions. Contactless pickup from designated airport parking. Enjoy South Florida." },
 ];
@@ -32,7 +32,7 @@ const steps = [
 
 <BaseLayout
   title="South Florida Direct Vehicle Rentals"
-  description="Direct vehicle rentals in South Florida. Carefully selected fleet, contactless airport pickup from designated parking at MIA, FLL & PBI. Book with a local operator you can reach directly."
+  description="Direct vehicle rentals in South Florida. Carefully selected fleet, free airport delivery to MIA and FLL. Book with a local operator you can reach directly."
 >
   <Header />
 
@@ -71,20 +71,20 @@ const steps = [
 
           <!-- Supporting message -->
           <p class="hero-sub text-lg sm:text-xl text-white/70 leading-relaxed max-w-xl mx-auto mb-10" data-anim="hero-sub">
-            Direct rentals from a South Florida fleet operator. Contactless airport pickup from
-            designated parking facilities at MIA, FLL, and PBI.
+            Direct rentals from a South Florida fleet operator. Free airport delivery to MIA
+            and FLL. Contactless handoff from designated airport parking.
           </p>
 
           <!-- ═══ CENTRAL SEARCH PILL ═══ -->
           <div class="hero-search" data-anim="hero-search">
-            <AvailabilitySearch lang="en" />
+            <VehicleEntryPill lang="en" />
           </div>
 
           <!-- Trust badges -->
           <div class="hero-trust mt-8 flex items-center justify-center gap-6 text-sm text-white/50" data-anim="hero-trust">
             <span class="flex items-center gap-1.5">
               <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-              MIA · FLL · PBI
+              Free MIA &amp; FLL Delivery
             </span>
             <span class="flex items-center gap-1.5">
               <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
@@ -251,7 +251,7 @@ const steps = [
     <section class="section gradient-brand text-white text-center">
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <h2 class="text-4xl sm:text-5xl font-bold tracking-tight">Ready to hit the road?</h2>
-        <p class="mt-4 text-xl text-white/80 max-w-2xl mx-auto">Browse our fleet. Contactless airport pickup at MIA, FLL, and PBI.</p>
+        <p class="mt-4 text-xl text-white/80 max-w-2xl mx-auto">Browse our fleet. Free airport delivery to MIA and FLL.</p>
         <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
           <a href="/vehicles/" class="btn btn-light btn-primary-lg">View Fleet</a>
           <a href="/contact/" class="btn px-6 py-4 text-base font-semibold text-white border-2 border-white/30 rounded-lg hover:bg-white/10 transition-all">Contact Us</a>
