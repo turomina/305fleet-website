@@ -27,6 +27,14 @@
   --color-accent-500: #EA5E2D;
   --color-accent-600: #D04D1F;
 
+  /* Navy aliases — legacy pattern providing bg/text-navy-* utilities mapped to brand */
+  --color-navy-50: var(--color-brand-50);
+  --color-navy-100: var(--color-brand-100);
+  --color-navy-300: var(--color-brand-300);
+  --color-navy-600: var(--color-brand-600);
+  --color-navy-700: var(--color-brand-700);
+  --color-navy-900: var(--color-brand-900);
+
   /* Text */
   --color-ink: #0D141C;
   --color-ink-secondary: #58585A;
