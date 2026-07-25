@@ -27,14 +27,218 @@
     "description_es": "El Cadillac Escalade ESV Sport 2025 es nuestro veh\u00edculo insignia \u2014 un SUV de lujo de tama\u00f1o completo con asientos premium, tecnolog\u00eda avanzada y presencia imponente. Ideal para recogidas en aeropuerto, viajes familiares y viajes en grupo por el sur de Florida.",
     "turo_url": "https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/cadillac/escalade-esv/2991725",
     "book_path": "/book/escalade",
-    "hero_image": "/images/vehicles/2025-cadillac-escalade-esv/hero.webp",
+    "hero_image": "/images/vehicles/2025-cadillac-escalade-esv/gallery/01-front-main.webp",
     "gallery": [
-      "/images/vehicles/2025-cadillac-escalade-esv/cargo.webp",
-      "/images/vehicles/2025-cadillac-escalade-esv/dashboard.webp",
-      "/images/vehicles/2025-cadillac-escalade-esv/exterior-rear.webp",
-      "/images/vehicles/2025-cadillac-escalade-esv/exterior-side.webp",
-      "/images/vehicles/2025-cadillac-escalade-esv/interior-front.webp",
-      "/images/vehicles/2025-cadillac-escalade-esv/interior-rear.webp"
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/01-front-main.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/01-front-main.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Front Angle View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/02-front-angle-2.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/02-front-angle-2.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Front Angle View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/02-front-angle-3.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/02-front-angle-3.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Front Angle View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/02-front-angle-4.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/02-front-angle-4.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Front Angle View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/02-front-angle-5.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/02-front-angle-5.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Front Angle View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/02-front-angle-6.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/02-front-angle-6.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Front Angle View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/02-front-angle-7.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/02-front-angle-7.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Front Angle View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/02-front-angle-8.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/02-front-angle-8.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Front Angle View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/02-front-angle-9.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/02-front-angle-9.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Front Angle View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/03-side.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/03-side.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Side View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/06-dashboard-2.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/06-dashboard-2.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Dashboard View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/06-dashboard-3.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/06-dashboard-3.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Dashboard View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/06-dashboard.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/06-dashboard.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Dashboard View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/09-cargo.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/09-cargo.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Cargo View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/11-detail-badge.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/11-detail-badge.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Detail Badge View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/14-detail-10.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/14-detail-10.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Detail View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/14-detail-11.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/14-detail-11.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Detail View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/14-detail-12.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/14-detail-12.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Detail View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/14-detail-13.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/14-detail-13.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Detail View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/14-detail-14.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/14-detail-14.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Detail View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/14-detail-15.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/14-detail-15.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Detail View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/14-detail-2.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/14-detail-2.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Detail View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/14-detail-3.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/14-detail-3.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Detail View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/14-detail-4.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/14-detail-4.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Detail View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/14-detail-5.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/14-detail-5.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Detail View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/14-detail-6.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/14-detail-6.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Detail View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/14-detail-7.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/14-detail-7.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Detail View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/14-detail-8.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/14-detail-8.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Detail View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/14-detail-9.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/14-detail-9.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Detail View",
+        "width": 1600,
+        "height": 1066
+      },
+      {
+        "src": "/images/vehicles/2025-cadillac-escalade-esv/gallery/14-detail.webp",
+        "thumb": "/images/vehicles/2025-cadillac-escalade-esv/gallery/thumb/14-detail.webp",
+        "alt": "2025 Cadillac Escalade Esv \u2014 Detail View",
+        "width": 1600,
+        "height": 1066
+      }
     ],
     "price_display_daily": null,
     "price_display_weekly": null,
@@ -72,24 +276,92 @@
     "description_es": "El Audi Q4 e-tron Premium Plus 2024 combina la firma de lujo de Audi con eficiencia el\u00e9ctrica. Un SUV compacto perfecto para viajar por el sur de Florida \u2014 silencioso, refinado y ecol\u00f3gico.",
     "turo_url": "https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/audi/q4-e-tron/3419762",
     "book_path": "/book/q4",
-    "hero_image": "/images/vehicles/2024-audi-q4-e-tron/hero.webp",
+    "hero_image": "/images/vehicles/2024-audi-q4-e-tron/gallery/01-front-main-2.webp",
     "gallery": [
-      "/images/vehicles/2024-audi-q4-e-tron/exterior-front.webp",
-      "/images/vehicles/2024-audi-q4-e-tron/exterior-rear.webp",
-      "/images/vehicles/2024-audi-q4-e-tron/exterior-side.webp",
-      "/images/vehicles/2024-audi-q4-e-tron/interior-front.webp",
-      "/images/vehicles/2024-audi-q4-e-tron/interior-rear.webp",
-      "/images/vehicles/2024-audi-q4-e-tron/dashboard.webp",
-      "/images/vehicles/2024-audi-q4-e-tron/center-console.webp",
-      "/images/vehicles/2024-audi-q4-e-tron/third-row.webp",
-      "/images/vehicles/2024-audi-q4-e-tron/cargo.webp",
-      "/images/vehicles/2024-audi-q4-e-tron/charging-port.webp",
-      "/images/vehicles/2024-audi-q4-e-tron/image-11.webp",
-      "/images/vehicles/2024-audi-q4-e-tron/image-12.webp",
-      "/images/vehicles/2024-audi-q4-e-tron/image-13.webp",
-      "/images/vehicles/2024-audi-q4-e-tron/image-14.webp",
-      "/images/vehicles/2024-audi-q4-e-tron/image-15.webp",
-      "/images/vehicles/2024-audi-q4-e-tron/image-16.webp"
+      {
+        "src": "/images/vehicles/2024-audi-q4-e-tron/gallery/01-front-main-2.webp",
+        "thumb": "/images/vehicles/2024-audi-q4-e-tron/gallery/thumb/01-front-main-2.webp",
+        "alt": "2024 Audi Q4 E Tron \u2014 Front Main View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2024-audi-q4-e-tron/gallery/01-front-main.webp",
+        "thumb": "/images/vehicles/2024-audi-q4-e-tron/gallery/thumb/01-front-main.webp",
+        "alt": "2024 Audi Q4 E Tron \u2014 Front Main View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2024-audi-q4-e-tron/gallery/02-front-angle-2.webp",
+        "thumb": "/images/vehicles/2024-audi-q4-e-tron/gallery/thumb/02-front-angle-2.webp",
+        "alt": "2024 Audi Q4 E Tron \u2014 Front Angle View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2024-audi-q4-e-tron/gallery/02-front-angle-3.webp",
+        "thumb": "/images/vehicles/2024-audi-q4-e-tron/gallery/thumb/02-front-angle-3.webp",
+        "alt": "2024 Audi Q4 E Tron \u2014 Front Angle View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2024-audi-q4-e-tron/gallery/02-front-angle.webp",
+        "thumb": "/images/vehicles/2024-audi-q4-e-tron/gallery/thumb/02-front-angle.webp",
+        "alt": "2024 Audi Q4 E Tron \u2014 Front Angle View",
+        "width": 1600,
+        "height": 1095
+      },
+      {
+        "src": "/images/vehicles/2024-audi-q4-e-tron/gallery/04-rear-2.webp",
+        "thumb": "/images/vehicles/2024-audi-q4-e-tron/gallery/thumb/04-rear-2.webp",
+        "alt": "2024 Audi Q4 E Tron \u2014 Rear View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2024-audi-q4-e-tron/gallery/04-rear-3.webp",
+        "thumb": "/images/vehicles/2024-audi-q4-e-tron/gallery/thumb/04-rear-3.webp",
+        "alt": "2024 Audi Q4 E Tron \u2014 Rear View",
+        "width": 1600,
+        "height": 1212
+      },
+      {
+        "src": "/images/vehicles/2024-audi-q4-e-tron/gallery/04-rear.webp",
+        "thumb": "/images/vehicles/2024-audi-q4-e-tron/gallery/thumb/04-rear.webp",
+        "alt": "2024 Audi Q4 E Tron \u2014 Rear View",
+        "width": 1600,
+        "height": 1235
+      },
+      {
+        "src": "/images/vehicles/2024-audi-q4-e-tron/gallery/05-rear-angle.webp",
+        "thumb": "/images/vehicles/2024-audi-q4-e-tron/gallery/thumb/05-rear-angle.webp",
+        "alt": "2024 Audi Q4 E Tron \u2014 Rear Angle View",
+        "width": 1600,
+        "height": 1177
+      },
+      {
+        "src": "/images/vehicles/2024-audi-q4-e-tron/gallery/06-dashboard.webp",
+        "thumb": "/images/vehicles/2024-audi-q4-e-tron/gallery/thumb/06-dashboard.webp",
+        "alt": "2024 Audi Q4 E Tron \u2014 Dashboard View",
+        "width": 1600,
+        "height": 1081
+      },
+      {
+        "src": "/images/vehicles/2024-audi-q4-e-tron/gallery/10-detail-pano-roof.webp",
+        "thumb": "/images/vehicles/2024-audi-q4-e-tron/gallery/thumb/10-detail-pano-roof.webp",
+        "alt": "2024 Audi Q4 E Tron \u2014 Detail Pano Roof View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2024-audi-q4-e-tron/gallery/11-detail-badge.webp",
+        "thumb": "/images/vehicles/2024-audi-q4-e-tron/gallery/thumb/11-detail-badge.webp",
+        "alt": "2024 Audi Q4 E Tron \u2014 Detail Badge View",
+        "width": 1362,
+        "height": 1065
+      }
     ],
     "price_display_daily": null,
     "price_display_weekly": null,
@@ -127,24 +399,211 @@
     "description_es": "El Volvo XC90 T8 PHEV Plus 2025 ofrece lo mejor de dos mundos \u2014 conducci\u00f3n el\u00e9ctrica para trayectos cortos y gasolina para viajes m\u00e1s largos. Un SUV de lujo de 3 filas con la reconocida herencia de seguridad de Volvo.",
     "turo_url": "https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/volvo/xc90-plug-in-hybrid/2945829",
     "book_path": "/book/xc90",
-    "hero_image": "/images/vehicles/2025-volvo-xc90-t8-phev/hero.webp",
+    "hero_image": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/01-front-main.webp",
     "gallery": [
-      "/images/vehicles/2025-volvo-xc90-t8-phev/exterior-front.webp",
-      "/images/vehicles/2025-volvo-xc90-t8-phev/exterior-rear.webp",
-      "/images/vehicles/2025-volvo-xc90-t8-phev/exterior-side.webp",
-      "/images/vehicles/2025-volvo-xc90-t8-phev/interior-front.webp",
-      "/images/vehicles/2025-volvo-xc90-t8-phev/interior-rear.webp",
-      "/images/vehicles/2025-volvo-xc90-t8-phev/dashboard.webp",
-      "/images/vehicles/2025-volvo-xc90-t8-phev/center-console.webp",
-      "/images/vehicles/2025-volvo-xc90-t8-phev/third-row.webp",
-      "/images/vehicles/2025-volvo-xc90-t8-phev/cargo.webp",
-      "/images/vehicles/2025-volvo-xc90-t8-phev/charging-port.webp",
-      "/images/vehicles/2025-volvo-xc90-t8-phev/image-11.webp",
-      "/images/vehicles/2025-volvo-xc90-t8-phev/image-12.webp",
-      "/images/vehicles/2025-volvo-xc90-t8-phev/image-13.webp",
-      "/images/vehicles/2025-volvo-xc90-t8-phev/image-14.webp",
-      "/images/vehicles/2025-volvo-xc90-t8-phev/image-15.webp",
-      "/images/vehicles/2025-volvo-xc90-t8-phev/image-16.webp"
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/01-front-main.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/01-front-main.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Front Main View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/02-front-angle.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/02-front-angle.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Front Angle View",
+        "width": 1600,
+        "height": 1230
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/03-side.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/03-side.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Side View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/04-rear.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/04-rear.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Rear View",
+        "width": 1448,
+        "height": 1086
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/05-rear-angle-2.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/05-rear-angle-2.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Rear Angle View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/05-rear-angle.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/05-rear-angle.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Rear Angle View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/06-dashboard-2.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/06-dashboard-2.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Dashboard View",
+        "width": 1365,
+        "height": 1868
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/06-dashboard-3.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/06-dashboard-3.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Dashboard View",
+        "width": 1512,
+        "height": 2016
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/06-dashboard-4.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/06-dashboard-4.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Dashboard View",
+        "width": 1600,
+        "height": 1104
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/06-dashboard-5.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/06-dashboard-5.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Dashboard View",
+        "width": 1600,
+        "height": 916
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/06-dashboard-6.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/06-dashboard-6.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Dashboard View",
+        "width": 1600,
+        "height": 1948
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/06-dashboard.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/06-dashboard.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Dashboard View",
+        "width": 1428,
+        "height": 1893
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/07-interior-front-2.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/07-interior-front-2.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Interior Front View",
+        "width": 1600,
+        "height": 1199
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/07-interior-front.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/07-interior-front.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Interior Front View",
+        "width": 1600,
+        "height": 1139
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/08-interior-rear-2.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/08-interior-rear-2.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Interior Rear View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/08-interior-rear-3.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/08-interior-rear-3.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Interior Rear View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/08-interior-rear-4.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/08-interior-rear-4.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Interior Rear View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/08-interior-rear-5.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/08-interior-rear-5.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Interior Rear View",
+        "width": 1600,
+        "height": 1159
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/08-interior-rear.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/08-interior-rear.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Interior Rear View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/11-detail-badge.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/11-detail-badge.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Detail Badge View",
+        "width": 1600,
+        "height": 877
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/12-detail-light.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/12-detail-light.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Detail Light View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/13-detail-wheel.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/13-detail-wheel.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Detail Wheel View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/14-detail-2.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/14-detail-2.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Detail View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/14-detail-3.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/14-detail-3.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Detail View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/14-detail-4.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/14-detail-4.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Detail View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/14-detail-5.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/14-detail-5.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Detail View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/14-detail-6.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/14-detail-6.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Detail View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/14-detail-7.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/14-detail-7.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Detail View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/14-detail.webp",
+        "thumb": "/images/vehicles/2025-volvo-xc90-t8-phev/gallery/thumb/14-detail.webp",
+        "alt": "2025 Volvo Xc90 T8 Phev \u2014 Detail View",
+        "width": 1600,
+        "height": 1200
+      }
     ],
     "price_display_daily": null,
     "price_display_weekly": null,
@@ -182,24 +641,169 @@
     "description_es": "El Mercedes GLC300 Exclusive AMG Line 2026 es nuestro veh\u00edculo m\u00e1s nuevo \u2014 un SUV de lujo compacto que combina rendimiento, confort y tecnolog\u00eda de vanguardia. Perfecto para viajeros de negocios y parejas.",
     "turo_url": "https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/mercedes-benz/glc-class/3529622",
     "book_path": "/book/glc",
-    "hero_image": "/images/vehicles/2026-mercedes-glc300/hero.webp",
+    "hero_image": "/images/vehicles/2026-mercedes-glc300/gallery/01-front-main.webp",
     "gallery": [
-      "/images/vehicles/2026-mercedes-glc300/exterior-front.webp",
-      "/images/vehicles/2026-mercedes-glc300/exterior-rear.webp",
-      "/images/vehicles/2026-mercedes-glc300/exterior-side.webp",
-      "/images/vehicles/2026-mercedes-glc300/interior-front.webp",
-      "/images/vehicles/2026-mercedes-glc300/interior-rear.webp",
-      "/images/vehicles/2026-mercedes-glc300/dashboard.webp",
-      "/images/vehicles/2026-mercedes-glc300/center-console.webp",
-      "/images/vehicles/2026-mercedes-glc300/third-row.webp",
-      "/images/vehicles/2026-mercedes-glc300/cargo.webp",
-      "/images/vehicles/2026-mercedes-glc300/charging-port.webp",
-      "/images/vehicles/2026-mercedes-glc300/image-11.webp",
-      "/images/vehicles/2026-mercedes-glc300/image-12.webp",
-      "/images/vehicles/2026-mercedes-glc300/image-13.webp",
-      "/images/vehicles/2026-mercedes-glc300/image-14.webp",
-      "/images/vehicles/2026-mercedes-glc300/image-15.webp",
-      "/images/vehicles/2026-mercedes-glc300/image-16.webp"
+      {
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/01-front-main.webp",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/01-front-main.webp",
+        "alt": "2026 Mercedes Glc300 \u2014 Detail View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/04-rear.webp",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/04-rear.webp",
+        "alt": "2026 Mercedes Glc300 \u2014 Rear View",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/05-rear-angle.webp",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/05-rear-angle.webp",
+        "alt": "2026 Mercedes Glc300 \u2014 Rear Angle View",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/14-detail-10.webp",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/14-detail-10.webp",
+        "alt": "2026 Mercedes Glc300 \u2014 Detail View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/14-detail-11.webp",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/14-detail-11.webp",
+        "alt": "2026 Mercedes Glc300 \u2014 Detail View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/14-detail-12.webp",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/14-detail-12.webp",
+        "alt": "2026 Mercedes Glc300 \u2014 Detail View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/14-detail-13.webp",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/14-detail-13.webp",
+        "alt": "2026 Mercedes Glc300 \u2014 Detail View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/14-detail-14.webp",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/14-detail-14.webp",
+        "alt": "2026 Mercedes Glc300 \u2014 Detail View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/14-detail-15.webp",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/14-detail-15.webp",
+        "alt": "2026 Mercedes Glc300 \u2014 Detail View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/14-detail-16.webp",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/14-detail-16.webp",
+        "alt": "2026 Mercedes Glc300 \u2014 Detail View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/14-detail-17.webp",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/14-detail-17.webp",
+        "alt": "2026 Mercedes Glc300 \u2014 Detail View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/14-detail-18.webp",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/14-detail-18.webp",
+        "alt": "2026 Mercedes Glc300 \u2014 Detail View",
+        "width": 1600,
+        "height": 1265
+      },
+      {
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/14-detail-19.webp",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/14-detail-19.webp",
+        "alt": "2026 Mercedes Glc300 \u2014 Detail View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/14-detail-2.webp",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/14-detail-2.webp",
+        "alt": "2026 Mercedes Glc300 \u2014 Detail View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/14-detail-20.webp",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/14-detail-20.webp",
+        "alt": "2026 Mercedes Glc300 \u2014 Detail View",
+        "width": 1600,
+        "height": 1195
+      },
+      {
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/14-detail-21.webp",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/14-detail-21.webp",
+        "alt": "2026 Mercedes Glc300 \u2014 Detail View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/14-detail-3.webp",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/14-detail-3.webp",
+        "alt": "2026 Mercedes Glc300 \u2014 Detail View",
+        "width": 1600,
+        "height": 1154
+      },
+      {
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/14-detail-4.webp",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/14-detail-4.webp",
+        "alt": "2026 Mercedes Glc300 \u2014 Detail View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/14-detail-5.webp",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/14-detail-5.webp",
+        "alt": "2026 Mercedes Glc300 \u2014 Detail View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/14-detail-6.webp",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/14-detail-6.webp",
+        "alt": "2026 Mercedes Glc300 \u2014 Detail View",
+        "width": 1600,
+        "height": 1116
+      },
+      {
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/14-detail-7.webp",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/14-detail-7.webp",
+        "alt": "2026 Mercedes Glc300 \u2014 Detail View",
+        "width": 1600,
+        "height": 1106
+      },
+      {
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/14-detail-8.webp",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/14-detail-8.webp",
+        "alt": "2026 Mercedes Glc300 \u2014 Detail View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/14-detail-9.webp",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/14-detail-9.webp",
+        "alt": "2026 Mercedes Glc300 \u2014 Detail View",
+        "width": 1600,
+        "height": 1200
+      }
     ],
     "price_display_daily": null,
     "price_display_weekly": null,
@@ -236,25 +840,8 @@
     "description_es": "El Toyota Highlander Hybrid XLE 2021 ofrece la legendaria confiabilidad de Toyota con eficiencia h\u00edbrida. Un SUV de 3 filas pr\u00e1ctico ideal para viajes familiares y traslados al aeropuerto.",
     "turo_url": "https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/toyota/highlander-hybrid/2852521",
     "book_path": "/book/highlander",
-    "hero_image": "/images/vehicles/2021-toyota-highlander-hybrid/hero.webp",
-    "gallery": [
-      "/images/vehicles/2021-toyota-highlander-hybrid/exterior-front.webp",
-      "/images/vehicles/2021-toyota-highlander-hybrid/exterior-rear.webp",
-      "/images/vehicles/2021-toyota-highlander-hybrid/exterior-side.webp",
-      "/images/vehicles/2021-toyota-highlander-hybrid/interior-front.webp",
-      "/images/vehicles/2021-toyota-highlander-hybrid/interior-rear.webp",
-      "/images/vehicles/2021-toyota-highlander-hybrid/dashboard.webp",
-      "/images/vehicles/2021-toyota-highlander-hybrid/center-console.webp",
-      "/images/vehicles/2021-toyota-highlander-hybrid/third-row.webp",
-      "/images/vehicles/2021-toyota-highlander-hybrid/cargo.webp",
-      "/images/vehicles/2021-toyota-highlander-hybrid/charging-port.webp",
-      "/images/vehicles/2021-toyota-highlander-hybrid/image-11.webp",
-      "/images/vehicles/2021-toyota-highlander-hybrid/image-12.webp",
-      "/images/vehicles/2021-toyota-highlander-hybrid/image-13.webp",
-      "/images/vehicles/2021-toyota-highlander-hybrid/image-14.webp",
-      "/images/vehicles/2021-toyota-highlander-hybrid/image-15.webp",
-      "/images/vehicles/2021-toyota-highlander-hybrid/image-16.webp"
-    ],
+    "hero_image": "",
+    "gallery": [],
     "price_display_daily": null,
     "price_display_weekly": null,
     "price_display_monthly": null,
@@ -290,24 +877,134 @@
     "description_es": "El Audi Q3 Premium Plus 2021 es un SUV de lujo compacto que ofrece el refinamiento de Audi en un tama\u00f1o pr\u00e1ctico y maniobrable. Ideal para viajeros de negocios y grupos peque\u00f1os.",
     "turo_url": "https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/audi/q3/3291762",
     "book_path": "/book/q3",
-    "hero_image": "/images/vehicles/2021-audi-q3/hero.webp",
+    "hero_image": "/images/vehicles/2021-audi-q3/gallery/02-front-angle-2.webp",
     "gallery": [
-      "/images/vehicles/2021-audi-q3/exterior-front.webp",
-      "/images/vehicles/2021-audi-q3/exterior-rear.webp",
-      "/images/vehicles/2021-audi-q3/exterior-side.webp",
-      "/images/vehicles/2021-audi-q3/interior-front.webp",
-      "/images/vehicles/2021-audi-q3/interior-rear.webp",
-      "/images/vehicles/2021-audi-q3/dashboard.webp",
-      "/images/vehicles/2021-audi-q3/center-console.webp",
-      "/images/vehicles/2021-audi-q3/third-row.webp",
-      "/images/vehicles/2021-audi-q3/cargo.webp",
-      "/images/vehicles/2021-audi-q3/charging-port.webp",
-      "/images/vehicles/2021-audi-q3/image-11.webp",
-      "/images/vehicles/2021-audi-q3/image-12.webp",
-      "/images/vehicles/2021-audi-q3/image-13.webp",
-      "/images/vehicles/2021-audi-q3/image-14.webp",
-      "/images/vehicles/2021-audi-q3/image-15.webp",
-      "/images/vehicles/2021-audi-q3/image-16.webp"
+      {
+        "src": "/images/vehicles/2021-audi-q3/gallery/02-front-angle-2.webp",
+        "thumb": "/images/vehicles/2021-audi-q3/gallery/thumb/02-front-angle-2.webp",
+        "alt": "2021 Audi Q3 \u2014 Front Angle View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-audi-q3/gallery/02-front-angle-3.webp",
+        "thumb": "/images/vehicles/2021-audi-q3/gallery/thumb/02-front-angle-3.webp",
+        "alt": "2021 Audi Q3 \u2014 Front Angle View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-audi-q3/gallery/02-front-angle-4.webp",
+        "thumb": "/images/vehicles/2021-audi-q3/gallery/thumb/02-front-angle-4.webp",
+        "alt": "2021 Audi Q3 \u2014 Front Angle View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-audi-q3/gallery/02-front-angle-5.webp",
+        "thumb": "/images/vehicles/2021-audi-q3/gallery/thumb/02-front-angle-5.webp",
+        "alt": "2021 Audi Q3 \u2014 Front Angle View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-audi-q3/gallery/02-front-angle.webp",
+        "thumb": "/images/vehicles/2021-audi-q3/gallery/thumb/02-front-angle.webp",
+        "alt": "2021 Audi Q3 \u2014 Front Angle View",
+        "width": 1600,
+        "height": 1033
+      },
+      {
+        "src": "/images/vehicles/2021-audi-q3/gallery/05-rear-angle.webp",
+        "thumb": "/images/vehicles/2021-audi-q3/gallery/thumb/05-rear-angle.webp",
+        "alt": "2021 Audi Q3 \u2014 Rear Angle View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-audi-q3/gallery/06-dashboard-2.webp",
+        "thumb": "/images/vehicles/2021-audi-q3/gallery/thumb/06-dashboard-2.webp",
+        "alt": "2021 Audi Q3 \u2014 Dashboard View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-audi-q3/gallery/06-dashboard-3.webp",
+        "thumb": "/images/vehicles/2021-audi-q3/gallery/thumb/06-dashboard-3.webp",
+        "alt": "2021 Audi Q3 \u2014 Dashboard View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-audi-q3/gallery/06-dashboard-4.webp",
+        "thumb": "/images/vehicles/2021-audi-q3/gallery/thumb/06-dashboard-4.webp",
+        "alt": "2021 Audi Q3 \u2014 Dashboard View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-audi-q3/gallery/06-dashboard.webp",
+        "thumb": "/images/vehicles/2021-audi-q3/gallery/thumb/06-dashboard.webp",
+        "alt": "2021 Audi Q3 \u2014 Dashboard View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-audi-q3/gallery/07-interior-front.webp",
+        "thumb": "/images/vehicles/2021-audi-q3/gallery/thumb/07-interior-front.webp",
+        "alt": "2021 Audi Q3 \u2014 Interior Front View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-audi-q3/gallery/08-interior-rear.webp",
+        "thumb": "/images/vehicles/2021-audi-q3/gallery/thumb/08-interior-rear.webp",
+        "alt": "2021 Audi Q3 \u2014 Interior Rear View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-audi-q3/gallery/09-cargo.webp",
+        "thumb": "/images/vehicles/2021-audi-q3/gallery/thumb/09-cargo.webp",
+        "alt": "2021 Audi Q3 \u2014 Cargo View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-audi-q3/gallery/10-detail-pano-roof.webp",
+        "thumb": "/images/vehicles/2021-audi-q3/gallery/thumb/10-detail-pano-roof.webp",
+        "alt": "2021 Audi Q3 \u2014 Detail Pano Roof View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-audi-q3/gallery/11-detail-badge-2.webp",
+        "thumb": "/images/vehicles/2021-audi-q3/gallery/thumb/11-detail-badge-2.webp",
+        "alt": "2021 Audi Q3 \u2014 Detail Badge View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-audi-q3/gallery/11-detail-badge.webp",
+        "thumb": "/images/vehicles/2021-audi-q3/gallery/thumb/11-detail-badge.webp",
+        "alt": "2021 Audi Q3 \u2014 Detail Badge View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-audi-q3/gallery/12-detail-light-2.webp",
+        "thumb": "/images/vehicles/2021-audi-q3/gallery/thumb/12-detail-light-2.webp",
+        "alt": "2021 Audi Q3 \u2014 Detail Light View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-audi-q3/gallery/12-detail-light.webp",
+        "thumb": "/images/vehicles/2021-audi-q3/gallery/thumb/12-detail-light.webp",
+        "alt": "2021 Audi Q3 \u2014 Detail Light View",
+        "width": 1600,
+        "height": 1200
+      }
     ],
     "price_display_daily": null,
     "price_display_weekly": null,
@@ -345,24 +1042,134 @@
     "description_es": "El Mitsubishi Outlander PHEV SE 2025 es un SUV h\u00edbrido enchufable vers\u00e1til que ofrece conducci\u00f3n el\u00e9ctrica para trayectos cortos y respaldo de gasolina para viajes m\u00e1s largos. Una opci\u00f3n pr\u00e1ctica y eficiente para viajar por el sur de Florida.",
     "turo_url": "https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/mitsubishi/outlander-plug-in-hybrid/3207788",
     "book_path": "/book/outlander",
-    "hero_image": "/images/vehicles/2025-mitsubishi-outlander-phev/hero.webp",
+    "hero_image": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/02-front-angle-2.webp",
     "gallery": [
-      "/images/vehicles/2025-mitsubishi-outlander-phev/exterior-front.webp",
-      "/images/vehicles/2025-mitsubishi-outlander-phev/exterior-rear.webp",
-      "/images/vehicles/2025-mitsubishi-outlander-phev/exterior-side.webp",
-      "/images/vehicles/2025-mitsubishi-outlander-phev/interior-front.webp",
-      "/images/vehicles/2025-mitsubishi-outlander-phev/interior-rear.webp",
-      "/images/vehicles/2025-mitsubishi-outlander-phev/dashboard.webp",
-      "/images/vehicles/2025-mitsubishi-outlander-phev/center-console.webp",
-      "/images/vehicles/2025-mitsubishi-outlander-phev/third-row.webp",
-      "/images/vehicles/2025-mitsubishi-outlander-phev/cargo.webp",
-      "/images/vehicles/2025-mitsubishi-outlander-phev/charging-port.webp",
-      "/images/vehicles/2025-mitsubishi-outlander-phev/image-11.webp",
-      "/images/vehicles/2025-mitsubishi-outlander-phev/image-12.webp",
-      "/images/vehicles/2025-mitsubishi-outlander-phev/image-13.webp",
-      "/images/vehicles/2025-mitsubishi-outlander-phev/image-14.webp",
-      "/images/vehicles/2025-mitsubishi-outlander-phev/image-15.webp",
-      "/images/vehicles/2025-mitsubishi-outlander-phev/image-16.webp"
+      {
+        "src": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/02-front-angle-2.webp",
+        "thumb": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/thumb/02-front-angle-2.webp",
+        "alt": "2025 Mitsubishi Outlander Phev \u2014 Front Angle View",
+        "width": 1600,
+        "height": 1199
+      },
+      {
+        "src": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/02-front-angle.webp",
+        "thumb": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/thumb/02-front-angle.webp",
+        "alt": "2025 Mitsubishi Outlander Phev \u2014 Front Angle View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/03-side-2.webp",
+        "thumb": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/thumb/03-side-2.webp",
+        "alt": "2025 Mitsubishi Outlander Phev \u2014 Side View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/03-side.webp",
+        "thumb": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/thumb/03-side.webp",
+        "alt": "2025 Mitsubishi Outlander Phev \u2014 Side View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/04-rear.webp",
+        "thumb": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/thumb/04-rear.webp",
+        "alt": "2025 Mitsubishi Outlander Phev \u2014 Rear View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/05-rear-angle.webp",
+        "thumb": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/thumb/05-rear-angle.webp",
+        "alt": "2025 Mitsubishi Outlander Phev \u2014 Rear Angle View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/06-dashboard-2.webp",
+        "thumb": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/thumb/06-dashboard-2.webp",
+        "alt": "2025 Mitsubishi Outlander Phev \u2014 Dashboard View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/06-dashboard-3.webp",
+        "thumb": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/thumb/06-dashboard-3.webp",
+        "alt": "2025 Mitsubishi Outlander Phev \u2014 Dashboard View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/06-dashboard-4.webp",
+        "thumb": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/thumb/06-dashboard-4.webp",
+        "alt": "2025 Mitsubishi Outlander Phev \u2014 Dashboard View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/06-dashboard.webp",
+        "thumb": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/thumb/06-dashboard.webp",
+        "alt": "2025 Mitsubishi Outlander Phev \u2014 Dashboard View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/08-interior-rear-2.webp",
+        "thumb": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/thumb/08-interior-rear-2.webp",
+        "alt": "2025 Mitsubishi Outlander Phev \u2014 Interior Rear View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/08-interior-rear-3.webp",
+        "thumb": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/thumb/08-interior-rear-3.webp",
+        "alt": "2025 Mitsubishi Outlander Phev \u2014 Interior Rear View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/08-interior-rear.webp",
+        "thumb": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/thumb/08-interior-rear.webp",
+        "alt": "2025 Mitsubishi Outlander Phev \u2014 Interior Rear View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/09-cargo.webp",
+        "thumb": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/thumb/09-cargo.webp",
+        "alt": "2025 Mitsubishi Outlander Phev \u2014 Cargo View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/10-detail-pano-roof.webp",
+        "thumb": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/thumb/10-detail-pano-roof.webp",
+        "alt": "2025 Mitsubishi Outlander Phev \u2014 Detail Pano Roof View",
+        "width": 1600,
+        "height": 1199
+      },
+      {
+        "src": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/11-detail-badge.webp",
+        "thumb": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/thumb/11-detail-badge.webp",
+        "alt": "2025 Mitsubishi Outlander Phev \u2014 Detail Badge View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/12-detail-light-2.webp",
+        "thumb": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/thumb/12-detail-light-2.webp",
+        "alt": "2025 Mitsubishi Outlander Phev \u2014 Detail Light View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/12-detail-light.webp",
+        "thumb": "/images/vehicles/2025-mitsubishi-outlander-phev/gallery/thumb/12-detail-light.webp",
+        "alt": "2025 Mitsubishi Outlander Phev \u2014 Detail Light View",
+        "width": 1600,
+        "height": 1200
+      }
     ],
     "price_display_daily": null,
     "price_display_weekly": null,

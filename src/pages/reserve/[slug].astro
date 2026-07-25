@@ -1,11 +1,11 @@
 ---
-// W2: Wheelbase reservation page — Variant B via <listing-details>
+// W2.1b: Wheelbase reservation page — Native intro + Wheelbase <listing-details>
 // Route: /reserve/[public-vehicle-slug]/ — English only, noindex, excluded from sitemap
-// This is the production-candidate transactional handoff from native vehicle pages.
 
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/base/Header.astro";
 import Footer from "../../components/base/Footer.astro";
+import VehicleGallery from "../../components/ui/VehicleGallery.astro";
 import { getFuelLabel } from "../../config/labels";
 import {
   DEALER_ID,
@@ -43,49 +43,224 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
       </section>
     ) : (
       <>
-        <!-- Native vehicle header -->
+        {/* Reservation Introduction */}
         <section class="bg-navy-900 text-white section-sm">
           <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <a
               href={`/vehicles/${vehicle.slug}/`}
-              class="inline-flex items-center gap-1 text-sm text-white/60 hover:text-white/90 mb-3 transition-colors"
+              class="inline-flex items-center gap-1 text-sm text-white/60 hover:text-white/90 mb-4 transition-colors"
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-              Back to {vehicle.name}
+              Back to Vehicle Details
             </a>
-            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight">{vehicle.name}</h1>
-            <p class="mt-2 text-white/70 text-sm sm:text-base">{vehicle.tagline_en}</p>
-            <div class="mt-3 flex flex-wrap items-center gap-3 text-sm text-white/50">
-              <span class="inline-flex items-center gap-1">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m6-5.13a4 4 0 11-8 0 4 4 0 018 0zm6 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-                {vehicle.passenger_capacity} passengers
-              </span>
-              <span class="inline-flex items-center gap-1">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-                {vehicle.luggage_large} large bags
-              </span>
-              <span>{getFuelLabel(vehicle.fuel_type, "en")}</span>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+              <div>
+                <p class="text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-2">{vehicle.year} &middot; {vehicle.make}</p>
+                <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight">{vehicle.name}</h1>
+                <p class="mt-2 text-white/70 text-base">{vehicle.tagline_en}</p>
+                <div class="mt-5 flex flex-wrap items-center gap-3">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 text-sm">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m6-5.13a4 4 0 11-8 0 4 4 0 018 0zm6 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    {vehicle.passenger_capacity} passengers
+                  </span>
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 text-sm">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                    {vehicle.luggage_large} large bags
+                  </span>
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 text-sm">
+                    {getFuelLabel(vehicle.fuel_type, "en")}
+                  </span>
+                </div>
+              </div>
+              <div class="lg:text-right">
+                <a href="#wb-section" class="inline-flex items-center gap-2 px-6 py-4 bg-accent hover:bg-accent/90 text-white font-semibold rounded-lg transition-colors text-base">
+                  Continue to Live Availability &amp; Secure Booking
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                </a>
+                <p class="mt-2 text-xs text-white/40">Real-time availability from Wheelbase</p>
+              </div>
             </div>
           </div>
         </section>
 
-        <!-- Wheelbase listing-details -->
-        <section class="bg-surface section">
+        {/* Vehicle Gallery Carousel */}
+        {vehicle.gallery && vehicle.gallery.length > 0 && (
+          <section class="section bg-white">
+            <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+              <h2 class="text-2xl font-bold text-ink mb-6">Photo Gallery</h2>
+              <VehicleGallery images={vehicle.gallery} vehicleName={vehicle.name} />
+            </div>
+          </section>
+        )}
+
+        {/* Vehicle details — pills on desktop, accordion on mobile */}
+        <section id="vehicle-details" class="section bg-surface">
           <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-            <!-- Delivery notice — concise, single line on desktop -->
+            <h2 class="text-2xl font-bold text-ink mb-6">Vehicle Details</h2>
+
+            {/* Desktop pills */}
+            <div class="hidden sm:flex flex-wrap gap-2 mb-6" role="tablist" aria-label="Vehicle information sections">
+              {["Overview", "Features", "Pickup & Delivery", "Policies"].map((tab, i) => (
+                <button
+                  type="button"
+                  role="tab"
+                  class={`px-5 py-2.5 rounded-full text-sm font-semibold transition-colors ${i === 0 ? 'bg-brand text-white' : 'bg-white text-ink-secondary hover:bg-brand-50 border border-border'}`}
+                  aria-selected={i === 0 ? "true" : "false"}
+                  data-tab={i}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+
+            {/* Tab panels — shared by desktop pills and mobile accordion */}
+            <div class="space-y-4">
+              {/* Overview */}
+              <details class="sm:hidden group border border-border rounded-xl bg-white" open>
+                <summary class="flex items-center justify-between px-5 py-4 cursor-pointer font-semibold text-ink list-none">
+                  Overview
+                  <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-5 pb-5 text-ink-secondary leading-relaxed text-sm">
+                  <p>{vehicle.description_en || `The ${vehicle.name} is a ${vehicle.year} ${vehicle.make} ${vehicle.model} \u2014 ${vehicle.tagline_en}`}</p>
+                </div>
+              </details>
+              <div id="tab-panel-0" class="hidden sm:block bg-white rounded-xl p-6 border border-border" role="tabpanel">
+                <p class="text-ink-secondary leading-relaxed">{vehicle.description_en || `The ${vehicle.name} is a ${vehicle.year} ${vehicle.make} ${vehicle.model} \u2014 ${vehicle.tagline_en}`}</p>
+              </div>
+
+              {/* Features */}
+              <details class="sm:hidden group border border-border rounded-xl bg-white">
+                <summary class="flex items-center justify-between px-5 py-4 cursor-pointer font-semibold text-ink list-none">
+                  Features &amp; Specifications
+                  <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-5 pb-5 space-y-3">
+                  <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    {[
+                      { label: "Year", value: vehicle.year },
+                      { label: "Make", value: vehicle.make },
+                      { label: "Model", value: vehicle.model },
+                      { label: "Trim", value: vehicle.trim },
+                      { label: "Fuel", value: getFuelLabel(vehicle.fuel_type, "en") },
+                      { label: "Seats", value: `${vehicle.passenger_capacity} passengers` },
+                      { label: "Large Bags", value: vehicle.luggage_large },
+                      { label: "Carry-on", value: vehicle.luggage_carryon || "\u2014" },
+                      { label: "Drivetrain", value: vehicle.drivetrain || "\u2014" },
+                    ].filter(s => s.value).map(spec => (
+                      <div class="bg-brand-50 rounded-lg p-3">
+                        <p class="text-xs text-ink-tertiary uppercase tracking-wider">{spec.label}</p>
+                        <p class="text-sm font-semibold text-ink">{String(spec.value)}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </details>
+              <div id="tab-panel-1" class="hidden sm:block bg-white rounded-xl p-6 border border-border" role="tabpanel">
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  {[
+                    { label: "Year", value: vehicle.year },
+                    { label: "Make", value: vehicle.make },
+                    { label: "Model", value: vehicle.model },
+                    { label: "Trim", value: vehicle.trim },
+                    { label: "Fuel", value: getFuelLabel(vehicle.fuel_type, "en") },
+                    { label: "Seats", value: `${vehicle.passenger_capacity} passengers` },
+                    { label: "Large Bags", value: vehicle.luggage_large },
+                    { label: "Carry-on", value: vehicle.luggage_carryon || "\u2014" },
+                    { label: "Drivetrain", value: vehicle.drivetrain || "\u2014" },
+                  ].filter(s => s.value).map(spec => (
+                    <div class="bg-brand-50 rounded-lg p-3">
+                      <p class="text-xs text-ink-tertiary uppercase tracking-wider">{spec.label}</p>
+                      <p class="text-sm font-semibold text-ink">{String(spec.value)}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Pickup & Delivery */}
+              <details class="sm:hidden group border border-border rounded-xl bg-white">
+                <summary class="flex items-center justify-between px-5 py-4 cursor-pointer font-semibold text-ink list-none">
+                  Pickup &amp; Delivery
+                  <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-5 pb-5 text-sm text-ink-secondary leading-relaxed space-y-3">
+                  <p><strong class="text-ink">Pickup:</strong> Free pickup at our Pembroke Pines location.</p>
+                  <p><strong class="text-ink">Airport Delivery:</strong></p>
+                  <ul class="list-disc pl-5 space-y-1">
+                    <li><strong>MIA</strong> (Miami International) &mdash; Free delivery</li>
+                    <li><strong>FLL</strong> (Fort Lauderdale-Hollywood) &mdash; Free delivery</li>
+                    <li><strong>PBI</strong> (Palm Beach International) &mdash; Paid delivery available</li>
+                  </ul>
+                  <p class="text-xs text-ink-tertiary">Contactless handoff from designated airport parking. Exact location sent privately after booking. Airport parking charges are the guest&rsquo;s responsibility.</p>
+                </div>
+              </details>
+              <div id="tab-panel-2" class="hidden sm:block bg-white rounded-xl p-6 border border-border" role="tabpanel">
+                <div class="text-ink-secondary leading-relaxed space-y-3">
+                  <p><strong class="text-ink">Pickup:</strong> Free pickup at our Pembroke Pines location.</p>
+                  <p><strong class="text-ink">Airport Delivery:</strong></p>
+                  <ul class="list-disc pl-5 space-y-1">
+                    <li><strong>MIA</strong> (Miami International) &mdash; Free delivery</li>
+                    <li><strong>FLL</strong> (Fort Lauderdale-Hollywood) &mdash; Free delivery</li>
+                    <li><strong>PBI</strong> (Palm Beach International) &mdash; Paid delivery available</li>
+                  </ul>
+                  <p class="text-xs text-ink-tertiary">Contactless handoff from designated airport parking. Exact location sent privately after booking. Airport parking charges are the guest&rsquo;s responsibility.</p>
+                </div>
+              </div>
+
+              {/* Policies */}
+              <details class="sm:hidden group border border-border rounded-xl bg-white">
+                <summary class="flex items-center justify-between px-5 py-4 cursor-pointer font-semibold text-ink list-none">
+                  Rules &amp; Policies
+                  <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-5 pb-5 text-sm text-ink-secondary leading-relaxed space-y-3">
+                  <p><strong class="text-ink">General:</strong> All renters must meet our <a href="/rental-requirements/" class="text-brand underline">rental requirements</a>. Primary renter must hold a valid driver&rsquo;s license and major credit card.</p>
+                  <p><strong class="text-ink">Mileage:</strong> Standard mileage allowance applies. See <a href="/rental-policies/" class="text-brand underline">rental policies</a> for details.</p>
+                  <p><strong class="text-ink">Fuel:</strong> Return with the same fuel level as pickup. {getFuelLabel(vehicle.fuel_type, "en")} vehicle.</p>
+                  <p><strong class="text-ink">Smoking:</strong> No smoking permitted. Cleaning fee applies for violations.</p>
+                  <p class="text-xs text-ink-tertiary">Full terms are presented during booking. Review all terms before confirming your reservation.</p>
+                </div>
+              </details>
+              <div id="tab-panel-3" class="hidden sm:block bg-white rounded-xl p-6 border border-border" role="tabpanel">
+                <div class="text-ink-secondary leading-relaxed space-y-3">
+                  <p><strong class="text-ink">General:</strong> All renters must meet our <a href="/rental-requirements/" class="text-brand underline">rental requirements</a>. Primary renter must hold a valid driver&rsquo;s license and major credit card.</p>
+                  <p><strong class="text-ink">Mileage:</strong> Standard mileage allowance applies. See <a href="/rental-policies/" class="text-brand underline">rental policies</a> for details.</p>
+                  <p><strong class="text-ink">Fuel:</strong> Return with the same fuel level as pickup. {getFuelLabel(vehicle.fuel_type, "en")} vehicle.</p>
+                  <p><strong class="text-ink">Smoking:</strong> No smoking permitted. Cleaning fee applies for violations.</p>
+                  <p class="text-xs text-ink-tertiary">Full terms are presented during booking. Review all terms before confirming your reservation.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Wheelbase Booking — clearly separated section */}
+        <section id="wb-section" class="section bg-white border-t-2 border-brand">
+          <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <div class="mb-6">
+              <h2 class="text-2xl font-bold text-ink">Live Availability &amp; Secure Booking</h2>
+              <p class="text-sm text-ink-secondary mt-1">Select your dates below to see real-time pricing and book your {vehicle.name}.</p>
+            </div>
+
+            {/* Delivery notice */}
             <div class="mb-6 p-3 sm:p-4 bg-brand-50 border border-brand-100 rounded-lg">
               <p class="text-xs sm:text-sm text-ink-secondary leading-relaxed">
                 <strong class="text-ink">Pickup &amp; delivery:</strong> Free pickup in Pembroke Pines. Free delivery to MIA &amp; FLL. Paid delivery available to PBI and the local service area. Airport parking charges are the guest&rsquo;s responsibility. Special delivery is subject to confirmation.
               </p>
             </div>
 
-            <!-- Loading state -->
+            {/* Hidden script tag — Wheelbase widget uses this to find its CDN base URL for CSS loading */}
+            <div hidden data-wheelbase-hint="" aria-hidden="true">
+              <script type="text/plain" src="https://d2toxav8qvoos4.cloudfront.net/latest/wheelbase-widget.js"></script>
+            </div>
+
+            {/* Loading state */}
             <div id="wb-loading" class="py-16 text-center">
               <div class="inline-block w-8 h-8 border-3 border-brand-200 border-t-brand rounded-full animate-spin mb-4"></div>
               <p class="text-ink-secondary">Loading availability&hellip;</p>
             </div>
 
-            <!-- Error state -->
+            {/* Error state */}
             <div id="wb-error" class="hidden py-16 text-center">
               <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent-50 mb-4">
                 <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
@@ -99,7 +274,7 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
               <button type="button" id="wb-retry" class="btn btn-primary">Try Again</button>
             </div>
 
-            <!-- Wheelbase listing-details -->
+            {/* Wheelbase listing-details */}
             <div id="wb-root">
               <listing-details
                 id="wb-listing-details"
@@ -116,7 +291,7 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
           </div>
         </section>
 
-        <!-- Return navigation -->
+        {/* Return navigation */}
         <section class="bg-surface border-t border-border section-sm">
           <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-4">
             <a href={`/vehicles/${vehicle.slug}/`} class="inline-flex items-center gap-2 text-sm text-ink-secondary hover:text-brand transition-colors">
@@ -177,5 +352,25 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
     loadWidget();
   });
 
-  loadWidget();
+  // Pills → tab switching
+  const tabs = document.querySelectorAll<HTMLButtonElement>('[role="tab"][data-tab]');
+  const panels = document.querySelectorAll<HTMLElement>('[role="tabpanel"]');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const idx = parseInt(tab.dataset.tab || "0");
+      // Update tabs
+      tabs.forEach((t, i) => {
+        t.setAttribute("aria-selected", (i === idx).toString());
+        t.className = t.className.replace(/bg-brand text-white/g, "bg-white text-ink-secondary hover:bg-brand-50 border border-border");
+        if (i === idx) {
+          t.className = t.className.replace(/bg-white text-ink-secondary hover:bg-brand-50 border border-border/g, "bg-brand text-white");
+        }
+      });
+      // Update panels
+      panels.forEach((p) => p.classList.add("hidden"));
+      const panel = document.getElementById(`tab-panel-${idx}`);
+      if (panel) panel.classList.remove("hidden");
+    });
+  });
 </script>

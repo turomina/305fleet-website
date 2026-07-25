@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/base/Header.astro";
 import Footer from "../../components/base/Footer.astro";
+import VehicleGallery from "../../components/ui/VehicleGallery.astro";
 import vehicles from "../../data/vehicles.json";
 import { getFuelLabel } from "../../config/labels";
 
@@ -24,10 +25,7 @@ const relatedVehicles = vehicles
   .filter(v => v.slug !== vehicle.slug && (v.publication_status === "preview_only" || v.publication_status === "published"))
   .slice(0, 3);
 
-const images = [
-  vehicle.hero_image,
-  ...(vehicle.gallery || []).slice(0, 5).map(g => g.src || g),
-].filter(Boolean);
+const hasGallery = vehicle.gallery && vehicle.gallery.length > 0;
 ---
 
 <BaseLayout
@@ -37,15 +35,15 @@ const images = [
   <Header />
 
   <main id="main-content" class="flex-1">
-    {/* Hero Gallery */}
+    {/* Hero */}
     <section class="relative bg-brand-900">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-          {/* Image */}
+          {/* Primary Hero Image */}
           <div class="relative">
-            {images[0] ? (
+            {vehicle.hero_image ? (
               <img
-                src={images[0]}
+                src={vehicle.hero_image}
                 alt={vehicle.name}
                 class="w-full aspect-[16/10] object-cover rounded-2xl shadow-xl"
                 loading="eager"
@@ -87,21 +85,12 @@ const images = [
       </div>
     </section>
 
-    {/* Gallery strip */}
-    {images.length > 1 && (
-      <section class="py-8 bg-brand-50 border-b border-border">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div class="grid grid-cols-3 lg:grid-cols-6 gap-3">
-            {images.slice(1, 7).map((src, i) => (
-              <img
-                src={src}
-                alt={`${vehicle.name} view ${i+1}`}
-                class="w-full aspect-[4/3] object-cover rounded-lg"
-                loading="lazy"
-                width="400" height="300"
-              />
-            ))}
-          </div>
+    {/* Full Gallery Carousel */}
+    {hasGallery && (
+      <section class="section bg-white">
+        <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <h2 class="text-2xl font-bold text-ink mb-6">Photo Gallery</h2>
+          <VehicleGallery images={vehicle.gallery} vehicleName={vehicle.name} />
         </div>
       </section>
     )}
