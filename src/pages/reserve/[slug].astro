@@ -352,6 +352,8 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
     loadWidget();
   });
 
+  loadWidget();
+
   // Pills → tab switching
   const tabs = document.querySelectorAll<HTMLButtonElement>('[role="tab"][data-tab]');
   const panels = document.querySelectorAll<HTMLElement>('[role="tabpanel"]');
