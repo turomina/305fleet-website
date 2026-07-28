@@ -1,0 +1,288 @@
+---
+export interface GalleryImage {
+  src: string;
+  thumb: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
+interface Props {
+  images: GalleryImage[];
+  vehicleName: string;
+}
+
+const { images, vehicleName } = Astro.props;
+const primary = images[0];
+const thumbnails = images.slice(1);
+---
+
+<div class="vg-root" role="region" aria-label={`${vehicleName} photo gallery`}>
+  <!-- Main Image -->
+  <div class="vg-main-wrapper">
+    <img
+      id="vg-main"
+      src={primary.src}
+      alt={primary.alt}
+      width={primary.width}
+      height={primary.height}
+      class="vg-main-image"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <!-- Nav arrows -->
+    {images.length > 1 && (
+      <>
+        <button
+          type="button"
+          class="vg-arrow vg-arrow-prev"
+          aria-label="Previous image"
+          data-direction="prev"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button
+          type="button"
+          class="vg-arrow vg-arrow-next"
+          aria-label="Next image"
+          data-direction="next"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </>
+    )}
+  </div>
+
+  <!-- Thumbnail Strip -->
+  {thumbnails.length > 0 && (
+    <div class="vg-thumb-strip-wrapper">
+      <div class="vg-thumb-strip" role="tablist" aria-label="Gallery thumbnails">
+        {[primary, ...thumbnails].map((img, i) => (
+          <button
+            type="button"
+            class={`vg-thumb${i === 0 ? ' vg-thumb-active' : ''}`}
+            role="tab"
+            aria-selected={i === 0 ? "true" : "false"}
+            aria-label={`View ${img.alt}`}
+            data-index={i}
+            data-src={img.src}
+            data-thumb={img.thumb}
+          >
+            <img
+              src={img.thumb || img.src}
+              alt=""
+              width={120}
+              height={90}
+              loading="lazy"
+              class="vg-thumb-img"
+            />
+          </button>
+        ))}
+      </div>
+    </div>
+  )}
+</div>
+
+<style>
+  .vg-root {
+    --vg-radius: 0.75rem;
+  }
+
+  .vg-main-wrapper {
+    position: relative;
+    border-radius: var(--vg-radius);
+    overflow: hidden;
+    background: theme('colors.brand.100', #f0f0f0);
+  }
+
+  .vg-main-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Nav arrows */
+  .vg-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .vg-arrow:hover {
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  }
+
+  .vg-arrow:focus-visible {
+    outline: 3px solid theme('colors.brand.DEFAULT', #EA5E2D);
+    outline-offset: 2px;
+  }
+
+  .vg-arrow-prev { left: 12px; }
+  .vg-arrow-next { right: 12px; }
+
+  /* Thumbnail strip */
+  .vg-thumb-strip-wrapper {
+    margin-top: 0.75rem;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .vg-thumb-strip {
+    display: flex;
+    gap: 0.5rem;
+    padding-bottom: 4px;
+  }
+
+  .vg-thumb {
+    flex-shrink: 0;
+    border: 2px solid transparent;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    padding: 0;
+    cursor: pointer;
+    background: none;
+    transition: border-color 0.2s;
+  }
+
+  .vg-thumb:hover {
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .vg-thumb-active {
+    border-color: theme('colors.brand.DEFAULT', #EA5E2D);
+  }
+
+  .vg-thumb:focus-visible {
+    outline: 3px solid theme('colors.brand.DEFAULT', #EA5E2D);
+    outline-offset: 2px;
+  }
+
+  .vg-thumb-img {
+    display: block;
+    width: 120px;
+    height: 90px;
+    object-fit: cover;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .vg-arrow,
+    .vg-thumb {
+      transition: none;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 640px) {
+    .vg-arrow {
+      width: 36px;
+      height: 36px;
+    }
+    .vg-arrow svg {
+      width: 16px;
+      height: 16px;
+    }
+    .vg-arrow-prev { left: 8px; }
+    .vg-arrow-next { right: 8px; }
+
+    .vg-thumb-img {
+      width: 96px;
+      height: 72px;
+    }
+  }
+</style>
+
+<script>
+  function initGallery(root: HTMLElement) {
+    const mainImg = root.querySelector('#vg-main') as HTMLImageElement;
+    const thumbs = root.querySelectorAll<HTMLButtonElement>('.vg-thumb');
+    const prevBtn = root.querySelector<HTMLButtonElement>('.vg-arrow-prev');
+    const nextBtn = root.querySelector<HTMLButtonElement>('.vg-arrow-next');
+    const strip = root.querySelector<HTMLElement>('.vg-thumb-strip');
+
+    let currentIndex = 0;
+
+    function setImage(index: number) {
+      const btn = thumbs[index];
+      if (!btn) return;
+      currentIndex = index;
+
+      // Update main image
+      const src = btn.dataset.src!;
+      mainImg.src = src;
+      mainImg.alt = btn.getAttribute('aria-label')?.replace('View ', '') || '';
+
+      // Update active state
+      thumbs.forEach((t, i) => {
+        t.classList.toggle('vg-thumb-active', i === index);
+        t.setAttribute('aria-selected', i === index ? 'true' : 'false');
+      });
+
+      // Scroll thumbnail into view
+      btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+
+    thumbs.forEach((btn, i) => {
+      btn.addEventListener('click', () => setImage(i));
+    });
+
+    prevBtn?.addEventListener('click', () => {
+      const next = currentIndex > 0 ? currentIndex - 1 : thumbs.length - 1;
+      setImage(next);
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      const next = currentIndex < thumbs.length - 1 ? currentIndex + 1 : 0;
+      setImage(next);
+    });
+
+    // Keyboard navigation
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        const next = currentIndex > 0 ? currentIndex - 1 : thumbs.length - 1;
+        setImage(next);
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        const next = currentIndex < thumbs.length - 1 ? currentIndex + 1 : 0;
+        setImage(next);
+      }
+    });
+
+    // Touch swipe on main image
+    let touchStartX = 0;
+    mainImg.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    mainImg.addEventListener('touchend', (e) => {
+      const diff = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(diff) > 50) {
+        const next = diff < 0
+          ? (currentIndex < thumbs.length - 1 ? currentIndex + 1 : 0)
+          : (currentIndex > 0 ? currentIndex - 1 : thumbs.length - 1);
+        setImage(next);
+      }
+    });
+  }
+
+  // Initialize all galleries on the page
+  document.querySelectorAll<HTMLElement>('.vg-root').forEach(initGallery);
+</script>

@@ -2,7 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/base/Header.astro";
 import Footer from "../../components/base/Footer.astro";
-import AvailabilitySearch from "../../components/booking/AvailabilitySearch.astro";
+import VehicleEntryPill from "../../components/booking/VehicleEntryPill.astro";
 import vehicles from "../../data/vehicles.json";
 import { getFuelLabel } from "../../config/labels";
 
@@ -12,18 +12,18 @@ const featuredVehicles = allVehicles.slice(0, 3);
 const airports = [
   { code: "MIA", name: "Miami International", slug: "miami-international-airport", desc: "Garajes Dolphin, Flamingo e Ibis", pos: [-2.2, 0.4, 0], color: "0xEA5E2D" },
   { code: "FLL", name: "Fort Lauderdale", slug: "fort-lauderdale-airport", desc: "Cypress Garage, Nivel 7, Zona 7NN", pos: [0, -0.6, 0], color: "0x607EA2" },
-  { code: "PBI", name: "Palm Beach", slug: "palm-beach-airport", desc: "Long-Term Garage 1 o 2", pos: [2.4, 0.2, 0], color: "0x314B6E" },
+  { code: "PBI", name: "Palm Beach", slug: "palm-beach-airport", desc: "Entrega con costo · Long-Term Garage 1 o 2", pos: [2.4, 0.2, 0], color: "0x314B6E" },
 ];
 
 const steps = [
   { num: "1", title: "Elija Su Vehículo", desc: "Explore nuestra flota de vehículos cuidadosamente seleccionados con fotos reales y especificaciones completas." },
-  { num: "2", title: "Seleccione Fechas y Aeropuerto", desc: "Elija MIA, FLL o PBI. Seleccione sus fechas de alquiler. Los detalles de la reservación se confirman antes de la recogida." },
+  { num: "2", title: "Seleccione Fechas y Aeropuerto", desc: "Elija MIA, FLL o PBI. Entrega gratuita a MIA y FLL. Entrega con costo a PBI. Los detalles de la reservación se confirman antes de la recogida." },
   { num: "3", title: "Complete la Reservación", desc: "Proporcione la información requerida para confirmar su alquiler directo." },
   { num: "4", title: "Recoja y Conduzca", desc: "Reciba instrucciones privadas de ubicación. Recogida sin contacto desde el estacionamiento designado del aeropuerto. Disfrute del sur de Florida." },
 ];
 ---
 
-<BaseLayout lang="es" title="Alquiler Directo de Vehículos en el Sur de Florida" description="Alquiler directo de vehículos en el sur de Florida. Flota cuidadosamente seleccionada, recogida sin contacto en estacionamientos designados de MIA, FLL y PBI. Reserve con un operador local.">
+<BaseLayout lang="es" title="Alquiler Directo de Vehículos en el Sur de Florida" description="Alquiler directo de vehículos en el sur de Florida. Flota cuidadosamente seleccionada, entrega gratuita en MIA y FLL. Recogida sin contacto. Reserve con un operador local.">
   <Header />
 
   <main id="main-content" class="flex-1">
@@ -49,16 +49,16 @@ const steps = [
             <span class="hero-line block overflow-hidden"><span class="hero-line-inner block">Servicio local real.</span></span>
           </h1>
           <p class="hero-sub text-lg sm:text-xl text-white/70 leading-relaxed max-w-xl mx-auto mb-10" data-anim="hero-sub">
-            Alquiler directo de un operador de flota del sur de Florida. Recogida sin contacto en
-            estacionamientos designados de MIA, FLL y PBI. Sin mostradores, sin autobuses — solo un vehículo limpio y listo.
+            Alquiler directo de un operador de flota del sur de Florida. Entrega gratuita en MIA y FLL.
+            Recogida sin contacto en los estacionamientos designados. Sin mostradores, sin autobuses — solo un vehículo limpio y listo.
           </p>
 
           <div class="hero-search" data-anim="hero-search">
-            <AvailabilitySearch lang="es" />
+            <VehicleEntryPill lang="es" />
           </div>
 
           <div class="hero-trust mt-8 flex items-center justify-center gap-6 text-sm text-white/50" data-anim="hero-trust">
-            <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> MIA · FLL · PBI</span>
+            <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Entrega Gratuita MIA y FLL</span>
             <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Sin Contacto</span>
             <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Operador Local</span>
           </div>
@@ -158,7 +158,7 @@ const steps = [
     <section class="section gradient-brand text-white text-center">
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <h2 class="text-4xl sm:text-5xl font-bold tracking-tight">¿Listo para conducir?</h2>
-        <p class="mt-4 text-xl text-white/80">Explore nuestra flota. Recogida sin contacto en MIA, FLL y PBI.</p>
+        <p class="mt-4 text-xl text-white/80">Explore nuestra flota. Entrega gratuita en MIA y FLL. Recogida sin contacto.</p>
         <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
           <a href="/es/vehicles/" class="btn btn-light btn-primary-lg">Ver Flota</a>
           <a href="/es/contact/" class="btn px-6 py-4 text-base font-semibold text-white border-2 border-white/30 rounded-lg hover:bg-white/10 transition-all">Contáctanos</a>

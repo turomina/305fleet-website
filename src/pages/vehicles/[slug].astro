@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/base/Header.astro";
 import Footer from "../../components/base/Footer.astro";
+import VehicleGallery from "../../components/ui/VehicleGallery.astro";
 import vehicles from "../../data/vehicles.json";
 import { getFuelLabel } from "../../config/labels";
 
@@ -24,28 +25,25 @@ const relatedVehicles = vehicles
   .filter(v => v.slug !== vehicle.slug && (v.publication_status === "preview_only" || v.publication_status === "published"))
   .slice(0, 3);
 
-const images = [
-  vehicle.hero_image,
-  ...(vehicle.gallery || []).slice(0, 5).map(g => g.src || g),
-].filter(Boolean);
+const hasGallery = vehicle.gallery && vehicle.gallery.length > 0;
 ---
 
 <BaseLayout
   title={vehicle.name}
-  description={`${vehicle.tagline_en} — ${vehicle.name}. ${vehicle.passenger_capacity} ${seatsLabel}, ${getFuelLabel(vehicle.fuel_type, "en")}. Direct rental with airport delivery at MIA, FLL, and PBI.`}
+  description={`${vehicle.tagline_en} — ${vehicle.name}. ${vehicle.passenger_capacity} ${seatsLabel}, ${getFuelLabel(vehicle.fuel_type, "en")}. Direct rental with free airport delivery at MIA and FLL.`}
 >
   <Header />
 
   <main id="main-content" class="flex-1">
-    {/* Hero Gallery */}
+    {/* Hero */}
     <section class="relative bg-brand-900">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-          {/* Image */}
+          {/* Primary Hero Image */}
           <div class="relative">
-            {images[0] ? (
+            {vehicle.hero_image ? (
               <img
-                src={images[0]}
+                src={vehicle.hero_image}
                 alt={vehicle.name}
                 class="w-full aspect-[16/10] object-cover rounded-2xl shadow-xl"
                 loading="eager"
@@ -77,11 +75,7 @@ const images = [
 
             {/* CTA */}
             <div class="mt-8 flex flex-col sm:flex-row gap-3">
-              {vehicle.book_path ? (
-                <a href={vehicle.book_path} class="btn btn-light btn-primary-lg" data-turo-booking data-vehicle-slug={vehicle.slug} data-locale="en">Book on Turo</a>
-              ) : (
-                <a href="/contact/" class="btn btn-light btn-primary-lg">Inquire Now</a>
-              )}
+              <a href={`/reserve/${vehicle.slug}/`} class="btn btn-light btn-primary-lg">Check availability & pricing</a>
               <a href="/how-it-works/" class="btn px-6 py-4 text-base font-semibold text-white border-2 border-white/30 rounded-lg hover:bg-white/10 transition-all">
                 How It Works &rarr;
               </a>
@@ -91,21 +85,12 @@ const images = [
       </div>
     </section>
 
-    {/* Gallery strip */}
-    {images.length > 1 && (
-      <section class="py-8 bg-brand-50 border-b border-border">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div class="grid grid-cols-3 lg:grid-cols-6 gap-3">
-            {images.slice(1, 7).map((src, i) => (
-              <img
-                src={src}
-                alt={`${vehicle.name} view ${i+1}`}
-                class="w-full aspect-[4/3] object-cover rounded-lg"
-                loading="lazy"
-                width="400" height="300"
-              />
-            ))}
-          </div>
+    {/* Full Gallery Carousel */}
+    {hasGallery && (
+      <section class="section bg-white">
+        <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <h2 class="text-2xl font-bold text-ink mb-6">Photo Gallery</h2>
+          <VehicleGallery images={vehicle.gallery} vehicleName={vehicle.name} />
         </div>
       </section>
     )}
@@ -165,16 +150,16 @@ const images = [
     {/* Airport Pickup */}
     <section class="section bg-white">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-ink text-center mb-3">Airport Pickup</h2>
+        <h2 class="text-3xl font-bold text-ink text-center mb-3">Airport Delivery</h2>
         <p class="text-center text-ink-secondary max-w-xl mx-auto mb-10">
-          Pick up your {vehicle.name} at MIA, FLL, or PBI. Contactless handoff from designated airport parking — exact location sent privately.
+          Free delivery to MIA and FLL. Paid delivery to PBI. Contactless handoff from designated airport parking — exact location sent privately.
         </p>
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
           {["MIA", "FLL", "PBI"].map(code => (
             <a href={`/locations/${code === "MIA" ? "miami-international-airport" : code === "FLL" ? "fort-lauderdale-airport" : "palm-beach-airport"}/`}
                class="card card-padded text-center group">
               <div class="text-3xl font-bold text-accent mb-2">{code}</div>
-              <p class="text-sm text-ink-secondary">Contactless pickup available</p>
+              <p class="text-sm text-ink-secondary">{code === "PBI" ? "Paid delivery available" : "Free delivery available"}</p>
               <span class="mt-3 inline-block text-xs font-medium text-accent group-hover:gap-1.5 transition-all">Details &rarr;</span>
             </a>
           ))}
@@ -213,8 +198,9 @@ const images = [
     <section class="section gradient-brand text-white text-center">
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <h2 class="text-4xl font-bold tracking-tight">Ready to drive the {vehicle.name}?</h2>
-        <div class="mt-6">
-          <a href="/vehicles/" class="btn btn-light btn-primary-lg">View Fleet</a>
+        <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href={`/reserve/${vehicle.slug}/`} class="btn btn-light btn-primary-lg">Check availability & pricing</a>
+          <a href="/vehicles/" class="btn px-6 py-4 text-base font-semibold text-white border-2 border-white/30 rounded-lg hover:bg-white/10 transition-all">View Fleet</a>
         </div>
       </div>
     </section>
