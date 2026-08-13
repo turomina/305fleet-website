@@ -641,14 +641,15 @@
     "description_es": "El Mercedes GLC300 Exclusive AMG Line 2026 es nuestro veh\u00edculo m\u00e1s nuevo \u2014 un SUV de lujo compacto que combina rendimiento, confort y tecnolog\u00eda de vanguardia. Perfecto para viajeros de negocios y parejas.",
     "turo_url": "https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/mercedes-benz/glc-class/3529622",
     "book_path": "/book/glc",
-    "hero_image": "/images/vehicles/2026-mercedes-glc300/gallery/01-front-main.webp",
+    "hero_image": "/images/vehicles/2026-mercedes-glc300/gallery/01-front-main.jpg",
     "gallery": [
       {
-        "src": "/images/vehicles/2026-mercedes-glc300/gallery/01-front-main.webp",
-        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/01-front-main.webp",
+        "src": "/images/vehicles/2026-mercedes-glc300/gallery/01-front-main.jpg",
+        "thumb": "/images/vehicles/2026-mercedes-glc300/gallery/thumb/01-front-main.jpg",
         "alt": "2026 Mercedes Glc300 \u2014 Detail View",
         "width": 1600,
-        "height": 1200
+        "height": 1200,
+        "format": "jpg"
       },
       {
         "src": "/images/vehicles/2026-mercedes-glc300/gallery/04-rear.webp",
