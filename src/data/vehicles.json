@@ -841,8 +841,16 @@
     "description_es": "El Toyota Highlander Hybrid XLE 2021 ofrece la legendaria confiabilidad de Toyota con eficiencia h\u00edbrida. Un SUV de 3 filas pr\u00e1ctico ideal para viajes familiares y traslados al aeropuerto.",
     "turo_url": "https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/toyota/highlander-hybrid/2852521",
     "book_path": "/book/highlander",
-    "hero_image": "",
-    "gallery": [],
+    "hero_image": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/01-front-main.jpg",
+    "gallery": [
+      {
+        "src": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/01-front-main.jpg",
+        "thumb": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/thumb/01-front-main.jpg",
+        "alt": "2021 Toyota Highlander Hybrid — Front View",
+        "width": 1600,
+        "height": 1200
+      }
+    ],
     "price_display_daily": null,
     "price_display_weekly": null,
     "price_display_monthly": null,
