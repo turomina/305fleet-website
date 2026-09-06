@@ -4,10 +4,13 @@ import LanguageSwitcher from "./LanguageSwitcher.astro";
 
 interface Props {
   esPath?: string;
+  lang?: "en" | "es";
 }
 
-const { esPath } = Astro.props as Props;
+const { esPath, lang = "en" } = Astro.props as Props;
 const currentPath = Astro.url.pathname;
+const navItems = lang === "es" ? NAV.primaryEs : NAV.primary;
+const bookNowLabel = lang === "es" ? "Reservar" : "Book Now";
 ---
 
 <header
@@ -29,7 +32,7 @@ const currentPath = Astro.url.pathname;
 
       <!-- Desktop Nav — Clean, minimal, Apple-inspired -->
       <ul class="hidden lg:flex items-center gap-1">
-        {NAV.primary.map((item) => (
+        {navItems.map((item) => (
           <li>
             <a
               href={item.href}
@@ -53,10 +56,10 @@ const currentPath = Astro.url.pathname;
           <LanguageSwitcher />
         )}
         <a
-          href="/vehicles/"
+          href={lang === "es" ? "/es/vehicles/" : "/vehicles/"}
           class="btn btn-primary"
         >
-          Book Now
+          {bookNowLabel}
         </a>
       </div>
 
@@ -96,7 +99,7 @@ const currentPath = Astro.url.pathname;
       </div>
       <nav class="p-4" aria-label="Mobile navigation">
         <ul class="space-y-1">
-          {NAV.primary.map((item) => (
+          {navItems.map((item) => (
             <li>
               <a
                 href={item.href}
@@ -116,10 +119,10 @@ const currentPath = Astro.url.pathname;
             )}
           </div>
           <a
-            href="/vehicles/"
+            href={lang === "es" ? "/es/vehicles/" : "/vehicles/"}
             class="btn btn-primary w-full text-center justify-center"
           >
-            Book Now
+            {bookNowLabel}
           </a>
         </div>
       </nav>

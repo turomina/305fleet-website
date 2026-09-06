@@ -37,7 +37,7 @@ const steps = [
 
   <main id="main-content" class="flex-1">
     <!-- ═══════════════════ HERO ═══════════════════ -->
-    <section id="hero" class="relative min-h-[95vh] flex items-center bg-brand-900 overflow-hidden">
+    <section id="hero" class="relative min-h-screen flex bg-brand-900 overflow-hidden">
       <!-- Hero background visual -->
       <div class="absolute inset-0 hero-visual" data-anim="hero-bg">
         <picture>
@@ -54,7 +54,7 @@ const steps = [
       </div>
       <div class="absolute inset-0 gradient-hero-overlay"></div>
 
-      <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 lg:py-32 w-full">
+      <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-32 pb-24 lg:pt-40 lg:pb-32 w-full">
         <div class="max-w-3xl mx-auto text-center">
           <!-- Badge -->
           <p class="hero-label inline-block text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-6" data-anim="hero-label">
@@ -460,7 +460,7 @@ const steps = [
       justify-content: center;
       min-height: 48px;
       padding: 14px 32px;
-      background: var(--color-accent, #EA5E2D);
+      background: #EA5E2D;
       color: white;
       font-size: 16px;
       font-weight: 600;
@@ -470,7 +470,7 @@ const steps = [
       white-space: nowrap;
     }
     .btn-hero-primary:hover {
-      background: var(--color-accent-600, #D04D1F);
+      background: #D04D1F;
       box-shadow: 0 4px 16px rgba(234,94,45,0.3);
       transform: translateY(-1px);
     }
@@ -481,7 +481,7 @@ const steps = [
       min-height: 48px;
       padding: 14px 32px;
       background: white;
-      color: var(--color-brand-900, #0D141C);
+      color: #0D141C;
       font-size: 16px;
       font-weight: 600;
       border-radius: 12px;

@@ -27,6 +27,13 @@ export const NAV = {
     { label: "About", href: "/about/" },
     { label: "Contact", href: "/contact/" },
   ],
+  primaryEs: [
+    { label: "Vehículos", href: "/es/vehicles/" },
+    { label: "Aeropuertos", href: "/es/how-it-works/" },
+    { label: "Cómo funciona", href: "/es/how-it-works/" },
+    { label: "Nosotros", href: "/es/about/" },
+    { label: "Contacto", href: "/es/contact/" },
+  ],
   footer: {
     rentals: [
       { label: "Vehicles", href: "/vehicles/" },
