@@ -21,6 +21,7 @@ export const SITE = {
 
 export const NAV = {
   primary: [
+    { label: "Home", href: "/" },
     { label: "Vehicles", href: "/vehicles/" },
     { label: "Airports", href: "/how-it-works/" },
     { label: "How It Works", href: "/how-it-works/" },
@@ -28,6 +29,7 @@ export const NAV = {
     { label: "Contact", href: "/contact/" },
   ],
   primaryEs: [
+    { label: "Inicio", href: "/es/" },
     { label: "Vehículos", href: "/es/vehicles/" },
     { label: "Aeropuertos", href: "/es/how-it-works/" },
     { label: "Cómo funciona", href: "/es/how-it-works/" },
