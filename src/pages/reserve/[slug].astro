@@ -32,6 +32,7 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
   description={vehicle ? `Check real-time availability for the ${vehicle.name}. Pricing, dates, and protection from 305 Fleet.` : ""}
   noindex={true}
   hideSpanishHreflang={false}
+  xDefaultOverride={`/reserve/${vehicle.slug}/`}
 >
   <Header esPath={`/es/reserve/${vehicle.slug}/`} />
 

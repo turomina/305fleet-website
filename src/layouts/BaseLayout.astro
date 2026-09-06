@@ -12,6 +12,7 @@ export interface Props {
   lang?: "en" | "es";
   noindex?: boolean;
   hideSpanishHreflang?: boolean;
+  xDefaultOverride?: string; // Override default x-default (/) with a specific URL
 }
 
 const {
@@ -20,6 +21,7 @@ const {
   lang = "en",
   noindex = false,
   hideSpanishHreflang = false,
+  xDefaultOverride,
 } = Astro.props;
 
 const pageTitle = title ? `${title} | ${SITE.name}` : `${SITE.name} — ${SITE.tagline}`;
@@ -37,7 +39,7 @@ const canonicalBase = isProductionDomain ? SITE.url : requestOrigin;
 const canonicalUrl = new URL(currentPath, canonicalBase).href;
 const englishUrl = new URL(currentLocale === "en" ? currentPath : getLocalizedPath(currentPath, "en"), canonicalBase).href;
 const spanishUrl = new URL(currentLocale === "es" ? currentPath : getLocalizedPath(currentPath, "es"), canonicalBase).href;
-const xDefaultUrl = new URL("/", canonicalBase).href;
+const xDefaultUrl = xDefaultOverride || new URL("/", canonicalBase).href;
 ---
 
 <!doctype html>
