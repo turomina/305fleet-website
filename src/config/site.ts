@@ -10,9 +10,11 @@ export const SITE = {
   url: "https://305fleet.com",
   locale: "en",
   locales: ["en", "es"],
-  phone: "", // pending Ian approval for public display
-  whatsapp: "", // pending Ian approval
-  email: "", // pending Ian approval for public business email
+  phone: "954-662-6013",
+  phoneDisplay: "954-662-6013",
+  phoneTel: "+19546626013",
+  whatsapp: "19546626013",
+  email: "info@305fleet.com",
   serviceArea: ["Miami", "Fort Lauderdale", "Palm Beach"],
   airports: ["MIA", "FLL", "PBI"],
 } as const;
