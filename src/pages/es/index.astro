@@ -2,7 +2,6 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/base/Header.astro";
 import Footer from "../../components/base/Footer.astro";
-import VehicleEntryPill from "../../components/booking/VehicleEntryPill.astro";
 import vehicles from "../../data/vehicles.json";
 import { getFuelLabel } from "../../config/labels";
 
@@ -43,18 +42,21 @@ const steps = [
           <p class="hero-label inline-block text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-6" data-anim="hero-label">
             Alquiler Directo — Sur de Florida
           </p>
-          <h1 class="hero-headline text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.08] mb-6" data-anim="hero-headline">
-            <span class="hero-line block overflow-hidden"><span class="hero-line-inner block">Vehículos premium.</span></span>
-            <span class="hero-line block overflow-hidden"><span class="hero-line-inner block">Recogida sin contacto.</span></span>
-            <span class="hero-line block overflow-hidden"><span class="hero-line-inner block">Servicio local real.</span></span>
+          <h1 class="hero-headline text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.08] mb-6" aria-label="Vehículos Premium. Recogida Sin Contacto. Servicio Local Real." data-anim="hero-headline">
+            <span class="hero-line block overflow-hidden"><span class="hero-line-inner block">Vehículos Premium.</span></span>
+            <span class="sr-only"> </span>
+            <span class="hero-line block overflow-hidden"><span class="hero-line-inner block">Recogida Sin Contacto.</span></span>
+            <span class="sr-only"> </span>
+            <span class="hero-line block overflow-hidden"><span class="hero-line-inner block">Servicio Local Real.</span></span>
           </h1>
           <p class="hero-sub text-lg sm:text-xl text-white/70 leading-relaxed max-w-xl mx-auto mb-10" data-anim="hero-sub">
             Alquiler directo de un operador de flota del sur de Florida. Entrega gratuita en MIA y FLL.
             Recogida sin contacto en los estacionamientos designados. Sin mostradores, sin autobuses — solo un vehículo limpio y listo.
           </p>
 
-          <div class="hero-search" data-anim="hero-search">
-            <VehicleEntryPill lang="es" />
+          <div class="hero-ctas mt-8 flex flex-col sm:flex-row items-center justify-center gap-4" data-anim="hero-ctas">
+            <a href="/es/vehicles/" class="btn-hero-primary">Elige tu vehículo</a>
+            <a href="/es/how-it-works/" class="btn-hero-secondary">Cómo funciona</a>
           </div>
 
           <div class="hero-trust mt-8 flex items-center justify-center gap-6 text-sm text-white/50" data-anim="hero-trust">
@@ -180,7 +182,8 @@ const steps = [
       tl.fromTo('[data-anim="hero-label"]',{opacity:0,y:16},{opacity:1,y:0,duration:.7,delay:.1})
         .fromTo('.hero-line-inner',{y:'100%'},{y:0,duration:.85,stagger:.18},'-=0.3')
         .fromTo('[data-anim="hero-sub"]',{opacity:0,y:12},{opacity:1,y:0,duration:.65},'-=0.25')
-        .fromTo('[data-anim="hero-search"]',{opacity:0,y:24,scale:.97},{opacity:1,y:0,scale:1,duration:.7},'-=0.2')
+        .fromTo('[data-anim="hero-sub"]',{opacity:0,y:12},{opacity:1,y:0,duration:.65},'-=0.25')
+        .fromTo('[data-anim="hero-ctas"]',{opacity:0,y:16},{opacity:1,y:0,duration:.6},'-=0.25')
         .fromTo('[data-anim="hero-trust"]',{opacity:0},{opacity:1,duration:.5},'-=0.15')
         .fromTo('[data-anim="hero-scroll"]',{opacity:0},{opacity:1,duration:.5},'-=0.1');
       gsap.to('.hero-bg-img',{y:40,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
@@ -196,6 +199,6 @@ const steps = [
     setTimeout(()=>{document.documentElement.setAttribute('data-motion-ready','true')},500);
   </script>
   <style>
-    .hero-line-inner{display:block}.gradient-hero-overlay{background:linear-gradient(180deg,rgba(13,20,28,0.35) 0%,rgba(13,20,28,0.80) 100%)}.hero-search{max-width:960px;margin:0 auto}.airport-fallback{display:block}.no-webgl .airport-canvas{display:none}@media(prefers-reduced-motion:reduce){[data-anim]{opacity:1!important;transform:none!important}.hero-line-inner{transform:translateY(0)!important}.scroll-dot{animation:none!important}}
+    .hero-line-inner{display:block}.gradient-hero-overlay{background:linear-gradient(180deg,rgba(13,20,28,0.35) 0%,rgba(13,20,28,0.80) 100%)}.airport-fallback{display:block}.no-webgl .airport-canvas{display:none}@media(prefers-reduced-motion:reduce){[data-anim]{opacity:1!important;transform:none!important}.hero-line-inner{transform:translateY(0)!important}.scroll-dot{animation:none!important}}
   </style>
 </BaseLayout>
