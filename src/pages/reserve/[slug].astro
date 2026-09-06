@@ -31,9 +31,9 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
   title={vehicle ? `${vehicle.name} — Availability & Pricing` : "Vehicle Not Found"}
   description={vehicle ? `Check real-time availability for the ${vehicle.name}. Pricing, dates, and protection from 305 Fleet.` : ""}
   noindex={true}
-  hideSpanishHreflang={true}
+  hideSpanishHreflang={false}
 >
-  <Header esPath={`/es/vehicles/${vehicle.slug}/`} />
+  <Header esPath={`/es/reserve/${vehicle.slug}/`} />
 
   <main id="main-content" class="flex-1">
     {!vehicle || !wbId ? (
@@ -264,7 +264,7 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
     )}
   </main>
 
-  <Footer esPath={`/es/vehicles/${vehicle.slug}/`} />
+  <Footer esPath={`/es/reserve/${vehicle.slug}/`} />
 </BaseLayout>
 
 <script>

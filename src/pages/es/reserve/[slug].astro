@@ -1,5 +1,5 @@
 ---
-// W2.1b: Spanish Wheelbase reservation page — Native intro + Wheelbase <listing-details>
+// W2.1c: Wheelbase reservation page — Spanish wrapper + Wheelbase <listing-details>
 // Route: /es/reserve/[public-vehicle-slug]/ — Spanish only, noindex, excluded from sitemap
 
 import BaseLayout from "../../../layouts/BaseLayout.astro";
@@ -8,13 +8,13 @@ import Footer from "../../../components/base/Footer.astro";
 import VehicleGallery from "../../../components/ui/VehicleGallery.astro";
 import { getFuelLabel } from "../../../config/labels";
 import { SITE } from "../../../config/site";
-
-const phoneTel = SITE.phoneTel;
 import {
   DEALER_ID,
   WHEELBASE_RENTAL_IDS,
   getWheelbaseVehicles,
 } from "../../../data/wheelbase-mapping";
+
+const phoneTel = SITE.phoneTel;
 
 export function getStaticPaths() {
   return getWheelbaseVehicles().map((v) => ({
@@ -25,13 +25,20 @@ export function getStaticPaths() {
 const { slug } = Astro.params;
 const vehicle = getWheelbaseVehicles().find((v) => v.slug === slug);
 const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBASE_RENTAL_IDS] : null;
+
+// Translation helpers localized to this page
+const pageTitleEN = vehicle ? `${vehicle.name} — Availability & Pricing` : "Vehicle Not Found";
+const pageTitleES = vehicle ? `Disponibilidad y Precios — ${vehicle.name}` : "Vehículo No Disponible";
+const descriptionEN = vehicle ? `Check real-time availability for the ${vehicle.name}. Pricing, dates, and protection from 305 Fleet.` : "";
+const descriptionES = vehicle ? `Consulta la disponibilidad en tiempo real del ${vehicle.name}. Precios, fechas y protección de 305 Fleet.` : "";
 ---
 
 <BaseLayout
-  title={vehicle ? `${vehicle.name} — Disponibilidad y Precios` : "Vehículo No Disponible"}
-  description={vehicle ? `Verifica la disponibilidad en tiempo real del ${vehicle.name}. Precios, fechas y protección de 305 Fleet.` : ""}
-  noindex={true}
   lang="es"
+  title={pageTitleES}
+  description={descriptionES}
+  noindex={true}
+  hideSpanishHreflang={false}
 >
   <Header lang="es" />
 
@@ -39,9 +46,9 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
     {!vehicle || !wbId ? (
       <section class="section bg-surface">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center py-16">
-          <h1 class="text-2xl font-bold text-ink">Vehículo no disponible</h1>
-          <p class="mt-2 text-ink-secondary">Este vehículo no está disponible actualmente para reserva en línea.</p>
-          <a href="/es/vehicles/" class="btn btn-primary mt-6">Ver Flota</a>
+          <h1 class="text-2xl font-bold text-ink">Vehículo no disponible para reservación en línea</h1>
+          <p class="mt-2 text-ink-secondary">Este vehículo no se puede reservar actualmente a través de nuestro sitio web.</p>
+          <a href="/es/vehicles/" class="btn btn-primary mt-6">Ver Vehículos</a>
         </div>
       </section>
     ) : (
@@ -49,28 +56,18 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
         {/* Reservation Introduction */}
         <section class="bg-navy-900 text-white section-sm">
           <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between mb-4">
-              <a
-                href={`/es/vehicles/${vehicle.slug}/`}
-                class="inline-flex items-center gap-1 text-sm text-white/60 hover:text-white/90 transition-colors"
-              >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-                Volver a Detalles del Vehículo
-              </a>
-              <a
-                href={`/reserve/${vehicle.slug}/`}
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-white/80 border border-white/20 rounded-lg hover:bg-white/10 transition-colors"
-                lang="en"
-              >
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m3.5 13a7 7 0 100-14 7 7 0 000 14zm0 0l-2 2m2-2l2 2"/></svg>
-                English
-              </a>
-            </div>
+            <a
+              href={`/es/vehicles/${vehicle.slug}/`}
+              class="inline-flex items-center gap-1 text-sm text-white/60 hover:text-white/90 mb-4 transition-colors"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+              Volver a Detalles del Vehículo
+            </a>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
               <div>
                 <p class="text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-2">{vehicle.year} &middot; {vehicle.make}</p>
                 <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight">{vehicle.name}</h1>
-                <p class="mt-2 text-white/70 text-base">{vehicle.tagline_es}</p>
+                <p class="mt-2 text-white/70 text-base">{vehicle.tagline_es || vehicle.tagline_en}</p>
                 <div class="mt-5 flex flex-wrap items-center gap-3">
                   <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 text-sm">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m6-5.13a4 4 0 11-8 0 4 4 0 018 0zm6 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
@@ -87,15 +84,15 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
               </div>
               <div class="lg:text-right space-y-2">
                 <a href="#wb-section" class="inline-flex items-center gap-2 px-6 py-4 bg-accent hover:bg-accent/90 text-white font-semibold rounded-lg transition-colors text-base">
-                  Continuar a Disponibilidad en Vivo y Reserva Segura
+                  Continuar con Disponibilidad y Reservación Segura
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
                 </a>
                 <div class="flex gap-2 justify-end">
                   <a href={`tel:${phoneTel}`} class="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-white border border-white/20 rounded-lg hover:bg-white/10 transition-colors">
-                    &#128222; Llamar
+                    &#128222; Llámanos
                   </a>
                   <a href={`sms:${phoneTel}`} class="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-white border border-white/20 rounded-lg hover:bg-white/10 transition-colors">
-                    &#128172; Enviar Texto
+                    &#128172; Enviar mensaje
                   </a>
                 </div>
                 <p class="mt-1 text-xs text-white/40">Disponibilidad en tiempo real de Wheelbase</p>
@@ -120,8 +117,13 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
             <h2 class="text-2xl font-bold text-ink mb-4">Detalles del Vehículo</h2>
 
             {/* Tab pills — visible on all screen sizes */}
-            <div class="flex flex-wrap gap-2 mb-6" role="tablist" aria-label="Secciones de información del vehículo">
-              {["Resumen", "Especificaciones", "Recogida y Entrega", "Políticas"].map((tab, i) => (
+            <div class="flex flex-wrap gap-2 mb-6" role="tablist" aria-label="Vehicle information sections">
+              {[
+                { label: "Resumen", icon: "" },
+                { label: "Especificaciones", icon: "" },
+                { label: "Recolección y Entrega", icon: "" },
+                { label: "Políticas", icon: "" },
+              ].map((tab, i) => (
                 <button
                   type="button"
                   role="tab"
@@ -129,7 +131,7 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
                   aria-selected={i === 0 ? "true" : "false"}
                   data-tab={i}
                 >
-                  {tab}
+                  {tab.label}
                 </button>
               ))}
             </div>
@@ -138,7 +140,7 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
             <div class="space-y-4">
               {/* Overview */}
               <div id="tab-panel-0" class="block bg-white rounded-xl p-6 border border-border" role="tabpanel">
-                <p class="text-ink-secondary leading-relaxed">{vehicle.description_es || `El ${vehicle.name} es un ${vehicle.year} ${vehicle.make} ${vehicle.model} — ${vehicle.tagline_es}`}</p>
+                <p class="text-ink-secondary leading-relaxed">{vehicle.description_es || vehicle.description_en || `El ${vehicle.name} es un ${vehicle.year} ${vehicle.make} ${vehicle.model} \u2014 ${vehicle.tagline_es || vehicle.tagline_en}`}</p>
               </div>
 
               {/* Specifications */}
@@ -167,23 +169,23 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
                   <p><strong class="text-ink">Recogida:</strong> Recogida gratuita en nuestra ubicación de Pembroke Pines.</p>
                   <p><strong class="text-ink">Entrega en Aeropuerto:</strong></p>
                   <ul class="list-disc pl-5 space-y-1">
-                    <li><strong>MIA</strong> (Aeropuerto Internacional de Miami) — Entrega gratuita</li>
-                    <li><strong>FLL</strong> (Fort Lauderdale-Hollywood) — Entrega gratuita</li>
-                    <li><strong>PBI</strong> (Aeropuerto Internacional de Palm Beach) — Entrega paga disponible</li>
+                    <li><strong>MIA</strong> (Miami International) \u2014 Entrega gratuita</li>
+                    <li><strong>FLL</strong> (Fort Lauderdale-Hollywood) \u2014 Entrega gratuita</li>
+                    <li><strong>PBI</strong> (Palm Beach International) \u2014 Entrega paga disponible</li>
                   </ul>
-                  <p class="text-xs text-ink-tertiary">Entrega sin contacto desde estacionamiento designado del aeropuerto. Ubicación exacta enviada privadamente después de la reserva.</p>
+                  <p class="text-xs text-ink-tertiary">Entrega sin contacto desde estacionamiento designado. La ubicación exacta se envía de forma privada después de la reservación.</p>
                 </div>
               </div>
 
               {/* Policies */}
               <div id="tab-panel-3" class="hidden block bg-white rounded-xl p-6 border border-border" role="tabpanel">
                 <div class="text-ink-secondary leading-relaxed space-y-3">
-                  <p><strong class="text-ink">General:</strong> Todos los arrendatarios deben cumplir nuestros <a href="/es/rental-requirements/" class="text-brand underline">requisitos de alquiler</a>. El arrendatario principal debe tener una licencia de conducir válida y tarjeta de crédito principal.</p>
-                  <p><strong class="text-ink">Kilometraje:</strong> Se aplica asignación estándar de kilometraje. Ver <a href="/es/rental-policies/" class="text-brand underline">políticas de alquiler</a> para detalles.</p>
-                  <p><strong class="text-ink">Combustible:</strong> Devolver con el mismo nivel de combustible que en la recogida. Vehículo {getFuelLabel(vehicle.fuel_type, "es")}.</p>
-                  <p><strong class="text-ink">Fumar:</strong> No se permite fumar. Se aplicará tarifa de limpieza por violaciones.</p>
-                  <p><strong class="text-ink">Estacionamiento:</strong> El arrendatario es responsable de todos los cargos de estacionamiento del aeropuerto. Estos se divulgan durante la reserva y en su contrato de alquiler.</p>
-                  <p class="text-xs text-ink-tertiary">Los términos completos se presentan durante la reserva. Revise todos los términos antes de confirmar su reserva.</p>
+                  <p><strong class="text-ink">General:</strong> Todos los arrendatarios deben cumplir nuestros <a href="/es/rental-requirements/" class="text-brand underline">requisitos de alquiler</a>. El arrendatario principal debe tener una licencia de conducir válida y una tarjeta de crédito principal.</p>
+                  <p><strong class="text-ink">Millaje:</strong> Se aplica el límite de millaje estándar. Consulte las <a href="/es/rental-policies/" class="text-brand underline">políticas de alquiler</a> para más detalles.</p>
+                  <p><strong class="text-ink">Combustible:</strong> Devolver con el mismo nivel de combustible de la recogida. Vehículo {getFuelLabel(vehicle.fuel_type, "es")}.</p>
+                  <p><strong class="text-ink">Fumador:</strong> No se permite fumar. Se cobra cuota de limpieza por violaciones.</p>
+                  <p><strong class="text-ink">Estacionamiento:</strong> El arrendatario es responsable de todos los cargos de estacionamiento del aeropuerto. Estos se divulgan durante la reservación y en su contrato de alquiler.</p>
+                  <p class="text-xs text-ink-tertiary">Los términos completos se presentan durante la reservación. Revise todos los términos antes de confirmar su reservación.</p>
                 </div>
               </div>
             </div>
@@ -194,14 +196,24 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
         <section id="wb-section" class="section bg-white border-t-2 border-brand">
           <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
             <div class="mb-6">
-              <h2 class="text-2xl font-bold text-ink">Disponibilidad en Vivo y Reserva Segura</h2>
+              <h2 class="text-2xl font-bold text-ink">Disponibilidad en Tiempo Real y Reservación Segura</h2>
               <p class="text-sm text-ink-secondary mt-1">Seleccione sus fechas a continuación para ver precios en tiempo real y reservar su {vehicle.name}.</p>
             </div>
 
             {/* Delivery notice */}
             <div class="mb-6 p-3 sm:p-4 bg-brand-50 border border-brand-100 rounded-lg">
               <p class="text-xs sm:text-sm text-ink-secondary leading-relaxed">
-                <strong class="text-ink">Recogida y entrega:</strong> Recogida gratuita en Pembroke Pines. Entrega gratuita a MIA y FLL. Entrega paga disponible a PBI y el área de servicio local. Los cargos de estacionamiento del aeropuerto son responsabilidad del huésped. La entrega especial está sujeta a confirmación.
+                <strong class="text-ink">Recogida y entrega:</strong> Recogida gratuita en Pembroke Pines. Entrega gratuita a MIA y FLL. Entrega paga disponible a PBI y el área de servicio local. Los cargos de estacionamiento del aeropuerto son responsabilidad del invitado. La entrega especial está sujeta a confirmación.
+              </p>
+            </div>
+
+            {/* Language notice for booking widget */}
+            <div class="mb-6 p-3 sm:p-4 bg-neutral-50 border border-neutral-200 rounded-lg">
+              <p class="text-xs sm:text-sm text-ink-secondary leading-relaxed">
+                <strong class="text-ink">Nota:</strong> El sistema seguro de reservación se muestra en inglés. Si necesita ayuda, llámenos o envíenos un mensaje al{' '}
+                <a href="tel:+13054391247" class="text-brand hover:text-brand-400 underline font-medium">305-439-1247</a>{' '}
+                o{' '}
+                <a href="sms:+13054391247" class="text-brand hover:text-brand-400 underline font-medium">envíenos un texto</a>.
               </p>
             </div>
 
@@ -213,7 +225,7 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
             {/* Loading state */}
             <div id="wb-loading" class="py-16 text-center">
               <div class="inline-block w-8 h-8 border-3 border-brand-200 border-t-brand rounded-full animate-spin mb-4"></div>
-              <p class="text-ink-secondary">Cargando disponibilidad&hellip;</p>
+              <p class="text-ink-secondary">Cargando disponibilidad\u2026</p>
             </div>
 
             {/* Error state */}
@@ -223,20 +235,29 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
               </div>
-              <h3 class="text-xl font-semibold text-ink mb-2">Sistema de reserva no disponible</h3>
+              <h3 class="text-xl font-semibold text-ink mb-2">Sistema de reservación no disponible</h3>
               <p class="text-ink-secondary max-w-md mx-auto mb-6">
-                Estamos teniendo problemas para cargar nuestro sistema de reserva. Intente nuevamente o <a href="/es/contact/" class="text-brand underline">contáctenos</a> para verificar disponibilidad.
+                Estamos teniendo problemas para cargar nuestro sistema de reservación. Por favor intente de nuevo o <a href="/es/contact/" class="text-brand underline">contáctenos</a> para verificar disponibilidad.
               </p>
               <button type="button" id="wb-retry" class="btn btn-primary">Intentar de Nuevo</button>
             </div>
 
-            {/* Wheelbase listing-details */}
+            {/* 
+              Wheelbase listing-details — NO locale set.
+              Wheelbase auto-detects browser language via navigator.language/navigator.languages
+              and falls back to 'en-us'. For our Spanish pages, the user's browser language
+              determines the widget language. If the browser is in English, the widget will be 
+              in English too — which is acceptable since the surrounding wrapper remains fully Spanish.
+              
+              IMPORTANT: We do NOT set locale="es-us" because Wheelbase does not support an 
+              American Spanish locale (only es-es for Spain/EUR). Setting es-es would incorrectly 
+              display EUR (€) pricing. See the audit report for the full reasoning.
+            */}
             <div id="wb-root">
               <listing-details
                 id="wb-listing-details"
                 dealer-id={DEALER_ID}
                 rental-id={String(wbId)}
-                locale="es-us"
                 primary-color="#EA5E2D"
                 secondary-color="#314B6E"
                 text-color="#0D141C"
@@ -255,7 +276,7 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
               Detalles del vehículo
             </a>
             <a href="/es/vehicles/" class="inline-flex items-center gap-2 text-sm text-ink-secondary hover:text-brand transition-colors">
-              Ver flota completa
+              Ver toda la flota
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
             </a>
           </div>
@@ -264,7 +285,7 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
     )}
   </main>
 
-  <Footer lang="es" />
+  <Footer />
 </BaseLayout>
 
 <script>
