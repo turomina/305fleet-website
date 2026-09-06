@@ -46,7 +46,7 @@ export const NAV = {
       { label: "Rental Requirements", href: "/rental-requirements/" },
       { label: "Rental Policies", href: "/rental-policies/" },
       { label: "Optional Extras", href: "/optional-extras/" },
-      { label: "Reviews", href: "/reviews/" },
+      // Reviews link temporarily hidden — no verified testimonials yet
     ],
     support: [
       { label: "Contact", href: "/contact/" },
