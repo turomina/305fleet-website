@@ -1,25 +1,22 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/base/Header.astro";
-import Footer from "../components/base/Footer.astro";
-import { SITE } from "../config/site";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/base/Header.astro";
+import Footer from "../../components/base/Footer.astro";
+import { SITE } from "../../config/site";
 ---
 
-<BaseLayout
-  title="About 305 Fleet — South Florida's Local Fleet Operator"
-  description="305 Fleet is locally owned and operated by Turomina LLC. We serve MIA, FLL, and PBI with professionally maintained vehicles, contactless airport pickup, and direct English &amp; Spanish assistance."
->
+<BaseLayout lang="es" title="Acerca de 305 Fleet — Operador local en el sur de la Florida" description="305 Fleet es una empresa propiedad y operada localmente por Turomina LLC. Atendemos MIA, FLL y PBI con vehículos profesionalmente mantenidos, recogida aeroportuaria sin contacto y asistencia directa en inglés y español." hideSpanishHreflang>
   <Header />
 
   <main id="main-content" class="flex-1">
     <!-- ═══════════════════ HERO ═══════════════════ -->
     <section class="section-sm gradient-dark text-white">
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <p class="text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-4">About Us</p>
-        <h1 class="text-4xl sm:text-5xl font-bold tracking-tight leading-tight">South Florida's local fleet.</h1>
+        <p class="text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-4">Sobre Nosotros</p>
+        <h1 class="text-4xl sm:text-5xl font-bold tracking-tight leading-tight">La flota local del sur de la Florida.</h1>
         <p class="mt-4 text-lg text-white/70 max-w-2xl leading-relaxed">
-          A real operator. Real vehicles. Real accountability. We rent directly from a carefully selected fleet
-          at three South Florida airports — MIA, FLL, and PBI — so you know exactly what you're getting.
+          Un operador real. Vehículos reales. Responsabilidad real. Alquilamos directamente desde una flota cuidadosamente seleccionada
+          en tres aeropuertos del sur de la Florida — MIA, FLL y PBI — para que sepas exactamente lo que estás obteniendo.
         </p>
       </div>
     </section>
@@ -27,23 +24,24 @@ import { SITE } from "../config/site";
     <!-- ═══════════════════ OWNERSHIP ═══════════════════ -->
     <section class="section bg-surface">
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-ink mb-6">Who we are</h2>
+        <h2 class="text-3xl font-bold text-ink mb-6">Quiénes somos</h2>
         <p class="text-ink-secondary leading-relaxed mb-4">
-          305 Fleet is owned and operated by <strong class="text-ink">Turomina LLC</strong>, a South Florida-based company.
-          We exist because renting a vehicle shouldn't mean choosing between impersonal national chains and unpredictable peer-to-peer platforms.
+          305 Fleet es propiedad y está operada por <strong class="text-ink">Turomina LLC</strong>, una empresa con base aquí en el sur de la Florida.
+          Existimos porque alquilar un vehículo no debería significar elegir entre cadenas impersonales o plataformas impredecibles.
         </p>
         <p class="text-ink-secondary leading-relaxed mb-4">
-          We know these airports, these roads, and this community. Every vehicle in our fleet is personally selected and inspected.
-          Every rental is handled by our local team — not a remote call center. You can reach us directly whenever you need to.
+          Conocemos estos aeropuertos, estas carreteras y esta comunidad. Cada vehículo de nuestra flota es seleccionado e inspeccionado personalmente.
+          Cada alquiler es atendido por nuestro equipo local — no un centro de llamadas remoto. Puedes contactarnos directamente cuando lo necesites.
         </p>
         <p class="text-ink-secondary leading-relaxed mb-8">
-          Our philosophy is straightforward: maintain a small, excellent fleet. Present them professionally. Offer contactless pickup
-          from designated airport parking. Set clear expectations from the start. Do one thing well.
+          Nuestra filosofía es sencilla: mantener una flota pequeña y excelente. Presentarlos profesionalmente. Ofrecer recogida sin contacto
+          desde estacionamientos designados. Establecer expectativas claras desde el inicio. Hacer una cosa bien.
         </p>
 
-        <!-- Owner / Team Photo — only renders when approved image exists -->
-        <div id="team-photo" style="display:none;">
-          <!-- Placeholder slot — will reveal once an approved photograph is placed at /images/about/team-photo.webp -->
+        <!-- Owner / Team Photo — hidden until approved photograph is available -->
+        <!-- To reveal: remove style="display:none" and uncomment the <img> below -->
+        <div class="rounded-2xl overflow-hidden" style="display:none;">
+          <!-- <img src="/images/about/team-photo.webp" alt="Ian y el equipo de 305 Fleet" class="w-full h-auto object-cover" loading="lazy" /> -->
         </div>
       </div>
     </section>
@@ -51,9 +49,9 @@ import { SITE } from "../config/site";
     <!-- ═══════════════════ WHAT WE OFFER (VALUE GRID) ═══════════════════ -->
     <section class="section bg-brand-50">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-ink text-center mb-4">What sets us apart</h2>
+        <h2 class="text-3xl font-bold text-ink text-center mb-4">Lo que nos diferencia</h2>
         <p class="text-ink-secondary text-center max-w-xl mx-auto mb-12">
-          Six commitments that define every rental with 305 Fleet.
+          Seis compromisos que definen cada alquiler con 305 Fleet.
         </p>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <!-- Value card 1 — Locally Owned -->
@@ -62,10 +60,10 @@ import { SITE } from "../config/site";
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
               <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
             </svg>
-            <h3 class="text-lg font-semibold text-ink mb-2">Locally Owned &amp; Operated</h3>
+            <h3 class="text-lg font-semibold text-ink mb-2">Propiedad y Operación Local</h3>
             <p class="text-sm text-ink-secondary leading-relaxed">
-              Turomina LLC is based right here in South Florida. We're not a faceless chain or offshore platform —
-              we live, work, and depend on our reputation in this community.
+              Turomina LLC tiene su sede aquí mismo en el sur de la Florida. No somos una cadena anónima ni una plataforma extranjera —
+              vivimos, trabajamos y dependemos de nuestra reputación en esta comunidad.
             </p>
           </div>
 
@@ -74,10 +72,10 @@ import { SITE } from "../config/site";
             <svg class="w-8 h-8 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-10.5L16.5 9m0 0L21 13.5m0-4.5h-13.5" />
             </svg>
-            <h3 class="text-lg font-semibold text-ink mb-2">Direct English &amp; Spanish Assistance</h3>
+            <h3 class="text-lg font-semibold text-ink mb-2">Asistencia Directa en Inglés y Español</h3>
             <p class="text-sm text-ink-secondary leading-relaxed">
-              Full bilingual support from booking through return. Call us in English or Español —
-              our local team answers directly, no transfer, no queue.
+              Soporte completo bilingüe desde la reservación hasta la devolución. Llámanos en inglés o en español —
+              nuestro equipo local contesta directamente, sin transferencia ni espera.
             </p>
           </div>
 
@@ -86,10 +84,10 @@ import { SITE } from "../config/site";
             <svg class="w-8 h-8 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
             </svg>
-            <h3 class="text-lg font-semibold text-ink mb-2">Service at MIA, FLL &amp; PBI</h3>
+            <h3 class="text-lg font-semibold text-ink mb-2">Servicio en MIA, FLL y PBI</h3>
             <p class="text-sm text-ink-secondary leading-relaxed">
-              Contactless pickup from designated parking facilities at all three South Florida airports.
-              Free delivery to MIA and FLL. Paid delivery to Palm Beach.
+              Recogida sin contacto desde estacionamientos designados en los tres aeropuertos del sur de la Florida.
+              Entrega gratuita a MIA y FLL. Entrega con costo en Palm Beach.
             </p>
           </div>
 
@@ -98,10 +96,10 @@ import { SITE } from "../config/site";
             <svg class="w-8 h-8 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75l3 3m0 0l3-3m-3 3v-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <h3 class="text-lg font-semibold text-ink mb-2">Exact Vehicle, Guaranteed</h3>
+            <h3 class="text-lg font-semibold text-ink mb-2">Vehículo Exacto, Garantizado</h3>
             <p class="text-sm text-ink-secondary leading-relaxed">
-              The vehicle shown in your reservation details is the vehicle you receive.
-              No "or similar" substitutions. What you see is what you drive — every time.
+              El vehículo que aparece en tus detalles de reservación es el vehículo que recibes.
+              Sin sustituciones "o similar". Lo que ves es lo que conduces — cada vez.
             </p>
           </div>
 
@@ -110,10 +108,10 @@ import { SITE } from "../config/site";
             <svg class="w-8 h-8 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.384 3.174.286-6.06L4.066 8.476l6.08-.82L12 2.13l2.854 5.564 6.08.82-4.272 3.808.286 6.06-5.384-3.174z" />
             </svg>
-            <h3 class="text-lg font-semibold text-ink mb-2">Professionally Prepared &amp; Maintained</h3>
+            <h3 class="text-lg font-semibold text-ink mb-2">Preparación y Mantenimiento Profesional</h3>
             <p class="text-sm text-ink-secondary leading-relaxed">
-              Every vehicle is cleaned, inspected, and professionally prepared before each rental.
-              We maintain our own fleet so quality stays consistent across every trip.
+              Cada vehículo se limpia, inspecciona y prepara profesionalmente antes de cada alquiler.
+              Mantenemos nuestra propia flota para que la calidad sea consistente en cada viaje.
             </p>
           </div>
 
@@ -122,10 +120,10 @@ import { SITE } from "../config/site";
             <svg class="w-8 h-8 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8zM4.054 14.37A5.994 5.994 0 011.5 12.75V12a6 6 0 011.995-4.36m6.344-2.038A14.926 14.926 0 0121 12.75m-5.41 1.62A14.926 14.926 0 009.631 8" />
             </svg>
-            <h3 class="text-lg font-semibold text-ink mb-2">Contactless Airport Pickup</h3>
+            <h3 class="text-lg font-semibold text-ink mb-2">Recogida Aeroportuaria Sin Contacto</h3>
             <p class="text-sm text-ink-secondary leading-relaxed">
-              Walk up to your car. Receive private location instructions directly via text.
-              No counter lines, no paperwork, no waiting. Get in and go.
+              Acércate a tu auto. Recibe instrucciones privadas de ubicación directamente por texto.
+              Sin filas en el mostrador, sin papeleo, sin esperas. Sube y sal.
             </p>
           </div>
         </div>
@@ -135,16 +133,16 @@ import { SITE } from "../config/site";
     <!-- ═══════════════════ CONTACT CTA BAND ═══════════════════ -->
     <section class="section bg-gradient-to-r from-brand-900 to-brand-700 text-white">
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-3">Questions? Reach us directly.</h2>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-3">¿Preguntas? Contáctanos directamente.</h2>
         <p class="text-lg text-white/70 max-w-xl mx-auto mb-6">
-          Our local team speaks English and Spanish. Call, text, or WhatsApp — no bots, no wait times.
+          Nuestro equipo local habla inglés y español. Llamar, textear o WhatsApp — sin robots, sin tiempos de espera.
         </p>
         <p class="text-3xl font-bold text-white mb-8">
           <a href={`tel:${SITE.phoneTel}`} class="hover:text-accent transition-colors">{SITE.phoneDisplay}</a>
         </p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <a href="/vehicles/" class="btn btn-light btn-primary-lg">Choose Your Vehicle</a>
-          <a href="/contact/" class="btn px-8 py-4 text-base font-semibold text-white border-2 border-white/30 rounded-lg hover:bg-white/10 transition-all">Contact Us</a>
+          <a href="/es/vehicles/" class="btn btn-light btn-primary-lg">Elige tu Vehículo</a>
+          <a href="/es/contact/" class="btn px-8 py-4 text-base font-semibold text-white border-2 border-white/30 rounded-lg hover:bg-white/10 transition-all">Contáctanos</a>
         </div>
       </div>
     </section>

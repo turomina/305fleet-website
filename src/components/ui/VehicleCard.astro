@@ -98,7 +98,7 @@ const fuelColor = (() => {
     <!-- Bottom section: CTA button + details link -->
     <div class="mt-auto pt-3">
       <a
-        href={isEs ? `/reserve/es/${v.slug}/` : `/reserve/${v.slug}/`}
+        href={`/reserve/${v.slug}/`}
         class="mb-2 block w-full rounded-xl bg-[var(--color-brand)] px-4 py-2.5 text-center text-sm font-semibold text-white shadow-[0_2px_8px_-2px_rgba(49,75,110,.3)] transition-all duration-300 hover:bg-[var(--color-brand-400)] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_-4px_rgba(49,75,110,.35)]"
       >
         {isEs ? "Ver disponibilidad y precio" : "Check availability & pricing"}
