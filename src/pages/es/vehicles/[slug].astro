@@ -33,7 +33,7 @@ const hasFeatures = vehicle.key_features && vehicle.key_features.length > 0;
 <BaseLayout lang="es" title={vehicle.name}
   description={`${vehicle.tagline_es || vehicle.tagline_en} — ${vehicle.name}. ${vehicle.passenger_capacity} asientos, ${getFuelLabel(vehicle.fuel_type, "es")}. Alquiler directo con entrega gratuita en MIA y FLL.`}
 >
-  <Header />
+  <Header lang="es" />
 
   <main id="main-content" class="flex-1">
     {/* Hero */}
