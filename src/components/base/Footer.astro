@@ -1,13 +1,57 @@
 ---
 import { SITE, NAV } from "../../config/site";
-import LanguageSwitcher from "./LanguageSwitcher.astro";
 const year = new Date().getFullYear();
 
-interface Props {
-  esPath?: string;
-}
+// Detect locale from current page path
+const path = Astro.url.pathname;
+const isEs = path.startsWith("/es/");
 
-const { esPath } = Astro.props as Props;
+// Section heading translations
+const sectionLabels = {
+  rentals: isEs ? "Alquileres" : "Rentals",
+  locations: isEs ? "Ubicaciones" : "Locations",
+  info: isEs ? "Información" : "Info",
+  support: isEs ? "Soporte" : "Support",
+};
+
+// English footer data (from site config)
+const enRentals = NAV.footer.rentals;
+const enLocations = NAV.footer.locations;
+const enInfo = NAV.footer.info;
+const enSupport = NAV.footer.support;
+const enLegal = NAV.legal;
+
+// Spanish footer data
+const esRentals = [
+  { label: "Vehículos", href: "/es/vehicles/" },
+  { label: "Alquiler Diario", href: "/es/rental-options/daily/" },
+  { label: "Alquiler Semanal", href: "/es/rental-options/weekly/" },
+  { label: "Alquiler Mensual", href: "/es/rental-options/monthly/" },
+  { label: "Negocios y Corporativo", href: "/es/rental-options/business-corporate/" },
+  { label: "Ofertas", href: "/es/deals/" },
+];
+const esLocations = [
+  { label: "Miami International (MIA)", href: "/es/locations/miami-international-airport/" },
+  { label: "Fort Lauderdale (FLL)", href: "/es/locations/fort-lauderdale-airport/" },
+  { label: "Palm Beach (PBI)", href: "/es/locations/palm-beach-airport/" },
+];
+const esInfo = [
+  { label: "Cómo Funciona", href: "/es/how-it-works/" },
+  { label: "Requisitos de Alquiler", href: "/es/rental-requirements/" },
+  { label: "Políticas de Alquiler", href: "/es/rental-policies/" },
+  { label: "Extras Opcionales", href: "/es/optional-extras/" },
+];
+const esSupport = [
+  { label: "Contacto", href: "/es/contact/" },
+  { label: "Preguntas Frecuentes", href: "/es/faq/" },
+  { label: "Soporte", href: "/es/support/" },
+  { label: "Acerca de 305 Fleet", href: "/es/about/" },
+];
+const esLegal = [
+  { label: "Política de Privacidad", href: "/es/privacy/" },
+  { label: "Términos", href: "/es/terms/" },
+  { label: "Accesibilidad", href: "/es/accessibility/" },
+];
 ---
 
 <footer class="bg-brand-dark text-white">
@@ -17,73 +61,74 @@ const { esPath } = Astro.props as Props;
       <div class="lg:col-span-1">
         <img
           src="/images/brand/footer-logo.png"
-          alt={`${SITE.name}`}
+          alt={SITE.name}
           width="120"
           height="36"
           class="h-8 w-auto mb-3 brightness-0 invert"
         />
-        <p class="text-sm text-gray-300 max-w-xs">
-          {SITE.tagline} — {SITE.description}
-        </p>
+        <p class="text-sm text-gray-300 max-w-xs">{SITE.tagline} — {SITE.description}</p>
         <div class="mt-4">
-          {esPath != null ? (
-            <a href={esPath} class="text-sm font-medium text-accent hover:text-accent-600 transition-colors">Información en español</a>
+          {isEs ? (
+            <a href="/" class="text-sm font-medium text-accent hover:text-accent-600 transition-colors">English information</a>
           ) : (
-            <LanguageSwitcher />
+            <a href="/es/" class="text-sm font-medium text-accent hover:text-accent-600 transition-colors">Información en español</a>
           )}
         </div>
       </div>
 
       <!-- Rentals -->
       <div>
-        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Rentals</h3>
+        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">{sectionLabels.rentals}</h3>
         <ul class="space-y-2 text-sm">
-          {NAV.footer.rentals.map((item) => (
-            <li><a href={item.href} class="text-gray-300 hover:text-white">{item.label}</a></li>
-          ))}
+          {!isEs
+            ? enRentals.map(item => <li><a href={item.href} class="text-gray-300 hover:text-white">{item.label}</a></li>)
+            : esRentals.map(item => <li><a href={item.href} class="text-gray-300 hover:text-white">{item.label}</a></li>)
+          }
         </ul>
       </div>
 
       <!-- Locations -->
       <div>
-        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Locations</h3>
+        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">{sectionLabels.locations}</h3>
         <ul class="space-y-2 text-sm">
-          {NAV.footer.locations.map((item) => (
-            <li><a href={item.href} class="text-gray-300 hover:text-white">{item.label}</a></li>
-          ))}
+          {!isEs
+            ? enLocations.map(item => <li><a href={item.href} class="text-gray-300 hover:text-white">{item.label}</a></li>)
+            : esLocations.map(item => <li><a href={item.href} class="text-gray-300 hover:text-white">{item.label}</a></li>)
+          }
         </ul>
       </div>
 
       <!-- Info -->
       <div>
-        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Info</h3>
+        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">{sectionLabels.info}</h3>
         <ul class="space-y-2 text-sm">
-          {NAV.footer.info.map((item) => (
-            <li><a href={item.href} class="text-gray-300 hover:text-white">{item.label}</a></li>
-          ))}
+          {!isEs
+            ? enInfo.map(item => <li><a href={item.href} class="text-gray-300 hover:text-white">{item.label}</a></li>)
+            : esInfo.map(item => <li><a href={item.href} class="text-gray-300 hover:text-white">{item.label}</a></li>)
+          }
         </ul>
       </div>
 
       <!-- Support -->
       <div>
-        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Support</h3>
+        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">{sectionLabels.support}</h3>
         <ul class="space-y-2 text-sm">
-          {NAV.footer.support.map((item) => (
-            <li><a href={item.href} class="text-gray-300 hover:text-white">{item.label}</a></li>
-          ))}
+          {!isEs
+            ? enSupport.map(item => <li><a href={item.href} class="text-gray-300 hover:text-white">{item.label}</a></li>)
+            : esSupport.map(item => <li><a href={item.href} class="text-gray-300 hover:text-white">{item.label}</a></li>)
+          }
         </ul>
       </div>
     </div>
 
     <!-- Bottom bar -->
     <div class="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
-      <p class="text-xs text-gray-400">
-        &copy; {year} {SITE.legalName}. All rights reserved.
-      </p>
+      <p class="text-xs text-gray-400">&copy; {year} {SITE.legalName}. All rights reserved.</p>
       <div class="flex items-center gap-4 text-xs">
-        {NAV.legal.map((item) => (
-          <a href={item.href} class="text-gray-400 hover:text-white">{item.label}</a>
-        ))}
+        {!isEs
+          ? enLegal.map(item => <a href={item.href} class="text-gray-400 hover:text-white">{item.label}</a>)
+          : esLegal.map(item => <a href={item.href} class="text-gray-400 hover:text-white">{item.label}</a>)
+        }
       </div>
     </div>
   </div>

@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { esPath, lang = "en" } = Astro.props as Props;
-const logoHref = lang === "es" ? "/es/" : "/";
+const logoHref = Astro.url.pathname.startsWith("/es/") ? "/es/" : "/";
 const currentPath = Astro.url.pathname;
 const navItems = lang === "es" ? NAV.primaryEs : NAV.primary;
 const bookNowLabel = lang === "es" ? "Reservar" : "Book Now";
