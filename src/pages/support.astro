@@ -156,13 +156,16 @@ const email = SITE.email;
   }
 
   .contact-btn-whatsapp {
-    background: var(--color-brand);
-    color: white;
+    background: white;
+    color: var(--color-brand);
+    border-color: var(--color-brand);
   }
   .contact-btn-whatsapp:hover {
-    background: var(--color-brand-400);
+    background: var(--color-brand-50);
     transform: translateY(-2px);
-    box-shadow: 0 8px 16px -4px rgba(49, 75, 110, 0.3);
+  }
+  .contact-btn-whatsapp svg {
+    color: #25D366;
   }
 
   .contact-btn-email {
