@@ -1,0 +1,102 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/base/Header.astro";
+import Footer from "../../../components/base/Footer.astro";
+import { SITE } from "../../../config/site";
+
+const phoneDisplay = SITE.phoneDisplay;
+const phoneTel = SITE.phoneTel;
+---
+
+<BaseLayout
+  lang="es"
+  title="Ofertas y Más Valor para Alquileres Largos — 305 Fleet"
+  description="Opciones flexibles de alquiler semanal, mensual y corporativo desde 305Fleet — el servicio premium de alquiler de vehículos del sur de la Florida."
+>
+  <Header lang="es" />
+
+  <main id="main-content" class="flex-1 bg-gray-50">
+    <!-- ═══════════════════ HERO ═══════════════════ -->
+    <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <div class="text-center">
+        <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl">
+          Más Valor para Alquileres Largos
+        </h1>
+        <p class="mt-4 text-lg text-gray-600 sm:text-xl">
+          ¿Planeas quedarte en el sur de la Florida por más de unos días? Explora opciones flexibles de alquiler semanal, mensual y corporativo con 305Fleet.
+        </p>
+      </div>
+
+      <!-- ═══════════════════ RENTAL OPTIONS GRID ═══════════════════ -->
+      <div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
+        <!-- Weekly Rentals -->
+        <div class="flex flex-col rounded-2xl bg-white p-8 shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-200">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-brand-50">
+            <svg class="h-6 w-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h2 class="text-xl font-semibold text-gray-900">Alquileres Semanales</h2>
+          <p class="mt-3 text-sm text-gray-600 flex-1">
+            Ideales para vacaciones, visitas extendidas, transporte temporal y estadías más largas en el sur de la Florida.
+          </p>
+          <a href="/rental-options/weekly/" class="mt-6 inline-flex items-center justify-center rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-600 transition-colors">
+            Explorar Alquileres Semanales
+          </a>
+        </div>
+
+        <!-- Monthly Rentals -->
+        <div class="flex flex-col rounded-2xl bg-white p-8 shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-200">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-brand-50">
+            <svg class="h-6 w-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+            </svg>
+          </div>
+          <h2 class="text-xl font-semibold text-gray-900">Alquileres Mensuales</h2>
+          <p class="mt-3 text-sm text-gray-600 flex-1">
+            Una opción conveniente para snowbirds, profesionales en reubicación, asignaciones laborales extendidas, necesidades de reemplazo por seguro y huéspedes que requieren un vehículo durante varias semanas o más.
+          </p>
+          <a href="/rental-options/monthly/" class="mt-6 inline-flex items-center justify-center rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-600 transition-colors">
+            Explorar Alquileres Mensuales
+          </a>
+        </div>
+
+        <!-- Business & Corporate Rentals -->
+        <div class="flex flex-col rounded-2xl bg-white p-8 shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-200">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-brand-50">
+            <svg class="h-6 w-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h2 class="text-xl font-semibold text-gray-900">Alquileres Corporativos</h2>
+          <p class="mt-3 text-sm text-gray-600 flex-1">
+            Soluciones de alquiler flexibles para empresas, profesionales y necesidades recurrentes de transporte.
+          </p>
+          <a href="/rental-options/business-corporate/" class="mt-6 inline-flex items-center justify-center rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-600 transition-colors">
+            Explorar Alquileres Corporativos
+          </a>
+        </div>
+      </div>
+
+      <!-- ═══════════════════ FINAL CTA BAND ═══════════════════ -->
+      <div class="mt-16 rounded-2xl bg-gradient-to-br from-brand to-brand-700 p-8 text-center text-white sm:p-12">
+        <h2 class="text-2xl font-bold sm:text-3xl">
+          ¿Necesitas ayuda para elegir la mejor opción de alquiler?
+        </h2>
+        <p class="mt-4 text-lg text-brand-100">
+          Llamar o Enviar Texto a 305Fleet
+        </p>
+        <a href={`tel:${phoneTel}`} class="mt-2 inline-block text-3xl font-bold hover:text-brand-100 transition-colors">
+          {phoneDisplay}
+        </a>
+        <div class="mt-8">
+          <a href="/es/reserve/" class="inline-flex items-center justify-center rounded-lg bg-white px-8 py-4 text-base font-semibold text-brand hover:bg-brand-50 transition-colors">
+            Verificar Disponibilidad
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer lang="es" />
+</BaseLayout>
