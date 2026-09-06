@@ -2,8 +2,12 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Header from "../../../components/base/Header.astro";
 import Footer from "../../../components/base/Footer.astro";
+import VehicleGallery from "../../../components/ui/VehicleGallery.astro";
 import vehicles from "../../../data/vehicles.json";
 import { getFuelLabel } from "../../../config/labels";
+import { SITE } from "../../../config/site";
+
+const phoneTel = SITE.phoneTel;
 
 export async function getStaticPaths() {
   return vehicles
@@ -14,13 +18,16 @@ export async function getStaticPaths() {
 const { vehicle } = Astro.props;
 
 const luggageLabel = Number(vehicle.luggage_large) || Number(vehicle.luggage_small) || 0;
-const bestFor = (vehicle.best_for_es && vehicle.best_for_es.length > 0) ? vehicle.best_for_es : (vehicle.best_for_en || ["Recogida en aeropuerto"]);
+const carryonLabel = Number(vehicle.luggage_carryon) || 0;
+
+const bestFor = (vehicle.best_for_es && vehicle.best_for_es.length > 0) ? vehicle.best_for_es : (vehicle.best_for_en || ["Viaje al aeropuerto"]);
 
 const relatedVehicles = vehicles
   .filter(v => v.slug !== vehicle.slug && (v.publication_status === "preview_only" || v.publication_status === "published"))
   .slice(0, 3);
 
-const images = [vehicle.hero_image, ...(vehicle.gallery || []).slice(0, 5).map(g => g.src || g)].filter(Boolean);
+const hasGallery = vehicle.gallery && vehicle.gallery.length > 0;
+const hasFeatures = vehicle.key_features && vehicle.key_features.length > 0;
 ---
 
 <BaseLayout lang="es" title={vehicle.name}
@@ -29,89 +36,101 @@ const images = [vehicle.hero_image, ...(vehicle.gallery || []).slice(0, 5).map(g
   <Header />
 
   <main id="main-content" class="flex-1">
+    {/* Hero */}
     <section class="relative bg-brand-900">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+          {/* Imagen principal */}
           <div class="relative">
-            {images[0] ? (
-              <img src={images[0]} alt={vehicle.name} class="w-full aspect-[16/10] object-cover rounded-2xl shadow-xl" loading="eager" width="800" height="500" />
+            {vehicle.hero_image ? (
+              <img
+                src={vehicle.hero_image}
+                alt={vehicle.name}
+                class="w-full aspect-[16/10] object-cover rounded-2xl shadow-xl"
+                loading="eager"
+                width="800" height="500"
+              />
             ) : (
               <div class="w-full aspect-[16/10] bg-brand-800/50 rounded-2xl flex items-center justify-center text-white/30">Foto pendiente</div>
             )}
           </div>
+
+          {/* Contenido hero */}
           <div class="text-white">
             <p class="text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-3">{vehicle.year} &middot; {vehicle.make}</p>
             <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">{vehicle.name}</h1>
             <p class="mt-3 text-lg text-white/70 leading-relaxed">{vehicle.tagline_es || vehicle.tagline_en}</p>
+
+            {/* Specs pills */}
             <div class="mt-6 flex flex-wrap gap-3">
               <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/10 text-sm">&#128103; {vehicle.passenger_capacity} asientos</span>
-              <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/10 text-sm">&#128718; {luggageLabel} equipaje</span>
+              <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/10 text-sm">&#128718; {luggageLabel} maleta{carryonLabel > 0 ? ` + ${carryonLabel} equipaje de mano` : ""}</span>
               <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/10 text-sm">{getFuelLabel(vehicle.fuel_type, "es")}</span>
             </div>
+
+            {/* CTAs — Check Availability + separate Call / Text buttons */}
             <div class="mt-8 flex flex-col sm:flex-row gap-3">
-              <div class="flex flex-col gap-2">
-                <a href={`/reserve/${vehicle.slug}/`} class="btn btn-light btn-primary-lg">Ver disponibilidad y precios</a>
-                <p class="text-xs text-white/60">La reservación se completa actualmente en inglés y los precios se muestran en dólares estadounidenses (USD).</p>
-              </div>
-              <a href="/es/how-it-works/" class="btn px-6 py-4 text-base font-semibold text-white border-2 border-white/30 rounded-lg hover:bg-white/10 transition-all">Cómo Funciona &rarr;</a>
+              <a href={`/reserve/${vehicle.slug}/`} class="btn btn-light btn-primary-lg">Ver disponibilidad y precios</a>
+              <a href={`tel:${phoneTel}`} class="btn px-6 py-4 text-base font-semibold text-white border-2 border-accent text-accent rounded-lg hover:bg-accent hover:text-white transition-all">
+                &#128222; Llamar
+              </a>
+              <a href={`sms:${phoneTel}`} class="btn px-6 py-4 text-base font-semibold text-white border-2 border-accent text-accent rounded-lg hover:bg-accent hover:text-white transition-all">
+                &#128172; Enviar mensaje
+              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    {images.length > 1 && (
-      <section class="py-8 bg-brand-50 border-b border-border">
+    {/* Descripción */}
+    <section class="section bg-white">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <p class="text-lg text-ink-secondary leading-relaxed">{vehicle.description_es || vehicle.description_en}</p>
+      </div>
+    </section>
+
+    {/* Key Features — solo si existen datos verificados; oculto cuando no hay */}
+    {hasFeatures && (
+      <section class="section bg-surface">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div class="grid grid-cols-3 lg:grid-cols-6 gap-3">
-            {images.slice(1, 7).map((src, i) => (
-              <img src={src} alt={`${vehicle.name} vista ${i+1}`} class="w-full aspect-[4/3] object-cover rounded-lg" loading="lazy" width="400" height="300" />
+          <p class="section-eyebrow">Características</p>
+          <h2 class="section-title mb-8">Características Principales</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {vehicle.key_features.map((feature: string) => (
+              <div class="rounded-xl bg-white p-5 border border-border flex items-start gap-3">
+                <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-ink-secondary text-sm">{feature}</span>
+              </div>
             ))}
           </div>
         </div>
       </section>
     )}
 
-    <section class="section bg-white">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
-            <p class="section-eyebrow">Ideal Para</p>
-            <h2 class="section-title">Hecho para {bestFor[0]?.toLowerCase()}</h2>
-            <ul class="mt-6 space-y-3">
-              {bestFor.map((item) => (
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                  <span class="text-ink-secondary">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div class="space-y-6">
-            <div class="rounded-2xl bg-brand-50 p-8">
-              <h3 class="text-lg font-semibold text-ink">Comodidad</h3>
-              <p class="mt-2 text-ink-secondary">Espacio para hasta {vehicle.passenger_capacity} pasajeros con amplio espacio para piernas y control de clima.</p>
-            </div>
-            <div class="rounded-2xl bg-brand-50 p-8">
-              <h3 class="text-lg font-semibold text-ink">Equipaje</h3>
-              <p class="mt-2 text-ink-secondary">Capacidad para {vehicle.luggage_large || "múltiples"} maletas grandes — espacio suficiente para viajes al aeropuerto.</p>
-            </div>
-          </div>
+    {/* Galería completa */}
+    {hasGallery && (
+      <section class="section bg-white">
+        <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <p class="section-eyebrow">Galería</p>
+          <h2 class="section-title">Este Vehículo Exacto</h2>
+          <VehicleGallery images={vehicle.gallery} vehicleName={vehicle.name} />
         </div>
-      </div>
-    </section>
+      </section>
+    )}
 
+    {/* Especificaciones — solo campos verificados */}
     <section class="section bg-brand-50">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-ink mb-8">Especificaciones</h2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+        <p class="section-eyebrow">Especificaciones</p>
+        <h2 class="section-title mb-8">Detalles</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           {[
             { label: "Año", value: vehicle.year },
             { label: "Marca", value: vehicle.make },
             { label: "Modelo", value: vehicle.model },
-            { label: "Combustible", value: getFuelLabel(vehicle.fuel_type, "es") },
             { label: "Asientos", value: vehicle.passenger_capacity },
-            { label: "Equipaje", value: `${vehicle.luggage_large || "-"} grande` },
+            { label: "Combustible", value: getFuelLabel(vehicle.fuel_type, "es") },
           ].filter(s => s.value).map(spec => (
             <div class="bg-white rounded-xl p-6 text-center">
               <p class="text-2xl font-bold text-ink">{spec.value}</p>
@@ -119,32 +138,115 @@ const images = [vehicle.hero_image, ...(vehicle.gallery || []).slice(0, 5).map(g
             </div>
           ))}
         </div>
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="bg-white rounded-xl p-6 text-center border border-border">
+            <p class="text-3xl font-bold text-ink">{vehicle.passenger_capacity}</p>
+            <p class="text-xs text-ink-tertiary uppercase tracking-wider mt-1">Pasajeros</p>
+            <p class="text-sm text-ink-secondary mt-1">Incluyendo conductor</p>
+          </div>
+          <div class="bg-white rounded-xl p-6 text-center border border-border">
+            <p class="text-3xl font-bold text-ink">{vehicle.luggage_large}</p>
+            <p class="text-xs text-ink-tertiary uppercase tracking-wider mt-1">Maletas Grandes</p>
+            {carryonLabel > 0 && <p class="text-sm text-ink-secondary mt-1">{carryonLabel} equipaje de mano incluido</p>}
+          </div>
+        </div>
       </div>
     </section>
 
+    {/* Nota de combustible */}
     <section class="section bg-white">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <p class="section-eyebrow">Motorización</p>
+        <h2 class="section-title mb-6">Tipo de Combustible</h2>
+        <div class="rounded-xl border border-border p-5 bg-surface-light">
+          <p class="text-ink-secondary text-sm leading-relaxed">
+            Este es un vehículo <strong>{getFuelLabel(vehicle.fuel_type, "es")}</strong>.
+            Consulte nuestra <a href="/rental-policies/" class="text-brand underline hover:text-accent">política de combustible</a>
+            y <a href="/rental-requirements/" class="text-brand underline hover:text-accent">requisitos de renta</a> para detalles sobre carga y devolución de combustible.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* Entrega en Aeropuerto */}
+    <section class="section bg-brand-50">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-ink text-center mb-3">Entrega en Aeropuerto</h2>
-        <p class="text-center text-ink-secondary max-w-xl mx-auto mb-10">
-          Entrega gratuita a MIA y FLL. Entrega con costo a PBI. Entrega sin contacto desde el estacionamiento designado — ubicación exacta enviada de forma privada.
-        </p>
+        <p class="section-eyebrow">Área de Servicio</p>
+        <h2 class="section-title mb-8 text-center">Entrega en Aeropuerto</h2>
+
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {["MIA", "FLL", "PBI"].map(code => (
-            <a href={`/es/locations/${code === "MIA" ? "miami-international-airport" : code === "FLL" ? "fort-lauderdale-airport" : "palm-beach-airport"}/`} class="card card-padded text-center group">
-              <div class="text-3xl font-bold text-accent mb-2">{code}</div>
-              <p class="text-sm text-ink-secondary">{code === "PBI" ? "Entrega con costo" : "Entrega gratuita"}</p>
-              <span class="mt-3 inline-block text-xs font-medium text-accent">Detalles &rarr;</span>
-            </a>
+          {[
+            { code: "MIA", name: "Miami International", status: "Entrega gratuita incluida" },
+            { code: "FLL", name: "Fort Lauderdale\u2013Hollywood", status: "Entrega gratuita incluida" },
+            { code: "PBI", name: "Palm Beach International", status: "Entrega paga disponible" },
+          ].map(airport => (
+            <div class="bg-white rounded-xl p-8 text-center border border-border group">
+              <div class="text-3xl font-bold text-accent mb-2">{airport.code}</div>
+              <p class="text-sm text-ink-secondary">{airport.name}</p>
+              <div class="mt-4 inline-block px-4 py-2 rounded-full bg-brand-50">
+                <span class="text-sm font-semibold text-brand">{airport.status}</span>
+              </div>
+              <p class="mt-3 text-xs text-ink-secondary">Entrega sin contacto desde estacionamiento designado. Ubicación exacta enviada de forma privada después de la reservación.</p>
+            </div>
           ))}
         </div>
-        <p class="mt-4 text-xs text-ink-tertiary text-center">Los cargos de estacionamiento son responsabilidad del arrendatario — divulgados en los términos de reservación.</p>
+
+        {/* Disclosure de estacionamiento del aeropuerto */}
+        <div class="mt-8 flex items-start gap-3 rounded-xl bg-surface-light border border-border p-5">
+          <svg class="w-5 h-5 text-brand mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <div>
+            <p class="font-medium text-ink text-sm">Cargos de Estacionamiento del Aeropuerto Aplican</p>
+            <p class="text-sm text-ink-secondary mt-1">El arrendatario es responsable de todos los cargos de estacionamiento que cobre la instalación mientras el vehículo está estacionado en las instalaciones. Estos cargos se divulgan en su contrato de renta y se confirman durante la reservación.</p>
+          </div>
+        </div>
       </div>
     </section>
 
+    {/* Resumen de Requisitos de Reservación */}
+    <section class="section bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <p class="section-eyebrow">Su Renta</p>
+        <h2 class="section-title mb-8 text-center">Requisitos de Reservación</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* Depósito */}
+          <div class="rounded-xl bg-brand-50 p-6 text-center border border-border">
+            <svg class="w-7 h-7 text-brand mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-1.5 4.5H4.5m15 0v-1.5a3 3 0 00-3-3h-.759a3.09 3.09 0 01-2.155-.965l-.73-.73a3.09 3.09 0 00-2.156-.965H6.75a3 3 0 00-3 3v1.5m15-1.5H6.75"/></svg>
+            <p class="font-semibold text-ink text-sm">Depósito Reembolsable</p>
+            <p class="text-xs text-ink-secondary mt-1">El monto varía por vehículo. Autorizado al recoger, liberado después de la inspección.</p>
+            <a href="/rental-requirements/" class="inline-block mt-3 text-xs font-medium text-brand hover:text-accent transition-colors">Más información &rarr;</a>
+          </div>
+          {/* Millaje */}
+          <div class="rounded-xl bg-brand-50 p-6 text-center border border-border">
+            <svg class="w-7 h-7 text-brand mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.5V10.5m0 0V7.5m0 3h18m-18 7.5V16.5m0 0V13.5m18 0V7.5m0 3v3m0 0h-3m3-3h-3m-6.5 0V7.5m0 3v3m0 0h-3m3 0h3"/></svg>
+            <p class="font-semibold text-ink text-sm">Asignación de Millaje</p>
+            <p class="text-xs text-ink-secondary mt-1">Millaje diario incluido. Aplicable tarifa extra por millaje adicional.</p>
+            <a href="/rental-policies/" class="inline-block mt-3 text-xs font-medium text-brand hover:text-accent transition-colors">Ver políticas &rarr;</a>
+          </div>
+          {/* Seguro */}
+          <div class="rounded-xl bg-brand-50 p-6 text-center border border-border">
+            <svg class="w-7 h-7 text-brand mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+            <p class="font-semibold text-ink text-sm">Opciones de Seguro</p>
+            <p class="text-xs text-ink-secondary mt-1">Elija cobertura durante la reservación — póliza personal, plan de tarjeta de crédito o cobertura comprada.</p>
+            <a href="/rental-requirements/" class="inline-block mt-3 text-xs font-medium text-brand hover:text-accent transition-colors">Requisitos &rarr;</a>
+          </div>
+          {/* Edad */}
+          <div class="rounded-xl bg-brand-50 p-6 text-center border border-border">
+            <svg class="w-7 h-7 text-brand mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.665 0-5.187-.57-7.499-1.632z"/></svg>
+            <p class="font-semibold text-ink text-sm">Requisito de Edad</p>
+            <p class="text-xs text-ink-secondary mt-1">Edad mínima 21. Algunos vehículos requieren 25+. Se confirma en la reservación.</p>
+            <a href="/rental-requirements/" class="inline-block mt-3 text-xs font-medium text-brand hover:text-accent transition-colors">Detalles &rarr;</a>
+          </div>
+        </div>
+        <p class="mt-6 text-center text-sm text-ink-secondary">Peajes: Transponder E-zpass/disponible bajo solicitud. Los cargos de peaje se facturan por separado según el uso real.</p>
+      </div>
+    </section>
+
+    {/* Related Vehicles */}
     {relatedVehicles.length > 0 && (
       <section class="section bg-brand-50">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 class="text-3xl font-bold text-ink text-center">Vehículos Relacionados</h2>
+          <p class="section-eyebrow">También Considere</p>
+          <h2 class="section-title mb-8 text-center">Vehículos Relacionados</h2>
           <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {relatedVehicles.map(rv => (
               <a href={`/es/vehicles/${rv.slug}/`} class="card group">
@@ -156,7 +258,7 @@ const images = [vehicle.hero_image, ...(vehicle.gallery || []).slice(0, 5).map(g
                   )}
                 </div>
                 <div class="p-5">
-                  <h3 class="font-semibold text-ink">{rv.name}</h3>
+                  <h3 class="font-semibold text-ink group-hover:text-brand transition-colors">{rv.name}</h3>
                   <div class="mt-2 flex gap-2"><span class="chip text-xs">{rv.passenger_capacity} asientos</span><span class="chip text-xs">{getFuelLabel(rv.fuel_type, "es")}</span></div>
                 </div>
               </a>
@@ -166,13 +268,22 @@ const images = [vehicle.hero_image, ...(vehicle.gallery || []).slice(0, 5).map(g
       </section>
     )}
 
+    {/* CTA Final */}
     <section class="section gradient-brand text-white text-center">
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <h2 class="text-4xl font-bold tracking-tight">¿Listo para conducir el {vehicle.name}?</h2>
-        <div class="mt-6 flex flex-col items-center gap-2">
+        <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`/reserve/${vehicle.slug}/`} class="btn btn-light btn-primary-lg">Ver disponibilidad y precios</a>
-          <p class="text-xs text-white/50">La reservación se completa actualmente en inglés y los precios se muestran en dólares estadounidenses (USD).</p>
+          <div class="flex gap-3">
+            <a href={`tel:${phoneTel}`} class="btn px-5 py-4 text-sm font-semibold text-white border-2 border-accent text-accent rounded-lg hover:bg-accent hover:text-white transition-all">
+              &#128222; Llamar
+            </a>
+            <a href={`sms:${phoneTel}`} class="btn px-5 py-4 text-sm font-semibold text-white border-2 border-accent text-accent rounded-lg hover:bg-accent hover:text-white transition-all">
+              &#128172; Enviar mensaje
+            </a>
+          </div>
         </div>
+        <p class="mt-3 text-sm text-white/50">Soporte en inglés y español \u2022 WhatsApp disponible</p>
       </div>
     </section>
   </main>

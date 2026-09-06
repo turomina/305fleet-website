@@ -7,6 +7,9 @@ import Header from "../../components/base/Header.astro";
 import Footer from "../../components/base/Footer.astro";
 import VehicleGallery from "../../components/ui/VehicleGallery.astro";
 import { getFuelLabel } from "../../config/labels";
+import { SITE } from "../../config/site";
+
+const phoneTel = SITE.phoneTel;
 import {
   DEALER_ID,
   WHEELBASE_RENTAL_IDS,
@@ -72,12 +75,20 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
                   </span>
                 </div>
               </div>
-              <div class="lg:text-right">
+              <div class="lg:text-right space-y-2">
                 <a href="#wb-section" class="inline-flex items-center gap-2 px-6 py-4 bg-accent hover:bg-accent/90 text-white font-semibold rounded-lg transition-colors text-base">
                   Continue to Live Availability &amp; Secure Booking
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
                 </a>
-                <p class="mt-2 text-xs text-white/40">Real-time availability from Wheelbase</p>
+                <div class="flex gap-2 justify-end">
+                  <a href={`tel:${phoneTel}`} class="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-white border border-white/20 rounded-lg hover:bg-white/10 transition-colors">
+                    &#128222; Call Us
+                  </a>
+                  <a href={`sms:${phoneTel}`} class="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-white border border-white/20 rounded-lg hover:bg-white/10 transition-colors">
+                    &#128172; Text Us
+                  </a>
+                </div>
+                <p class="mt-1 text-xs text-white/40">Real-time availability from Wheelbase</p>
               </div>
             </div>
           </div>
@@ -100,7 +111,7 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
 
             {/* Desktop pills */}
             <div class="hidden sm:flex flex-wrap gap-2 mb-6" role="tablist" aria-label="Vehicle information sections">
-              {["Overview", "Features", "Pickup & Delivery", "Policies"].map((tab, i) => (
+              {["Overview", "Specifications", "Pickup & Delivery", "Policies"].map((tab, i) => (
                 <button
                   type="button"
                   role="tab"
@@ -129,10 +140,10 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
                 <p class="text-ink-secondary leading-relaxed">{vehicle.description_en || `The ${vehicle.name} is a ${vehicle.year} ${vehicle.make} ${vehicle.model} \u2014 ${vehicle.tagline_en}`}</p>
               </div>
 
-              {/* Features */}
+              {/* Specifications — only verified fields (trim/drivetrain removed until confirmed) */}
               <details class="sm:hidden group border border-border rounded-xl bg-white">
                 <summary class="flex items-center justify-between px-5 py-4 cursor-pointer font-semibold text-ink list-none">
-                  Features &amp; Specifications
+                  Specifications
                   <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
                 </summary>
                 <div class="px-5 pb-5 space-y-3">
@@ -141,12 +152,10 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
                       { label: "Year", value: vehicle.year },
                       { label: "Make", value: vehicle.make },
                       { label: "Model", value: vehicle.model },
-                      { label: "Trim", value: vehicle.trim },
                       { label: "Fuel", value: getFuelLabel(vehicle.fuel_type, "en") },
                       { label: "Seats", value: `${vehicle.passenger_capacity} passengers` },
                       { label: "Large Bags", value: vehicle.luggage_large },
-                      { label: "Carry-on", value: vehicle.luggage_carryon || "\u2014" },
-                      { label: "Drivetrain", value: vehicle.drivetrain || "\u2014" },
+                      { label: "Carry-on", value: vehicle.luggage_carryon != null ? String(vehicle.luggage_carryon) : null },
                     ].filter(s => s.value).map(spec => (
                       <div class="bg-brand-50 rounded-lg p-3">
                         <p class="text-xs text-ink-tertiary uppercase tracking-wider">{spec.label}</p>
@@ -162,12 +171,10 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
                     { label: "Year", value: vehicle.year },
                     { label: "Make", value: vehicle.make },
                     { label: "Model", value: vehicle.model },
-                    { label: "Trim", value: vehicle.trim },
                     { label: "Fuel", value: getFuelLabel(vehicle.fuel_type, "en") },
                     { label: "Seats", value: `${vehicle.passenger_capacity} passengers` },
                     { label: "Large Bags", value: vehicle.luggage_large },
-                    { label: "Carry-on", value: vehicle.luggage_carryon || "\u2014" },
-                    { label: "Drivetrain", value: vehicle.drivetrain || "\u2014" },
+                    { label: "Carry-on", value: vehicle.luggage_carryon != null ? String(vehicle.luggage_carryon) : null },
                   ].filter(s => s.value).map(spec => (
                     <div class="bg-brand-50 rounded-lg p-3">
                       <p class="text-xs text-ink-tertiary uppercase tracking-wider">{spec.label}</p>
@@ -191,7 +198,7 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
                     <li><strong>FLL</strong> (Fort Lauderdale-Hollywood) &mdash; Free delivery</li>
                     <li><strong>PBI</strong> (Palm Beach International) &mdash; Paid delivery available</li>
                   </ul>
-                  <p class="text-xs text-ink-tertiary">Contactless handoff from designated airport parking. Exact location sent privately after booking. Airport parking charges are the guest&rsquo;s responsibility.</p>
+                  <p class="text-xs text-ink-tertiary">Contactless handoff from designated airport parking. Exact location sent privately after booking.</p>
                 </div>
               </details>
               <div id="tab-panel-2" class="hidden sm:block bg-white rounded-xl p-6 border border-border" role="tabpanel">
@@ -203,7 +210,7 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
                     <li><strong>FLL</strong> (Fort Lauderdale-Hollywood) &mdash; Free delivery</li>
                     <li><strong>PBI</strong> (Palm Beach International) &mdash; Paid delivery available</li>
                   </ul>
-                  <p class="text-xs text-ink-tertiary">Contactless handoff from designated airport parking. Exact location sent privately after booking. Airport parking charges are the guest&rsquo;s responsibility.</p>
+                  <p class="text-xs text-ink-tertiary">Contactless handoff from designated airport parking. Exact location sent privately after booking.</p>
                 </div>
               </div>
 
@@ -218,6 +225,7 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
                   <p><strong class="text-ink">Mileage:</strong> Standard mileage allowance applies. See <a href="/rental-policies/" class="text-brand underline">rental policies</a> for details.</p>
                   <p><strong class="text-ink">Fuel:</strong> Return with the same fuel level as pickup. {getFuelLabel(vehicle.fuel_type, "en")} vehicle.</p>
                   <p><strong class="text-ink">Smoking:</strong> No smoking permitted. Cleaning fee applies for violations.</p>
+                  <p><strong class="text-ink">Parking:</strong> Renter is responsible for all airport parking charges. These are disclosed during booking and in your rental agreement.</p>
                   <p class="text-xs text-ink-tertiary">Full terms are presented during booking. Review all terms before confirming your reservation.</p>
                 </div>
               </details>
@@ -227,6 +235,7 @@ const wbId = vehicle ? WHEELBASE_RENTAL_IDS[vehicle.slug as keyof typeof WHEELBA
                   <p><strong class="text-ink">Mileage:</strong> Standard mileage allowance applies. See <a href="/rental-policies/" class="text-brand underline">rental policies</a> for details.</p>
                   <p><strong class="text-ink">Fuel:</strong> Return with the same fuel level as pickup. {getFuelLabel(vehicle.fuel_type, "en")} vehicle.</p>
                   <p><strong class="text-ink">Smoking:</strong> No smoking permitted. Cleaning fee applies for violations.</p>
+                  <p><strong class="text-ink">Parking:</strong> Renter is responsible for all airport parking charges. These are disclosed during booking and in your rental agreement.</p>
                   <p class="text-xs text-ink-tertiary">Full terms are presented during booking. Review all terms before confirming your reservation.</p>
                 </div>
               </div>

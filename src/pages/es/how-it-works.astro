@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/base/Header.astro";
+import Footer from "../../components/base/Footer.astro";
+---
+
+<BaseLayout lang="es" title="Cómo Funciona" description="Cómo funcionan los alquileres directos de vehículos con 305 Fleet — elija su vehículo, seleccione fechas y aeropuerto, complete su reservación y reciba sin contacto desde el estacionamiento designado en MIA, FLL o PBI." />
+  <Header esPath={undefined} />
+
+  <main id="main-content" class="flex-1">
+    {/* Hero */}
+    <section class="section-sm gradient-dark text-white">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <p class="text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-4">Cómo Funciona</p>
+        <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">Simple, directo, sin contacto.</h1>
+        <p class="mt-4 text-lg text-white/70 max-w-xl">
+          Desde navegar hasta conducir — recogida sin contacto desde estacionamientos designados del aeropuerto. Sin filas de ventanilla — solo un vehículo limpio listo cuando llegue.
+        </p>
+      </div>
+    </section>
+
+    {/* Steps */}
+    <section class="section bg-surface">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="space-y-12">
+          {[
+            { num: "01", title: "Elija su Vehículo", desc: "Explore nuestra flota de vehículos cuidadosamente seleccionados y bien mantenidos. Fotos reales, especificaciones completas, sin sustituciones 'o similar'. Cada lista muestra la capacidad de pasajeros, espacio de equipaje y tipo de combustible para que sepa exactamente lo que obtiene.", icon: "car" },
+            { num: "02", title: "Seleccione Fechas y Aeropuerto", desc: "Elija sus fechas de renta y seleccione su aeropuerto — MIA, FLL o PBI. Los cargos de estacionamiento del aeropuerto se divulgan en los términos de la reservación.", icon: "calendar" },
+            { num: "03", title: "Complete la Reservación", desc: "Proporcione la información requerida para confirmar su renta directa. Los detalles de la reservación se confirman antes de la recogida.", icon: "shield" },
+            { num: "04", title: "Reciba Instrucciones Privadas", desc: "Antes de su hora de recogida, recibirá la ubicación exacta de su vehículo de forma privada — incluyendo garaje, nivel, zona o fila, y número de espacio. Sin perderse por las estructuras de estacionamiento.", icon: "map" },
+            { num: "05", title: "Recogida sin Contacto", desc: "Camine hasta la ubicación exacta de su vehículo en la instalación de estacionamiento designada del aeropuerto. Acceda usando las instrucciones privadas proporcionadas. Sin ventanilla, sin llaves que recoger — simplemente suba y conduzca.", icon: "key" },
+            { num: "06", title: "Devolución sin Contacto", desc: "Estacione en la instalación indicada. Tome fotos de la ubicación del vehículo. Confirme el garaje, nivel y espacio por escrito. Asegure la llave y el ticket del garaje según el procedimiento privado de devolución.", icon: "check" },
+          ].map((step, i) => (
+            <div class="flex flex-col sm:flex-row gap-6 sm:gap-10 items-start">
+              <div class="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-brand-50 flex items-center justify-center">
+                <span class="text-2xl sm:text-3xl font-bold text-brand-200">{step.num}</span>
+              </div>
+              <div class="flex-1 pt-2">
+                <h2 class="text-2xl font-bold text-ink mb-3">{step.title}</h2>
+                <p class="text-ink-secondary leading-relaxed text-base">{step.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Airport Summary */}
+    <section class="section bg-brand-50">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-ink text-center mb-8">Ubicaciones de Recogida en Aeropuerto</h2>
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
+          {[
+            { code: "MIA", name: "Miami International", desc: "Garajes Dolphin, Flamingo e Ibis", href: "/es/locations/miami-international-airport/" },
+            { code: "FLL", name: "Fort Lauderdale", desc: "Garaje Cypress, Nivel 7, Zona 7NN", href: "/es/locations/fort-lauderdale-airport/" },
+            { code: "PBI", name: "Palm Beach", desc: "Garaje de Largo Plazo 1 o 2", href: "/es/locations/palm-beach-airport/" },
+          ].map(a => (
+            <a href={a.href} class="bg-white rounded-2xl p-8 text-center border border-border hover:border-brand hover:shadow-lg transition-all group">
+              <div class="text-4xl font-bold text-accent mb-3">{a.code}</div>
+              <h3 class="font-semibold text-ink group-hover:text-brand transition-colors">{a.name}</h3>
+              <p class="mt-1 text-sm text-ink-secondary">{a.desc}</p>
+            </a>
+          ))}
+        </div>
+        <p class="mt-6 text-sm text-ink-tertiary text-center">
+          Los cargos de estacionamiento del aeropuerto asociados con la recogida y recuperación del vehículo post-renta son responsabilidad del arrendatario — divulgados en los términos de la reservación.
+        </p>
+      </div>
+    </section>
+
+    {/* Final CTA */}
+    <section class="section gradient-brand text-white text-center">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl font-bold tracking-tight">¿Listo para empezar?</h2>
+        <p class="mt-4 text-lg text-white/70">Explore nuestra flota y encuentre el vehículo adecuado para su viaje.</p>
+        <div class="mt-6 flex flex-col sm:flex-row justify-center gap-4">
+          <a href="/vehicles/" class="btn btn-light btn-primary-lg">Reservar Ahora</a>
+          <a href="/es/contact/" class="btn px-6 py-4 text-base font-semibold text-white border-2 border-white/30 rounded-lg hover:bg-white/10 transition-all">Contáctenos</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

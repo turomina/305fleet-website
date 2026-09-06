@@ -2,50 +2,95 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/base/Header.astro";
 import Footer from "../components/base/Footer.astro";
+import { SITE } from "../config/site";
+
+const phoneDisplay = SITE.phoneDisplay;
+const phoneTel = SITE.phoneTel;
 ---
 
 <BaseLayout
-  title="Deals"
-  description="Special offers and deals from 305 Fleet — South Florida vehicle rentals."
+  title="Longer Rentals, More Value"
+  description="Flexible weekly, monthly, and business rental options from 305Fleet — South Florida's premium vehicle rental service."
 >
   <Header />
 
   <main id="main-content" class="flex-1 bg-gray-50">
+    <!-- Hero Section -->
     <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-      <h1 class="text-3xl font-bold text-gray-900">Deals & Special Offers</h1>
-      <p class="mt-3 text-lg text-gray-500">
-        Save on your next South Florida rental.
-      </p>
-
-      <div class="mt-8 rounded-xl bg-brand-pale border border-brand-light/30 p-8 text-center">
-        <h2 class="text-xl font-semibold text-brand-dark">Deals Coming Soon</h2>
-        <p class="mt-2 text-sm text-gray-600">
-          We're preparing special offers for direct-booking customers. Check back soon or
-          contact us to learn about current rates.
+      <div class="text-center">
+        <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl">
+          More Value for Longer Rentals
+        </h1>
+        <p class="mt-4 text-lg text-gray-600 sm:text-xl">
+          Planning to stay in South Florida for more than a few days? Explore flexible weekly, monthly, and business rental options with 305Fleet.
         </p>
-        <a href="/contact/" class="mt-4 inline-flex items-center rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-light">
-          Get a Quote
-        </a>
       </div>
 
-      <!-- Placeholder deal cards -->
-      <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
-        <div class="rounded-xl bg-white border border-gray-200 p-6">
-          <h3 class="text-lg font-semibold text-gray-900">Weekly Discount</h3>
-          <p class="mt-2 text-sm text-gray-600">
-            Rent for a week or more and save compared to daily rates.
+      <!-- Rental Options Grid -->
+      <div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
+        <!-- Weekly Rentals -->
+        <div class="flex flex-col rounded-2xl bg-white p-8 shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-200">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-brand-50">
+            <svg class="h-6 w-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h2 class="text-xl font-semibold text-gray-900">Weekly Rentals</h2>
+          <p class="mt-3 text-sm text-gray-600 flex-1">
+            Ideal for vacations, extended visits, temporary transportation, and longer South Florida stays.
           </p>
-          <a href="/rental-options/weekly/" class="mt-3 inline-flex items-center text-sm font-medium text-brand hover:underline">
-            View Weekly Rates →
+          <a href="/rental-options/weekly/" class="mt-6 inline-flex items-center justify-center rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-600 transition-colors">
+            Explore Weekly Rentals
           </a>
         </div>
-        <div class="rounded-xl bg-white border border-gray-200 p-6">
-          <h3 class="text-lg font-semibold text-gray-900">Monthly Rates</h3>
-          <p class="mt-2 text-sm text-gray-600">
-            Extended rentals offer the best value for longer stays.
+
+        <!-- Monthly Rentals -->
+        <div class="flex flex-col rounded-2xl bg-white p-8 shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-200">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-brand-50">
+            <svg class="h-6 w-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+            </svg>
+          </div>
+          <h2 class="text-xl font-semibold text-gray-900">Monthly Rentals</h2>
+          <p class="mt-3 text-sm text-gray-600 flex-1">
+            A convenient option for snowbirds, relocating professionals, extended work assignments, insurance replacement needs, and guests requiring a vehicle for several weeks or longer.
           </p>
-          <a href="/rental-options/monthly/" class="mt-3 inline-flex items-center text-sm font-medium text-brand hover:underline">
-            View Monthly Rates →
+          <a href="/rental-options/monthly/" class="mt-6 inline-flex items-center justify-center rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-600 transition-colors">
+            Explore Monthly Rentals
+          </a>
+        </div>
+
+        <!-- Business & Corporate Rentals -->
+        <div class="flex flex-col rounded-2xl bg-white p-8 shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-200">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-brand-50">
+            <svg class="h-6 w-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h2 class="text-xl font-semibold text-gray-900">Business & Corporate Rentals</h2>
+          <p class="mt-3 text-sm text-gray-600 flex-1">
+            Flexible rental solutions for companies, professionals, and recurring transportation needs.
+          </p>
+          <a href="/rental-options/business-corporate/" class="mt-6 inline-flex items-center justify-center rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-600 transition-colors">
+            Explore Corporate Rentals
+          </a>
+        </div>
+      </div>
+
+      <!-- Final CTA Section -->
+      <div class="mt-16 rounded-2xl bg-gradient-to-br from-brand to-brand-700 p-8 text-center text-white sm:p-12">
+        <h2 class="text-2xl font-bold sm:text-3xl">
+          Need help choosing the best rental option?
+        </h2>
+        <p class="mt-4 text-lg text-brand-100">
+          Call or Text 305Fleet
+        </p>
+        <a href={`tel:${phoneTel}`} class="mt-2 inline-block text-3xl font-bold hover:text-brand-100 transition-colors">
+          {phoneDisplay}
+        </a>
+        <div class="mt-8">
+          <a href="/reserve/" class="inline-flex items-center justify-center rounded-lg bg-white px-8 py-4 text-base font-semibold text-brand hover:bg-brand-50 transition-colors">
+            Check Availability
           </a>
         </div>
       </div>
