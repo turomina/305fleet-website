@@ -33,12 +33,26 @@ const allVehicles = vehicles.filter(v => v.publication_status === "preview_only"
           </div>
         ) : (
           <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {allVehicles.map(v => (
+            {allVehicles.map(v => {
+              const imgBase = v.hero_image ? v.hero_image.replace(/\.[^.]+$/, '') : null;
+              return (
               <div class="group flex flex-col rounded-2xl border border-border bg-white shadow-sm transition-all duration-300 hover:border-navy-300 hover:shadow-lg">
                 <a href={`/es/vehicles/${v.slug}/`} class="block overflow-hidden rounded-t-2xl">
                   <div class="aspect-[4/3] bg-surface-light">
                     {v.hero_image ? (
-                      <img src={v.hero_image} alt={`${v.name} — foto exterior`} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy" width="600" height="450" />
+                      <picture>
+                        <source
+                          type="image/avif"
+                          srcset={`${imgBase}-400w.avif 400w, ${imgBase}-600w.avif 600w, ${imgBase}-800w.avif 800w, ${imgBase}-1200w.avif 1200w, ${imgBase}-1600w.avif 1600w`}
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                        <source
+                          type="image/webp"
+                          srcset={`${imgBase}-400w.webp 400w, ${imgBase}-600w.webp 600w, ${imgBase}-800w.webp 800w, ${imgBase}-1200w.webp 1200w, ${imgBase}-1600w.webp 1600w`}
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                        <img src={v.hero_image} alt={`${v.name} — foto exterior`} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy" decoding="async" width="600" height="450" />
+                      </picture>
                     ) : (
                       <div class="flex h-full w-full items-center justify-center">
                         <p class="text-sm text-ink-tertiary">Foto pendiente</p>
@@ -81,7 +95,8 @@ const allVehicles = vehicles.filter(v => v.publication_status === "preview_only"
                   </div>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>
