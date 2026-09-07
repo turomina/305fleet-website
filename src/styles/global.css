@@ -9,6 +9,7 @@
 @theme {
   /* ── Official Brand Palette ── */
   --color-brand: #314B6E;           /* Primary navy */
+  --color-brand-pale: #FDF6F2;      /* Pale brand tint for active states */
   --color-brand-50: #F4FBFE;        /* Lightest blue tint */
   --color-brand-100: #E8F1F8;       /* Surface hover */
   --color-brand-200: #AFCEE2;       /* Light blue accent */

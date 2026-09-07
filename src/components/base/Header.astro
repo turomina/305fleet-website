@@ -12,6 +12,17 @@ const logoHref = Astro.url.pathname.startsWith("/es/") ? "/es/" : "/";
 const currentPath = Astro.url.pathname;
 const navItems = lang === "es" ? NAV.primaryEs : NAV.primary;
 const bookNowLabel = lang === "es" ? "Reservar" : "Book Now";
+
+/* ── Active-state helper ──
+   Matches exact path first, then prefix-match only when href ends with /
+   and the current path starts with href + "/". This prevents a false-positive
+   where visiting "/es/about/" also highlights "/es/" (Inicio).           */
+function isActive(item) {
+  if (currentPath === item.href) return true;
+  // Only allow startswith when the link is a directory-style path
+  const prefixMatch = item.href !== "/" && currentPath.startsWith(item.href + "/");
+  return prefixMatch;
+}
 ---
 
 <header
@@ -38,9 +49,7 @@ const bookNowLabel = lang === "es" ? "Reservar" : "Book Now";
             <a
               href={item.href}
               class={`px-3 py-2 text-sm font-medium rounded-md transition-colors hover:bg-brand-pale hover:text-brand ${
-                currentPath === item.href || (item.href !== "/" && currentPath.startsWith(item.href))
-                  ? "text-brand bg-brand-pale"
-                  : "text-gray-700"
+                isActive(item) ? "text-brand bg-brand-pale" : "text-gray-700"
               }`}
             >
               {item.label}
@@ -81,55 +90,60 @@ const bookNowLabel = lang === "es" ? "Reservar" : "Book Now";
     </nav>
   </div>
 
-  <!-- Mobile menu drawer -->
-  <div id="mobile-menu" class="hidden lg:hidden fixed inset-0 z-50">
-    <div id="mobile-menu-backdrop" class="absolute inset-0 bg-black/30"></div>
-    <div class="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white shadow-xl overflow-y-auto">
-      <div class="flex items-center justify-between p-4 border-b border-gray-200">
-        <span class="font-bold text-brand">{SITE.name}</span>
-        <button
-          type="button"
-          id="mobile-menu-close"
-          class="p-2 text-gray-500 hover:text-gray-900"
-          aria-label="Close menu"
-        >
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-      <nav class="p-4" aria-label="Mobile navigation">
-        <ul class="space-y-1">
-          {navItems.map((item) => (
-            <li>
-              <a
-                href={item.href}
-                class="block px-4 py-3 text-base font-medium text-gray-900 rounded-md hover:bg-brand-pale hover:text-brand"
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-        <div class="mt-6 pt-4 border-t border-gray-200">
-          <div class="mb-4">
-            {esPath != null ? (
-              <a href={esPath} class="text-sm font-medium text-brand hover:text-brand-700 transition-colors">Información en español</a>
-            ) : (
-              <LanguageSwitcher />
-            )}
-          </div>
-          <a
-            href={lang === "es" ? "/es/vehicles/" : "/vehicles/"}
-            class="btn btn-primary w-full text-center justify-center"
-          >
-            {bookNowLabel}
-          </a>
-        </div>
-      </nav>
-    </div>
-  </div>
 </header>
+
+<!-- Mobile menu drawer — outside header to avoid sticky-parent constraint on fixed positioning -->
+<div id="mobile-menu" class="hidden lg:hidden fixed inset-0 z-50">
+  <!-- Sidebar panel — placed BEFORE backdrop in DOM so backdrop renders on top and captures outside-clicks -->
+  <div class="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white shadow-xl overflow-y-auto">
+    <div class="flex items-center justify-between p-4 border-b border-gray-200">
+      <span class="font-bold text-brand">{SITE.name}</span>
+      <button
+        type="button"
+        id="mobile-menu-close"
+        class="p-2 -mr-2 text-gray-500 hover:text-gray-900 touch-manipulation"
+        aria-label="Close menu"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <nav class="p-4" aria-label="Mobile navigation">
+      <ul class="space-y-1">
+        {navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class={`block px-4 py-3 text-base font-medium rounded-md transition-colors ${
+                isActive(item) ? "text-brand bg-brand-pale font-semibold" : "text-gray-900 hover:bg-brand-pale hover:text-brand"
+              }`}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <div class="mt-6 pt-4 border-t border-gray-200">
+        <div class="mb-4">
+          {esPath != null ? (
+            <a href={esPath} class="text-sm font-medium text-brand hover:text-brand-700 transition-colors">Información en español</a>
+          ) : (
+            <LanguageSwitcher />
+          )}
+        </div>
+        <a
+          href={lang === "es" ? "/es/vehicles/" : "/vehicles/"}
+          class="btn btn-primary w-full text-center justify-center"
+        >
+          {bookNowLabel}
+        </a>
+      </div>
+    </nav>
+  </div>
+  <!-- Backdrop — always LAST in DOM so it overlays the sidebar via stacking context; tap-to-close works here -->
+  <div id="mobile-menu-backdrop" class="absolute inset-0 bg-black/30"></div>
+</div>
 
 <script>
   const toggle = document.getElementById("mobile-menu-toggle");
@@ -140,14 +154,23 @@ const bookNowLabel = lang === "es" ? "Reservar" : "Book Now";
   function openMenu() {
     menu?.classList.remove("hidden");
     toggle?.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";       /* Prevent scroll behind menu */
   }
 
   function closeMenu() {
     menu?.classList.add("hidden");
     toggle?.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
   }
 
   toggle?.addEventListener("click", openMenu);
   closeBtn?.addEventListener("click", closeMenu);
   backdrop?.addEventListener("click", closeMenu);
+
+  /* ── Escape key closes menu ── */
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !menu?.classList.contains("hidden")) {
+      closeMenu();
+    }
+  });
 </script>
