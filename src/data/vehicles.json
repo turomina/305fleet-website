@@ -841,7 +841,7 @@
     "description_es": "El Toyota Highlander Hybrid XLE 2021 ofrece la legendaria confiabilidad de Toyota con eficiencia híbrida. Un SUV de 3 filas práctico ideal para viajes familiares y traslados al aeropuerto.",
     "turo_url": "https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/toyota/highlander-hybrid/2852521",
     "book_path": "/book/highlander",
-    "hero_image": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/02-front-angle-2.jpg",
+    "hero_image": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/01-front-main.jpg",
     "gallery": [
       {
         "src": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/01-front-main.jpg",
@@ -857,13 +857,7 @@
         "width": 1600,
         "height": 1200
       },
-      {
-        "src": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/03-side-right.jpg",
-        "thumb": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/thumb/03-side-right.jpg",
-        "alt": "2021 Toyota Highlander Hybrid — Side View",
-        "width": 1600,
-        "height": 1200
-      },
+
       {
         "src": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/04-rear-angle.jpg",
         "thumb": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/thumb/04-rear-angle.jpg",
@@ -878,13 +872,7 @@
         "width": 1600,
         "height": 1200
       },
-      {
-        "src": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/06-dash.jpg",
-        "thumb": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/thumb/06-dash.jpg",
-        "alt": "2021 Toyota Highlander Hybrid — Dashboard",
-        "width": 1600,
-        "height": 1200
-      },
+
       {
         "src": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/07-interior-front.jpg",
         "thumb": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/thumb/07-interior-front.jpg",
