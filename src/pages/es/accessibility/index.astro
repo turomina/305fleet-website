@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/base/Header.astro";
+import Footer from "../../../components/base/Footer.astro";
+---
+
+<BaseLayout
+  lang="es"
+  title="Accesibilidad — 305 Fleet"
+  description="305 Fleet está comprometido con la accesibilidad digital para todos los usuarios."
+  noindex={true}
+  xDefaultOverride="https://305fleet.com/accessibility/"
+>
+  <Header lang="es" />
+
+  <main id="main-content" class="flex-1 bg-white">
+    <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <h1 class="text-3xl font-bold text-gray-900">Accesibilidad</h1>
+
+      <div class="mt-6 prose prose-lg prose-gray max-w-none">
+        <p>
+          305 Fleet está comprometido a hacer nuestro sitio web accesible para todos, incluyendo personas con discapacidades. Nuestro objetivo es cumplir con las Pautas de Accesibilidad al Contenido Web (WCAG) 2.1 Nivel AA.
+        </p>
+
+        <h2>Lo que hemos hecho</h2>
+        <ul>
+          <li>Estructura HTML semántica con jerarquía de encabezados adecuada</li>
+          <li>Soporte de navegación por teclado en todo el sitio</li>
+          <li>Indicadores de foco visibles en todos los elementos interactivos</li>
+          <li>Enlace para saltar al contenido para usuarios de lectores de pantalla</li>
+          <li>Texto alternativo en todas las imágenes significativas</li>
+          <li>Contraste de color que cumple con los estándares WCAG AA</li>
+          <li>Diseño responsivo para todos los tamaños de dispositivo</li>
+          <li>Soporte para preferencias de movimiento reducido</li>
+        </ul>
+
+        <h2>Esfuerzo continuo</h2>
+        <p>
+          La accesibilidad es un esfuerzo continuo. A medida que agregamos funciones y contenido, continuamos probando y mejorando nuestra accesibilidad. Si encuentras alguna barrera de accesibilidad en este sitio web, por favor avísanos.
+        </p>
+
+        <h2>Contáctanos</h2>
+        <p>
+          Si necesitas asistencia o quieres reportar un problema de accesibilidad, por favor contáctanos a través de nuestra <a href="/es/contact/">página de contacto</a>. Tomamos en serio los reportes de accesibilidad y trabajaremos para resolver los problemas rápidamente.
+        </p>
+
+        <h2>Contenido de Terceros</h2>
+        <p>
+          Algunas funciones de nuestro sitio pueden usar herramientas de terceros (como el futuro widget de reservas). Aunque nos esforzamos por trabajar con terceros accesibles, no podemos garantizar la accesibilidad del contenido fuera de nuestro control directo.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

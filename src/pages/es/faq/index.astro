@@ -1,0 +1,60 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/base/Header.astro";
+import Footer from "../../../components/base/Footer.astro";
+
+const faqs = [
+  { q: "¿Cómo funciona la recogida en el aeropuerto?", a: "Después de confirmar tu reservación, recibirás la ubicación exacta del garaje, nivel y espacio de estacionamiento de forma privada antes de tu hora de recogida. Accede al vehículo usando las instrucciones privadas proporcionadas. Es sin contacto — no necesitas visitar ningún mostrador." },
+  { q: "¿Qué aeropuertos sirven?", a: "Miami International (MIA), Fort Lauderdale-Hollywood International (FLL) y Palm Beach International (PBI). La recogida y devolución sin contacto están disponibles en los tres." },
+  { q: "¿Quién paga el estacionamiento del aeropuerto?", a: "Eres responsable del cargo de estacionamiento para salir del garaje en la recogida, así como del cargo de estacionamiento asociado con la recuperación del vehículo post-alquiler. Estos se divulgan en los términos de la reservación y son separados del alquiler del vehículo." },
+  { q: "¿Puedo elegir un garaje específico en MIA?", a: "Seleccionamos el garaje operativamente para cada viaje — ya sea Dolphin, Flamingo o Ibis Garage. Recibirás el garaje y la ubicación exactos de forma privada antes de que comience tu reservación." },
+  { q: "¿Hay estacionamiento Premium disponible en PBI?", a: "Sí, el estacionamiento Premium puede estar disponible bajo solicitud y aprobación operacional. No es la opción predeterminada. Cuando se solicita, cualquier diferencia en el costo de estacionamiento será divulgada." },
+  { q: "¿Cuál es el proceso de devolución?", a: "Estaciona en la instalación indicada. Fotografía el vehículo y su ubicación. Confirma el garaje, nivel, zona o fila, y número de espacio por escrito. Asegura la llave y el nuevo ticket de entrada al garaje según el procedimiento privado de devolución." },
+  { q: "¿El vehículo que veo en el listado es el que recibo?", a: "Sí. Cada vehículo de nuestra flota está fotografiado y listado individualmente. Sin sustituciones 'o similar' — lo que ves es lo que conduces." },
+  { q: "¿Ofrecen alquileres a largo plazo?", a: "Sí. Ofrecemos opciones diarias, semanales y mensuales. Los alquileres empresariales y corporativos también están disponibles." },
+  { q: "¿Cómo contacto a 305 Fleet?", a: "Puedes contactarnos a través de los canales listados en nuestra página de contacto. Somos un equipo local del sur de la Florida — no un centro de llamadas remoto." },
+  { q: "¿Hay un depósito de seguridad?", a: "Los requisitos de la reservación se confirmarán durante el proceso de reserva. Los términos finales se rigen por el contrato de alquiler de 305Fleet." },
+];
+---
+
+<BaseLayout
+  lang="es"
+  title="Preguntas Frecuentes — 305 Fleet"
+  description="Preguntas frecuentes sobre alquileres directos de vehículos con 305 Fleet — recogida en aeropuerto, cargos de estacionamiento, selección de vehículos y más."
+  xDefaultOverride="https://305fleet.com/faq/"
+>
+  <Header lang="es" />
+
+  <main id="main-content" class="flex-1">
+    <section class="section-sm gradient-dark text-white">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <p class="text-accent font-semibold tracking-[0.12em] uppercase text-sm mb-4">Preguntas Frecuentes</p>
+        <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">Preguntas comunes.</h1>
+        <p class="mt-4 text-lg text-white/70">Todo lo que necesitas saber sobre alquilar con 305 Fleet.</p>
+      </div>
+    </section>
+
+    <section class="section bg-surface">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div class="space-y-4">
+          {faqs.map((faq, i) => (
+            <details class="group rounded-2xl border border-border bg-white p-6 transition-all duration-300 hover:border-brand-200" open={i === 0}>
+              <summary class="flex items-center justify-between cursor-pointer list-none">
+                <h2 class="text-lg font-semibold text-ink pr-4">{faq.q}</h2>
+                <svg class="w-5 h-5 text-ink-tertiary shrink-0 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <p class="mt-4 text-ink-secondary leading-relaxed">{faq.a}</p>
+            </details>
+          ))}
+        </div>
+
+        <div class="mt-10 text-center">
+          <p class="text-ink-secondary mb-4">¿Aún tienes preguntas?</p>
+          <a href="/es/contact/" class="btn btn-primary">Contáctanos</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

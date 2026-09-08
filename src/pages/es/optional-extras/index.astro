@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/base/Header.astro";
+import Footer from "../../../components/base/Footer.astro";
+---
+
+<BaseLayout
+  lang="es"
+  title="Extras Opcionales — 305 Fleet"
+  description="Extras opcionales disponibles con alquileres de 305 Fleet — asientos para niños, conductores adicionales y más."
+  xDefaultOverride="https://305fleet.com/optional-extras/"
+>
+  <Header lang="es" />
+
+  <main id="main-content" class="flex-1 bg-white">
+    <div class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <h1 class="text-3xl font-bold text-gray-900">Extras Opcionales</h1>
+      <p class="mt-3 text-lg text-gray-500">
+        Agrega comodidad a tu alquiler con extras opcionales.
+      </p>
+
+      <div class="mt-8 space-y-6">
+        {[
+          { title: "Asientos para Niños e Infantes", icon: "", desc: "Asientos para niños apropiados para la edad disponibles para alquiler diario. Deben solicitarse con anticipación para asegurar disponibilidad e instalación adecuada." },
+          { title: "Conductor Adicional", icon: "🧑‍🤝‍", desc: "Agrega un conductor adicional a tu contrato de alquiler. El conductor adicional debe cumplir con los mismos requisitos que el arrendatario principal y estar presente en la recogida." },
+          { title: "Navegación GPS", icon: "🧭", desc: "Unidad GPS portátil disponible (la mayoría de los vehículos incluyen navegación integrada o Apple CarPlay / Android Auto)." },
+          { title: "Pase de Peaje", icon: "🛂", desc: "Transpondedor de peaje SunPass disponible para uso en las carreteras de peaje de Florida — conveniente para viajes al aeropuerto y por autopista." },
+          { title: "Entrega a Hotel o Residencia", icon: "🏨", desc: "Entrega del vehículo a tu hotel, residencia o dirección especificada dentro de nuestra área de servicio (sujeto a disponibilidad y tarifa de entrega)." },
+          { title: "Recogida Fuera de Horario", icon: "🌙", desc: "La recogida fuera del horario estándar puede estar disponible por un cargo adicional y sujeta a disponibilidad del personal." },
+        ].map((extra) => (
+          <div class="flex gap-4 rounded-xl border border-gray-200 p-5">
+            <div class="text-3xl shrink-0">{extra.icon}</div>
+            <div>
+              <h2 class="text-base font-semibold text-gray-900">{extra.title}</h2>
+              <p class="mt-1 text-sm text-gray-600">{extra.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-8 rounded-lg bg-brand-pale p-4">
+        <p class="text-sm text-brand-dark">
+          ⓘ La disponibilidad y precios de los extras opcionales se confirmarán al momento de la reserva. Algunos extras pueden no estar disponibles para todos los vehículos o períodos de alquiler.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/base/Header.astro";
+import Footer from "../../../components/base/Footer.astro";
+---
+
+<BaseLayout
+  lang="es"
+  title="Términos de Servicio — 305 Fleet"
+  description="Términos de servicio de 305 Fleet — Turomina LLC."
+  noindex={true}
+  xDefaultOverride="https://305fleet.com/terms/"
+>
+  <Header lang="es" />
+
+  <main id="main-content" class="flex-1 bg-white">
+    <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <h1 class="text-3xl font-bold text-gray-900">Términos de Servicio</h1>
+      <p class="mt-2 text-sm text-gray-500">Última actualización: 10 de julio de 2026</p>
+
+      <div class="mt-8 prose prose-sm prose-gray max-w-none">
+        <p>
+          Estos términos rigen el uso del sitio web y los servicios de alquiler de 305 Fleet. Al usar nuestro sitio web o reservar un vehículo, aceptas estos términos.
+        </p>
+
+        <h2>Contrato de Alquiler</h2>
+        <p>
+          Cada alquiler de vehículo está sujeto a un contrato de alquiler separado que se proporcionará al momento de la reserva. El contrato de alquiler contiene los términos y condiciones completos de tu alquiler, incluyendo precios, requisitos de seguro, límites de millas y políticas de cancelación.
+        </p>
+
+        <h2>Uso del Sitio Web</h2>
+        <p>
+          Aceptas usar este sitio web de manera legal y no:
+        </p>
+        <ul>
+          <li>Intentar acceder a áreas o sistemas no autorizados</li>
+          <li>Enviar información falsa o engañosa</li>
+          <li>Usar el sitio para cualquier propósito ilegal</li>
+          <li>Interferir con la operación o seguridad del sitio</li>
+        </ul>
+
+        <h2>Reservas</h2>
+        <p>
+          Enviar una solicitud de reserva a través de nuestro sitio web no constituye una reserva confirmada. Una reserva se confirma solo cuando recibes una confirmación de nuestro sistema de reservas (Wheelbase) o directamente de 305 Fleet.
+        </p>
+
+        <h2>Limitación de Responsabilidad</h2>
+        <p>
+          305 Fleet no es responsable por daños indirectos, incidentales o consecuentes que surjan del uso de este sitio web. La responsabilidad del alquiler de vehículos se rige por el contrato de alquiler y la cobertura de seguro aplicable.
+        </p>
+
+        <h2>Ley Aplicable</h2>
+        <p>
+          Estos términos se rigen por las leyes del Estado de la Florida.
+        </p>
+
+        <p class="mt-8 text-sm text-gray-500">
+          Este es un documento de términos provisional. Una versión completa se preparará antes de que ocurran transacciones de clientes.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

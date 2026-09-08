@@ -1,0 +1,131 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/base/Header.astro";
+import Footer from "../../../components/base/Footer.astro";
+---
+
+<BaseLayout
+  lang="es"
+  title="Políticas de Alquiler — 305 Fleet"
+  description="Políticas de alquiler de 305 Fleet — cancelación, millas, combustible, devolución y modificación."
+  xDefaultOverride="https://305fleet.com/rental-policies/"
+>
+  <Header lang="es" />
+
+  <main id="main-content" class="flex-1 bg-white">
+    <div class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <h1 class="text-3xl font-bold text-gray-900">Políticas de Alquiler</h1>
+      <p class="mt-3 text-lg text-gray-500">
+        Políticas claras y transparentes — sin cargos ocultos ni sorpresas.
+      </p>
+
+      <div class="mt-8 space-y-8">
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900">Política de Cancelación</h2>
+          <div class="mt-3 overflow-x-auto">
+            <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-4 py-3 text-left font-medium text-gray-700">Momento de Cancelación</th>
+                  <th class="px-4 py-3 text-left font-medium text-gray-700">Reembolso</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr><td class="px-4 py-3 text-gray-600">Más de 72 horas antes de la recogida</td><td class="px-4 py-3 text-gray-600">Reembolso completo</td></tr>
+                <tr><td class="px-4 py-3 text-gray-600">48-72 horas antes de la recogida</td><td class="px-4 py-3 text-gray-600">50% de reembolso</td></tr>
+                <tr><td class="px-4 py-3 text-gray-600">Menos de 48 horas antes de la recogida</td><td class="px-4 py-3 text-gray-600">Sin reembolso (depósito devuelto)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="mt-2 text-sm text-gray-500">
+            ⓘ Los términos específicos de cancelación pueden variar por vehículo y se confirmarán en tu contrato de alquiler.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900">Política de Millas</h2>
+          <p class="mt-3 text-gray-600">
+            Cada alquiler incluye un límite diario de millas. Millas adicionales están disponibles a una tarifa por milla. Los límites de millas varían según el vehículo y el tipo de alquiler:
+          </p>
+          <ul class="mt-3 ml-6 list-disc text-gray-600 space-y-1">
+            <li><strong>Diario:</strong> Límite de millas por día (varía según el vehículo)</li>
+            <li><strong>Semanal:</strong> Mayor límite diario para alquileres semanales</li>
+            <li><strong>Mensual:</strong> Mejor tarifa de millas por día para alquileres a largo plazo</li>
+          </ul>
+          <p class="mt-3 text-sm text-gray-500">
+            ⓘ Los límites específicos de millas y tarifas por exceso se confirmarán al reservar.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900">Política de Combustible / Carga</h2>
+          <p class="mt-3 text-gray-600">
+            <strong>Vehículos de gasolina:</strong> Devuelve con el mismo nivel de combustible que en la recogida. Si no, se aplicará un cargo de reabastecimiento.
+          </p>
+          <p class="mt-3 text-gray-600">
+            <strong>Vehículos eléctricos:</strong> Devuelve con al menos el mismo porcentaje de carga que en la recogida. Proporcionaremos información de carga y ubicaciones de cargadores cercanos.
+          </p>
+          <p class="mt-3 text-sm text-gray-500">
+            ⓘ Los requisitos específicos de devolución de carga para vehículos eléctricos se confirmarán al reservar.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900">Devolución del Vehículo</h2>
+          <ul class="mt-3 ml-6 list-disc text-gray-600 space-y-1">
+            <li>Devuelve el vehículo en el horario y ubicación acordados</li>
+            <li>Las devoluciones tardías pueden incurrir en cargos adicionales</li>
+            <li>Devuelve el vehículo en condiciones razonables (desgaste normal exceptuado)</li>
+            <li>La limpieza excesiva puede incurrir en un cargo de limpieza</li>
+            <li>Se realizará una inspección final del vehículo juntos</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900">Extensiones y Modificaciones</h2>
+          <p class="mt-3 text-gray-600">
+            ¿Necesitas extender tu alquiler o modificar tus fechas? Contáctanos lo antes posible. Las extensiones están sujetas a disponibilidad del vehículo y cargos adicionales.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900">Daños e Incidentes</h2>
+          <p class="mt-3 text-gray-600">
+            En caso de daño, accidente u otro incidente:
+          </p>
+          <ul class="mt-3 ml-6 list-disc text-gray-600 space-y-1">
+            <li>Contáctanos de inmediato</li>
+            <li>Documenta la situación con fotos y un reporte escrito</li>
+            <li>Para accidentes, presenta un reporte policial si es requerido</li>
+            <li>Los reclamos de seguro se manejan a través del proveedor de seguro</li>
+            <li>No te comprometas a reparaciones o acuerdos sin nuestra participación</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900">Retrasos de Vuelos</h2>
+          <p class="mt-3 text-gray-600">
+            Rastreamos tu vuelo. Si tu vuelo se retrasa, ajustaremos la hora de recogida en consecuencia sin cargo. Si tu vuelo se retrasa significativamente o se cancela, contáctanos lo antes posible para coordinar.
+          </p>
+        </section>
+      </div>
+
+      <div class="mt-8 rounded-lg bg-yellow-50 border border-yellow-300 p-4">
+        <p class="text-sm text-yellow-900">
+          ⚠️ Estas políticas se proporcionan como información general. Los términos, tarifas y condiciones específicos se confirmarán en tu contrato de alquiler al momento de la reserva.
+        </p>
+      </div>
+
+      <div class="mt-8 flex justify-center gap-3">
+        <a href="/es/contact/" class="inline-flex items-center rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-light">
+          Contáctanos
+        </a>
+        <a href="/es/faq/" class="inline-flex items-center rounded-lg border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700 hover:border-brand hover:text-brand">
+          Ver Preguntas Frecuentes
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

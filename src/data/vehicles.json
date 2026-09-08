@@ -841,12 +841,89 @@
     "description_es": "El Toyota Highlander Hybrid XLE 2021 ofrece la legendaria confiabilidad de Toyota con eficiencia híbrida. Un SUV de 3 filas práctico ideal para viajes familiares y traslados al aeropuerto.",
     "turo_url": "https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/toyota/highlander-hybrid/2852521",
     "book_path": "/book/highlander",
-    "hero_image": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/01-front-main.jpg",
+    "hero_image": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/02-front-angle-2.jpg",
     "gallery": [
       {
         "src": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/01-front-main.jpg",
         "thumb": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/thumb/01-front-main.jpg",
-        "alt": "2021 Toyota Highlander Hybrid — Front View",
+        "alt": "2021 Toyota Highlander Hybrid — Front Right Angle View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/02-front-angle-2.jpg",
+        "thumb": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/thumb/02-front-angle-2.jpg",
+        "alt": "2021 Toyota Highlander Hybrid — Front Angle",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/03-side-right.jpg",
+        "thumb": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/thumb/03-side-right.jpg",
+        "alt": "2021 Toyota Highlander Hybrid — Side View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/04-rear-angle.jpg",
+        "thumb": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/thumb/04-rear-angle.jpg",
+        "alt": "2021 Toyota Highlander Hybrid — Rear Angle",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/05-rear.jpg",
+        "thumb": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/thumb/05-rear.jpg",
+        "alt": "2021 Toyota Highlander Hybrid — Rear View",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/06-dash.jpg",
+        "thumb": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/thumb/06-dash.jpg",
+        "alt": "2021 Toyota Highlander Hybrid — Dashboard",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/07-interior-front.jpg",
+        "thumb": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/thumb/07-interior-front.jpg",
+        "alt": "2021 Toyota Highlander Hybrid — Front Interior",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/08-sunroof.jpg",
+        "thumb": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/thumb/08-sunroof.jpg",
+        "alt": "2021 Toyota Highlander Hybrid — Sunroof",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/09-front-seats.jpg",
+        "thumb": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/thumb/09-front-seats.jpg",
+        "alt": "2021 Toyota Highlander Hybrid — Front Seats",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/10-second-row.jpg",
+        "thumb": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/thumb/10-second-row.jpg",
+        "alt": "2021 Toyota Highlander Hybrid — Second Row",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/11-third-row.jpg",
+        "thumb": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/thumb/11-third-row.jpg",
+        "alt": "2021 Toyota Highlander Hybrid — Third Row",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/12-cargo.jpg",
+        "thumb": "/images/vehicles/2021-toyota-highlander-hybrid/gallery/thumb/12-cargo.jpg",
+        "alt": "2021 Toyota Highlander Hybrid — Cargo Area",
         "width": 1600,
         "height": 1200
       }
@@ -855,9 +932,9 @@
     "price_display_weekly": null,
     "price_display_monthly": null,
     "publication_status": "published",
-    "verified": false,
-    "last_updated": "2026-09-06",
-    "data_source": "turo_temporary"
+    "verified": true,
+    "last_updated": "2026-09-08",
+    "data_source": "ian_originals"
   },
   {
     "slug": "2021-audi-q3",
