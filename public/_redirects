@@ -9,3 +9,10 @@
 /book/outlander   https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/mitsubishi/outlander-plug-in-hybrid/3207788  302
 /book/xc90        https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/volvo/xc90-plug-in-hybrid/2945829  302
 /book/glc         https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/mercedes-benz/glc-class/3529622  302
+
+# Terms of Service URL migration (2026-09-17)
+/terms/           /terms-of-service/    301
+/terms            /terms-of-service/    301
+/es/terms/        /terms-of-service/    301
+/es/terms         /terms-of-service/    301
+/es/terms-of-service/  /terms-of-service/  302

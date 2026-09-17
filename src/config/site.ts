@@ -66,7 +66,7 @@ export const NAV = {
   utility: [],
   legal: [
     { label: "Privacy Policy", href: "/privacy/" },
-    { label: "Terms", href: "/terms/" },
+    { label: "Terms of Service", href: "/terms-of-service/" },
     { label: "Accessibility", href: "/accessibility/" },
   ],
 } as const;

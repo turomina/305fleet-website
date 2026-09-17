@@ -9,12 +9,14 @@ export default defineConfig({
     sitemap({
       lastmod: new Date(),
       changefreq: 'weekly',
-      filter: (page) => !page.includes('/brand-preview') && !page.includes('/motion-lab') && !page.includes('/search-results') && !page.includes('/privacy') && !page.includes('/terms') && !page.includes('/accessibility') && !page.includes('/reserve/') && !page.includes('/reviews/'),
+      filter: (page) => !page.includes('/brand-preview') && !page.includes('/motion-lab') && !page.includes('/search-results') && !page.includes('/privacy') && !page.includes('/accessibility') && !page.includes('/reserve/') && !page.includes('/reviews/'),
       serialize(item) {
         const url = item.url;
         if (url === 'https://305fleet.com/') return { ...item, priority: 1.0 };
-        if (url.includes('/privacy/') || url.includes('/terms/'))
+        if (url.includes('/privacy/'))
           return { ...item, priority: 0.3 };
+        if (url.includes('/terms-of-service/'))
+          return { ...item, priority: 0.5 };
         if (url.includes('/vehicles/') && url.split('/').filter(Boolean).length > 1)
           return { ...item, priority: 0.8 };
         const pathParts = new URL(url).pathname.split('/').filter(Boolean);
