@@ -1,5 +1,1036 @@
 ---
-// Redirect Spanish /es/terms-of-service/ to English /terms-of-service/
-// (Spanish translation of Terms of Service not yet available)
-return Astro.redirect("/terms-of-service/", 302);
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/base/Header.astro";
+import Footer from "../../../components/base/Footer.astro";
 ---
+
+<BaseLayout
+  lang="es"
+  title="Términos de Servicio — 305 Fleet"
+  description="Revise los términos que rigen las reservaciones, pagos, alquileres de vehículos, uso del sitio web y servicios proporcionados por 305Fleet en el sur de la Florida."
+  noindex={true}
+  xDefaultOverride="https://305fleet.com/terms-of-service/"
+>
+  <Header lang="es" />
+
+  <main id="main-content" class="flex-1 bg-white">
+    <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl">Términos de Servicio de 305Fleet</h1>
+      <p class="mt-3 text-sm font-medium text-brand-300 uppercase tracking-wide">Fecha de Efectividad: 15 de septiembre de 2026</p>
+
+      <div class="mt-8 prose prose-sm prose-gray max-w-none">
+        <p>
+          Estos Términos de Servicio ("Términos") rigen su uso de 305fleet.com, las reservaciones realizadas con Turomina LLC dba 305Fleet, y los servicios relacionados proporcionados por 305Fleet ("305Fleet," "nosotros," "nuestro").
+        </p>
+        <p>
+          Al acceder a nuestro sitio web, enviar una solicitud de reservación, completar una reservación, aceptar electrónicamente estos Términos o usar nuestros servicios, usted acepta quedar sujeto a estos Términos.
+        </p>
+        <p>
+          Si no está de acuerdo con estos Términos, no complete una reservación ni use nuestros servicios de alquiler.
+        </p>
+
+        <div class="not-prose mt-6 mb-8 rounded-lg border border-brand-100 bg-brand-50 p-4 text-sm text-brand-700">
+          <p class="font-semibold text-brand mb-1">305Fleet</p>
+          <p>Turomina LLC dba 305Fleet</p>
+          <p>Pembroke Pines, Florida</p>
+          <p>Teléfono: <a href="tel:+13054391247" class="text-brand underline hover:text-brand-400">305-439-1247</a></p>
+          <p>Correo electrónico: <a href="mailto:turohost@305fleet.com" class="text-brand underline hover:text-brand-400">turohost@305fleet.com</a></p>
+          <p>Sitio web: <a href="https://305fleet.com" class="text-brand underline hover:text-brand-400">305fleet.com</a></p>
+        </div>
+
+        <div class="not-prose mb-8 rounded-lg border border-accent-100 bg-accent-50 p-4 text-sm text-gray-700">
+          <p>
+            Al completar una reservación, usted acepta los Términos de Servicio de 305Fleet, las Reglas del Camino y el Acuerdo de Alquiler de Vehículo aplicable.
+          </p>
+        </div>
+
+        <h2>1. Términos que se Aplican a su Alquiler</h2>
+        <p>
+          Estos Términos rigen el sitio web, el proceso de reservación, las reservaciones, los pagos, las comunicaciones y los servicios generales proporcionados por 305Fleet.
+        </p>
+        <p>
+          Cada alquiler de vehículo también está regido por lo siguiente:
+        </p>
+        <ul>
+          <li>el Acuerdo de Alquiler de Vehículo de 305Fleet;</li>
+          <li>la reservación confirmada de Wheelbase y el Recibo de Reservación;</li>
+          <li>las Reglas del Camino de 305Fleet;</li>
+          <li>los registros de salida y entrada del vehículo;</li>
+          <li>las instrucciones o divulgaciones específicas del vehículo;</li>
+          <li>los términos del plan de seguros o protección aplicable; y</li>
+          <li>las enmiendas por escrito o términos especiales acordados por 305Fleet y el arrendatario.</li>
+        </ul>
+        <p>
+          Estos documentos forman colectivamente el acuerdo aplicable al alquiler.
+        </p>
+        <p>
+          Si un término específico de la reservación mostrado en una reservación confirmada entra en conflicto con estos Términos, el término específico de la reservación prevalece en relación con ese elemento particular.
+        </p>
+        <p>
+          Si estos Términos entran en conflicto con el Acuerdo de Alquiler de Vehículo respecto a posesión, operación, conductores autorizados, condición del vehículo, daños, seguros, uso prohibido, restricciones geográficas, recuperación del vehículo o devolución del vehículo, el Acuerdo de Alquiler de Vehículo prevalece.
+        </p>
+
+        <h2>2. Elegibilidad para Alquilar</h2>
+        <p>
+          Para alquilar un vehículo con 305Fleet, usted debe:
+        </p>
+        <ul>
+          <li>tener capacidad legal para celebrar un contrato vinculante;</li>
+          <li>cumplir con el requisito mínimo de edad aplicable a la reservación;</li>
+          <li>poseer una licencia de conducir válida y vigente aceptable para el alquiler;</li>
+          <li>completar cualquier verificación de identidad y licencia requerida;</li>
+          <li>cumplir con los requisitos de seguro o protección aplicables;</li>
+          <li>proporcionar información precisa y completa; y</li>
+          <li>proporcionar un método de pago aceptado por la plataforma de reservación.</li>
+        </ul>
+        <p>
+          Todos los conductores autorizados deben cumplir independientemente con los requisitos de elegibilidad del conductor aplicables.
+        </p>
+        <p>
+          305Fleet puede declinar o cancelar una reservación cuando no se satisfacen los requisitos de elegibilidad, verificación de identidad, verificación de licencia de conducir, pago, prevención de fraude, seguros, protección, seguridad u otros requisitos razonables de alquiler.
+        </p>
+
+        <h2>3. Verificación de Licencia de Conducir</h2>
+        <p>
+          La ley de Florida requiere que el arrendatario de un vehículo esté debidamente licenciado.
+        </p>
+        <p>
+          305Fleet o su proveedor de servicios autorizado puede inspeccionar, verificar electrónicamente o validar de otra manera la licencia de conducir del arrendatario y confirmar que está vigente antes de permitir la posesión del vehículo.
+        </p>
+        <p>
+          Al reservar con 305Fleet, usted autoriza la verificación razonable de la licencia de conducir y la identidad con fines de determinar la elegibilidad de alquiler y prevenir el fraude.
+        </p>
+
+        <h2>4. Reservaciones</h2>
+        <p>
+          305Fleet actualmente utiliza Wheelbase y puede utilizar otras plataformas o proveedores de servicios terceros autorizados para procesar reservaciones.
+        </p>
+        <p>
+          Una reservación no es definitiva hasta que haya sido confirmada a través del sistema de reservación aplicable y se hayan completado todos los requisitos de pago, verificación, documentación, depósito y firma electrónica.
+        </p>
+        <p>
+          La información específica de la reservación puede incluir:
+        </p>
+        <ul>
+          <li>vehículo;</li>
+          <li>fechas y horas de recogida y devolución;</li>
+          <li>precio del alquiler;</li>
+          <li>permiso de kilometraje;</li>
+          <li>impuestos y cargos;</li>
+          <li>depósito de seguridad;</li>
+          <li>cargos de entrega o recogida;</li>
+          <li>adicionales;</li>
+          <li>selección de seguros o protección; y</li>
+          <li>otros términos específicos de la reservación.</li>
+        </ul>
+        <p>
+          La reservación confirmada y el Recibo de Reservación se incorporan a la transacción de alquiler.
+        </p>
+
+        <h2>5. Precisión de la Información</h2>
+        <p>
+          Usted acepta proporcionar información veraz, completa, actual y precisa durante todo el proceso de reservación y alquiler.
+        </p>
+        <p>
+          Esto incluye información concerniente a su:
+        </p>
+        <ul>
+          <li>identidad;</li>
+          <li>licencia de conducir;</li>
+          <li>domicilio;</li>
+          <li>fecha de nacimiento;</li>
+          <li>número de teléfono;</li>
+          <li>dirección de correo electrónico;</li>
+          <li>método de pago;</li>
+          <li>seguros;</li>
+          <li>conductores adicionales; y</li>
+          <li>otra información razonablemente requerida para el alquiler.</li>
+        </ul>
+        <p>
+          Proporcionar información materialmente falsa, engañosa, fraudulenta, incompleta o no autorizada puede resultar en el rechazo o cancelación de la reservación, la negativa a liberar el vehículo, la terminación del alquiler, la recuperación del vehículo, la denegación de futuros alquileres, u otros recursos permitidos por la ley o el Acuerdo de Alquiler de Vehículo.
+        </p>
+
+        <h2>6. Precios</h2>
+        <p>
+          El precio del alquiler se basa en el precio mostrado o confirmado para la reservación correspondiente.
+        </p>
+        <p>
+          Las tarifas pueden variar según:
+        </p>
+        <ul>
+          <li>vehículo;</li>
+          <li>fechas de alquiler;</li>
+          <li>duración del alquiler;</li>
+          <li>demanda;</li>
+          <li>temporada;</li>
+          <li>ubicación de recogida o entrega;</li>
+          <li>kilometraje;</li>
+          <li>adicionales;</li>
+          <li>productos de seguros o protección;</li>
+          <li>impuestos;</li>
+          <li>cargos; y</li>
+          <li>otros factores específicos de la reservación.</li>
+        </ul>
+        <p>
+          305Fleet puede cambiar los precios para futuras reservaciones en cualquier momento antes de que una reservación sea confirmada.
+        </p>
+        <p>
+          Una vez confirmada, el precio de la reservación correspondiente prevalecerá, sujeto a modificaciones aprobadas, extensiones, uso adicional, servicios adicionales, penalizaciones, daños, kilometraje excesivo, escasez de combustible o carga, peajes, infracciones u otros montos adecuadamente cobrables.
+        </p>
+
+        <h2>7. Autorización de Pago</h2>
+        <p>
+          Al completar una reservación, usted autoriza a 305Fleet y a sus proveedores de reservación y pago autorizados a cobrar al método de pago asociado con su reservación los montos adeudados adeudados conforme a la reservación, estos Términos o el Acuerdo de Alquiler de Vehículo.
+        </p>
+        <p>
+          Dichos cargos pueden incluir, donde aplicable:
+        </p>
+        <ul>
+          <li>cargos de alquiler;</li>
+          <li>impuestos y cargos;</li>
+          <li>depósitos de seguridad;</li>
+          <li>cargos de entrega;</li>
+          <li>adicionales;</li>
+          <li>extensiones de alquiler;</li>
+          <li>kilometraje excesivo;</li>
+          <li>escasez de combustible o carga;</li>
+          <li>cargos por devolución tardía;</li>
+          <li>cargos de limpieza;</li>
+          <li>cargos por fumar o vapear;</li>
+          <li>peajes;</li>
+          <li>cargos de estacionamiento;</li>
+          <li>citaciones e infracciones;</li>
+          <li>cargos de remolque e inmovilización;</li>
+          <li>llaves o equipos perdidos;</li>
+          <li>deductibles de seguros o protección;</li>
+          <li>daños al vehículo;</li>
+          <li>gastos de recuperación del vehículo;</li>
+          <li>cargos administrativos permitidos bajo los documentos de alquiler; y</li>
+          <li>otros montos documentados adeudados conforme al acuerdo de alquiler.</li>
+        </ul>
+        <p>
+          Algunos montos pueden ser cargados después de que finalice el alquiler si el gasto, peaje, citación, daño, reclamo u otra obligación se conoce posteriormente.
+        </p>
+
+        <h2>8. Depósitos de Seguridad</h2>
+        <p>
+          305Fleet puede requerir un depósito de seguridad.
+        </p>
+        <p>
+          El monto, si aplica, será divulgado en conexión con la reservación.
+        </p>
+        <p>
+          Un depósito de seguridad puede ser retenido y aplicado a montos adeudados correctamente por el arrendatario, incluyendo:
+        </p>
+        <ul>
+          <li>daños al vehículo;</li>
+          <li>deductibles;</li>
+          <li>kilometraje excesivo;</li>
+          <li>combustible o carga faltante;</li>
+          <li>peajes;</li>
+          <li>infracciones;</li>
+          <li>limpieza extraordinaria;</li>
+          <li>fumar o vapear;</li>
+          <li>equipamiento faltante;</li>
+          <li>cargos por devolución tardía; y</li>
+          <li>otros montos autorizados bajo el Acuerdo de Alquiler de Vehículo.</li>
+        </ul>
+        <p>
+          Cualquier monto restante reembolsable será liberado o reembolsado a través del procesador de pagos correspondiente.
+        </p>
+        <p>
+          El tiempo requerido para que una autorización liberada o reembolso aparezca en la cuenta de un arrendatario puede depender del banco del arrendatario, la emisora de la tarjeta o el proveedor de pago.
+        </p>
+
+        <h2>9. Cancelación y Reembolsos</h2>
+        <p>
+          La política de cancelación y reembolso mostrada a través de Wheelbase o el sistema de reservación aplicable en el momento en que una reservación es confirmada rige esa reservación.
+        </p>
+        <p>
+          Los términos de cancelación pueden variar dependiendo del vehículo, fecha de reservación, fecha de alquiler, canal de reservación u otras condiciones de reservación.
+        </p>
+        <p>
+          Ciertos cargos pueden no ser reembolsables según lo divulgado durante la reservación.
+        </p>
+        <p>
+          Una devolución temprana del vehículo no crea derecho a un reembolso a menos que la política de reservación aplicable lo disponga expresamente o 305Fleet acuerde lo contrario por escrito.
+        </p>
+
+        <h2>10. Cambios en Reservaciones</h2>
+        <p>
+          Los cambios en reservaciones están sujetos a disponibilidad y aprobación de 305Fleet.
+        </p>
+        <p>
+          Los cambios pueden afectar:
+        </p>
+        <ul>
+          <li>precio;</li>
+          <li>permiso de kilometraje;</li>
+          <li>depósito de seguridad;</li>
+          <li>impuestos;</li>
+          <li>cargos;</li>
+          <li>cargos de seguros o protección;</li>
+          <li>cargos de entrega; y</li>
+          <li>otros términos de la reservación.</li>
+        </ul>
+        <p>
+          Una solicitud de cambio no es efectiva hasta que sea confirmada a través de Wheelbase o aprobada de otra manera por escrito por 305Fleet.
+        </p>
+
+        <h2>11. Extensiones de Alquiler</h2>
+        <p>
+          Un arrendatario no puede retener un vehículo más allá de la fecha y hora de devolución confirmadas sin aprobación previa de 305Fleet.
+        </p>
+        <p>
+          Las solicitudes de extensión deben ser aprobadas antes de que expire el período de alquiler existente.
+        </p>
+        <p>
+          Enviar una solicitud de extensión no constituye aprobación.
+        </p>
+        <p>
+          La posesión continuada de un vehículo no extiende automáticamente el alquiler.
+        </p>
+        <p>
+          Las extensiones aprobadas pueden resultar en cargos adicionales de alquiler, impuestos, cargos, cargos de protección, depósitos u otros costos aplicables.
+        </p>
+
+        <h2>12. Conductores Autorizados</h2>
+        <p>
+          Solo los conductores que estén listados, aprobados y verificados para la reservación correspondiente pueden operar un vehículo de 305Fleet.
+        </p>
+        <p>
+          El arrendatario no permite que ninguna otra persona conduzca el vehículo.
+        </p>
+        <p>
+          Permitir que un conductor no autorizado opere el vehículo constituye una violación material de los requisitos de alquiler y puede afectar la cobertura de seguros o protección.
+        </p>
+        <p>
+          Requisitos adicionales que rigen a los conductores autorizados están contenidos en el Acuerdo de Alquiler de Vehículo.
+        </p>
+
+        <h2>13. Seguros y Protección</h2>
+        <p>
+          Cada reservación debe satisfacer los requisitos de seguros o protección aplicables a ese alquiler antes de que el vehículo sea liberado.
+        </p>
+        <p>
+          Dependiendo de la reservación, la cobertura puede ser satisfecha a través de uno de los siguientes arreglos:
+        </p>
+        <ul>
+          <li>un producto de protección o seguro seleccionado a través de Wheelbase u otro proveedor aprobado; o</li>
+          <li>seguro automotriz personal calificativo u otra cobertura aceptada y verificada para la reservación.</li>
+        </ul>
+        <p>
+          Si el arrendatario selecciona un producto de protección o seguro de Wheelbase u otro tercero, dicha cobertura está regida exclusivamente por los términos, condiciones, exclusiones, límites, deducibles, requisitos de elegibilidad y procedimientos de reclamo del proveedor correspondiente.
+        </p>
+        <p>
+          305Fleet no modifica, amplía, garantiza o interpreta independientemente la cobertura proporcionada por Wheelbase, Outdoorsy, un asegurador, emisor de tarjeta de crédito, proveedor de protección u otro tercero.
+        </p>
+        <p>
+          Si el arrendatario rechaza un producto de protección o seguro disponible y en cambio depende de su seguro automotriz personal u otra cobertura, 305Fleet puede requerir verificación de que dicha cobertura se aplica al vehículo de alquiler y satisface los requisitos aplicables a la reservación.
+        </p>
+        <p>
+          La verificación puede ser realizada por Wheelbase, 305Fleet, el asegurador del arrendatario, un administrador de beneficios de tarjeta de crédito u otro proveedor autorizado.
+        </p>
+        <p>
+          La aceptación del seguro personal u otra cobertura del arrendatario no garantiza el pago de un reclamo.
+        </p>
+        <p>
+          El arrendatario permanece responsable por cualquier deducible, exclusión, limitación, denegación de cobertura, pérdida no cubierta, uso prohibido, conductor no autorizado u otro monto por el cual el arrendatario es responsable conforme al Acuerdo de Alquiler de Vehículo.
+        </p>
+        <p>
+          Donde el propio seguro de responsabilidad civil y la protección contra lesiones personales del arrendatario tienen la intención de ser primarios para un alquiler particular, el Acuerdo de Alquiler de Vehículo correspondiente contendrá cualquier aviso requerido por la ley de Florida.
+        </p>
+        <p>
+          La selección de cualquier opción de seguro o protección no elimina la obligación del arrendatario de cumplir con el Acuerdo de Alquiler de Vehículo, las Reglas del Camino o los requisitos de cobertura aplicables.
+        </p>
+
+        <h2>14. Reglas del Camino</h2>
+        <p>
+          Todos los arrendatarios y conductores autorizados deben cumplir con las Reglas del Camino de 305Fleet proporcionadas durante el proceso de reservación.
+        </p>
+        <p>
+          Las Reglas del Camino incluyen requisitos concernientes a asuntos tales como:
+        </p>
+        <ul>
+          <li>fumar y vapear;</li>
+          <li>mascotas;</li>
+          <li>conductores autorizados;</li>
+          <li>operación segura del vehículo;</li>
+          <li>usos prohibidos;</li>
+          <li>limpieza del vehículo;</li>
+          <li>combustible o carga de batería;</li>
+          <li>peajes y estacionamiento;</li>
+          <li>procedimientos aeroportuarios;</li>
+          <li>procedimientos de caja fuerte/bloqueo;</li>
+          <li>accidentes;</li>
+          <li>daños al vehículo; y</li>
+          <li>problemas mecánicos.</li>
+        </ul>
+        <p>
+          La violación de las Reglas del Camino puede resultar en cargos, terminación del alquiler, pérdida o denegación de protección aplicable, recuperación del vehículo u otros recursos donde lo permitan el Acuerdo de Alquiler de Vehículo y la ley aplicable.
+        </p>
+
+        <h2>15. Prohibición de Fumar o Vapear</h2>
+        <p>
+          Está prohibido fumar o vapear de cualquier tipo en todos los vehículos de 305Fleet.
+        </p>
+        <p>
+          Esto incluye cigarrillos, puros, marihuana, productos de vapor y otros productos que produzcan humo o vapor.
+        </p>
+        <p>
+          Los vehículos pueden estar equipados con tecnología electrónica de detección de fumar.
+        </p>
+        <p>
+          Se puede cobrar una tarifa de $250 por fumar/vapear por cada incidente razonablemente documentado de fumar o vapear, a menos que se divulgue expresamente un monto diferente para la reservación.
+        </p>
+
+        <h2>16. Mascotas</h2>
+        <p>
+          No se permiten mascotas a menos que sean aprobadas por 305Fleet con anticipación o de otra manera requeridas por la ley aplicable.
+        </p>
+        <p>
+          El vehículo debe ser devuelto libre de exceso de pelo de mascota, manchas, olores, residuos, daños u otras condiciones relacionadas con mascotas que requieran limpieza o reparación extraordinarias.
+        </p>
+        <p>
+          Nada en estos Términos tiene la intención de restringir los derechos proporcionados bajo la ley aplicable de animales de servicio o discapacidad.
+        </p>
+
+        <h2>17. Limpieza del Vehículo</h2>
+        <p>
+          Se espera que el uso normal del vehículo no requiera que el arrendatario limpie profesionalmente el vehículo.
+        </p>
+        <p>
+          Sin embargo, un arrendatario puede ser responsable por la limpieza extraordinaria razonablemente requerida debido a condiciones más allá del uso normal, incluyendo exceso de:
+        </p>
+        <ul>
+          <li> suciedad;</li>
+          <li>arena;</li>
+          <li>manchas;</li>
+          <li>derrames;</li>
+          <li>residuo u olor a humo;</li>
+          <li>pelo de mascota;</li>
+          <li>residuo de comida o bebida;</li>
+          <li>material biológico; o</li>
+          <li>otra contaminación inusual.</li>
+        </ul>
+
+        <h2>18. Uso Prohibido</h2>
+        <p>
+          Un vehículo de 305Fleet no puede ser utilizado para:
+        </p>
+        <ul>
+          <li>actividad ilegal;</li>
+          <li>operación bajo la influencia de alcohol, drogas, medicación u otra sustancia incapacitante;</li>
+          <li>carreras;</li>
+          <li>competencias de velocidad;</li>
+          <li>conducción temeraria;</li>
+          <li>burnouts;</li>
+          <li>derives;</li>
+          <li>trucos;</li>
+          <li>uso fuera de carretera no autorizado;</li>
+          <li>remolque no autorizado;</li>
+          <li>transporte de pasajeros compartidos, entregas, mensajería o transporte comercial salvo autorización específica;</li>
+          <li>operación por un conductor no autorizado;</li>
+          <li>subarriendo;</li>
+          <li>abuso o mal uso intencional;</li>
+          <li>reparación o modificación no autorizada;</li>
+          <li>manipulación de equipos de rastreo, telemetría, detección de humo o seguridad; o</li>
+          <li>cualquier otro uso prohibido por el Acuerdo de Alquiler de Vehículo.</li>
+        </ul>
+        <p>
+          El uso prohibido material puede resultar en la terminación del alquiler, recuperación del vehículo, cargos adicionales, pérdida o denegación de beneficios de seguros o protección aplicables y responsabilidad financiera por pérdidas resultantes.
+        </p>
+
+        <h2>19. Restricciones Geográficas</h2>
+        <p>
+          A menos que 305Fleet proporcione autorización previa por escrito, los vehículos solo pueden operarse dentro del área geográfica permitida por el Acuerdo de Alquiler de Vehículo.
+        </p>
+        <p>
+          Un vehículo no puede ser llevado fuera de un área autorizada simplemente porque el software de navegación, una plataforma de reservación u otro sistema permita la ruta.
+        </p>
+        <p>
+          Los viajes no autorizados pueden constituir una violación material del acuerdo de alquiler.
+        </p>
+
+        <h2>20. Disponibilidad del Vehículo</h2>
+        <p>
+          305Fleet hace esfuerzos razonables para proporcionar el vehículo reservado.
+        </p>
+        <p>
+          Un vehículo específico puede volverse indisponible debido a:
+        </p>
+        <ul>
+          <li>un accidente;</li>
+          <li>falla mecánica;</li>
+          <li>devolución demorada por un arrendatario anterior;</li>
+          <li>robo;</li>
+          <li>mantenimiento;</li>
+          <li>recordatorio del fabricante;</li>
+          <li>preocupaciones de seguridad; o</li>
+          <li>circunstancias fuera del control razonable de 305Fleet.</li>
+        </ul>
+        <p>
+          Si el vehículo reservado se vuelve indisponible, 305Fleet puede intentar proporcionar un substituto comparable.
+        </p>
+        <p>
+          Si no hay un substituto razonable disponible, 305Fleet puede cancelar la reservación afectada y reembolsar los montos recolectados para el alquiler indisponible según corresponda.
+        </p>
+        <p>
+          En la medida máxima permitida por la ley, 305Fleet no es responsable por gastos de viaje consecuentes derivados únicamente de la indisponibilidad del vehículo, incluyendo costos de hotel, pasajes aéreos, eventos perdidos o gastos de transporte alternativo.
+        </p>
+
+        <h2>21. Condición e Inspección del Vehículo</h2>
+        <p>
+          La condición del vehículo puede ser documentada antes y después de un alquiler mediante:
+        </p>
+        <ul>
+          <li>registros de salida y entrada de Wheelbase;</li>
+          <li>fotografías;</li>
+          <li>vídeo;</li>
+          <li>lecturas del odómetro;</li>
+          <li>lecturas de combustible o batería;</li>
+          <li>registros de inspección;</li>
+          <li>telemetría;</li>
+          <li>notas escritas; y</li>
+          <li>otra documentación razonable.</li>
+        </ul>
+        <p>
+          El arrendatario debe inspeccionar el vehículo en la recogida e identificar prontamente cualquier daño preexistente material que no se muestre en el registro de salida.
+        </p>
+        <p>
+          El Acuerdo de Alquiler de Vehículo rige la responsabilidad por daños ocurridos durante el alquiler.
+        </p>
+
+        <h2>22. Combustible y Carga de Vehículos Eléctricos</h2>
+        <p>
+          El vehículo debe ser devuelto con el nivel de combustible o estado de carga de batería requerido por la reservación o el registro de salida, a menos que se proporcione instrucciones escritas diferentes.
+        </p>
+        <p>
+          Si se devuelve por debajo del nivel requerido, el arrendatario puede ser responsable por el costo razonable de restaurar el combustible o carga junto con un cargo de servicio aplicable divulgado.
+        </p>
+        <p>
+          Los arrendatarios de vehículos eléctricos o híbridos enchufables son responsables de mantener carga de batería suficiente para operar y devolver el vehículo de manera segura.
+        </p>
+
+        <h2>23. Kilometraje</h2>
+        <p>
+          El permiso de kilometraje aplicable al alquiler es el permiso mostrado en la reservación, el listado del vehículo u otros materiales de reservación relacionados.
+        </p>
+        <p>
+          El kilometraje que exceda el permiso puede resultar en un cargo por kilometraje excesivo a la tasa aplicable a la reservación.
+        </p>
+        <p>
+          El kilometraje puede ser verificado usando lecturas del odómetro, registros de Wheelbase, telemetría del vehículo u otros registros razonables.
+        </p>
+
+        <h2>24. Peajes, Estacionamiento, Citaciones e Infracciones</h2>
+        <p>
+          El arrendatario es responsable por los costos atribuibles a la posesión o uso del vehículo durante el período de alquiler, incluyendo:
+        </p>
+        <ul>
+          <li>peajes;</li>
+          <li>cargos de estacionamiento;</li>
+          <li>citaciones de tráfico;</li>
+          <li>citaciones de estacionamiento;</li>
+          <li>violaciones de semáforo en rojo por cámara;</li>
+          <li>remolque;</li>
+          <li>costos de inmovilización;</li>
+          <li>estacionamiento aeroportuario; y</li>
+          <li>otras infracciones o cargos.</li>
+        </ul>
+        <p>
+          Algunos cargos pueden no ser recibidos hasta después de que finalice el alquiler.
+        </p>
+        <p>
+          305Fleet puede cobrar montos adecuadamente documentados y cualquier cargo administrativo de procesamiento permitido por los documentos de alquiler y la ley aplicable.
+        </p>
+
+        <h2>25. Recogida y Devolución en el Aeropuerto</h2>
+        <p>
+          Cuando un alquiler involucre entrega o devolución aeroportuaria, el arrendatario debe seguir las instrucciones escritas de recogida y devolución de 305Fleet.
+        </p>
+        <p>
+          Las instrucciones pueden abordar:
+        </p>
+        <ul>
+          <li>aeropuerto o instalaciones de estacionamiento;</li>
+          <li>garaje;</li>
+          <li>piso;</li>
+          <li>fila o zona;</li>
+          <li>espacio de estacionamiento;</li>
+          <li>fotografías;</li>
+          <li>ticket de estacionamiento;</li>
+          <li>llaves;</li>
+          <li>bolsas protectoras;</li>
+          <li>cajas de bloqueo; y</li>
+          <li>procedimientos de devolución.</li>
+        </ul>
+        <p>
+          Los arrendatarios pueden ser responsables por cargos de estacionamiento aeroportuario según lo divulgado en conexión con la reservación.
+        </p>
+        <p>
+          Un arrendatario también puede ser responsable por cargos resultantes de estacionamiento incorrecto o no autorizado, incluyendo estacionamiento adicional, remolque, citaciones o costos razonables de recuperación del vehículo.
+        </p>
+
+        <h2>26. GPS, Telemetría y Tecnología del Vehículo</h2>
+        <p>
+          Los vehículos de 305Fleet pueden contener tecnología GPS, telemetría, diagnóstica, de detección de humo, de seguridad remota y otra tecnología de gestión de flota.
+        </p>
+        <p>
+          305Fleet puede utilizar estos sistemas para fines comerciales legítimos incluyendo:
+        </p>
+        <ul>
+          <li>prevención de robo;</li>
+          <li>recuperación del vehículo;</li>
+          <li>ubicación de vehículos vencidos o no devueltos;</li>
+          <li>seguridad de la flota;</li>
+          <li>verificación de kilometraje;</li>
+          <li>mantenimiento;</li>
+          <li>diagnóstico;</li>
+          <li>investigación de uso no autorizado o prohibido;</li>
+          <li>cumplimiento geográfico; y</li>
+          <li>protección de la propiedad de 305Fleet.</li>
+        </ul>
+        <p>
+          Los arrendatarios no pueden deshabilitar, eliminar, desconectar, obstruir, alterar o manipular el equipo autorizado de rastreo, telemetría, seguridad o gestión de vehículos.
+        </p>
+        <p>
+          Divulgaciones adicionales concernientes a estos sistemas están contenidas en el Acuerdo de Alquiler de Vehículo.
+        </p>
+
+        <h2>27. Accidentes, Daños, Robo y Problemas Mecánicos</h2>
+        <p>
+          El arrendatario debe contactar a 305Fleet prontamente en caso de:
+        </p>
+        <ul>
+          <li>un accidente;</li>
+          <li>colisión;</li>
+          <li>daño al vehículo;</li>
+          <li>robo;</li>
+          <li>vandalismo;</li>
+          <li>Luz de advertencia;</li>
+          <li>neumático pinchado;</li>
+          <li>avería; o</li>
+          <li>problema mecánico significativo.</li>
+        </ul>
+        <p>
+          El arrendatario no debe continuar operando un vehículo cuando la continuación pueda ser insegura o pueda razonablemente causar daños adicionales.
+        </p>
+        <p>
+          El Acuerdo de Alquiler de Vehículo contiene requisitos adicionales de reporte de accidentes, reporte policial, documentación, seguros, reparaciones y cooperación.
+        </p>
+
+        <h2>28. Devolución del Vehículo</h2>
+        <p>
+          El vehículo debe ser devuelto en la fecha, hora, ubicación y de la manera requerida por la reservación y las instrucciones escritas de devolución.
+        </p>
+        <p>
+          El arrendatario permanece responsable por el vehículo hasta que haya sido devuelto correctamente y asegurado conforme al procedimiento aplicable.
+        </p>
+        <p>
+          Un arrendatario debe notificar prontamente a 305Fleet si circunstancias impiden la devolución apropiada.
+        </p>
+
+        <h2>29. Vehículos Tardíos o No Devueltos</h2>
+        <p>
+          Mantener un vehículo más allá del período de alquiler autorizado sin aprobación está prohibido.
+        </p>
+        <p>
+          Pueden aplicar cargos tardíos o montos de alquiler adicionales según lo dispuesto por el Acuerdo de Alquiler de Vehículo.
+        </p>
+        <p>
+          Si un vehículo está significativamente atrasado y el arrendatario no puede ser localizado, 305Fleet puede tomar medidas legales razonables para localizar y recuperar el vehículo.
+        </p>
+        <p>
+          Donde sea apropiado bajo las circunstancias y permitido por la ley, un vehículo no devuelto puede ser reportado a las autoridades policiales.
+        </p>
+
+        <h2>30. Llaves y Equipamiento Perdidos</h2>
+        <p>
+          El arrendatario es responsable por las llaves y el equipamiento proporcionados con el vehículo.
+        </p>
+        <p>
+          Esto puede incluir:
+        </p>
+        <ul>
+          <li>llaves del vehículo;</li>
+          <li>control remoto de llaves;</li>
+          <li>equipamiento de carga;</li>
+          <li>cajas de bloqueo;</li>
+          <li>bolsas protectoras de llaves;</li>
+          <li>tickets de estacionamiento;</li>
+          <li>adaptadores;</li>
+          <li>accesorios; y</li>
+          <li>otro equipamiento suministrado con el alquiler.</li>
+        </ul>
+        <p>
+          El arrendatario puede ser responsable por costos razonables de reemplazo, programación, entrega, remolque o recuperación resultantes de artículos perdidos o dañados.
+        </p>
+
+        <h2>31. Comunicaciones Electrónicas</h2>
+        <p>
+          Al proporcionar una dirección de correo electrónico o número de teléfono en conexión con una reservación, usted consiente recibir comunicaciones razonablemente relacionadas con:
+        </p>
+        <ul>
+          <li>consultas;</li>
+          <li>reservaciones;</li>
+          <li>verificación del conductor;</li>
+          <li>pagos;</li>
+          <li>recogida del vehículo;</li>
+          <li>devolución del vehículo;</li>
+          <li>seguridad;</li>
+          <li>servicio al cliente;</li>
+          <li>reclamos;</li>
+          <li>disputas; y</li>
+          <li>otra administración de alquiler.</li>
+        </ul>
+        <p>
+          Las comunicaciones pueden ser entregadas a través de correo electrónico, SMS o mensaje de texto, teléfono, Wheelbase u otra plataforma de reservación o mensajería.
+        </p>
+        <p>
+          Pueden aplicar tarifas de mensajes y datos del operador.
+        </p>
+        <p>
+          Las comunicaciones transaccionales necesarias para administrar un alquiler activo pueden continuar incluso si se desactivan las comunicaciones promocionales.
+        </p>
+
+        <h2>32. Registros y Firmas Electrónicas</h2>
+        <p>
+          Usted consiente realizar transacciones de reservación y alquiler electrónicamente.
+        </p>
+        <p>
+          Firmas electrónicas, iniciales, casillas de verificación, fechas, reconocimientos y registros electrónicos pueden utilizarse en conexión con sus documentos de reservación y alquiler.
+        </p>
+        <p>
+          En la medida permitida por la ley, una firma electrónica o reconocimiento electrónico tiene el mismo efecto que una firma manuscrita.
+        </p>
+        <p>
+          Usted es responsable de revisar los documentos antes de aceptarlos o firmarlos electrónicamente.
+        </p>
+        <p>
+          Usted acepta que los documentos y divulgaciones pueden ser entregados electrónicamente en un formato que usted pueda conservar o imprimir.
+        </p>
+
+        <h2>33. Uso del Sitio Web</h2>
+        <p>
+          Puede usar 305fleet.com para fines personales lícitos asociados con revisar u obtener los servicios de 305Fleet.
+        </p>
+        <p>
+          No puede:
+        </p>
+        <ul>
+          <li>interferir con la operación del sitio web;</li>
+          <li>intentar acceso no autorizado a sistemas o cuentas;</li>
+          <li>enviar reservaciones fraudulentas;</li>
+          <li>suplantar a otra persona;</li>
+          <li>abusar de los sistemas de pago;</li>
+          <li>introducir malware o código dañino;</li>
+          <li>utilizar sistemas automatizados para interrumpir o extraer inadecuadamente el sitio web;</li>
+          <li>eludir controles de seguridad;</li>
+          <li>copiar contenido protegido para fines comerciales no autorizados; o</li>
+          <li>usar el sitio web para actividades ilegales.</li>
+        </ul>
+        <p>
+          305Fleet puede restringir el acceso al sitio web o a reservaciones cuando sea razonablemente necesario proteger sus sistemas, clientes, vehículos, empleados o negocio.
+        </p>
+
+        <h2>34. Información del Sitio Web</h2>
+        <p>
+          305Fleet hace esfuerzos razonables para mantener la información del sitio web y de listado precisa.
+        </p>
+        <p>
+          Las descripciones de vehículos, fotografías, especificaciones, características, disponibilidad, tarifas y otra información pueden nevertheless cambiar.
+        </p>
+        <p>
+          Las fotografías pueden ser representativas y pueden existir diferencias menores entre las fotografías en línea y el vehículo específico suministrado.
+        </p>
+        <p>
+          La reservación confirmada rige la transacción específica.
+        </p>
+
+        <h2>35. Proveedores Terceros</h2>
+        <p>
+          305Fleet puede utilizar servicios de terceros incluyendo:
+        </p>
+        <ul>
+          <li>Wheelbase;</li>
+          <li>Outdoorsy;</li>
+          <li>procesadores de pago;</li>
+          <li>proveedores de seguros o protección;</li>
+          <li>proveedores de verificación de identidad;</li>
+          <li>servicios de mapas;</li>
+          <li>proveedores de análisis;</li>
+          <li>proveedores de comunicaciones; y</li>
+          <li>otro proveedor de tecnología o servicios empresariales.</li>
+        </ul>
+        <p>
+          El uso de servicios de terceros puede estar sujeto a términos y políticas de privacidad separadas.
+        </p>
+        <p>
+          305Fleet no es responsable por la operación independiente, seguridad, disponibilidad o prácticas de privacidad de servicios de terceros que no controla.
+        </p>
+
+        <h2>36. Privacidad</h2>
+        <p>
+          305Fleet puede recopilar, usar, retener y divulgar información personal tan razonablemente necesaria para:
+        </p>
+        <ul>
+          <li>proporcionar servicios de alquiler;</li>
+          <li>procesar reservaciones y pagos;</li>
+          <li>verificar conductores;</li>
+          <li>prevenir fraude;</li>
+          <li>mantener la seguridad de la flota;</li>
+          <li>administrar reclamos;</li>
+          <li>responder consultas de servicio al cliente;</li>
+          <li>cumplir con obligaciones legales; y</li>
+          <li>operar y mejorar su negocio.</li>
+        </ul>
+        <p>
+          La Política de Privacidad separada de 305Fleet, cuando se publique, rige sus prácticas de privacidad e se incorpora a estos Términos por referencia.
+        </p>
+        <p>
+          Los proveedores de terceros pueden procesar información separadamente según sus propias políticas de privacidad.
+        </p>
+
+        <h2>37. Prevención de Fraude y Seguridad</h2>
+        <p>
+          305Fleet puede utilizar medidas razonables para detectar y prevenir fraude, pago no autorizado, robo de identidad, robo de vehículos y otra actividad ilegal.
+        </p>
+        <p>
+          Una reservación puede ser retardada, rechazada, cancelada o sometida a verificación adicional si 305Fleet cree razonablemente que una transacción puede involucrar fraude, mala representación, pago no autorizado, robo de identidad o un riesgo material de seguridad.
+        </p>
+        <p>
+          305Fleet puede cooperar con proveedores de pago, aseguradores, proveedores de protección, autoridades policiales y otras partes apropiadas en la investigación de conductas ilegales sospechosas.
+        </p>
+
+        <h2>38. Disputas de Pago y Chargebacks</h2>
+        <p>
+          Si cree que un cargo es incorrecto, debe contactar a 305Fleet prontamente para que el problema sea revisado.
+        </p>
+        <p>
+          Presentar un chargeback o disputa de pago no elimina la obligación de un arrendatario de pagar montos que sean legítimamente adeudados.
+        </p>
+        <p>
+          Al responder a una disputa de pago, 305Fleet puede proporcionar documentación relevante a procesadores de pago, bancos o emisoras de tarjetas, incluyendo:
+        </p>
+        <ul>
+          <li>registros de reservación;</li>
+          <li>contratos firmados;</li>
+          <li>reconocimientos electrónicos;</li>
+          <li>fotografías;</li>
+          <li>registros de inspección;</li>
+          <li>comunidades;</li>
+          <li>autorizaciones de pago;</li>
+          <li>registros de telemetría; y</li>
+          <li>documentación que respalde el cargo disputado.</li>
+        </ul>
+
+        <h2>39. Cargos Post-Alquiler</h2>
+        <p>
+          Ciertos montos asociados con un alquiler pueden no hacerse conocidos hasta después de que el vehículo sea devuelto.
+        </p>
+        <p>
+          Estos pueden incluir:
+        </p>
+        <ul>
+          <li>peajes;</li>
+          <li>cargos de estacionamiento;</li>
+          <li>infracciones de tráfico;</li>
+          <li>daños identificados posteriormente;</li>
+          <li>deducibles de seguros o protección;</li>
+          <li>remolque;</li>
+          <li>montos relacionados con reclamos;</li>
+          <li>equipamiento faltante; y</li>
+          <li>otros cargos diferidos atribuibles al alquiler.</li>
+        </ul>
+        <p>
+          Donde esté autorizado por el Acuerdo de Alquiler de Vehículo y la ley aplicable, estos cargos pueden ser procesados después de que finalice el alquiler.
+        </p>
+        <p>
+          305Fleet mantendrá documentación de respaldo razonable para cargos materiales post-alquiler.
+        </p>
+
+        <h2>40. Eventos Fuera del Control de 305Fleet</h2>
+        <p>
+          305Fleet no es responsable por fallas o retrasos causados por circunstancias fuera de su control razonable, incluyendo:
+        </p>
+        <ul>
+          <li>huracanes o clima severo;</li>
+          <li>inundaciones;</li>
+          <li>cierres de carreteras o aeropuertos;</li>
+          <li>restricciones gubernamentales;</li>
+          <li>emergencias civiles;</li>
+          <li>cortes de energía;</li>
+          <li>fallos de internet o telecomunicaciones;</li>
+          <li>fallos de plataformas de terceros;</li>
+          <li>retiros de vehículos;</li>
+          <li>accidentes;</li>
+          <li>robo;</li>
+          <li>fallas mecánicas inesperadas; o</li>
+          <li>otras circunstancias comparables.</li>
+        </ul>
+        <p>
+          305Fleet hará esfuerzos razonables para atender reservaciones afectadas cuando sea practicable.
+        </p>
+
+        <h2>41. Disponibilidad del Sitio Web</h2>
+        <p>
+          305Fleet no garantiza la operación ininterrumpida o libre de errores de su sitio web, sistema de reservación o servicios de terceros.
+        </p>
+        <p>
+          Los servicios en línea pueden ocasionalmente no estar disponibles debido a mantenimiento, problemas técnicos, problemas de seguridad u outage de terceros.
+        </p>
+
+        <h2>42. Propiedad Intelectual</h2>
+        <p>
+          El nombre, logo, marca, contenido original del sitio web, gráficos y fotografías propiedad de 305Fleet y otros materiales propietarios pertenecen a Turomina LLC o están licenciados a menos que se indique lo contrario.
+        </p>
+        <p>
+          El contenido del sitio web puede usarse para fines personales y no comerciales relacionados con evaluar o usar los servicios de 305Fleet.
+        </p>
+        <p>
+          El contenido protegido no puede ser copiado, vendido, modificado, distribuido, licenciado o explotado comercialmente sin autorización.
+        </p>
+
+        <h2>43. Limitación de Responsabilidad</h2>
+        <p>
+          EN LA MEDIDA MÁXIMA PERMITIDA POR LA LEY APLICABLE, TUROMINA LLC DBA 305FLEet NO SERÁ RESPONSABLE POR DAÑOS INDIRECTOS, INCIDENTALES, ESPECIALES, EJEMPLARES, PUNITIVOS O CONSECUENTES QUE SURJAN SOLAMENTE DEL USO DEL SITIO WEB, LOS SERVICIOS DE RESERVACIÓN, UNA INTERRUPCIÓN DEL SITIO WEB O LA INDISPONIBILIDAD DE UN VEHÍCULO RESERVADO.
+        </p>
+        <p>
+          ESTO PUEDE INCLUIR, DONDE LO PERMITA LA LEY, GASTOS DE HOTEL, PASAJES AÉREOS, EVENTOS PERDIDOS, OPORTUNIDADES DE NEGOCIO PERDIDAS, COSTOS DE TRANSPORTE ALTERNATIVO O PÉRDIDAS CONSECUENTES SIMILARES.
+        </p>
+        <p>
+          NADA EN ESTOS TÉRMINOS EXCLUYE O LIMITA LA RESPONSABILIDAD QUE NO PUEDE LEGALMENTE SE EXCLUIE O LIMITADA.
+        </p>
+        <p>
+          La responsabilidad que surge de la posesión u operación de un vehículo de alquiler está gobernada adicionalmente por el Acuerdo de Alquiler de Vehículo, los documentos de seguros o protección aplicables, la ley de Florida y la ley federal aplicable.
+        </p>
+
+        <h2>44. Indemnización</h2>
+        <p>
+          En la medida permitida por la ley, usted acepta indemnizar y mantener indemne a Turomina LLC dba 305Fleet y sus oficiales, empleados y agentes de reclamaciones de terceros, responsabilidades, pérdidas, daños y gastos razonables surgidos de:
+        </p>
+        <ul>
+          <li>su uso ilegal del sitio web;</li>
+          <li>información materialmente fraudulenta proporcionada por usted;</li>
+          <li>su violación material de estos Términos;</li>
+          <li>su uso prohibido o ilegal de un vehículo de alquiler; o</li>
+          <li>su incumplimiento material del Acuerdo de Alquiler de Vehículo.</li>
+        </ul>
+        <p>
+          Esta disposición no requiere indemnización por responsabilidad que la ley aplicable no permita ser transferida.
+        </p>
+
+        <h2>45. No Renuncia a Derechos No Renunciables</h2>
+        <p>
+          Nada en estos Términos tiene la intención de renunciar, restringir o eliminar cualquier derecho del consumidor, protección estatutaria, recurso o responsabilidad que no pueda legalmente ser renunciada o limitada conforme a la ley aplicable.
+        </p>
+
+        <h2>46. Suspensión o Negativa de Futuro Servicio</h2>
+        <p>
+          305Fleet puede negar futuras reservaciones o restringir el acceso a sus servicios cuando sea razonablemente justificado por:
+        </p>
+        <ul>
+          <li>fraude;</li>
+          <li>impago;</li>
+          <li>incumplimiento material previo;</li>
+          <li>mal uso del vehículo;</li>
+          <li>conducta insegura;</li>
+          <li>uso no autorizado del vehículo;</li>
+          <li>daño intencional;</li>
+          <li>conducta abusiva o amenazante;</li>
+          <li>violación reiterada de las reglas de alquiler; o</li>
+          <li>preocupaciones sustanciales de seguridad.</li>
+        </ul>
+        <p>
+          Las obligaciones pendientes de un alquiler existente permanecen ejecutables donde lo permita la ley.
+        </p>
+
+        <h2>47. Ley Aplicable</h2>
+        <p>
+          Estos Términos y las transacciones con 305Fleet están gobernadas por las leyes del Estado de la Florida, sin considerar los principios de conflicto de leyes.
+        </p>
+
+        <h2>48. Jurisdicción</h2>
+        <p>
+          En la medida permitida por la ley aplicable, cualquier procedimiento judicial que surja de estos Términos o los servicios de 305Fleet deberá presentarse ante un tribunal estatal o federal apropiado ubicado en el Condado de Broward, Florida.
+        </p>
+        <p>
+          Nada en esta disposición requiere que un procedimiento sea presentado en el Condado de Broward si la ley aplicable requiere una jurisdicción diferente.
+        </p>
+
+        <h2>49. Cambios a Estos Términos</h2>
+        <p>
+          305Fleet puede actualizar estos Términos de vez en cuando.
+        </p>
+        <p>
+          La versión publicada en 305fleet.com mostrará su fecha de efectividad.
+        </p>
+        <p>
+          Los cambios generalmente se aplican prospectivamente.
+        </p>
+        <p>
+          Los Términos vigentes cuando una reservación sea confirmada regirán esa reservación a menos que:
+        </p>
+        <ul>
+          <li>el arrendatario y 305Fleet acuerden expresamente lo contrario;</li>
+          <li>un cambio sea requerido por la ley; o</li>
+          <li>la reservación sea modificada materialmente y se presenten y acepten los términos actualizados.</li>
+        </ul>
+        <p>
+          El uso continuado del sitio web después de que se publiquen Términos actualizados constituye aceptación de los Términos actualizados para futuros usos del sitio web.
+        </p>
+
+        <h2>50. Severabilidad</h2>
+        <p>
+          Si una disposición de estos Términos se determina como inválida, ilegal o inaplicable, esa disposición se ejecutará en la medida máxima permitida por la ley y las disposiciones restantes permanecerán vigentes.
+        </p>
+
+        <h2>51. No Renuncia</h2>
+        <p>
+          La falta de 305Fleet de hacer cumplir una disposición de estos Términos en una ocasión no constituye una renuncia a esa disposición o a cualquier otra disposición.
+        </p>
+
+        <h2>52. Asignación</h2>
+        <p>
+          Un arrendatario no puede asignar o transferir una reservación o derechos bajo estos Términos sin aprobación previa por escrito de 305Fleet.
+        </p>
+        <p>
+          305Fleet puede asignar sus derechos y obligaciones en conexión con una venta lícita, transferencia, reestructuración, fusión o reorganización de su negocio.
+        </p>
+
+        <h2>53. Acuerdo Completo</h2>
+        <p>
+          Para asuntos de sitio web y reservaciones, estos Términos y las políticas incorporadas constituyen el acuerdo entre el usuario y 305Fleet.
+        </p>
+        <p>
+          Para un alquiler real de vehículo, el acuerdo completo incluye adicionalmente, donde aplicable:
+        </p>
+        <ul>
+          <li>el Acuerdo de Alquiler de Vehículo de 305Fleet;</li>
+          <li>el Recibo de Reservación de Wheelbase;</li>
+          <li>información de reservación confirmada;</li>
+          <li>las Reglas del Camino;</li>
+          <li>documentos de seguros o protección;</li>
+          <li>registros de salida y entrada;</li>
+          <li>instrucciones específicas del vehículo; y</li>
+          <li>enmiendas escritas acordadas por las partes.</li>
+        </ul>
+
+        <h2>54. Información de Contacto</h2>
+        <p>
+          Las preguntas concernientes a estos Términos pueden dirigirse a:
+        </p>
+        <div class="not-prose mt-4 rounded-lg border border-brand-100 bg-brand-50 p-4 text-sm text-brand-700">
+          <p class="font-semibold text-brand">Turomina LLC dba 305Fleet</p>
+          <p>Pembroke Pines, Florida</p>
+          <p class="mt-2">Teléfono: <a href="tel:+13054391247" class="text-brand underline hover:text-brand-400">305-439-1247</a></p>
+          <p>Correo electrónico: <a href="mailto:turohost@305fleet.com" class="text-brand underline hover:text-brand-400">turohost@305fleet.com</a></p>
+          <p>Sitio web: <a href="https://305fleet.com" class="text-brand underline hover:text-brand-400">305fleet.com</a></p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
