@@ -11,8 +11,8 @@
 /book/glc         https://turo.com/us/en/suv-rental/united-states/pembroke-pines-fl/mercedes-benz/glc-class/3529622  302
 
 # Terms of Service URL migration (2026-09-17)
+# ES→EN 302 for /es/terms-of-service/ removed 2026-09-18: Spanish translation now live
 /terms/           /terms-of-service/    301
 /terms            /terms-of-service/    301
-/es/terms/        /terms-of-service/    301
-/es/terms         /terms-of-service/    301
-/es/terms-of-service/  /terms-of-service/  302
+/es/terms/        /es/terms-of-service/    301
+/es/terms         /es/terms-of-service/    301
